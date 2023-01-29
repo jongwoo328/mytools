@@ -1,30 +1,22 @@
+<script setup lang="ts">
+import PageHeader from "@/components/PageHeader.vue";
+</script>
+
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view />
+  <PageHeader />
+  <ALayout id="main" class="align-items-center">
+    <ALayoutContent id="view" class="container pt-5">
+      <router-view />
+    </ALayoutContent>
+  </ALayout>
 </template>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+a {
+  text-decoration: none;
 }
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+#main {
+  overflow-y: auto;
+  height: calc(100vh - 64px);
 }
 </style>
