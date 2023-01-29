@@ -1,6 +1,4 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import IndexView from "@/views/IndexView.vue";
-import JSONFormatterView from "@/views/JSONFormatterView.vue";
 
 export enum RouterName {
   Index = "Index",
@@ -11,7 +9,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "Index",
-    component: () => IndexView,
+    component: () => import("../views/IndexView.vue"),
   },
   {
     path: "/formatter",
@@ -19,7 +17,7 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: "json",
         name: RouterName.JSONFormatter,
-        component: () => JSONFormatterView,
+        component: () => import("../views/JSONFormatterView.vue"),
       },
     ],
   },
