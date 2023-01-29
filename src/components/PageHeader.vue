@@ -10,7 +10,7 @@ import { HomeTwoTone } from "@ant-design/icons-vue";
         <HomeTwoTone two-tone-color="#4c6ef5" />
       </div>
     </RouterLink>
-    <AMenu mode="horizontal" style="margin-left: 120px" :selectable="false">
+    <AMenu mode="horizontal" class="ms-2" :selectable="false">
       <ASubMenu key="formatter">
         <template #title>
           <span style="font-size: 1.3rem">Formatter</span>
