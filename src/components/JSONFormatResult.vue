@@ -62,7 +62,7 @@ function onClickDeleteResult() {
     ></VueJsonPretty>
     <ADivider class="mb-0">
       <AButton @click="onClickExpandToggle" shape="round">
-        {{ virtualScroll ? "Expand" : "Collapse" }}
+        {{ virtualScroll ? "Fit" : "Revert" }}
       </AButton>
     </ADivider>
     <div
