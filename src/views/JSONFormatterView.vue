@@ -10,21 +10,21 @@ const isJsonValid = computed(() => {
   return validateJSONInput();
 });
 
-function validateJSONInput() {
+const validateJSONInput = () => {
   try {
     JSON.parse(jsonInput.value);
     return true;
   } catch (err) {
     return false;
   }
-}
+};
 
-function onFormatButtonClick() {
+const onFormatButtonClick = () => {
   JSONFormatterStore.addJSONFormatResult({
     id: v4(),
     result: JSON.parse(jsonInput.value),
   });
-}
+};
 
 const convertButtonStyle = {
   height: "48px",

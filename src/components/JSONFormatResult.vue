@@ -18,31 +18,27 @@ const props = defineProps<{
 const { copy } = useClipboard({ legacy: true });
 const JSONFormatterStore = useJSONFormatterStore();
 
-function getObjectFromPath(path: string) {
+const getObjectFromPath = (path: string) => {
   return _.get(props.jsonObject, _.trimStart(path, "."));
-}
-
-async function onClickCopyAll() {
+};
+const onClickCopyAll = async () => {
   await copy(JSON.stringify(props.jsonObject, null, 4));
-}
-
-async function onClickSelectedNode() {
+};
+const onClickSelectedNode = async () => {
   await copy(
     JSON.stringify(getObjectFromPath(selected.value as string), null, 4)
   );
-}
+};
 
-function onClickResetSelect() {
+const onClickResetSelect = () => {
   selected.value = null;
-}
-
-function onClickExpandToggle() {
+};
+const onClickExpandToggle = () => {
   virtualScroll.value = !virtualScroll.value;
-}
-
-function onClickDeleteResult() {
+};
+const onClickDeleteResult = () => {
   JSONFormatterStore.deleteJsonFormatResult(props.jsonResultId);
-}
+};
 </script>
 
 <template>
