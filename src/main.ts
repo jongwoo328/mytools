@@ -7,5 +7,6 @@ import Antd from "ant-design-vue";
 import "ant-design-vue/dist/antd.css";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "vue-json-pretty/lib/styles.css";
 
 createApp(App).use(createPinia()).use(router).use(Antd).mount("#app");

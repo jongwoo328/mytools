@@ -2,10 +2,9 @@
 import { defineProps, ref } from "vue";
 import { DeleteOutlined } from "@ant-design/icons-vue";
 import _ from "lodash";
-import { useCopy } from "@/composables/copy";
 import VueJsonPretty from "vue-json-pretty";
-import "vue-json-pretty/lib/styles.css";
 import { useJSONFormatterStore } from "@/store/JSONFormatterStore";
+import { useClipboard } from "@vueuse/core";
 
 const selected = ref<string | null>(null);
 const virtualScroll = ref(true);
@@ -16,7 +15,7 @@ const props = defineProps<{
   jsonResultId: string;
 }>();
 
-const { copyStringToClipboard } = useCopy();
+const { copy } = useClipboard({ legacy: true });
 const JSONFormatterStore = useJSONFormatterStore();
 
 function getObjectFromPath(path: string) {
@@ -24,11 +23,11 @@ function getObjectFromPath(path: string) {
 }
 
 async function onClickCopyAll() {
-  await copyStringToClipboard(JSON.stringify(props.jsonObject, null, 4));
+  await copy(JSON.stringify(props.jsonObject, null, 4));
 }
 
 async function onClickSelectedNode() {
-  await copyStringToClipboard(
+  await copy(
     JSON.stringify(getObjectFromPath(selected.value as string), null, 4)
   );
 }
