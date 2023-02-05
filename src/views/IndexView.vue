@@ -7,6 +7,17 @@ const availableTools: AvailableTool[] = [
   {
     title: "JSON Formatter",
     router: { name: RouterName.JSONFormatter },
+    description: "formatting JSON text",
+    tags: [
+      {
+        name: "Formatter",
+      },
+    ],
+  },
+  {
+    title: "SQL Formatter",
+    router: { name: RouterName.SQLFormatter },
+    description: "formatting SQL",
     tags: [
       {
         name: "Formatter",
@@ -24,7 +35,7 @@ const availableTools: AvailableTool[] = [
       :key="availableTool.title"
       :span="24"
       :md="12"
-      :lg="8"
+      :xl="8"
     >
       <IndexLinkCard :tool="availableTool"></IndexLinkCard>
     </ACol>

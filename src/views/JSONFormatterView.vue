@@ -25,10 +25,6 @@ const onFormatButtonClick = () => {
     result: JSON.parse(jsonInput.value),
   });
 };
-
-const convertButtonStyle = {
-  height: "48px",
-};
 </script>
 
 <template>
@@ -54,7 +50,7 @@ const convertButtonStyle = {
       block
       type="primary"
       :disabled="!isJsonValid"
-      :style="convertButtonStyle"
+      style="height: 48px"
       @click="onFormatButtonClick"
       >Format</AButton
     >

@@ -3,6 +3,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 export enum RouterName {
   Index = "Index",
   JSONFormatter = "JSONFormatter",
+  SQLFormatter = "SQLFormatter",
 }
 
 const routes: Array<RouteRecordRaw> = [
@@ -18,6 +19,11 @@ const routes: Array<RouteRecordRaw> = [
         path: "json",
         name: RouterName.JSONFormatter,
         component: () => import("../views/JSONFormatterView.vue"),
+      },
+      {
+        path: "sql",
+        name: RouterName.SQLFormatter,
+        component: () => import("../views/SQLFormatterView.vue"),
       },
     ],
   },

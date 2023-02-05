@@ -23,6 +23,13 @@ import { HomeTwoTone } from "@ant-design/icons-vue";
             >JSON</RouterLink
           >
         </AMenuItem>
+        <AMenuItem key="sql-formatter">
+          <RouterLink
+            class="text-decoration-none"
+            :to="{ name: RouterName.SQLFormatter }"
+            >SQL</RouterLink
+          >
+        </AMenuItem>
       </ASubMenu>
     </AMenu>
   </ALayoutHeader>
