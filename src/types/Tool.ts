@@ -8,5 +8,6 @@ export type AvailableToolTag = {
 export type AvailableTool = {
   title: string;
   router: RouteLocationRaw;
+  description: string;
   tags: AvailableToolTag[];
 };

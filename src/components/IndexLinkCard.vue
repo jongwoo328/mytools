@@ -16,7 +16,7 @@ const props = defineProps<{
         }}</ATypographyTitle>
       </RouterLink>
     </template>
-    <ATypographyParagraph> formatting JSON text </ATypographyParagraph>
+    <ATypographyParagraph> {{ props.tool.description }} </ATypographyParagraph>
     <div>
       <ATag v-for="tag in props.tool.tags" :key="tag" :color="tag.color ?? ''">
         {{ `# ${tag.name}` }}
