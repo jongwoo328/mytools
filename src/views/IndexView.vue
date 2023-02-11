@@ -29,7 +29,7 @@ const availableTools: AvailableTool[] = [
 
 <template>
   <ATypographyTitle>⚒️ Available Tools</ATypographyTitle>
-  <ARow class="mt-5">
+  <ARow class="mt-5" :gutter="12">
     <ACol
       v-for="availableTool in availableTools"
       :key="availableTool.title"
