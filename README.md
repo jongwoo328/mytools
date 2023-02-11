@@ -1,24 +1,21 @@
-# mytools
+# MyTools
 
-## Project setup
-```
-pnpm install
-```
+[Go to Webpage](https://tools.jongwoo.me)
 
-### Compiles and hot-reloads for development
-```
-pnpm run serve
-```
+## Project Description
 
-### Compiles and minifies for production
-```
-pnpm run build
-```
+This project aims to collect useful and frequently used functions in one place, for my personal use. However, it is open for others to use as well.
 
-### Lints and fixes files
-```
-pnpm run lint
-```
+The project offers features that can also be found on other websites, but with the added benefit of allowing users to perform operations solely using JavaScript in the browser, without relying on a server. This is particularly useful for sensitive data management.
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+The goals and principles guiding the project are the following:
+
+- To include minor, practical functions rather than complex or professional ones.
+- To ensure that the website's functions do not require server-side handling.
+
+## This project is using
+- Vue3
+- AWS CloudFront
+
+## Reports & Suggestions
+If you have anything to report or suggest, please use [issues page](https://github.com/jongwoo328/mytools/issues).
