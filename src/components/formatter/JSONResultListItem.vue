@@ -1,28 +1,27 @@
 <script setup lang="ts">
-import { defineProps, ref } from "vue";
+import { defineEmits, defineProps, ref } from "vue";
 import { DeleteOutlined } from "@ant-design/icons-vue";
 import _ from "lodash";
 import VueJsonPretty from "vue-json-pretty";
-import { useJSONFormatterStore } from "@/store/JSONFormatterStore";
 import { useClipboard } from "@vueuse/core";
+import { JSONResult } from "@/types/JSONResult";
 
 const selected = ref<string | null>(null);
 const virtualScroll = ref(true);
 const createdAt = new Date().toLocaleString();
 
+const emit = defineEmits<{ (e: "delete", id: string): void }>();
 const props = defineProps<{
-  jsonObject: object;
-  jsonResultId: string;
+  resultData: JSONResult;
 }>();
 
 const { copy } = useClipboard({ legacy: true });
-const JSONFormatterStore = useJSONFormatterStore();
 
 const getObjectFromPath = (path: string) => {
-  return _.get(props.jsonObject, _.trimStart(path, "."));
+  return _.get(props.resultData.result, _.trimStart(path, "."));
 };
 const onClickCopyAll = async () => {
-  await copy(JSON.stringify(props.jsonObject, null, 4));
+  await copy(JSON.stringify(props.resultData.result, null, 4));
 };
 const onClickSelectedNode = async () => {
   await copy(
@@ -37,7 +36,7 @@ const onClickExpandToggle = () => {
   virtualScroll.value = !virtualScroll.value;
 };
 const onClickDeleteResult = () => {
-  JSONFormatterStore.deleteJsonFormatResult(props.jsonResultId);
+  emit("delete", props.resultData.id);
 };
 </script>
 
@@ -47,7 +46,7 @@ const onClickDeleteResult = () => {
       createdAt
     }}</ATypographyText>
     <VueJsonPretty
-      :data="props.jsonObject"
+      :data="resultData.result"
       :virtual="virtualScroll"
       selectableType="single"
       :showSelectController="true"

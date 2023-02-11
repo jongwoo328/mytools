@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { AvailableTool } from "@/types/Tool";
-import IndexLinkCard from "@/components/IndexLinkCard.vue";
+import FunctionListItem from "@/components/index/FunctionListItem.vue";
 import { RouterName } from "@/router";
 
 const availableTools: AvailableTool[] = [
@@ -37,7 +37,7 @@ const availableTools: AvailableTool[] = [
       :md="12"
       :xl="8"
     >
-      <IndexLinkCard :tool="availableTool"></IndexLinkCard>
+      <FunctionListItem :tool="availableTool"></FunctionListItem>
     </ACol>
   </ARow>
 </template>
