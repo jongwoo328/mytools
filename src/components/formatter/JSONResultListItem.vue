@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { defineEmits, defineProps, ref } from "vue";
-import { DeleteOutlined } from "@ant-design/icons-vue";
+import { DeleteOutlined, ReloadOutlined } from "@ant-design/icons-vue";
 import _ from "lodash";
 import VueJsonPretty from "vue-json-pretty";
 import { useClipboard } from "@vueuse/core";
@@ -18,7 +18,7 @@ const props = defineProps<{
 const { copy } = useClipboard({ legacy: true });
 
 const getObjectFromPath = (path: string) => {
-  return _.get(props.resultData.result, _.trimStart(path, "."));
+  return _.get(props.resultData.result, _.trimStart(path, "$."));
 };
 const onClickCopyAll = async () => {
   await copy(JSON.stringify(props.resultData.result, null, 4));
@@ -27,6 +27,11 @@ const onClickSelectedNode = async () => {
   await copy(
     JSON.stringify(getObjectFromPath(selected.value as string), null, 4)
   );
+};
+const onClickCopyPath = async () => {
+  if (selected.value) {
+    await copy(selected.value);
+  }
 };
 
 const onClickResetSelect = () => {
@@ -52,7 +57,7 @@ const onClickDeleteResult = () => {
       :showSelectController="true"
       :showIcon="true"
       v-model:selectedValue="selected"
-      rootPath=""
+      rootPath="$"
     ></VueJsonPretty>
     <ADivider class="mb-0">
       <AButton @click="onClickExpandToggle" shape="round">
@@ -76,9 +81,19 @@ const onClickDeleteResult = () => {
       <AButton
         @click="onClickResetSelect"
         :disabled="_.isNull(selected)"
-        class="me-1"
-        >Reset Select</AButton
+        class="me-1 px-2"
       >
+        <div class="d-flex align-items-center">
+          <ReloadOutlined />
+        </div>
+      </AButton>
+      <AButton
+        class="me-1"
+        :disabled="_.isNull(selected)"
+        @click="onClickCopyPath"
+      >
+        Copy Path
+      </AButton>
       <AButton
         class="me-1"
         :disabled="_.isNull(selected)"
