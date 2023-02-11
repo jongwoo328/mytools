@@ -18,12 +18,12 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: "json",
         name: RouterName.JSONFormatter,
-        component: () => import("../views/JSONFormatterView.vue"),
+        component: () => import("../views/formatter/JSONFormatter.vue"),
       },
       {
         path: "sql",
         name: RouterName.SQLFormatter,
-        component: () => import("../views/SQLFormatterView.vue"),
+        component: () => import("../views/formatter/SQLFormatter.vue"),
       },
     ],
   },

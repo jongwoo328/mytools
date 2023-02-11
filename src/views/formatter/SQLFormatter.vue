@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { computed, Ref, ref } from "vue";
-import SQLFormatResult from "@/components/SQLFormatResult.vue";
-import { useSQLFormatterStore } from "@/store/SQLFormatterStore";
 import { SelectProps } from "ant-design-vue";
 import { format } from "sql-formatter";
 import { v4 } from "uuid";
-import { SelectableSQLLanguage } from "@/types/SQLResult";
+import { SelectableSQLLanguage, SQLResult } from "@/types/SQLResult";
+import SQLResultList from "@/components/formatter/SQLResultList.vue";
 
-const SQLFormatterStore = useSQLFormatterStore();
+const SQLFormatterResults: Ref<SQLResult[]> = ref([]);
 const sqlLanguageOptions = ref<SelectProps["options"]>([
   {
     label: "SQL",
@@ -51,7 +50,7 @@ const isSQLValid = computed(() => {
 });
 
 const onFormatButtonClick = () => {
-  SQLFormatterStore.addSQLFormatResult({
+  SQLFormatterResults.value.push({
     id: v4(),
     sql: sqlInput.value,
     language: sqlLanguage.value,
@@ -92,14 +91,5 @@ const onFormatButtonClick = () => {
       >Format</AButton
     >
   </section>
-  <section class="mt-5 d-flex flex-column-reverse">
-    <SQLFormatResult
-      v-for="resultData in SQLFormatterStore.getSQLFormatResults"
-      :key="resultData.id"
-      :id="resultData.id"
-      :sql-text="resultData.sql"
-      :sql-language="sqlLanguage"
-    >
-    </SQLFormatResult>
-  </section>
+  <SQLResultList v-model:results="SQLFormatterResults" />
 </template>

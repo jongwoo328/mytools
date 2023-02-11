@@ -7,7 +7,7 @@ export type SelectableSQLLanguage =
   | "spark"
   | "snowflake";
 
-export type SQLResultProp = {
+export type SQLResult = {
   id: string;
   sql: string;
   language: SelectableSQLLanguage;

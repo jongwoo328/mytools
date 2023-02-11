@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, Ref, ref } from "vue";
 import { v4 } from "uuid";
-import { useJSONFormatterStore } from "@/store/JSONFormatterStore";
-import JSONFormatResult from "@/components/JSONFormatResult.vue";
+import JSONResultList from "@/components/formatter/JSONResultList.vue";
+import { JSONResult } from "@/types/JSONResult";
 
-const JSONFormatterStore = useJSONFormatterStore();
 const jsonInput = ref("");
 const isJsonValid = computed(() => {
   return validateJSONInput();
 });
+const JSONFormatResults: Ref<JSONResult[]> = ref([]);
 
 const validateJSONInput = () => {
   try {
@@ -20,7 +20,7 @@ const validateJSONInput = () => {
 };
 
 const onFormatButtonClick = () => {
-  JSONFormatterStore.addJSONFormatResult({
+  JSONFormatResults.value.push({
     id: v4(),
     result: JSON.parse(jsonInput.value),
   });
@@ -55,12 +55,5 @@ const onFormatButtonClick = () => {
       >Format</AButton
     >
   </section>
-  <section class="mt-5 d-flex flex-column-reverse">
-    <JSONFormatResult
-      v-for="resultData in JSONFormatterStore.getJSONFormatResults"
-      :key="resultData.id"
-      :json-object="resultData.result"
-      :json-result-id="resultData.id"
-    ></JSONFormatResult>
-  </section>
+  <JSONResultList v-model:results="JSONFormatResults" />
 </template>

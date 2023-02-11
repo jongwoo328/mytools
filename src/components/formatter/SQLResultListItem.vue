@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, defineProps, Ref, ref } from "vue";
-import { SelectableSQLLanguage } from "@/types/SQLResult";
+import { computed, defineEmits, defineProps, Ref, ref } from "vue";
+import { SQLResult } from "@/types/SQLResult";
 import {
   format,
   IndentStyle,
@@ -8,18 +8,16 @@ import {
   LogicalOperatorNewline,
 } from "sql-formatter";
 import { DeleteOutlined } from "@ant-design/icons-vue";
-import { useSQLFormatterStore } from "@/store/SQLFormatterStore";
 import { useClipboard } from "@vueuse/core";
 
-const SQLFormatterStore = useSQLFormatterStore();
 const { copy } = useClipboard({ legacy: true });
 
 const createdAt = new Date().toLocaleString();
 const props = defineProps<{
-  id: string;
-  sqlText: string;
-  sqlLanguage: SelectableSQLLanguage;
+  resultData: SQLResult;
 }>();
+const emit = defineEmits<{ (e: "delete", id: string): void }>();
+
 const expandToggle: Ref<"fit" | "revert"> = ref("revert");
 const sqlResultHeight = computed(() =>
   expandToggle.value === "fit" ? "initial" : "400px"
@@ -28,8 +26,8 @@ const sqlResultOverflowY = computed(() =>
   expandToggle.value === "fit" ? "initial" : "auto"
 );
 const formattedSQL = computed(() =>
-  format(props.sqlText, {
-    language: props.sqlLanguage,
+  format(props.resultData.sql, {
+    language: props.resultData.language,
     useTabs: useTabs.value,
     tabWidth: tabWidth.value,
     keywordCase: keywordCase.value,
@@ -45,7 +43,7 @@ const indentation: Ref<IndentStyle> = ref("standard");
 const logicalOperatorNewLine: Ref<LogicalOperatorNewline> = ref("before");
 
 const onClickDeleteResult = () => {
-  SQLFormatterStore.deleteSQLFormatResult(props.id);
+  emit("delete", props.resultData.id);
 };
 const onClickExpandToggle = () => {
   if (expandToggle.value === "fit") {
