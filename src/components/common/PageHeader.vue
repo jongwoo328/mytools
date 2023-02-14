@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { RouterName } from "@/router";
 import { HomeTwoTone } from "@ant-design/icons-vue";
+
+const menuTitleStyle = { fontSize: "1.3rem" };
 </script>
 
 <template>
@@ -13,7 +15,7 @@ import { HomeTwoTone } from "@ant-design/icons-vue";
     <AMenu mode="horizontal" class="ms-2" :selectable="false">
       <ASubMenu key="formatter">
         <template #title>
-          <span style="font-size: 1.3rem">Formatter</span>
+          <span :style="menuTitleStyle">Formatter</span>
         </template>
 
         <AMenuItem key="json-formatter">
@@ -29,6 +31,20 @@ import { HomeTwoTone } from "@ant-design/icons-vue";
             :to="{ name: RouterName.SQLFormatter }"
             >SQL</RouterLink
           >
+        </AMenuItem>
+      </ASubMenu>
+      <ASubMenu key="converter">
+        <template #title>
+          <span :style="menuTitleStyle">Converter</span>
+        </template>
+
+        <AMenuItem key="image-converter">
+          <RouterLink
+            class="text-decoration-none"
+            :to="{ name: RouterName.ImageConverter }"
+          >
+            Image
+          </RouterLink>
         </AMenuItem>
       </ASubMenu>
     </AMenu>
