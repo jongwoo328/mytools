@@ -11,6 +11,7 @@ const availableTools: AvailableTool[] = [
     tags: [
       {
         name: "Formatter",
+        color: "orange",
       },
     ],
   },
@@ -21,6 +22,18 @@ const availableTools: AvailableTool[] = [
     tags: [
       {
         name: "Formatter",
+        color: "orange",
+      },
+    ],
+  },
+  {
+    title: "Image Converter",
+    router: { name: RouterName.ImageConverter },
+    description: "Convert Image (JPEG, PNG, WEBP)",
+    tags: [
+      {
+        name: "Converter",
+        color: "green",
       },
     ],
   },
