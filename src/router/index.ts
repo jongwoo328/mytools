@@ -4,6 +4,7 @@ export enum RouterName {
   Index = "Index",
   JSONFormatter = "JSONFormatter",
   SQLFormatter = "SQLFormatter",
+  ImageConverter = "ImageConverter",
 }
 
 const routes: Array<RouteRecordRaw> = [
@@ -24,6 +25,16 @@ const routes: Array<RouteRecordRaw> = [
         path: "sql",
         name: RouterName.SQLFormatter,
         component: () => import("../views/formatter/SQLFormatter.vue"),
+      },
+    ],
+  },
+  {
+    path: "/converter",
+    children: [
+      {
+        path: "image",
+        name: RouterName.ImageConverter,
+        component: () => import("../views/converter/ImageConverter.vue"),
       },
     ],
   },
