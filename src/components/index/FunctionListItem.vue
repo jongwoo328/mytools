@@ -8,7 +8,7 @@ const props = defineProps<{
 </script>
 
 <template>
-  <ACard class="available-card">
+  <ACard class="available-card mb-3">
     <template v-slot:title>
       <RouterLink class="text-decoration-none" :to="props.tool.router">
         <ATypographyTitle class="m-0" :level="3">{{
