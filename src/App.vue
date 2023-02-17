@@ -5,7 +5,11 @@ import PageHeader from "@/components/common/PageHeader.vue";
 <template>
   <PageHeader />
   <ALayout id="main" class="align-items-center">
-    <ALayoutContent id="view" class="container pt-5">
+    <ALayoutContent
+      id="view"
+      class="container pt-5"
+      style="padding-bottom: 100px"
+    >
       <router-view />
     </ALayoutContent>
   </ALayout>
@@ -17,6 +21,6 @@ a {
 }
 #main {
   overflow-y: auto;
-  height: calc(100vh - 64px);
+  min-height: calc(100vh - 64px);
 }
 </style>
