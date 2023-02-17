@@ -3,9 +3,8 @@ import { defineEmits, defineProps, ref } from "vue";
 import { ImageConverterResult } from "@/types/ImageConverterResult";
 import { DeleteOutlined, DownloadOutlined } from "@ant-design/icons-vue";
 
-const props = defineProps<{ result: ImageConverterResult }>();
+const props = defineProps<{ result: ImageConverterResult; index: number }>();
 const emit = defineEmits<{ (e: "delete", id: string): void }>();
-const createdAt = new Date().toLocaleString();
 
 const discreteFileNameWithNameAndType = (
   fileName: string
@@ -38,9 +37,12 @@ const onClickDeleteResult = () => {
 
 <template>
   <ACard class="pt-5 mb-2">
-    <ATypographyText class="position-absolute" style="left: 24px; top: 24px">{{
-      createdAt
-    }}</ATypographyText>
+    <ATypographyText
+      :strong="true"
+      class="position-absolute"
+      style="left: 24px; top: 28px"
+      >{{ `# ${index}` }}</ATypographyText
+    >
     <ARow class="image-result-item">
       <ACol class="h-100 px-3" :span="24" :lg="16">
         <div

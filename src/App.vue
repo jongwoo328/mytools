@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import PageHeader from "@/components/common/PageHeader.vue";
+import GlobalBackTop from "@/components/common/GlobalBackTop.vue";
 </script>
 
 <template>
-  <PageHeader />
-  <ALayout id="main" class="align-items-center">
+  <ALayout ref="layoutRoot" id="main" class="align-items-center">
+    <PageHeader />
     <ALayoutContent
       id="view"
       class="container pt-5"
@@ -13,6 +14,7 @@ import PageHeader from "@/components/common/PageHeader.vue";
       <router-view />
     </ALayoutContent>
   </ALayout>
+  <GlobalBackTop />
 </template>
 
 <style lang="scss">
@@ -21,6 +23,6 @@ a {
 }
 #main {
   overflow-y: auto;
-  min-height: calc(100vh - 64px);
+  min-height: 100vh;
 }
 </style>

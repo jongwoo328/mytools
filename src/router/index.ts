@@ -1,4 +1,9 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import {
+  createRouter,
+  createWebHistory,
+  RouteRecordRaw,
+  RouterScrollBehavior,
+} from "vue-router";
 
 export enum RouterName {
   Index = "Index",
@@ -6,6 +11,13 @@ export enum RouterName {
   SQLFormatter = "SQLFormatter",
   ImageConverter = "ImageConverter",
 }
+
+const scrollBehavior: RouterScrollBehavior = (to, from, savedPosition) => {
+  if (savedPosition) {
+    return savedPosition;
+  }
+  return { top: 0 };
+};
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -43,6 +55,7 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+  scrollBehavior,
 });
 
 export default router;
