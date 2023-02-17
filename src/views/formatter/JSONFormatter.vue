@@ -40,6 +40,7 @@ const onFormatButtonClick = () => {
       }"
       :allowClear="true"
       v-model:value="jsonInput"
+      class="prevent-auto-zoom"
     ></ATextarea>
     <div v-if="isJsonValid" style="height: 24px"></div>
     <ATypographyText v-else class="float-end" type="danger">

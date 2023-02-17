@@ -80,6 +80,7 @@ const onFormatButtonClick = () => {
       }"
       :allowClear="true"
       v-model:value="sqlInput"
+      class="prevent-auto-zoom"
     ></ATextarea>
     <div v-if="isSQLValid" style="height: 24px"></div>
     <ATypographyText v-else class="float-end" type="danger">
