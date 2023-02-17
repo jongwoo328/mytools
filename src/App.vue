@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import PageHeader from "@/components/common/PageHeader.vue";
-import { UpOutlined } from "@ant-design/icons-vue";
+import GlobalBackTop from "@/components/common/GlobalBackTop.vue";
 </script>
 
 <template>
@@ -14,13 +14,7 @@ import { UpOutlined } from "@ant-design/icons-vue";
       <router-view />
     </ALayoutContent>
   </ALayout>
-  <ABackTop :visibility-heighteight="10">
-    <AButton shape="circle" type="primary" size="large" style="border: none">
-      <template #icon>
-        <UpOutlined class="d-flex align-items-center text-white" />
-      </template>
-    </AButton>
-  </ABackTop>
+  <GlobalBackTop />
 </template>
 
 <style lang="scss">
