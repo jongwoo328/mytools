@@ -21,8 +21,9 @@ const onClickDelete = (id: string) => {
 <template>
   <section class="mt-5 d-flex flex-column-reverse">
     <JSONResultListItem
-      v-for="result in results"
+      v-for="(result, idx) in results"
       :key="result.id"
+      :index="idx + 1"
       :result-data="result"
       @delete="onClickDelete"
     />

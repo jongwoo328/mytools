@@ -79,6 +79,7 @@ const pushToIndex = () => {
           </template>
           <AMenuItem key="json-formatter">
             <RouterLink
+              @click="closeDrawer"
               class="text-decoration-none"
               :to="{ name: RouterName.JSONFormatter }"
               >JSON</RouterLink
@@ -86,6 +87,7 @@ const pushToIndex = () => {
           </AMenuItem>
           <AMenuItem key="sql-formatter">
             <RouterLink
+              @click="closeDrawer"
               class="text-decoration-none"
               :to="{ name: RouterName.SQLFormatter }"
               >SQL</RouterLink
@@ -99,6 +101,7 @@ const pushToIndex = () => {
 
           <AMenuItem key="image-converter">
             <RouterLink
+              @click="closeDrawer"
               class="text-decoration-none"
               :to="{ name: RouterName.ImageConverter }"
             >

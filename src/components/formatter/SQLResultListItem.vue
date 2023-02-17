@@ -12,9 +12,9 @@ import { useClipboard } from "@vueuse/core";
 
 const { copy } = useClipboard({ legacy: true });
 
-const createdAt = new Date().toLocaleString();
 const props = defineProps<{
   resultData: SQLResult;
+  index: number;
 }>();
 const emit = defineEmits<{ (e: "delete", id: string): void }>();
 
@@ -59,9 +59,12 @@ const onClickCopy = () => {
 
 <template>
   <ACard class="pt-5 mb-2">
-    <ATypographyText class="position-absolute" style="left: 24px; top: 24px">{{
-      createdAt
-    }}</ATypographyText>
+    <ATypographyText
+      :strong="true"
+      class="position-absolute"
+      style="left: 24px; top: 28px"
+      >{{ `# ${index}` }}</ATypographyText
+    >
     <ACollapse style="background-color: #f1f3f5" :ghost="true" class="mb-2">
       <ACollapsePanel header="Advanced Setting">
         <ARow :gutter="10">
