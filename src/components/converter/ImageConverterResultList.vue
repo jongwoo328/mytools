@@ -19,7 +19,8 @@ const onDelete = (id: string) => {
 </script>
 
 <template>
-  <section class="mt-5 d-flex flex-column-reverse">
+  <ADivider v-if="results.length > 0">Results</ADivider>
+  <section class="d-flex flex-column-reverse">
     <ImageConverterResultListItem
       v-for="(result, idx) in results"
       :key="result.id"
