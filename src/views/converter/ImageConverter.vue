@@ -6,14 +6,17 @@ import { Browser, useBrowser } from "@/composables/useBrowser";
 import ImageConverterResultList from "@/components/converter/ImageConverterResultList.vue";
 import { v4 } from "uuid";
 import { ImageConverterResult } from "@/types/ImageConverterResult";
+import { LoadingOutlined } from "@ant-design/icons-vue";
 
 const browser = useBrowser();
 
 const canvas = ref<HTMLCanvasElement>();
 const inputImage: Ref<File | null> = ref(null);
 const imageObj: Ref<HTMLImageElement> = ref(new Image());
+const isConvertLoading = ref(false);
 const isImageLoaded = ref(false);
 const imageConverterResultList: Ref<ImageConverterResult[]> = ref([]);
+const fileReader = new FileReader();
 
 const convertTo = ref(null);
 const convertTypes = computed<SelectProps["options"]>(() => {
@@ -39,16 +42,34 @@ const convertTypes = computed<SelectProps["options"]>(() => {
   return list.filter((item) => item.value !== inputImage.value?.type);
 });
 
-const onClickConvert = () => {
-  if (!inputImage.value || !canvas.value || !convertTo.value) {
+const onClickConvert = async () => {
+  if (!convertTo.value) {
     return;
   }
-  imageConverterResultList.value.push({
-    id: v4(),
-    objectURL: canvas.value.toDataURL(convertTo.value),
-    originalName: inputImage.value.name,
-    type: convertTo.value,
-    originalType: inputImage.value.type,
+  isConvertLoading.value = true;
+  canvas.value?.toBlob(async (blob: Blob | null) => {
+    if (!inputImage.value || !canvas.value || !convertTo.value || !blob) {
+      return;
+    }
+    const imageUrl = await blobToBase64(blob);
+    imageConverterResultList.value.push({
+      id: v4(),
+      objectURL: imageUrl,
+      originalName: inputImage.value.name,
+      type: convertTo.value,
+      originalType: inputImage.value.type,
+    });
+    isConvertLoading.value = false;
+  }, convertTo.value);
+};
+
+const blobToBase64 = async (blob: Blob): Promise<string> => {
+  return new Promise((res) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(blob);
+    fileReader.onloadend = () => {
+      res(fileReader.result as string);
+    };
   });
 };
 
@@ -123,12 +144,16 @@ watch(inputImage, (n, o) => {
             </AForm>
 
             <AButton
-              :disabled="!isImageLoaded || !convertTo"
-              class="w-100"
+              :disabled="!isImageLoaded || !convertTo || isConvertLoading"
+              class="w-100 d-flex justify-content-center align-items-center"
               type="primary"
               @click="onClickConvert"
-              >Convert</AButton
             >
+              <template v-if="!isConvertLoading">Convert</template>
+              <template v-else>
+                <LoadingOutlined />
+              </template>
+            </AButton>
           </ACard>
         </ACol>
       </ARow>
