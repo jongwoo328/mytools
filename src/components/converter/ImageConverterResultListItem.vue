@@ -36,7 +36,12 @@ const onClickDeleteResult = () => {
 </script>
 
 <template>
-  <ACard class="pt-5 mb-2">
+  <ACard
+    data-aos="fade-up"
+    data-aos-once="true"
+    data-aos-anchor-placement="bottom"
+    class="pt-5 mb-2"
+  >
     <ATypographyText
       :strong="true"
       class="position-absolute"

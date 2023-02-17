@@ -10,6 +10,13 @@ import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "vue-json-pretty/lib/styles.css";
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+AOS.init();
+
 createApp(App)
   .use(createPinia())
   .use(router)

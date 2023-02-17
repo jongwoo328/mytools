@@ -58,7 +58,12 @@ const onClickCopy = () => {
 </script>
 
 <template>
-  <ACard class="pt-5 mb-2">
+  <ACard
+    data-aos="fade-up"
+    data-aos-once="true"
+    data-aos-anchor-placement="bottom"
+    class="pt-5 mb-2"
+  >
     <ATypographyText
       :strong="true"
       class="position-absolute"
@@ -66,11 +71,11 @@ const onClickCopy = () => {
       >{{ `# ${index}` }}</ATypographyText
     >
     <ACollapse style="background-color: #f1f3f5" :ghost="true" class="mb-2">
-      <ACollapsePanel header="Advanced Setting">
+      <ACollapsePanel class="prevent-auto-zoom" header="Advanced Setting">
         <ARow :gutter="10">
-          <ACol :span="12" :md="8">
+          <ACol class="mb-2" :span="24" :md="12" :xl="8">
             <ARow>
-              <ACol :span="12" :md="8">
+              <ACol :span="12">
                 <label for="useTabs">Use Tabs</label>
               </ACol>
               <ACol
@@ -80,9 +85,9 @@ const onClickCopy = () => {
               </ACol>
             </ARow>
           </ACol>
-          <ACol :span="12" :md="8">
+          <ACol class="mb-2" :span="24" :md="12" :xl="8">
             <ARow justify="space-between">
-              <ACol :span="12" :md="8">
+              <ACol :span="12">
                 <label for="tabWidth">Tab Width</label>
               </ACol>
               <ACol
@@ -99,10 +104,10 @@ const onClickCopy = () => {
               </ACol>
             </ARow>
           </ACol>
-          <ACol :span="12" :md="8">
+          <ACol class="mb-2" :span="24" :md="12" :xl="8">
             <ARow>
-              <ACol :span="12" :md="8">
-                <label for="case">Keyword Case</label>
+              <ACol :span="12">
+                <label for="case">Keyword</label>
               </ACol>
               <ACol
                 class="d-flex flex-grow-1 justify-content-start align-items-center"
@@ -119,9 +124,9 @@ const onClickCopy = () => {
               </ACol>
             </ARow>
           </ACol>
-          <ACol :span="12" :md="8">
+          <ACol class="mb-2" :span="24" :md="12" :xl="8">
             <ARow>
-              <ACol :span="12" :md="8">
+              <ACol :span="12">
                 <label for="case">Indent</label>
               </ACol>
               <ACol
@@ -140,9 +145,9 @@ const onClickCopy = () => {
               </ACol>
             </ARow>
           </ACol>
-          <ACol :span="12" :md="8">
+          <ACol class="mb-2" :span="24" :md="12" :xl="8">
             <ARow>
-              <ACol :span="12" :md="8">
+              <ACol :span="12">
                 <label for="case">AND/OR Newline</label>
               </ACol>
               <ACol
