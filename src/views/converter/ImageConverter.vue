@@ -147,6 +147,7 @@ watch(inputImage, (n, o) => {
               :disabled="!isImageLoaded || !convertTo || isConvertLoading"
               class="w-100 d-flex justify-content-center align-items-center"
               type="primary"
+              size="large"
               @click="onClickConvert"
             >
               <template v-if="!isConvertLoading">Convert</template>
