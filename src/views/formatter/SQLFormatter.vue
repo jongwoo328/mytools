@@ -21,6 +21,10 @@ const sqlLanguageOptions = ref<SelectProps["options"]>([
     value: "mariadb",
   },
   {
+    label: "Transact-SQL",
+    value: "transactsql",
+  },
+  {
     label: "PostgreSQL",
     value: "postgresql",
   },
