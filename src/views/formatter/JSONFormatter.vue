@@ -28,7 +28,7 @@ const onFormatButtonClick = () => {
 </script>
 
 <template>
-  <ATypographyTitle>JSON Formatter</ATypographyTitle>
+  <ATypographyTitle :level="2">JSON Formatter</ATypographyTitle>
   <section>
     <ATypographyTitle class="d-inline-block" :level="3"
       >JSON text</ATypographyTitle

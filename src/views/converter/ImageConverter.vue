@@ -73,7 +73,7 @@ watch(inputImage, (n, o) => {
 </script>
 
 <template>
-  <ATypographyTitle>Image Converter</ATypographyTitle>
+  <ATypographyTitle :level="2">Image Converter</ATypographyTitle>
   <section>
     <div class="mb-3">
       <ATypographyTitle :level="3">Added Image</ATypographyTitle>

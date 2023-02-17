@@ -63,7 +63,7 @@ const onFormatButtonClick = () => {
 </script>
 
 <template>
-  <ATypographyTitle>SQL Formatter</ATypographyTitle>
+  <ATypographyTitle :level="2">SQL Formatter</ATypographyTitle>
   <section>
     <ATypographyTitle class="d-inline-block" :level="3">SQL</ATypographyTitle>
     <div class="float-end">

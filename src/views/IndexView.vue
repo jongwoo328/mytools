@@ -41,7 +41,7 @@ const availableTools: AvailableTool[] = [
 </script>
 
 <template>
-  <ATypographyTitle>⚒️ Available Tools</ATypographyTitle>
+  <ATypographyTitle :level="2">⚒️ Available Tools</ATypographyTitle>
   <ARow class="mt-5" :gutter="12">
     <ACol
       v-for="availableTool in availableTools"
