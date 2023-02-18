@@ -1,5 +1,13 @@
 <script lang="ts" setup>
-import { computed, defineEmits, defineProps, Ref, ref } from "vue";
+import {
+  computed,
+  defineEmits,
+  defineProps,
+  onMounted,
+  onUpdated,
+  Ref,
+  ref,
+} from "vue";
 import { PlusOutlined } from "@ant-design/icons-vue";
 import { UploadChangeParam } from "ant-design-vue";
 
@@ -9,10 +17,16 @@ const emit = defineEmits<{ (e: "update:file", file: File): void }>();
 const file: Ref<File | null> = ref(props.file);
 const image = ref<HTMLImageElement>();
 const isUploaded = computed(() => !!file.value);
+const uploadInput = ref();
+
 const onChange = (info: UploadChangeParam<File>) => {
   if (!info.file) {
     return;
   }
+  if (info.fileList.length > 1) {
+    info.fileList.shift();
+  }
+
   file.value = info.file;
   emit("update:file", info.file);
 
@@ -22,13 +36,22 @@ const onChange = (info: UploadChangeParam<File>) => {
       image.value.src = e.target.result as string;
     }
   };
+  uploadInput.value.fileList.shift();
 
   reader.readAsDataURL(file.value);
 };
+
+// file input 에서 capture 속성을 제거
+const removeInputFileCaptureAttribute = () => {
+  uploadInput.value?.$el?.querySelector("input")?.removeAttribute("capture");
+};
+onMounted(removeInputFileCaptureAttribute);
+onUpdated(removeInputFileCaptureAttribute);
 </script>
 
 <template>
   <AUpload
+    ref="uploadInput"
     accept="image/*"
     list-type="picture-card"
     class="w-100 position-relative upload"
