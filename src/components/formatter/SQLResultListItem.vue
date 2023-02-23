@@ -9,6 +9,7 @@ import {
 } from "sql-formatter";
 import { DeleteOutlined } from "@ant-design/icons-vue";
 import { useClipboard } from "@vueuse/core";
+import { notification } from "ant-design-vue";
 
 const { copy } = useClipboard({ legacy: true });
 
@@ -52,8 +53,19 @@ const onClickExpandToggle = () => {
     expandToggle.value = "fit";
   }
 };
-const onClickCopy = () => {
-  copy(formattedSQL.value);
+const onClickCopy = async () => {
+  try {
+    await copy(formattedSQL.value);
+    notification.success({
+      message: "Copied!",
+      duration: 2.5,
+    });
+  } catch {
+    notification.error({
+      message: "Failed",
+      duration: 2.5,
+    });
+  }
 };
 </script>
 

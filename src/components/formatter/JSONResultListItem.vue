@@ -9,6 +9,7 @@ import _ from "lodash";
 import VueJsonPretty from "vue-json-pretty";
 import { useClipboard } from "@vueuse/core";
 import { JSONResult } from "@/types/JSONResult";
+import { notification } from "ant-design-vue";
 
 const emit = defineEmits<{ (e: "delete", id: string): void }>();
 const props = defineProps<{
@@ -30,16 +31,49 @@ const getObjectFromPath = (path: string) => {
   return _.get(props.resultData.result, _.trimStart(path, "$."));
 };
 const onClickCopyAll = async () => {
-  await copy(JSON.stringify(props.resultData.result, null, 4));
+  try {
+    await copy(JSON.stringify(props.resultData.result, null, 4));
+    notification.success({
+      message: "Copied!",
+      duration: 2.5,
+    });
+  } catch {
+    notification.error({
+      message: "Failed",
+      duration: 2.5,
+    });
+  }
 };
 const onClickSelectedNode = async () => {
-  await copy(
-    JSON.stringify(getObjectFromPath(selected.value as string), null, 4)
-  );
+  try {
+    await copy(
+      JSON.stringify(getObjectFromPath(selected.value as string), null, 4)
+    );
+    notification.success({
+      message: "Copied!",
+      duration: 2.5,
+    });
+  } catch {
+    notification.error({
+      message: "Failed",
+      duration: 2.5,
+    });
+  }
 };
 const onClickCopyPath = async () => {
   if (selected.value) {
-    await copy(selected.value);
+    try {
+      await copy(selected.value);
+      notification.success({
+        message: "Copied!",
+        duration: 2.5,
+      });
+    } catch {
+      notification.error({
+        message: "Failed",
+        duration: 2.5,
+      });
+    }
   }
 };
 
