@@ -1,10 +1,18 @@
 <script lang="ts" setup>
 import { defineEmits, defineProps, ref } from "vue";
 import { ImageConverterResult } from "@/types/ImageConverterResult";
-import { DeleteOutlined, DownloadOutlined } from "@ant-design/icons-vue";
+import {
+  DeleteOutlined,
+  DownloadOutlined,
+  LoadingOutlined,
+} from "@ant-design/icons-vue";
+import { useClipboard } from "@vueuse/core";
+import { notification } from "ant-design-vue";
 
 const props = defineProps<{ result: ImageConverterResult; index: number }>();
 const emit = defineEmits<{ (e: "delete", id: string): void }>();
+
+const { copy } = useClipboard({ legacy: true });
 
 const discreteFileNameWithNameAndType = (
   fileName: string
@@ -28,6 +36,25 @@ const onClickDownload = () => {
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
+};
+
+const copyingBase64 = ref(false);
+const copyAsBase64 = async () => {
+  try {
+    copyingBase64.value = true;
+    await copy(props.result.objectURL);
+    notification.success({
+      message: "Copied!",
+      duration: 2.5,
+    });
+  } catch {
+    notification.error({
+      message: "Failed",
+      duration: 2.5,
+    });
+  } finally {
+    copyingBase64.value = false;
+  }
 };
 
 const onClickDeleteResult = () => {
@@ -63,7 +90,7 @@ const onClickDeleteResult = () => {
       </ACol>
       <ACol :span="24" :lg="8" class="py-3 py-lg-0 image-result-control">
         <div class="d-flex flex-column justify-content-start" style="flex: 1">
-          <ATypographyTitle :level="5">Download</ATypographyTitle>
+          <ATypographyTitle :level="5">Download as</ATypographyTitle>
           <div class="d-flex">
             <AInput
               v-model:value="downloadFileName"
@@ -75,8 +102,20 @@ const onClickDeleteResult = () => {
           </div>
         </div>
         <AButton
+          class="mt-3 mt-lg-0 mb-2"
+          @click="copyAsBase64"
+          :disabled="copyingBase64"
+          size="large"
+          block
+        >
+          <template v-if="copyingBase64">
+            <LoadingOutlined />
+          </template>
+          <template v-else> Copy as Base64 </template>
+        </AButton>
+        <AButton
           type="primary"
-          class="d-flex align-items-center justify-content-center mt-3 mt-lg-0"
+          class="download d-flex align-items-center justify-content-center"
           @click="onClickDownload"
         >
           <download-outlined /> Download</AButton
@@ -122,7 +161,7 @@ const onClickDeleteResult = () => {
   flex-direction: column;
   justify-content: space-between;
 
-  & > button {
+  & > button.download {
     min-height: 48px;
   }
 }
@@ -144,7 +183,7 @@ const onClickDeleteResult = () => {
     & > div {
       width: 70%;
     }
-    & > button {
+    & > button.download {
       height: 20%;
     }
   }

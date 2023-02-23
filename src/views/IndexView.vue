@@ -3,39 +3,35 @@ import { AvailableTool } from "@/types/Tool";
 import FunctionListItem from "@/components/index/FunctionListItem.vue";
 import { RouterName } from "@/router";
 
+const Tags = {
+  Formatter: {
+    name: "Formatter",
+    color: "orange",
+  },
+  Converter: {
+    name: "Converter",
+    color: "green",
+  },
+};
+
 const availableTools: AvailableTool[] = [
   {
     title: "JSON Formatter",
     router: { name: RouterName.JSONFormatter },
-    description: "formatting JSON text",
-    tags: [
-      {
-        name: "Formatter",
-        color: "orange",
-      },
-    ],
+    description: "Formatting JSON text",
+    tags: [Tags.Formatter],
   },
   {
     title: "SQL Formatter",
     router: { name: RouterName.SQLFormatter },
-    description: "formatting SQL",
-    tags: [
-      {
-        name: "Formatter",
-        color: "orange",
-      },
-    ],
+    description: "Formatting SQL",
+    tags: [Tags.Formatter],
   },
   {
     title: "Image Converter",
     router: { name: RouterName.ImageConverter },
-    description: "Convert Image (JPEG, PNG, WEBP)",
-    tags: [
-      {
-        name: "Converter",
-        color: "green",
-      },
-    ],
+    description: "Convert image (JPEG, PNG, WEBP, Base64)",
+    tags: [Tags.Converter],
   },
 ];
 </script>

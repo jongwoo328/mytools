@@ -1,14 +1,18 @@
 <script lang="ts" setup>
 import ImageInput from "@/components/converter/ImageInput.vue";
 import { computed, Ref, ref, watch } from "vue";
-import { SelectProps } from "ant-design-vue";
+import { notification, SelectProps } from "ant-design-vue";
 import { Browser, useBrowser } from "@/composables/useBrowser";
 import ImageConverterResultList from "@/components/converter/ImageConverterResultList.vue";
 import { v4 } from "uuid";
 import { ImageConverterResult } from "@/types/ImageConverterResult";
 import { LoadingOutlined } from "@ant-design/icons-vue";
+import { useImageUtil } from "@/composables/useImageUtil";
+import { useClipboard } from "@vueuse/core";
 
 const browser = useBrowser();
+const { blobToBase64 } = useImageUtil();
+const { copy } = useClipboard({ legacy: true });
 
 const canvas = ref<HTMLCanvasElement>();
 const inputImage: Ref<File | null> = ref(null);
@@ -16,7 +20,6 @@ const imageObj: Ref<HTMLImageElement> = ref(new Image());
 const isConvertLoading = ref(false);
 const isImageLoaded = ref(false);
 const imageConverterResultList: Ref<ImageConverterResult[]> = ref([]);
-const fileReader = new FileReader();
 
 const convertTo = ref(null);
 const convertTypes = computed<SelectProps["options"]>(() => {
@@ -63,14 +66,28 @@ const onClickConvert = async () => {
   }, convertTo.value);
 };
 
-const blobToBase64 = async (blob: Blob): Promise<string> => {
-  return new Promise((res) => {
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(blob);
-    fileReader.onloadend = () => {
-      res(fileReader.result as string);
-    };
-  });
+const copyingBase64 = ref(false);
+const copyAsBase64 = async () => {
+  if (!inputImage.value) {
+    return;
+  }
+
+  try {
+    copyingBase64.value = true;
+    await new Promise((r) => setTimeout(r, 0));
+    await copy(await blobToBase64(inputImage.value));
+    notification.success({
+      message: "Copied!",
+      duration: 2.5,
+    });
+  } catch (e) {
+    notification.error({
+      message: "Failed",
+      duration: 2.5,
+    });
+  } finally {
+    copyingBase64.value = false;
+  }
 };
 
 watch(inputImage, (n, o) => {
@@ -126,11 +143,24 @@ watch(inputImage, (n, o) => {
               height: '100%',
             }"
           >
-            <ADescriptions class="mb-4" bordered>
-              <ADescriptionsItem label="type">{{
-                inputImage?.type ?? "No Data"
-              }}</ADescriptionsItem>
-            </ADescriptions>
+            <div class="mb-4 mb-lg-5">
+              <ADescriptions class="mb-4" bordered>
+                <ADescriptionsItem label="type">{{
+                  inputImage?.type ?? "No Data"
+                }}</ADescriptionsItem>
+              </ADescriptions>
+              <AButton
+                @click="copyAsBase64"
+                :disabled="!isImageLoaded && copyingBase64"
+                size="large"
+                block
+              >
+                <template v-if="copyingBase64">
+                  <LoadingOutlined />
+                </template>
+                <template v-else> Copy as Base64 </template>
+              </AButton>
+            </div>
 
             <ATypographyTitle :level="3">Settings</ATypographyTitle>
             <AForm>
