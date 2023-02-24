@@ -24,6 +24,7 @@
     "uuid": "^9.0.0",
     "vue": "^3.2.13",
     "vue-codemirror": "^6.1.1",
+    "vue-gtag-next": "^1.14.0",
     "vue-json-pretty": "^2.2.3",
     "vue-router": "^4.0.3"
   },

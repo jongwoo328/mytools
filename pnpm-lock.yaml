@@ -37,6 +37,7 @@ specifiers:
   uuid: ^9.0.0
   vue: ^3.2.13
   vue-codemirror: ^6.1.1
+  vue-gtag-next: ^1.14.0
   vue-json-pretty: ^2.2.3
   vue-router: ^4.0.3
 
@@ -57,6 +58,7 @@ dependencies:
   uuid: 9.0.0
   vue: 3.2.45
   vue-codemirror: 6.1.1_vhikcdkubtgbuxk47tdob2ofvi
+  vue-gtag-next: 1.14.0_vue@3.2.45
   vue-json-pretty: 2.2.3_vue@3.2.45
   vue-router: 4.1.6_vue@3.2.45
 
@@ -7279,6 +7281,14 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /vue-gtag-next/1.14.0_vue@3.2.45:
+    resolution: {integrity: sha512-iJl+cOG2GU5NuxqzSSIpt03WVOvZqyKB9TOy7d55KiuvRklcnb2nlqxW5B/a3/sbIt7fla+XEkRyMCcoz0zAHw==}
+    peerDependencies:
+      vue: ^3.0.0-rc.11
+    dependencies:
+      vue: 3.2.45
+    dev: false
 
   /vue-hot-reload-api/2.3.4:
     resolution: {integrity: sha512-BXq3jwIagosjgNVae6tkHzzIk6a8MHFtzAdwhnV5VlvPTFxDCvIttgSiHWjdGoTJvXtmRu5HacExfdarRcFhog==}
