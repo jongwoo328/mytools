@@ -10,6 +10,7 @@ export enum RouterName {
   JSONFormatter = "JSONFormatter",
   SQLFormatter = "SQLFormatter",
   ImageConverter = "ImageConverter",
+  HTMLViewer = "HTMLViewer",
 }
 
 const scrollBehavior: RouterScrollBehavior = (to, from, savedPosition) => {
@@ -47,6 +48,16 @@ const routes: Array<RouteRecordRaw> = [
         path: "image",
         name: RouterName.ImageConverter,
         component: () => import("../views/converter/ImageConverter.vue"),
+      },
+    ],
+  },
+  {
+    path: "/viewer",
+    children: [
+      {
+        path: "html",
+        name: RouterName.HTMLViewer,
+        component: () => import("../views/viewer/HTMLViewer.vue"),
       },
     ],
   },

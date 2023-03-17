@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@ant-design/icons-vue": "^6.1.0",
+    "@codemirror/lang-html": "^6.4.2",
     "@codemirror/lang-sql": "^6.4.0",
     "@popperjs/core": "^2.11.6",
     "@vueuse/core": "^9.12.0",

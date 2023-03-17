@@ -4,6 +4,7 @@ import App from "./App.vue";
 import router from "./router";
 import Antd from "ant-design-vue";
 import VueCodemirror from "vue-codemirror";
+import { basicSetup } from "codemirror";
 
 import "ant-design-vue/dist/antd.css";
 import "bootstrap";
@@ -18,14 +19,13 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 AOS.init();
-
 createApp(App)
   .use(createPinia())
   .use(router)
   .use(Antd)
   .use(VueCodemirror, {
-    disabled: true,
-    extensions: [],
+    lineNumbers: false,
+    extensions: [basicSetup],
   })
   .use(VueGtag, {
     appName: "My Tools",

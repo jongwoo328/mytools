@@ -3,6 +3,7 @@ import { computed, Ref, ref } from "vue";
 import { v4 } from "uuid";
 import JSONResultList from "@/components/formatter/JSONResultList.vue";
 import { JSONResult } from "@/types/JSONResult";
+import PageTitle from "@/components/common/PageTitle.vue";
 
 const jsonInput = ref("");
 const isJsonValid = computed(() => {
@@ -28,7 +29,7 @@ const onFormatButtonClick = () => {
 </script>
 
 <template>
-  <ATypographyTitle :level="2">JSON Formatter</ATypographyTitle>
+  <PageTitle title="JSON Formatter" />
   <section>
     <ATypographyTitle class="d-inline-block" :level="3"
       >JSON text</ATypographyTitle

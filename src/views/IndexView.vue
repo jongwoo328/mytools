@@ -12,6 +12,10 @@ const Tags = {
     name: "Converter",
     color: "green",
   },
+  Viewer: {
+    name: "Viewer",
+    color: "blue",
+  },
 };
 
 const availableTools: AvailableTool[] = [
@@ -32,6 +36,12 @@ const availableTools: AvailableTool[] = [
     router: { name: RouterName.ImageConverter },
     description: "Convert image (JPEG, PNG, WEBP, Base64)",
     tags: [Tags.Converter],
+  },
+  {
+    title: "HTML Viewer",
+    router: { name: RouterName.HTMLViewer },
+    description: "HTML viewer",
+    tags: [Tags.Viewer],
   },
 ];
 </script>
