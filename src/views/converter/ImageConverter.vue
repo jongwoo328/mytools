@@ -9,6 +9,7 @@ import { ImageConverterResult } from "@/types/ImageConverterResult";
 import { LoadingOutlined } from "@ant-design/icons-vue";
 import { useImageUtil } from "@/composables/useImageUtil";
 import { useClipboard } from "@vueuse/core";
+import PageTitle from "@/components/common/PageTitle.vue";
 
 const browser = useBrowser();
 const { blobToBase64 } = useImageUtil();
@@ -111,7 +112,7 @@ watch(inputImage, (n, o) => {
 </script>
 
 <template>
-  <ATypographyTitle :level="2">Image Converter</ATypographyTitle>
+  <PageTitle title="Image Converter" />
   <section>
     <div class="mb-3">
       <ATypographyTitle :level="3">Added Image</ATypographyTitle>

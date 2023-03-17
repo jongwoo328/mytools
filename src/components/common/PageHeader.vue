@@ -23,6 +23,47 @@ const openDrawer = () => {
 const pushToIndex = () => {
   router.push({ name: RouterName.Index });
 };
+
+const menus = [
+  {
+    title: "Formatter",
+    key: "formatter",
+    submenus: [
+      {
+        route: RouterName.JSONFormatter,
+        title: "JSON",
+        key: "json-formatter",
+      },
+      {
+        route: RouterName.SQLFormatter,
+        title: "SQL",
+        key: "sql-formatter",
+      },
+    ],
+  },
+  {
+    title: "Converter",
+    key: "converter",
+    submenus: [
+      {
+        route: RouterName.ImageConverter,
+        title: "Image",
+        key: "image-converter",
+      },
+    ],
+  },
+  {
+    title: "Viewer",
+    key: "viewer",
+    submenus: [
+      {
+        route: RouterName.HTMLViewer,
+        title: "HTML",
+        key: "html-viewer",
+      },
+    ],
+  },
+];
 </script>
 
 <template>
@@ -73,39 +114,16 @@ const pushToIndex = () => {
         v-model:selectedKeys="selectedKeys"
         style="width: 300px"
       >
-        <ASubMenu key="formatter" class="w-100">
+        <ASubMenu v-for="menu in menus" :key="menu.key" class="w-100">
           <template #title>
-            <span :style="menuTitleStyle">Formatter</span>
+            <span :style="menuTitleStyle">{{ menu.title }}</span>
           </template>
-          <AMenuItem key="json-formatter">
+          <AMenuItem v-for="submenu in menu.submenus" :key="submenu.key">
             <RouterLink
               @click="closeDrawer"
               class="text-decoration-none"
-              :to="{ name: RouterName.JSONFormatter }"
-              >JSON</RouterLink
-            >
-          </AMenuItem>
-          <AMenuItem key="sql-formatter">
-            <RouterLink
-              @click="closeDrawer"
-              class="text-decoration-none"
-              :to="{ name: RouterName.SQLFormatter }"
-              >SQL</RouterLink
-            >
-          </AMenuItem>
-        </ASubMenu>
-        <ASubMenu key="converter">
-          <template #title>
-            <span :style="menuTitleStyle">Converter</span>
-          </template>
-
-          <AMenuItem key="image-converter">
-            <RouterLink
-              @click="closeDrawer"
-              class="text-decoration-none"
-              :to="{ name: RouterName.ImageConverter }"
-            >
-              Image
+              :to="{ name: submenu.route }"
+              >{{ submenu.title }}
             </RouterLink>
           </AMenuItem>
         </ASubMenu>

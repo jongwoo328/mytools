@@ -5,6 +5,7 @@ import { format } from "sql-formatter";
 import { v4 } from "uuid";
 import { SelectableSQLLanguage, SQLResult } from "@/types/SQLResult";
 import SQLResultList from "@/components/formatter/SQLResultList.vue";
+import PageTitle from "@/components/common/PageTitle.vue";
 
 const SQLFormatterResults: Ref<SQLResult[]> = ref([]);
 const sqlLanguageOptions = ref<SelectProps["options"]>([
@@ -63,7 +64,7 @@ const onFormatButtonClick = () => {
 </script>
 
 <template>
-  <ATypographyTitle :level="2">SQL Formatter</ATypographyTitle>
+  <PageTitle title="SQL Formatter" />
   <section>
     <ATypographyTitle class="d-inline-block" :level="3">SQL</ATypographyTitle>
     <div class="float-end">

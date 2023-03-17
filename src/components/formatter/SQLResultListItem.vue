@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Codemirror } from "vue-codemirror";
+import { sql } from "@codemirror/lang-sql";
 import { computed, defineEmits, defineProps, Ref, ref } from "vue";
 import { SQLResult } from "@/types/SQLResult";
 import {
@@ -180,7 +182,12 @@ const onClickCopy = async () => {
       </ACollapsePanel>
     </ACollapse>
     <div class="sql-result-wrap">
-      <Codemirror v-model="formattedSQL" class="sql-result" />
+      <Codemirror
+        :disabled="true"
+        :extensions="[sql()]"
+        v-model="formattedSQL"
+        class="sql-result"
+      />
     </div>
     <ADivider class="mb-0">
       <AButton @click="onClickExpandToggle" shape="round">
