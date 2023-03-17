@@ -12,7 +12,7 @@ const router = useRouter();
 
 const menuTitleStyle = { fontSize: "1.1rem" };
 const drawerVisible = ref(false);
-const openKeys = ref(["formatter", "converter"]);
+const openKeys = ref(["formatter", "converter", "viewer"]);
 const selectedKeys = ref([]);
 const closeDrawer = () => {
   drawerVisible.value = false;
