@@ -11,12 +11,14 @@ import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "vue-json-pretty/lib/styles.css";
 
-import VueGtag from "vue-gtag-next";
+import VueGtag, { trackRouter } from "vue-gtag-next";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import AOS from "aos";
 import "aos/dist/aos.css";
+
+trackRouter(router, { useScreenview: true, skipSamePath: true });
 
 AOS.init();
 createApp(App)
