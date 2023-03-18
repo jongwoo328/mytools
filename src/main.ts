@@ -29,13 +29,11 @@ createApp(App)
   })
   .use(VueGtag, {
     appName: "My Tools",
-    pageTrackerScreenviewEnabled: true,
-    config: {
+    property: {
       id: "G-5LVPSWJ2CB",
       params: {
         send_page_view: false,
       },
     },
-    router,
   })
   .mount("#app");
