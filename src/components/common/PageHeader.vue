@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { RouterName } from "@/router";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import {
   CloseOutlined,
   HomeOutlined,
@@ -13,7 +13,7 @@ const router = useRouter();
 const menuTitleStyle = { fontSize: "1.1rem" };
 const drawerVisible = ref(false);
 const openKeys = ref(["formatter", "converter", "viewer"]);
-const selectedKeys = ref([]);
+const selectedKeys = computed(() => [router.currentRoute.value.name]);
 const closeDrawer = () => {
   drawerVisible.value = false;
 };
@@ -32,12 +32,10 @@ const menus = [
       {
         route: RouterName.JSONFormatter,
         title: "JSON",
-        key: "json-formatter",
       },
       {
         route: RouterName.SQLFormatter,
         title: "SQL",
-        key: "sql-formatter",
       },
     ],
   },
@@ -48,7 +46,10 @@ const menus = [
       {
         route: RouterName.ImageConverter,
         title: "Image",
-        key: "image-converter",
+      },
+      {
+        route: RouterName.EpochConverter,
+        title: "Epoch",
       },
     ],
   },
@@ -59,7 +60,6 @@ const menus = [
       {
         route: RouterName.HTMLViewer,
         title: "HTML",
-        key: "html-viewer",
       },
     ],
   },
@@ -118,7 +118,7 @@ const menus = [
           <template #title>
             <span :style="menuTitleStyle">{{ menu.title }}</span>
           </template>
-          <AMenuItem v-for="submenu in menu.submenus" :key="submenu.key">
+          <AMenuItem v-for="submenu in menu.submenus" :key="submenu.route">
             <RouterLink
               @click="closeDrawer"
               class="text-decoration-none"
