@@ -10,10 +10,7 @@ import {
   LogicalOperatorNewline,
 } from "sql-formatter";
 import { DeleteOutlined } from "@ant-design/icons-vue";
-import { useClipboard } from "@vueuse/core";
-import { notification } from "ant-design-vue";
-
-const { copy } = useClipboard({ legacy: true });
+import { copyWithNotification } from "@/utils/copy";
 
 const props = defineProps<{
   resultData: SQLResult;
@@ -56,18 +53,7 @@ const onClickExpandToggle = () => {
   }
 };
 const onClickCopy = async () => {
-  try {
-    await copy(formattedSQL.value);
-    notification.success({
-      message: "Copied!",
-      duration: 2.5,
-    });
-  } catch {
-    notification.error({
-      message: "Failed",
-      duration: 2.5,
-    });
-  }
+  await copyWithNotification(formattedSQL.value);
 };
 </script>
 

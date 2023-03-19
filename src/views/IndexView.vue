@@ -43,6 +43,12 @@ const availableTools: AvailableTool[] = [
     description: "HTML viewer",
     tags: [Tags.Viewer],
   },
+  {
+    title: "Epoch Converter",
+    router: { name: RouterName.EpochConverter },
+    description: "Converting between epoch and human-readable time",
+    tags: [Tags.Converter],
+  },
 ];
 </script>
 

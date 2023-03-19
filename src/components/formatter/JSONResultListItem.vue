@@ -7,9 +7,8 @@ import {
 } from "@ant-design/icons-vue";
 import _ from "lodash";
 import VueJsonPretty from "vue-json-pretty";
-import { useClipboard } from "@vueuse/core";
 import { JSONResult } from "@/types/JSONResult";
-import { notification } from "ant-design-vue";
+import { copyWithNotification } from "@/utils/copy";
 
 const emit = defineEmits<{ (e: "delete", id: string): void }>();
 const props = defineProps<{
@@ -25,55 +24,20 @@ enum ActionType {
 const selected = ref<string | null>(null);
 const virtualScroll = ref(true);
 
-const { copy } = useClipboard({ legacy: true });
-
 const getObjectFromPath = (path: string) => {
   return _.get(props.resultData.result, _.trimStart(path, "$."));
 };
 const onClickCopyAll = async () => {
-  try {
-    await copy(JSON.stringify(props.resultData.result, null, 4));
-    notification.success({
-      message: "Copied!",
-      duration: 2.5,
-    });
-  } catch {
-    notification.error({
-      message: "Failed",
-      duration: 2.5,
-    });
-  }
+  await copyWithNotification(JSON.stringify(props.resultData.result, null, 4));
 };
 const onClickSelectedNode = async () => {
-  try {
-    await copy(
-      JSON.stringify(getObjectFromPath(selected.value as string), null, 4)
-    );
-    notification.success({
-      message: "Copied!",
-      duration: 2.5,
-    });
-  } catch {
-    notification.error({
-      message: "Failed",
-      duration: 2.5,
-    });
-  }
+  await copyWithNotification(
+    JSON.stringify(getObjectFromPath(selected.value as string), null, 4)
+  );
 };
 const onClickCopyPath = async () => {
   if (selected.value) {
-    try {
-      await copy(selected.value);
-      notification.success({
-        message: "Copied!",
-        duration: 2.5,
-      });
-    } catch {
-      notification.error({
-        message: "Failed",
-        duration: 2.5,
-      });
-    }
+    await copyWithNotification(selected.value);
   }
 };
 
@@ -85,9 +49,6 @@ const onClickExpandToggle = () => {
 };
 const onClickDeleteResult = () => {
   emit("delete", props.resultData.id);
-};
-const handleMenuClick = (a) => {
-  console.log(a);
 };
 </script>
 
@@ -177,7 +138,7 @@ const handleMenuClick = (a) => {
       </AButton>
       <ADropdown>
         <template #overlay>
-          <a-menu @click="handleMenuClick">
+          <a-menu>
             <a-menu-item @click="onClickCopyAll" :key="ActionType.COPY_ALL">
               Copy All
             </a-menu-item>

@@ -6,13 +6,10 @@ import {
   DownloadOutlined,
   LoadingOutlined,
 } from "@ant-design/icons-vue";
-import { useClipboard } from "@vueuse/core";
-import { notification } from "ant-design-vue";
+import { copyWithNotification } from "@/utils/copy";
 
 const props = defineProps<{ result: ImageConverterResult; index: number }>();
 const emit = defineEmits<{ (e: "delete", id: string): void }>();
-
-const { copy } = useClipboard({ legacy: true });
 
 const discreteFileNameWithNameAndType = (
   fileName: string
@@ -40,21 +37,9 @@ const onClickDownload = () => {
 
 const copyingBase64 = ref(false);
 const copyAsBase64 = async () => {
-  try {
-    copyingBase64.value = true;
-    await copy(props.result.objectURL);
-    notification.success({
-      message: "Copied!",
-      duration: 2.5,
-    });
-  } catch {
-    notification.error({
-      message: "Failed",
-      duration: 2.5,
-    });
-  } finally {
-    copyingBase64.value = false;
-  }
+  copyingBase64.value = true;
+  await copyWithNotification(props.result.objectURL);
+  copyingBase64.value = false;
 };
 
 const onClickDeleteResult = () => {
