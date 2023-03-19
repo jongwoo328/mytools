@@ -11,6 +11,7 @@ export enum RouterName {
   SQLFormatter = "SQLFormatter",
   ImageConverter = "ImageConverter",
   HTMLViewer = "HTMLViewer",
+  EpochConverter = "EpochConverter",
 }
 
 const scrollBehavior: RouterScrollBehavior = (to, from, savedPosition) => {
@@ -24,7 +25,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "Index",
-    component: () => import("../views/IndexView.vue"),
+    component: () => import("@/views/IndexView.vue"),
   },
   {
     path: "/formatter",
@@ -32,12 +33,12 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: "json",
         name: RouterName.JSONFormatter,
-        component: () => import("../views/formatter/JSONFormatter.vue"),
+        component: () => import("@/views/formatter/JSONFormatter.vue"),
       },
       {
         path: "sql",
         name: RouterName.SQLFormatter,
-        component: () => import("../views/formatter/SQLFormatter.vue"),
+        component: () => import("@/views/formatter/SQLFormatter.vue"),
       },
     ],
   },
@@ -47,7 +48,12 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: "image",
         name: RouterName.ImageConverter,
-        component: () => import("../views/converter/ImageConverter.vue"),
+        component: () => import("@/views/converter/ImageConverter.vue"),
+      },
+      {
+        path: "epoch",
+        name: RouterName.EpochConverter,
+        component: () => import("@/views/converter/EpochConverter.vue"),
       },
     ],
   },

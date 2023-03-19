@@ -1,19 +1,18 @@
 <script lang="ts" setup>
 import ImageInput from "@/components/converter/ImageInput.vue";
 import { computed, Ref, ref, watch } from "vue";
-import { notification, SelectProps } from "ant-design-vue";
+import { SelectProps } from "ant-design-vue";
 import { Browser, useBrowser } from "@/composables/useBrowser";
 import ImageConverterResultList from "@/components/converter/ImageConverterResultList.vue";
 import { v4 } from "uuid";
 import { ImageConverterResult } from "@/types/ImageConverterResult";
 import { LoadingOutlined } from "@ant-design/icons-vue";
 import { useImageUtil } from "@/composables/useImageUtil";
-import { useClipboard } from "@vueuse/core";
 import PageTitle from "@/components/common/PageTitle.vue";
+import { copyWithNotification } from "@/utils/copy";
 
 const browser = useBrowser();
 const { blobToBase64 } = useImageUtil();
-const { copy } = useClipboard({ legacy: true });
 
 const canvas = ref<HTMLCanvasElement>();
 const inputImage: Ref<File | null> = ref(null);
@@ -73,22 +72,10 @@ const copyAsBase64 = async () => {
     return;
   }
 
-  try {
-    copyingBase64.value = true;
-    await new Promise((r) => setTimeout(r, 0));
-    await copy(await blobToBase64(inputImage.value));
-    notification.success({
-      message: "Copied!",
-      duration: 2.5,
-    });
-  } catch (e) {
-    notification.error({
-      message: "Failed",
-      duration: 2.5,
-    });
-  } finally {
-    copyingBase64.value = false;
-  }
+  copyingBase64.value = true;
+  await new Promise((r) => setTimeout(r, 0));
+  await copyWithNotification(await blobToBase64(inputImage.value));
+  copyingBase64.value = false;
 };
 
 watch(inputImage, (n, o) => {

@@ -16,7 +16,9 @@ const props = defineProps<{
         }}</ATypographyTitle>
       </RouterLink>
     </template>
-    <ATypographyParagraph> {{ props.tool.description }} </ATypographyParagraph>
+    <ATypographyParagraph class="mb-2" style="min-height: 44px">
+      {{ props.tool.description }}
+    </ATypographyParagraph>
     <div>
       <ATag v-for="tag in props.tool.tags" :key="tag" :color="tag.color ?? ''">
         {{ `# ${tag.name}` }}
