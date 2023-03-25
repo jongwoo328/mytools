@@ -49,6 +49,12 @@ const availableTools: AvailableTool[] = [
     description: "Converting between epoch and human-readable time",
     tags: [Tags.Converter],
   },
+  {
+    title: "CSV to JSON Converter",
+    router: { name: RouterName.CSVToJSONConverter },
+    description: "Convert CSV to JSON",
+    tags: [Tags.Converter],
+  },
 ];
 </script>
 

@@ -51,6 +51,10 @@ const menus = [
         route: RouterName.EpochConverter,
         title: "Epoch",
       },
+      {
+        route: RouterName.CSVToJSONConverter,
+        title: "CSV to JSON",
+      },
     ],
   },
   {
