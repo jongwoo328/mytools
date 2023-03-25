@@ -28,7 +28,7 @@ const getObjectFromPath = (path: string) => {
   return _.get(props.resultData.result, _.trimStart(path, "$."));
 };
 const onClickCopyAll = async () => {
-  await copyWithNotification(JSON.stringify(props.resultData.result, null, 4));
+  await copyWithNotification(stringifyResult());
 };
 const onClickSelectedNode = async () => {
   await copyWithNotification(
@@ -49,6 +49,20 @@ const onClickExpandToggle = () => {
 };
 const onClickDeleteResult = () => {
   emit("delete", props.resultData.id);
+};
+
+const stringifyResult = () => {
+  return JSON.stringify(props.resultData.result, null, 4);
+};
+
+const download = () => {
+  const a = document.createElement("a");
+  const blob = new Blob([stringifyResult()], { type: "application/json" });
+  a.download = `${props.resultData.id}.json`;
+  a.href = URL.createObjectURL(blob);
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
 };
 </script>
 
@@ -79,6 +93,7 @@ const onClickDeleteResult = () => {
         {{ virtualScroll ? "Fit" : "Revert" }}
       </AButton>
     </ADivider>
+    <AButton @click="download" class="mt-2" block>Download</AButton>
     <div
       class="d-none d-md-flex align-items-center position-absolute button-container"
     >
