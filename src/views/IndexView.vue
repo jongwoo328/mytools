@@ -2,7 +2,12 @@
 import { AvailableTool } from "@/types/Tool";
 import FunctionListItem from "@/components/index/FunctionListItem.vue";
 import { RouterName } from "@/router";
+import ServiceInformationModal from "@/components/common/ServiceInformationModal.vue";
+import { ref } from "vue";
 
+const showModal = ref(
+  localStorage.getItem("showServiceInformationModal") !== "false"
+);
 const Tags = {
   Formatter: {
     name: "Formatter",
@@ -71,4 +76,5 @@ const availableTools: AvailableTool[] = [
       <FunctionListItem :tool="availableTool"></FunctionListItem>
     </ACol>
   </ARow>
+  <ServiceInformationModal :show-modal-initial="showModal" />
 </template>
