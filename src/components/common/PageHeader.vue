@@ -55,6 +55,10 @@ const menus = [
         route: RouterName.CSVToJSONConverter,
         title: "CSV to JSON",
       },
+      {
+        route: RouterName.ImageCropper,
+        title: "Image Cropper",
+      },
     ],
   },
   {
