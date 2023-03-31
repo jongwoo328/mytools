@@ -13,6 +13,7 @@ export enum RouterName {
   HTMLViewer = "HTMLViewer",
   EpochConverter = "EpochConverter",
   CSVToJSONConverter = "CSVToJSONConverter",
+  ImageCropper = "ImageCropper",
 }
 
 const scrollBehavior: RouterScrollBehavior = (to, from, savedPosition) => {
@@ -60,6 +61,11 @@ const routes: Array<RouteRecordRaw> = [
         path: "csv-to-json",
         name: RouterName.CSVToJSONConverter,
         component: () => import("@/views/converter/CSVToJSONConverter.vue"),
+      },
+      {
+        path: "image-crop",
+        name: RouterName.ImageCropper,
+        component: () => import("@/views/converter/ImageCropper.vue"),
       },
     ],
   },
