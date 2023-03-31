@@ -20,12 +20,13 @@ specifiers:
   '@vue/cli-service': ~5.0.0
   '@vue/eslint-config-typescript': ^9.1.0
   '@vueuse/core': ^9.12.0
-  ant-design-vue: ^3.2.15
+  ant-design-vue: ^3.2.16
   aos: ^2.3.4
   babel-plugin-import: ^1.13.6
   bootstrap: ^5.2.3
   codemirror: ^6.0.1
   core-js: ^3.8.3
+  cropperjs: ^1.5.13
   eslint: ^7.32.0
   eslint-config-prettier: ^8.3.0
   eslint-plugin-prettier: ^4.0.0
@@ -42,6 +43,7 @@ specifiers:
   uuid: ^9.0.0
   vue: ^3.2.13
   vue-codemirror: ^6.1.1
+  vue-cropperjs: ^5.0.0
   vue-gtag-next: ^1.14.0
   vue-json-pretty: ^2.2.3
   vue-router: ^4.0.3
@@ -53,12 +55,13 @@ dependencies:
   '@popperjs/core': 2.11.6
   '@types/papaparse': 5.3.7
   '@vueuse/core': 9.12.0_vue@3.2.45
-  ant-design-vue: 3.2.15_vue@3.2.45
+  ant-design-vue: 3.2.16_vue@3.2.45
   aos: 2.3.4
   babel-plugin-import: 1.13.6
   bootstrap: 5.2.3_@popperjs+core@2.11.6
   codemirror: 6.0.1
   core-js: 3.27.2
+  cropperjs: 1.5.13
   lodash: 4.17.21
   luxon: 3.3.0
   papaparse: 5.4.1
@@ -67,6 +70,7 @@ dependencies:
   uuid: 9.0.0
   vue: 3.2.45
   vue-codemirror: 6.1.1_vhikcdkubtgbuxk47tdob2ofvi
+  vue-cropperjs: 5.0.0_vue@3.2.45
   vue-gtag-next: 1.14.0_vue@3.2.45
   vue-json-pretty: 2.2.3_vue@3.2.45
   vue-router: 4.1.6_vue@3.2.45
@@ -2846,8 +2850,8 @@ packages:
       color-convert: 2.0.1
     dev: true
 
-  /ant-design-vue/3.2.15_vue@3.2.45:
-    resolution: {integrity: sha512-sJfE7LWimSdAPe4dzNyQBrmVMnOTNQTkG9oOyr+7W8qIYrX8sYWyC68Nn1uum4KBJUSZUa/BU6dohvTG0urBhA==}
+  /ant-design-vue/3.2.16_vue@3.2.45:
+    resolution: {integrity: sha512-kBGxk4csoEi2iaWO62DpNECTnBLIf/CNYW8RdNjLPWo6TBWLQNqLchxRcg8KatOkDRpdWRaqdqeD5P+F6MDC3Q==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
       vue: '>=3.2.0'
@@ -3652,6 +3656,10 @@ packages:
 
   /crelt/1.0.5:
     resolution: {integrity: sha512-+BO9wPPi+DWTDcNYhr/W90myha8ptzftZT+LwcmUbbok0rcP/fequmFYCw8NMoH7pkAZQzU78b3kYrlua5a9eA==}
+    dev: false
+
+  /cropperjs/1.5.13:
+    resolution: {integrity: sha512-by7jKAo73y5/Do0K6sxdTKHgndY0NMjG2bEdgeJxycbcmHuCiMXqw8sxy5C5Y5WTOTcDGmbT7Sr5CgKOXR06OA==}
     dev: false
 
   /cross-spawn/5.1.0:
@@ -7342,6 +7350,15 @@ packages:
       '@codemirror/state': 6.2.0
       '@codemirror/view': 6.7.3
       codemirror: 6.0.1
+      vue: 3.2.45
+    dev: false
+
+  /vue-cropperjs/5.0.0_vue@3.2.45:
+    resolution: {integrity: sha512-RhnC8O33uRZNkn74aiHZwNHnBJOXWlS4P6gsRI0lw4cZlWjKSCywZI9oSI9POlIPI6OYv30jvnHMXGch85tw7w==}
+    peerDependencies:
+      vue: '>=3.0.0'
+    dependencies:
+      cropperjs: 1.5.13
       vue: 3.2.45
     dev: false
 

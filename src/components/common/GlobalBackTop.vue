@@ -3,7 +3,7 @@ import { UpOutlined } from "@ant-design/icons-vue";
 </script>
 
 <template>
-  <ABackTop :visibility-heighteight="10">
+  <ABackTop :visibility-height="10">
     <AButton
       class="backtop-button"
       shape="circle"

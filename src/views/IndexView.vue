@@ -60,6 +60,12 @@ const availableTools: AvailableTool[] = [
     description: "Convert CSV to JSON",
     tags: [Tags.Converter],
   },
+  {
+    title: "Image Cropper",
+    router: { name: RouterName.ImageCropper },
+    description: "Crop image",
+    tags: [Tags.Converter],
+  },
 ];
 </script>
 

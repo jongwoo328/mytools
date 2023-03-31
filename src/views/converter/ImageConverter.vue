@@ -12,7 +12,7 @@ import PageTitle from "@/components/common/PageTitle.vue";
 import { copyWithNotification } from "@/utils/copy";
 
 const browser = useBrowser();
-const { blobToBase64 } = useImageUtil();
+const { asyncBlobToBase64 } = useImageUtil();
 
 const canvas = ref<HTMLCanvasElement>();
 const inputImage: Ref<File | null> = ref(null);
@@ -54,7 +54,7 @@ const onClickConvert = async () => {
     if (!inputImage.value || !canvas.value || !convertTo.value || !blob) {
       return;
     }
-    const imageUrl = await blobToBase64(blob);
+    const imageUrl = await asyncBlobToBase64(blob);
     imageConverterResultList.value.push({
       id: v4(),
       objectURL: imageUrl,
@@ -74,7 +74,7 @@ const copyAsBase64 = async () => {
 
   copyingBase64.value = true;
   await new Promise((r) => setTimeout(r, 0));
-  await copyWithNotification(await blobToBase64(inputImage.value));
+  await copyWithNotification(await asyncBlobToBase64(inputImage.value));
   copyingBase64.value = false;
 };
 
