@@ -230,7 +230,7 @@ const reset = () => {
       <ACol
         :span="24"
         :lg="16"
-        class="pb-1 pb-lg-0 pe-0 pe-lg-2 d-flex justify-content-center align-items-center"
+        class="pb-1 pb-lg-0 pe-0 pe-lg-2 d-flex justify-content-center align-items-center w-100 h-100"
       >
         <vue-cropper
           ref="cropper"
@@ -238,6 +238,7 @@ const reset = () => {
           :src="cropperImageSource"
           @ready="onCropperReady"
           @cropmove="onCropResize"
+          :style="{ height: '100%', width: '100%' }"
         />
       </ACol>
       <ACol :span="24" :lg="8">
