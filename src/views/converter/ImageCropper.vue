@@ -33,12 +33,14 @@ const customCropTop = ref(0);
 const customCropLeft = ref(0);
 const isCropperLocked = ref(false);
 
-const syncCropBoxAndInput = (cropBoxData: {
+type CropBoxData = {
   width: number;
   height: number;
   top: number;
   left: number;
-}) => {
+};
+
+const syncCropBoxAndInput = (cropBoxData: CropBoxData) => {
   const { width, height, top, left } = cropBoxData;
   customCropWidth.value = Math.round(width);
   customCropHeight.value = Math.round(height);
@@ -109,35 +111,73 @@ const onCropResize = (e) => {
   }
   syncCropBoxAndInput(cropBoxData);
 };
-watch(
-  [customCropWidth, customCropHeight, customCropTop, customCropLeft],
-  ([width, height, top, left], [widthBefore, heightBefore]) => {
-    const cropBoxData = cropper?.value?.getCropBoxData();
-    const aspectRatio = cropper?.value?.aspectRatio;
-    if (!cropBoxData) {
-      return;
-    }
 
-    let newWidth = width;
-    let newHeight = height;
-    if (height !== heightBefore) {
-      newWidth = Math.round(height * aspectRatio);
-    }
-    if (width !== widthBefore) {
-      newHeight = Math.round(width / aspectRatio);
-    }
+const calcHeightFromWidth = (width: number, cropBoxData: CropBoxData) => {
+  if (selectedAspectRatio.value === null) {
+    return width / (customRatioWidth.value / customRatioHeight.value);
+  } else if (selectedAspectRatio.value === -1) {
+    return cropBoxData.height;
+  } else {
+    return width / selectedAspectRatio.value;
+  }
+};
 
-    const newCropBoxData = {
-      left: Math.round(left),
-      top: Math.round(top),
-      width: newWidth,
-      height: newHeight,
-    };
-    cropper.value.setCropBoxData(newCropBoxData);
-    syncCropBoxAndInput(newCropBoxData);
-  },
-  { immediate: true }
-);
+const calcWidthFromHeight = (height: number, cropBoxData: CropBoxData) => {
+  if (selectedAspectRatio.value === null) {
+    return height * (customRatioWidth.value / customRatioHeight.value);
+  } else if (selectedAspectRatio.value === -1) {
+    return cropBoxData.width;
+  } else {
+    return height * selectedAspectRatio.value;
+  }
+};
+
+watch(customCropWidth, (value, oldValue) => {
+  if (value === oldValue) {
+    return;
+  }
+  const cropBoxData = cropper.value.getCropBoxData();
+
+  syncCropBoxAndInput({
+    ...cropBoxData,
+    width: value,
+    height: calcHeightFromWidth(value, cropBoxData),
+  });
+});
+
+watch(customCropHeight, (value, oldValue) => {
+  if (value === oldValue) {
+    return;
+  }
+  const cropBoxData = cropper.value.getCropBoxData();
+  syncCropBoxAndInput({
+    ...cropBoxData,
+    height: value,
+    width: calcWidthFromHeight(value, cropBoxData),
+  });
+});
+
+watch(customCropTop, (value, oldValue) => {
+  if (value === oldValue) {
+    return;
+  }
+  const cropBoxData = cropper.value.getCropBoxData();
+  syncCropBoxAndInput({
+    ...cropBoxData,
+    top: value,
+  });
+});
+
+watch(customCropLeft, (value, oldValue) => {
+  if (value === oldValue) {
+    return;
+  }
+  const cropBoxData = cropper.value.getCropBoxData();
+  syncCropBoxAndInput({
+    ...cropBoxData,
+    left: value,
+  });
+});
 
 const onChangeInput = async (e: Event) => {
   const el = e.target as HTMLInputElement;
