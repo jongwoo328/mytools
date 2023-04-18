@@ -1,48 +1,58 @@
 <script lang="ts" setup>
 import ImageInput from "@/components/converter/ImageInput.vue";
 import { computed, Ref, ref, watch } from "vue";
-import { SelectProps } from "ant-design-vue";
 import { Browser, useBrowser } from "@/composables/useBrowser";
 import ImageConverterResultList from "@/components/converter/ImageConverterResultList.vue";
 import { v4 } from "uuid";
 import { ImageConverterResult } from "@/types/ImageConverterResult";
-import { LoadingOutlined } from "@ant-design/icons-vue";
 import { useImageUtil } from "@/composables/useImageUtil";
 import PageTitle from "@/components/common/PageTitle.vue";
 import { copyWithNotification } from "@/utils/copy";
+import PageHeading from "@/components/common/PageHeading.vue";
+import Card from "primevue/card";
+import InputText from "primevue/inputtext";
+import Button from "primevue/button";
+import ProgressSpinner from "primevue/progressspinner";
+import Dropdown from "primevue/dropdown";
+import CommonToast from "@/components/common/CommonToast.vue";
 
 const browser = useBrowser();
 const { asyncBlobToBase64 } = useImageUtil();
 
 const canvas = ref<HTMLCanvasElement>();
 const inputImage: Ref<File | null> = ref(null);
+const inputImageType = ref("No Data");
 const imageObj: Ref<HTMLImageElement> = ref(new Image());
 const isConvertLoading = ref(false);
 const isImageLoaded = ref(false);
 const imageConverterResultList: Ref<ImageConverterResult[]> = ref([]);
 
 const convertTo = ref(null);
-const convertTypes = computed<SelectProps["options"]>(() => {
-  const list = [
-    {
+const convertTypes = computed<{ label: string; value: string }[]>(() => {
+  const list = [];
+
+  if (inputImage.value?.type !== "image/png") {
+    list.push({
       label: "PNG",
       value: "image/png",
-      disabled: "image/png" === inputImage?.value?.type,
-    },
-    {
+    });
+  }
+  if (inputImage.value?.type !== "image/jpeg") {
+    list.push({
       label: "JPEG",
       value: "image/jpeg",
-      disabled: "image/jpeg" === inputImage?.value?.type,
-    },
-    {
+    });
+  }
+  if (
+    inputImage.value?.type !== "image/webp" &&
+    browser.browserType.value !== Browser.Safari
+  ) {
+    list.push({
       label: "WEBP",
       value: "image/webp",
-      disabled:
-        "image.webp" === inputImage?.value?.type ||
-        browser.browserType.value === Browser.Safari,
-    },
-  ];
-  return list.filter((item) => item.value !== inputImage.value?.type);
+    });
+  }
+  return list;
 });
 
 const onClickConvert = async () => {
@@ -84,6 +94,7 @@ watch(inputImage, (n, o) => {
   }
   isImageLoaded.value = false;
   convertTo.value = null;
+  inputImageType.value = inputImage.value.type;
 
   imageObj.value.src = URL.createObjectURL(inputImage.value);
   imageObj.value.onload = () => {
@@ -99,84 +110,79 @@ watch(inputImage, (n, o) => {
 </script>
 
 <template>
+  <CommonToast />
   <PageTitle title="Image Converter" />
   <section>
     <div class="mb-3">
-      <ATypographyTitle :level="3">Added Image</ATypographyTitle>
-      <ATypographyText
-        >Only Support JPEG, PNG, WEBP(except Safari)</ATypographyText
-      >
+      <PageHeading :level="3" :size="6" weight="600"> Added Image </PageHeading>
+      <span> Only Support JPEG, PNG, WEBP(except Safari) </span>
     </div>
     <canvas ref="canvas" v-show="false"></canvas>
-    <ACard>
-      <ARow>
-        <ACol :span="24" :lg="16">
-          <ARow>
-            <div
-              class="w-100 h-100 d-flex justify-content-center align-items-center pb-1 pb-lg-0 pe-0 pe-lg-1"
-            >
-              <ImageInput :upload="true" v-model:file="inputImage" />
+    <Card>
+      <template #content>
+        <div class="row m-0">
+          <div class="col col-12 col-lg-8 px-0">
+            <div class="row m-0 h-100">
+              <div
+                class="w-100 h-100 d-flex justify-content-center align-items-center pb-1 pb-lg-0 pe-lg-1"
+              >
+                <ImageInput :upload="true" v-model:file="inputImage" />
+              </div>
             </div>
-          </ARow>
-        </ACol>
-        <ACol
-          flex="auto"
-          :span="24"
-          :lg="8"
-          class="px-0 d-flex flex-column justify-content"
-        >
-          <ACard
-            class="h-100"
-            :bodyStyle="{
-              height: '100%',
-            }"
+          </div>
+          <div
+            class="col col-12 col-lg-4 d-flex flex-column justify-content mt-3 mt-lg-0"
           >
             <div class="mb-4 mb-lg-5">
-              <ADescriptions class="mb-4" bordered>
-                <ADescriptionsItem label="type">{{
-                  inputImage?.type ?? "No Data"
-                }}</ADescriptionsItem>
-              </ADescriptions>
-              <AButton
+              <div class="p-inputgroup">
+                <span class="p-inputgroup-addon px-5"> Type </span>
+                <InputText
+                  :disabled="true"
+                  v-model:model-value="inputImageType"
+                  class="text-center"
+                />
+              </div>
+              <Button
                 @click="copyAsBase64"
+                severity="info"
+                class="w-100 d-block mt-2"
                 :disabled="!isImageLoaded && copyingBase64"
-                size="large"
-                block
+                style="height: 44px"
               >
                 <template v-if="copyingBase64">
-                  <LoadingOutlined />
+                  <ProgressSpinner class="h-100" strokeWidth="10" />
                 </template>
                 <template v-else> Copy as Base64 </template>
-              </AButton>
+              </Button>
             </div>
-
-            <ATypographyTitle :level="3">Settings</ATypographyTitle>
-            <AForm>
-              <AFormItem label="Convert to">
-                <ASelect
-                  placeholder="Select type"
-                  v-model:value="convertTo"
-                  :options="convertTypes"
-                />
-              </AFormItem>
-            </AForm>
-
-            <AButton
+            <PageHeading :level="3" :size="6" weight="600">
+              Settings
+            </PageHeading>
+            <div class="mt-2">
+              <span class="mt-1 fs-5 d-block">Convert to:</span>
+              <Dropdown
+                :options="convertTypes"
+                option-label="label"
+                option-value="value"
+                v-model:model-value="convertTo"
+                class="w-100"
+              />
+            </div>
+            <Button
               :disabled="!isImageLoaded || !convertTo || isConvertLoading"
-              class="w-100 d-flex justify-content-center align-items-center"
-              type="primary"
-              size="large"
+              class="w-100 d-flex justify-content-center align-items-center mt-3"
+              style="height: 44px"
               @click="onClickConvert"
             >
               <template v-if="!isConvertLoading">Convert</template>
               <template v-else>
-                <LoadingOutlined />
+                <ProgressSpinner class="h-100" stroke-width="10" />
               </template>
-            </AButton>
-          </ACard>
-        </ACol>
-      </ARow>
-    </ACard>
+            </Button>
+          </div>
+        </div>
+      </template>
+    </Card>
   </section>
   <ImageConverterResultList v-model:results="imageConverterResultList" />
 </template>

@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import { computed, Ref, ref } from "vue";
-import { SelectProps } from "ant-design-vue";
 import { format } from "sql-formatter";
 import { v4 } from "uuid";
 import { SelectableSQLLanguage, SQLResult } from "@/types/SQLResult";
 import SQLResultList from "@/components/formatter/SQLResultList.vue";
 import PageTitle from "@/components/common/PageTitle.vue";
+import PageHeading from "@/components/common/PageHeading.vue";
+import Textarea from "primevue/textarea";
+import Button from "primevue/button";
+import Dropdown from "primevue/dropdown";
 
 const SQLFormatterResults: Ref<SQLResult[]> = ref([]);
-const sqlLanguageOptions = ref<SelectProps["options"]>([
+const sqlLanguageOptions = [
   {
     label: "SQL",
     value: "sql",
@@ -41,7 +44,7 @@ const sqlLanguageOptions = ref<SelectProps["options"]>([
     label: "Snowflake",
     value: "snowflake",
   },
-]);
+];
 
 const sqlInput = ref("");
 const sqlLanguage: Ref<SelectableSQLLanguage> = ref("sql");
@@ -66,36 +69,34 @@ const onFormatButtonClick = () => {
 <template>
   <PageTitle title="SQL Formatter" />
   <section>
-    <ATypographyTitle class="d-inline-block" :level="3">SQL</ATypographyTitle>
-    <div class="float-end">
-      <ASelect
-        style="width: 140px"
+    <div class="mb-2 d-flex justify-content-between align-items-center">
+      <PageHeading class="d-inline-block m-0" :level="3" :size="6" weight="600">
+        SQL
+      </PageHeading>
+      <Dropdown
+        size="small"
         :options="sqlLanguageOptions"
-        v-model:value="sqlLanguage"
-      ></ASelect>
+        option-label="label"
+        option-value="value"
+        v-model:model-value="sqlLanguage"
+      />
     </div>
-    <ATextarea
-      :autoSize="{
-        minRows: 13,
-        maxRows: 13,
-      }"
-      :allowClear="true"
-      v-model:value="sqlInput"
-      class="prevent-auto-zoom"
-    ></ATextarea>
-    <div v-if="isSQLValid" style="height: 24px"></div>
-    <ATypographyText v-else class="float-end" type="danger">
-      Input is not valid SQL
-    </ATypographyText>
-    <AButton
-      class="mt-2"
-      block
-      type="primary"
+    <Textarea
+      auto-resize
+      v-model:model-value="sqlInput"
+      style="min-height: 400px"
+      class="prevent-auto-zoom d-block w-100"
+    />
+    <div v-if="isSQLValid" style="height: 14px"></div>
+    <span v-else class="float-end text-danger"> Input is not valid SQL </span>
+    <Button
+      class="mt-2 d-block w-100"
       :disabled="!isSQLValid"
-      style="height: 48px"
+      size="large"
       @click="onFormatButtonClick"
-      >Format</AButton
     >
+      Format
+    </Button>
   </section>
   <SQLResultList v-model:results="SQLFormatterResults" />
 </template>

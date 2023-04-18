@@ -9,8 +9,11 @@ import {
   KeywordCase,
   LogicalOperatorNewline,
 } from "sql-formatter";
-import { DeleteOutlined } from "@ant-design/icons-vue";
 import { copyWithNotification } from "@/utils/copy";
+import ResultItem from "@/components/common/ResultItem.vue";
+import Button from "primevue/button";
+import SQLResultListItemSetting from "@/components/formatter/SQLResultListItemSetting.vue";
+import ResultDivider from "@/components/common/ResultDivider.vue";
 
 const props = defineProps<{
   resultData: SQLResult;
@@ -55,148 +58,86 @@ const onClickExpandToggle = () => {
 const onClickCopy = async () => {
   await copyWithNotification(formattedSQL.value);
 };
+const onChangeUseTabs = (v: boolean) => {
+  useTabs.value = v;
+};
+const onChangeTabWidth = (v: number) => {
+  tabWidth.value = v;
+};
+const onChangeKeywordCase = (v: KeywordCase) => {
+  keywordCase.value = v;
+};
+const onChangeIndentation = (v: IndentStyle) => {
+  indentation.value = v;
+};
+const onChangeLogicalOperatorNewLine = (v: LogicalOperatorNewline) => {
+  logicalOperatorNewLine.value = v;
+};
+
+const expaneToggleLabel = computed(() =>
+  expandToggle.value === "revert" ? "Fit" : "Revert"
+);
 </script>
 
 <template>
-  <ACard
-    data-aos="fade-up"
-    data-aos-once="true"
-    data-aos-anchor-placement="bottom"
-    class="pt-5 mb-2"
-  >
-    <ATypographyText
-      :strong="true"
-      class="position-absolute"
-      style="left: 24px; top: 28px"
-      >{{ `# ${index}` }}</ATypographyText
-    >
-    <ACollapse style="background-color: #f1f3f5" :ghost="true" class="mb-2">
-      <ACollapsePanel class="prevent-auto-zoom" header="Advanced Setting">
-        <ARow :gutter="10">
-          <ACol class="mb-2" :span="24" :md="12" :xl="8">
-            <ARow>
-              <ACol :span="12">
-                <label for="useTabs">Use Tabs</label>
-              </ACol>
-              <ACol
-                class="d-flex flex-grow-1 justify-content-start align-items-center"
-              >
-                <ASwitch id="useTabs" size="small" v-model:checked="useTabs" />
-              </ACol>
-            </ARow>
-          </ACol>
-          <ACol class="mb-2" :span="24" :md="12" :xl="8">
-            <ARow justify="space-between">
-              <ACol :span="12">
-                <label for="tabWidth">Tab Width</label>
-              </ACol>
-              <ACol
-                class="d-flex flex-grow-1 justify-content-start align-items-center"
-              >
-                <AInputNumber
-                  :disabled="useTabs"
-                  v-model:value="tabWidth"
-                  id="tabWidth"
-                  size="small"
-                  :min="0"
-                  :max="4"
-                ></AInputNumber>
-              </ACol>
-            </ARow>
-          </ACol>
-          <ACol class="mb-2" :span="24" :md="12" :xl="8">
-            <ARow>
-              <ACol :span="12">
-                <label for="case">Keyword</label>
-              </ACol>
-              <ACol
-                class="d-flex flex-grow-1 justify-content-start align-items-center"
-              >
-                <ASelect
-                  :dropdown-match-select-width="100"
-                  size="small"
-                  v-model:value="keywordCase"
-                >
-                  <ASelectOption value="preserve">Preserve</ASelectOption>
-                  <ASelectOption value="upper">Upper</ASelectOption>
-                  <ASelectOption value="lower">Lower</ASelectOption>
-                </ASelect>
-              </ACol>
-            </ARow>
-          </ACol>
-          <ACol class="mb-2" :span="24" :md="12" :xl="8">
-            <ARow>
-              <ACol :span="12">
-                <label for="case">Indent</label>
-              </ACol>
-              <ACol
-                class="d-flex flex-grow-1 justify-content-start align-items-center"
-              >
-                <ASelect
-                  :dropdown-match-select-width="100"
-                  size="small"
-                  v-model:value="indentation"
-                >
-                  <ASelectOption value="standard">Standard</ASelectOption>
-                  <ASelectOption value="tabularLeft"
-                    >Tabular,Left</ASelectOption
-                  >
-                </ASelect>
-              </ACol>
-            </ARow>
-          </ACol>
-          <ACol class="mb-2" :span="24" :md="12" :xl="8">
-            <ARow>
-              <ACol :span="12">
-                <label for="case">AND/OR Newline</label>
-              </ACol>
-              <ACol
-                class="d-flex flex-grow-1 justify-content-start align-items-center"
-              >
-                <ASelect
-                  size="small"
-                  v-model:value="logicalOperatorNewLine"
-                  style="width: 90px"
-                >
-                  <ASelectOption value="before">Before</ASelectOption>
-                  <ASelectOption value="after">After</ASelectOption>
-                </ASelect>
-              </ACol>
-            </ARow>
-          </ACol>
-        </ARow>
-      </ACollapsePanel>
-    </ACollapse>
-    <div class="sql-result-wrap">
-      <Codemirror
-        :disabled="true"
-        :extensions="[sql()]"
-        v-model="formattedSQL"
-        class="sql-result"
-      />
-    </div>
-    <ADivider class="mb-0">
-      <AButton @click="onClickExpandToggle" shape="round">
-        {{ expandToggle === "revert" ? "Fit" : "Revert" }}
-      </AButton>
-    </ADivider>
-    <div
-      class="position-absolute d-flex align-items-center"
-      style="top: 24px; right: 24px"
-    >
-      <AButton
-        danger
-        type="primary"
-        class="me-1 px-2"
-        @click="onClickDeleteResult"
+  <ResultItem>
+    <template #header>
+      <div
+        class="d-flex justify-content-between px-4 mt-4"
+        style="height: 32px"
       >
         <div class="d-flex align-items-center">
-          <DeleteOutlined />
+          <span class="fw-bold">{{ `# ${props.index}` }}</span>
         </div>
-      </AButton>
-      <AButton class="me-1" @click="onClickCopy">Copy</AButton>
-    </div>
-  </ACard>
+        <div>
+          <Button
+            severity="danger"
+            class="p-0 me-1 h-100"
+            icon="pi pi-trash"
+            size="small"
+            @click="onClickDeleteResult"
+            style="width: 32px"
+          />
+          <Button
+            severity="info"
+            class="p-0 me-1 h-100"
+            icon="pi pi-copy"
+            size="small"
+            @click="onClickCopy"
+            style="width: 32px"
+          />
+        </div>
+      </div>
+    </template>
+    <template #conetent>
+      <SQLResultListItemSetting
+        class="mb-4"
+        :use-tabs="useTabs"
+        @update:use-tabs="onChangeUseTabs"
+        :keyword-case="keywordCase"
+        @update:keyword-case="onChangeKeywordCase"
+        :indentation="indentation"
+        @update:indentation="onChangeIndentation"
+        :logical-operator-new-line="logicalOperatorNewLine"
+        @update:logical-operator-new-line="onChangeLogicalOperatorNewLine"
+        :tab-width="tabWidth"
+        @update:tab-width="onChangeTabWidth"
+      />
+      <div class="sql-result-wrap common-border-radius">
+        <Codemirror
+          :disabled="true"
+          :extensions="[sql()]"
+          v-model="formattedSQL"
+          class="sql-result"
+        />
+      </div>
+      <ResultDivider class="mb-0">
+        <Button @click="onClickExpandToggle" size="small" outlined class="py-1">
+          {{ expaneToggleLabel }}
+        </Button>
+      </ResultDivider>
+    </template>
+  </ResultItem>
 </template>
 
 <style lang="scss" scoped>

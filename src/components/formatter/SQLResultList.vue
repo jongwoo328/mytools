@@ -2,6 +2,7 @@
 import { defineEmits, defineProps } from "vue";
 import SQLResultListItem from "@/components/formatter/SQLResultListItem.vue";
 import { SQLResult } from "@/types/SQLResult";
+import ResultDivider from "@/components/common/ResultDivider.vue";
 
 const props = defineProps<{ results: SQLResult[] }>();
 const emit = defineEmits<{
@@ -19,7 +20,9 @@ const onClickDelete = (id: string) => {
 </script>
 
 <template>
-  <ADivider v-if="results.length > 0">Results</ADivider>
+  <ResultDivider v-if="results.length > 0" align="center" color="#f0f2f5">
+    Results
+  </ResultDivider>
   <section class="d-flex flex-column-reverse">
     <SQLResultListItem
       v-for="(result, idx) in results"

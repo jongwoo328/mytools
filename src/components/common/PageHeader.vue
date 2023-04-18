@@ -1,73 +1,85 @@
 <script setup lang="ts">
 import { RouterName } from "@/router";
-import { computed, ref } from "vue";
-import {
-  CloseOutlined,
-  HomeOutlined,
-  MenuOutlined,
-} from "@ant-design/icons-vue";
+import { ref } from "vue";
+import Sidebar from "primevue/sidebar";
+import Button from "primevue/button";
+import PanelMenu from "primevue/panelmenu";
 import { useRouter } from "vue-router";
+import { breakpointsBootstrapV5, useBreakpoints } from "@vueuse/core";
+import Menubar from "primevue/menubar";
 
 const router = useRouter();
 
-const menuTitleStyle = { fontSize: "1.1rem" };
 const drawerVisible = ref(false);
-const openKeys = ref(["formatter", "converter", "viewer"]);
-const selectedKeys = computed(() => [router.currentRoute.value.name]);
-const closeDrawer = () => {
+const openKeys = ref({
+  formatter: true,
+  converter: true,
+  viewer: true,
+});
+
+const onClickHome = () => {
+  router.push({ name: RouterName.Index });
   drawerVisible.value = false;
 };
-const openDrawer = () => {
-  drawerVisible.value = true;
-};
-const pushToIndex = () => {
-  router.push({ name: RouterName.Index });
+
+const breakpoints = useBreakpoints(breakpointsBootstrapV5);
+const isMobileOrTablet = breakpoints.smaller("lg");
+
+const hideDrawer = () => {
+  drawerVisible.value = false;
 };
 
 const menus = [
   {
-    title: "Formatter",
+    label: "Formatter",
     key: "formatter",
-    submenus: [
+    items: [
       {
-        route: RouterName.JSONFormatter,
-        title: "JSON",
+        to: { name: RouterName.JSONFormatter },
+        label: "JSON",
+        command: hideDrawer,
       },
       {
-        route: RouterName.SQLFormatter,
-        title: "SQL",
+        to: { name: RouterName.SQLFormatter },
+        label: "SQL",
+        command: hideDrawer,
       },
     ],
   },
   {
-    title: "Converter",
+    label: "Converter",
     key: "converter",
-    submenus: [
+    items: [
       {
-        route: RouterName.ImageConverter,
-        title: "Image",
+        to: { name: RouterName.ImageConverter },
+        label: "Image",
+        command: hideDrawer,
       },
       {
-        route: RouterName.EpochConverter,
-        title: "Epoch",
+        to: { name: RouterName.EpochConverter },
+        label: "Epoch",
+        command: hideDrawer,
       },
       {
-        route: RouterName.CSVToJSONConverter,
-        title: "CSV to JSON",
+        to: { name: RouterName.CSVToJSONConverter },
+        label: "CSV to JSON",
+        command: hideDrawer,
       },
       {
-        route: RouterName.ImageCropper,
-        title: "Image Cropper",
+        to: { name: RouterName.ImageCropper },
+        label: "Image Cropper",
+        command: hideDrawer,
       },
     ],
   },
   {
-    title: "Viewer",
+    label: "Viewer",
     key: "viewer",
-    submenus: [
+    items: [
       {
-        route: RouterName.HTMLViewer,
-        title: "HTML",
+        to: { name: RouterName.HTMLViewer },
+        label: "HTML",
+        command: hideDrawer,
       },
     ],
   },
@@ -75,76 +87,38 @@ const menus = [
 </script>
 
 <template>
-  <div>
-    <AAffix class="top-affix" :offset-top="20" style="width: 90px">
-      <AButton type="primary" @click="pushToIndex" shape="circle" size="large">
-        <template #icon>
-          <HomeOutlined />
-        </template>
-      </AButton>
-      <AButton @click="openDrawer" shape="circle" size="large">
-        <template #icon>
-          <MenuOutlined />
-        </template>
-      </AButton>
-    </AAffix>
-    <ADrawer
-      :visible="drawerVisible"
-      @close="closeDrawer"
-      width="300"
-      :bodyStyle="{ paddingLeft: 0, paddingRight: 0 }"
-      :headerStyle="{ paddingLeft: '1rem' }"
-      theme="light"
-      class="header d-flex flex-row align-items-center"
-    >
-      <template #closeIcon>
-        <kbd style="background-color: #ff6b6b" class="d-flex">
-          <CloseOutlined /> ESC
-        </kbd>
-      </template>
-      <div
-        class="d-flex justify-content-center align-items-center w-100"
-        style="height: 50px"
-      >
-        <RouterLink
-          @click="closeDrawer"
-          class="logo d-flex align-items-center w-25 py-2"
-          :to="{ name: RouterName.Index }"
-          style="font-size: 2rem"
-        >
-          <HomeOutlined class="w-100" />
-        </RouterLink>
-      </div>
-      <AMenu
-        theme="light"
-        mode="inline"
-        v-model:openKeys="openKeys"
-        v-model:selectedKeys="selectedKeys"
-        style="width: 300px"
-      >
-        <ASubMenu v-for="menu in menus" :key="menu.key" class="w-100">
-          <template #title>
-            <span :style="menuTitleStyle">{{ menu.title }}</span>
-          </template>
-          <AMenuItem v-for="submenu in menu.submenus" :key="submenu.route">
-            <RouterLink
-              @click="closeDrawer"
-              class="text-decoration-none"
-              :to="{ name: submenu.route }"
-              >{{ submenu.title }}
-            </RouterLink>
-          </AMenuItem>
-        </ASubMenu>
-      </AMenu>
-    </ADrawer>
-  </div>
+  <Button
+    rounded
+    icon="pi pi-bars"
+    @click="drawerVisible = true"
+    v-if="isMobileOrTablet"
+    style="
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1001;
+      border: 1px solid #f0f2f5;
+    "
+  />
+  <Sidebar
+    v-if="isMobileOrTablet"
+    position="right"
+    v-model:visible="drawerVisible"
+  >
+    <Button
+      size="large"
+      @click="onClickHome"
+      class="w-100 mt-1 mb-2 py-2"
+      outlined
+      icon="pi pi-home"
+    />
+    <PanelMenu v-model:expanded-keys="openKeys" :model="menus" />
+  </Sidebar>
+  <Menubar v-else :model="menus" class="w-100">
+    <template #start>
+      <Button text @click="onClickHome" class="w-100 me-2 py-2" label="⚒" />
+    </template>
+  </Menubar>
 </template>
 
-<style lang="scss" scoped>
-.top-affix {
-  &::v-deep(div.ant-affix) {
-    display: flex;
-    justify-content: space-around;
-  }
-}
-</style>
+<style lang="scss" scoped></style>

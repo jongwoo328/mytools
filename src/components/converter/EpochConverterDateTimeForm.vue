@@ -1,15 +1,29 @@
 <script lang="ts" setup>
-import { CaretDownOutlined, CaretRightOutlined } from "@ant-design/icons-vue";
 import { computed, Ref, ref } from "vue";
 import { DateTime, FixedOffsetZone, SystemZone } from "luxon";
 import { offsetList } from "@/constants/time";
 import { copyWithNotification } from "@/utils/copy";
+import Button from "primevue/button";
+import Checkbox from "primevue/checkbox";
+import Calendar from "primevue/calendar";
+import InputNumber from "primevue/inputnumber";
+import Dropdown from "primevue/dropdown";
+import SelectButton from "primevue/selectbutton";
+import CommonToast from "@/components/common/CommonToast.vue";
 
 const defaultDateTime = DateTime.now();
 
-const date = ref(defaultDateTime.toFormat("yyyy-LL-dd"));
-const time = ref(defaultDateTime.toFormat("HH:mm:ss"));
-const milliseconds = ref(defaultDateTime.toFormat("S"));
+const dateInput = ref(defaultDateTime.toJSDate());
+const date = computed(() => {
+  return DateTime.fromJSDate(dateInput.value).toFormat("yyyy-LL-dd");
+});
+
+const timeInput = ref(defaultDateTime.toJSDate());
+const time = computed(() => {
+  return DateTime.fromJSDate(timeInput.value).toFormat("HH:mm:ss");
+});
+
+const milliseconds = ref(Number(defaultDateTime.toFormat("S")));
 const offset = ref(new SystemZone().offset(Date.now()));
 const useMilliseconds = ref(false);
 const resultUnit: Ref<"s" | "ms"> = ref("s");
@@ -48,105 +62,130 @@ const onClickCopy = async () => {
 
 const setNow = () => {
   const now = DateTime.now();
-  date.value = now.toFormat("yyyy-LL-dd");
-  time.value = now.toFormat("HH:mm:ss");
-  milliseconds.value = now.toFormat("S");
+  dateInput.value = now.toJSDate();
+  timeInput.value = now.toJSDate();
+  milliseconds.value = Number(now.toFormat("S"));
 };
 </script>
 
 <template>
-  <ARow>
-    <ACol :span="24" :lg="11">
-      <ARow class="mb-1" justify="space-between" align="middle">
-        <ACol>
-          <AButton @click="setNow">Now</AButton>
-        </ACol>
-        <ACol>
-          <ACheckbox v-model:checked="useMilliseconds">
-            Use Milliseconds
-          </ACheckbox>
-        </ACol>
-      </ARow>
-      <ARow>
-        <ACol class="mb-1" :span="24" :lg="useMilliseconds ? 11 : 12">
-          <ADatePicker
-            class="w-100"
-            value-format="YYYY-MM-DD"
-            format="YYYY-MM-DD"
-            size="large"
-            v-model:value="date"
+  <CommonToast />
+  <div class="row">
+    <div class="col col-12 col-lg-5">
+      <div class="w-100 mb-1 d-flex justify-content-between">
+        <Button @click="setNow" severity="secondary" size="small">Now</Button>
+        <div class="d-flex align-items-center">
+          <Checkbox
+            v-model:model-value="useMilliseconds"
+            binary
+            id="useMilliseconds"
           />
-        </ACol>
-        <ACol :span="useMilliseconds ? 12 : 24" :lg="useMilliseconds ? 7 : 12">
-          <ATimePicker
-            class="w-100 mb-1"
-            value-format="HH:mm:ss"
-            format="HH:mm:ss"
-            size="large"
-            v-model:value="time"
-          />
-        </ACol>
-        <ACol
-          v-if="useMilliseconds"
-          :span="useMilliseconds ? 12 : 24"
-          :lg="useMilliseconds ? 6 : 12"
+          <label class="ms-2" for="useMilliseconds">Use Milliseconds</label>
+        </div>
+      </div>
+      <div class="row">
+        <div
+          class="col col-12"
+          :class="{ 'col-xl-5': useMilliseconds, 'col-xl-6': !useMilliseconds }"
         >
-          <AInputNumber
-            addonAfter="ms"
-            :controls="false"
-            :min="0"
-            :max="999"
-            size="large"
-            class="w-100 h-100 millisec-input"
-            v-model:value="milliseconds"
+          <Calendar
+            v-model:model-value="dateInput"
+            class="w-100"
+            date-format="yy-mm-dd"
           />
-        </ACol>
-        <ACol :span="24">
-          <ASelect v-model:value="offset" class="w-100" :options="offsetList" />
-        </ACol>
-      </ARow>
-    </ACol>
-    <ACol :span="24" :lg="2">
-      <ARow class="w-100 h-100 d-flex m-0 align-items-center" justify="center">
-        <CaretDownOutlined class="h4 d-lg-none" />
-        <CaretRightOutlined class="h4 d-none d-lg-block" />
-      </ARow>
-    </ACol>
-    <ACol :span="24" :lg="11">
-      <ARow class="epoch-time-config mb-1" justify="end">
-        <ARadioGroup
-          v-model:value="resultUnit"
-          :options="unitOptions"
-          option-type="button"
-        ></ARadioGroup>
-      </ARow>
-      <ARow style="height: 38px">
-        <ATypographyText
-          class="h-100 w-100 mb-0 d-flex align-items-center epoch-time ps-2"
+        </div>
+        <div
+          class="col mt-1"
+          :class="{
+            'col-12': !useMilliseconds,
+            'col-6': useMilliseconds,
+            'col-xl-4': useMilliseconds,
+            'col-xl-6': !useMilliseconds,
+          }"
+        >
+          <Calendar
+            class="w-100"
+            time-only
+            v-model:model-value="timeInput"
+            hour-format="24"
+            show-seconds
+          />
+        </div>
+        <div
+          v-if="useMilliseconds"
+          class="col"
+          :class="{
+            'col-6': useMilliseconds,
+            'col-12': !useMilliseconds,
+            'col-xl-3': useMilliseconds,
+            'col-xl-6': !useMilliseconds,
+          }"
+        >
+          <div class="p-inputgroup">
+            <InputNumber
+              :min="0"
+              :max="999"
+              input-class="w-100 prevent-auto-zoom"
+              v-model:model-value="milliseconds"
+            />
+            <span class="p-inputgroup-addon">ms</span>
+          </div>
+        </div>
+        <div class="col col-12 mt-1">
+          <Dropdown
+            :options="offsetList"
+            option-value="value"
+            option-label="label"
+            v-model:model-value="offset"
+            class="w-100"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="col col-12 col-lg-2 d-flex justify-content-center align-items-center"
+    >
+      <Button
+        class="d-none d-lg-block"
+        icon="pi pi-angle-right"
+        outlined
+        disable
+      />
+      <Button
+        style="height: 35px"
+        class="d-lg-none my-4"
+        icon="pi pi-angle-down"
+        outlined
+        disabled
+      />
+    </div>
+    <div class="col col-12 col-lg-5">
+      <div class="d-flex w-100 epoch-time-config mb-1 justify-content-end">
+        <div>
+          <SelectButton
+            :options="unitOptions"
+            v-model:model-value="resultUnit"
+            option-label="label"
+            option-value="value"
+            :unselectable="true"
+          />
+        </div>
+      </div>
+      <div class="row m-0 mt-2" style="height: 38px">
+        <span
+          class="h-100 w-100 mb-0 d-flex align-items-center epoch-time ps-2 common-border-radius"
         >
           {{ resultEpoch }}
-        </ATypographyText>
-      </ARow>
-      <AButton @click="onClickCopy" type="primary" class="mt-3" block>
-        Copy
-      </AButton>
-    </ACol>
-  </ARow>
+        </span>
+      </div>
+      <Button @click="onClickCopy" class="w-100 d-block mt-2">Copy</Button>
+    </div>
+  </div>
 </template>
 
 <style lang="scss" scoped>
 .epoch-time {
   background-color: #f1f3f5;
   font-size: 1.1rem;
-}
-
-.epoch-time-config {
-  height: initial;
-}
-
-@media (min-width: 992px) {
-  .epoch-time-config {
-    min-height: 32px;
-  }
 }
 </style>

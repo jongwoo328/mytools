@@ -4,6 +4,7 @@ import FunctionListItem from "@/components/index/FunctionListItem.vue";
 import { RouterName } from "@/router";
 import ServiceInformationModal from "@/components/common/ServiceInformationModal.vue";
 import { ref } from "vue";
+import PageHeading from "@/components/common/PageHeading.vue";
 
 const showModal = ref(
   localStorage.getItem("showServiceInformationModal") !== "false"
@@ -70,17 +71,17 @@ const availableTools: AvailableTool[] = [
 </script>
 
 <template>
-  <ATypographyTitle :level="2">⚒️ Available Tools</ATypographyTitle>
-  <ARow class="mt-5" :gutter="12">
-    <ACol
+  <PageHeading :size="8" :level="2" weight="600">
+    ⚒️ Available Tools
+  </PageHeading>
+  <div class="row mt-5 gx-3 gy-3">
+    <div
+      class="col col-12 col-md-6 col-xl-4"
       v-for="availableTool in availableTools"
       :key="availableTool.title"
-      :span="24"
-      :md="12"
-      :xl="8"
     >
       <FunctionListItem :tool="availableTool"></FunctionListItem>
-    </ACol>
-  </ARow>
+    </div>
+  </div>
   <ServiceInformationModal :show-modal-initial="showModal" />
 </template>
