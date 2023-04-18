@@ -1,9 +1,10 @@
 <script lang="ts" setup>
 import { defineProps } from "vue";
+import PageHeading from "./PageHeading.vue";
 
-const props = defineProps<{ title: string }>();
+defineProps<{ title: string }>();
 </script>
 
 <template>
-  <ATypographyTitle :level="2">{{ props.title }}</ATypographyTitle>
+  <PageHeading :level="2" :size="8" weight="600">{{ title }} </PageHeading>
 </template>

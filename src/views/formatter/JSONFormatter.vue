@@ -4,6 +4,9 @@ import { v4 } from "uuid";
 import JSONResultList from "@/components/formatter/JSONResultList.vue";
 import { JSONResult } from "@/types/JSONResult";
 import PageTitle from "@/components/common/PageTitle.vue";
+import PageHeading from "@/components/common/PageHeading.vue";
+import Textarea from "primevue/textarea";
+import Button from "primevue/button";
 
 const jsonInput = ref("");
 const isJsonValid = computed(() => {
@@ -31,31 +34,31 @@ const onFormatButtonClick = () => {
 <template>
   <PageTitle title="JSON Formatter" />
   <section>
-    <ATypographyTitle class="d-inline-block" :level="3"
-      >JSON text</ATypographyTitle
+    <PageHeading
+      class="d-block align-middle"
+      :level="3"
+      :size="6"
+      weight="600"
+      style="height: 44px; line-height: 2"
     >
-    <ATextarea
-      :autoSize="{
-        minRows: 13,
-        maxRows: 13,
-      }"
-      :allowClear="true"
-      v-model:value="jsonInput"
-      class="prevent-auto-zoom"
-    ></ATextarea>
-    <div v-if="isJsonValid" style="height: 24px"></div>
-    <ATypographyText v-else class="float-end" type="danger">
-      Input is not valid JSON
-    </ATypographyText>
-    <AButton
-      class="mt-2"
-      block
-      type="primary"
+      JSON text
+    </PageHeading>
+    <Textarea
+      auto-resize
+      v-model:model-value="jsonInput"
+      style="min-height: 400px"
+      class="prevent-auto-zoom d-block w-100"
+    />
+    <div v-if="isJsonValid" style="height: 14px"></div>
+    <span v-else class="float-end text-danger"> Input is not valid JSON </span>
+    <Button
+      class="mt-2 w-100 d-block"
       :disabled="!isJsonValid"
-      style="height: 48px"
       @click="onFormatButtonClick"
-      >Format</AButton
+      size="large"
     >
+      Format
+    </Button>
   </section>
   <JSONResultList v-model:results="JSONFormatResults" />
 </template>

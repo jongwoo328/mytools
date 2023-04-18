@@ -1,18 +1,22 @@
-import { notification } from "ant-design-vue";
 import { useClipboard } from "@vueuse/core";
+import { toastService } from "@/main";
+import { ToastSeverity } from "primevue/api";
 
 const { copy } = useClipboard({ legacy: true });
+
 export const copyWithNotification = async (copyData: string) => {
   try {
     await copy(copyData);
-    notification.success({
-      message: "Copied!",
-      duration: 2.5,
+    toastService.add({
+      severity: ToastSeverity.SUCCESS,
+      summary: "Copied!",
+      life: 2500,
     });
   } catch {
-    notification.error({
-      message: "Failed",
-      duration: 2.5,
+    toastService.add({
+      severity: ToastSeverity.ERROR,
+      summary: "Failed",
+      life: 2500,
     });
   }
 };

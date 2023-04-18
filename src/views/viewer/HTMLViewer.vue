@@ -2,10 +2,11 @@
 import PageTitle from "@/components/common/PageTitle.vue";
 import { html } from "@codemirror/lang-html";
 import { ref } from "vue";
+import Card from "primevue/card";
 
 const htmlText = ref(
   "<style>" +
-    "\n\tli {font-weight: bold;} #listVue3 a {color: #67b686;} #listCloudFront a {color: #ff9900}" +
+    "\n\tli {font-weight: bold;} #listVue3 a {color: #67b686;} #listAWSAmplify a {color: rgb(255, 153, 0)}" +
     "\n</style>" +
     "\n\n<h1>My Tools webpage</h1>" +
     "\n<section>" +
@@ -17,10 +18,10 @@ const htmlText = ref(
     "\n\t<h2>Project is built with</h2>" +
     "\n\t<ul>" +
     '\n\t\t<li id="listVue3">' +
-    '\n\t\t\t<a href="https://vuejs.org/">Vue 3</a>' +
+    '\n\t\t\t<a target="_blank" href="https://vuejs.org/">Vue 3</a>' +
     "\n\t\t</li>" +
-    '\n\t\t<li id="listCloudFront">' +
-    '\n\t\t\t<a href="https://aws.amazon.com/ko/cloudfront/">AWS CloudFront</a>' +
+    '\n\t\t<li id="listAWSAmplify">' +
+    '\n\t\t\t<a target="_blank" href="https://aws.amazon.com/ko/amplify/">AWS Amplify</a>' +
     "\n\t\t</li>" +
     "\n\t</ul>" +
     "\n</section>"
@@ -29,24 +30,26 @@ const htmlText = ref(
 
 <template>
   <PageTitle title="HTML Viewer" />
-  <ACard>
-    <ARow>
-      <ACol :span="24" class="mb-1">
-        <div class="html-view-wrap">
-          <iframe class="w-100 h-100" :srcdoc="htmlText" />
+  <Card>
+    <template #content>
+      <div class="row m-0 w-100">
+        <div class="col col-12 mb-3 px-0">
+          <div class="html-view-wrap">
+            <iframe class="w-100 h-100" :srcdoc="htmlText" />
+          </div>
         </div>
-      </ACol>
-      <ACol class="viewer-code-section" :span="24">
-        <div class="h-100 html-input-wrap">
-          <Codemirror
-            :extensions="[html()]"
-            v-model="htmlText"
-            class="h-100 html-input"
-          />
+        <div class="col col-12 viewer-code-section px-0 common-border-radius">
+          <div class="h-100 html-input-wrap">
+            <Codemirror
+              :extensions="[html()]"
+              v-model="htmlText"
+              class="h-100 html-input prevent-auto-zoom"
+            />
+          </div>
         </div>
-      </ACol>
-    </ARow>
-  </ACard>
+      </div>
+    </template>
+  </Card>
 </template>
 
 <style lang="scss" scoped>
@@ -65,7 +68,7 @@ const htmlText = ref(
 }
 
 .html-input::v-deep(.cm-editor) {
-  height: 300px;
+  height: 350px;
 }
 
 @media (min-width: 992px) {

@@ -1,25 +1,25 @@
 <script setup lang="ts">
 import { defineEmits, defineProps, ref } from "vue";
-import {
-  DeleteOutlined,
-  DownOutlined,
-  ReloadOutlined,
-} from "@ant-design/icons-vue";
 import _ from "lodash";
 import VueJsonPretty from "vue-json-pretty";
 import { JSONResult } from "@/types/JSONResult";
 import { copyWithNotification } from "@/utils/copy";
+import Button from "primevue/button";
+import SplitButton from "primevue/splitbutton";
+import { MenuItem } from "primevue/menuitem";
+import { breakpointsBootstrapV5, useBreakpoints } from "@vueuse/core";
+import ResultDivider from "@/components/common/ResultDivider.vue";
+import CommonToast from "@/components/common/CommonToast.vue";
+import ResultItem from "@/components/common/ResultItem.vue";
 
 const emit = defineEmits<{ (e: "delete", id: string): void }>();
 const props = defineProps<{
   resultData: JSONResult;
   index: number;
 }>();
-enum ActionType {
-  COPY_ALL = "COPY_ALL",
-  COPY_PATH = "COPY_PATH",
-  COPY_NODE = "COPY_NODE",
-}
+
+const breakpoints = useBreakpoints(breakpointsBootstrapV5);
+const isMobileOrTablet = breakpoints.smaller("md");
 
 const selected = ref<string | null>(null);
 const virtualScroll = ref(true);
@@ -64,127 +64,130 @@ const download = () => {
   a.click();
   document.body.removeChild(a);
 };
+
+const clickActions: MenuItem[] = [
+  {
+    label: "Copy Path",
+    icon: "pi pi-copy",
+    command: onClickCopyPath,
+    style: {
+      fontSize: "16px",
+    },
+  },
+  {
+    label: "Copy Node",
+    icon: "pi pi-copy",
+    command: onClickSelectedNode,
+    class: "click-action",
+  },
+  {
+    label: "Download",
+    icon: "pi pi-download",
+    command: download,
+    class: "click-action",
+  },
+];
 </script>
 
 <template>
-  <ACard
-    data-aos="fade-up"
-    data-aos-once="true"
-    data-aos-anchor-placement="bottom"
-    class="pt-5 mb-2"
-  >
-    <ATypographyText
-      :strong="true"
-      class="position-absolute"
-      style="left: 24px; top: 28px"
-      >{{ `# ${index}` }}</ATypographyText
-    >
-    <VueJsonPretty
-      :data="resultData.result"
-      :virtual="virtualScroll"
-      selectableType="single"
-      :showSelectController="true"
-      :showIcon="true"
-      v-model:selectedValue="selected"
-      rootPath="$"
-    ></VueJsonPretty>
-    <ADivider class="mb-0">
-      <AButton @click="onClickExpandToggle" shape="round">
-        {{ virtualScroll ? "Fit" : "Revert" }}
-      </AButton>
-    </ADivider>
-    <AButton @click="download" class="mt-2" block>Download</AButton>
-    <div
-      class="d-none d-md-flex align-items-center position-absolute button-container"
-    >
-      <AButton
-        danger
-        type="primary"
-        class="me-1 px-2"
-        @click="onClickDeleteResult"
+  <CommonToast />
+  <ResultItem>
+    <template #header>
+      <div
+        class="d-flex justify-content-between px-4 mt-4"
+        style="height: 32px"
       >
-        <div class="d-flex align-items-center">
-          <DeleteOutlined />
-        </div>
-      </AButton>
-      <AButton
-        @click="onClickResetSelect"
-        :disabled="_.isNull(selected)"
-        class="me-1 px-2"
-      >
-        <div class="d-flex align-items-center">
-          <ReloadOutlined />
-        </div>
-      </AButton>
-      <AButton
-        class="me-1"
-        :disabled="_.isNull(selected)"
-        @click="onClickCopyPath"
-      >
-        Copy Path
-      </AButton>
-      <AButton
-        class="me-1"
-        :disabled="_.isNull(selected)"
-        @click="onClickSelectedNode"
-        >Copy Selected Node</AButton
-      >
-      <AButton @click="onClickCopyAll">Copy All</AButton>
-    </div>
-    <div class="d-flex d-md-none position-absolute button-container">
-      <AButton
-        danger
-        type="primary"
-        class="me-1 px-2"
-        @click="onClickDeleteResult"
-      >
-        <div class="d-flex align-items-center">
-          <DeleteOutlined />
-        </div>
-      </AButton>
-      <AButton
-        @click="onClickResetSelect"
-        :disabled="_.isNull(selected)"
-        class="me-1 px-2"
-      >
-        <div class="d-flex align-items-center">
-          <ReloadOutlined />
-        </div>
-      </AButton>
-      <ADropdown>
-        <template #overlay>
-          <a-menu>
-            <a-menu-item @click="onClickCopyAll" :key="ActionType.COPY_ALL">
-              Copy All
-            </a-menu-item>
-            <a-menu-item
-              :disabled="_.isNull(selected)"
-              :key="ActionType.COPY_NODE"
-              @click="onClickSelectedNode"
-            >
-              Copy Selected Node
-            </a-menu-item>
-            <a-menu-item
-              :disabled="_.isNull(selected)"
-              :key="ActionType.COPY_PATH"
+        <span class="fw-bold">
+          {{ `# ${index}` }}
+        </span>
+        <div class="d-flex">
+          <Button
+            severity="danger"
+            class="p-0 me-1"
+            icon="pi pi-trash"
+            size="small"
+            @click="onClickDeleteResult"
+            style="width: 32px"
+          />
+          <Button
+            severity="secondary"
+            icon="pi pi-refresh"
+            class="p-0 me-1"
+            size="small"
+            @click="onClickResetSelect"
+            :disabled="_.isNull(selected)"
+            style="width: 32px"
+          />
+          <SplitButton
+            v-show="isMobileOrTablet"
+            outlined
+            label="Copy All"
+            severity="info"
+            size="small"
+            icon="pi pi-copy"
+            :model="clickActions"
+            class="click-actions"
+            @click="onClickCopyAll"
+            :menu-button-props="{ class: 'click-action-button' }"
+            plain
+          />
+          <div v-show="!isMobileOrTablet" class="h-100">
+            <Button
+              outlined
+              label="Copy All"
+              size="small"
+              icon="pi pi-copy"
+              @click="onClickCopyAll"
+              class="py-1 px-2 me-1 h-100"
+            />
+            <Button
+              outlined
+              label="Copy Path"
+              size="small"
+              icon="pi pi-copy"
               @click="onClickCopyPath"
-            >
-              Copy Path
-            </a-menu-item>
-          </a-menu>
-        </template>
-        <a-button>
-          Actions
-          <DownOutlined />
-        </a-button>
-      </ADropdown>
-    </div>
-  </ACard>
+              class="py-1 px-2 h-100 me-1"
+              :disabled="_.isNull(selected)"
+            />
+            <Button
+              outlined
+              label="Copy Node"
+              size="small"
+              icon="pi pi-copy"
+              @click="onClickSelectedNode"
+              class="py-1 px-2 h-100 me-1"
+              :disabled="_.isNull(selected)"
+            />
+            <Button
+              outlined
+              label="Download"
+              size="small"
+              icon="pi pi-download"
+              @click="download"
+              class="py-1 px-2 h-100"
+            />
+          </div>
+        </div>
+      </div>
+    </template>
+    <template #conetent>
+      <VueJsonPretty
+        :data="resultData.result"
+        :virtual="virtualScroll"
+        selectableType="single"
+        :showSelectController="true"
+        :showIcon="true"
+        v-model:selectedValue="selected"
+        rootPath="$"
+      />
+      <ResultDivider class="mb-0">
+        <Button @click="onClickExpandToggle" size="small" outlined class="py-1">
+          {{ virtualScroll ? "Fit" : "Revert" }}
+        </Button>
+      </ResultDivider>
+      <Divider class="mb-0"> </Divider>
+    </template>
+  </ResultItem>
 </template>
 
-<style lang="scss" scoped>
-.button-container {
-  top: 24px;
-  right: 24px;
-}
-</style>
+<style lang="scss" scoped></style>

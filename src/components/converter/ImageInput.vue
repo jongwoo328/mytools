@@ -1,15 +1,7 @@
 <script lang="ts" setup>
-import {
-  computed,
-  defineEmits,
-  defineProps,
-  onMounted,
-  onUpdated,
-  Ref,
-  ref,
-} from "vue";
-import { PlusOutlined } from "@ant-design/icons-vue";
-import { UploadChangeParam } from "ant-design-vue";
+import { computed, defineEmits, defineProps, Ref, ref } from "vue";
+import FileUpload, { FileUploadSelectEvent } from "primevue/fileupload";
+import { breakpointsBootstrapV5, useBreakpoints } from "@vueuse/core";
 
 const props = defineProps<{ file: File }>();
 const emit = defineEmits<{ (e: "update:file", file: File): void }>();
@@ -17,18 +9,17 @@ const emit = defineEmits<{ (e: "update:file", file: File): void }>();
 const file: Ref<File | null> = ref(props.file);
 const image = ref<HTMLImageElement>();
 const isUploaded = computed(() => !!file.value);
-const uploadInput = ref();
+const breakpoints = useBreakpoints(breakpointsBootstrapV5);
+const isMobileOrTablet = breakpoints.smaller("lg");
 
-const onChange = (info: UploadChangeParam<File>) => {
-  if (!info.file) {
+const onSelect = (event: FileUploadSelectEvent) => {
+  const inputFile = event.files[0];
+  if (!inputFile) {
     return;
   }
-  if (info.fileList.length > 1) {
-    info.fileList.shift();
-  }
 
-  file.value = info.file;
-  emit("update:file", info.file);
+  file.value = inputFile;
+  emit("update:file", inputFile);
 
   const reader = new FileReader();
   reader.onload = (e: ProgressEvent<FileReader>) => {
@@ -36,30 +27,52 @@ const onChange = (info: UploadChangeParam<File>) => {
       image.value.src = e.target.result as string;
     }
   };
-  uploadInput.value.fileList.shift();
 
-  reader.readAsDataURL(file.value);
+  // change file to blob
+  const blob = new Blob([inputFile], { type: inputFile.type });
+  reader.readAsDataURL(blob);
 };
 
-// file input 에서 capture 속성을 제거
-const removeInputFileCaptureAttribute = () => {
-  uploadInput.value?.$el?.querySelector("input")?.removeAttribute("capture");
+const onClear = () => {
+  if (image.value) {
+    image.value.src = "#";
+    file.value = null;
+  }
 };
-onMounted(removeInputFileCaptureAttribute);
-onUpdated(removeInputFileCaptureAttribute);
+
+const fileInputMinHeight = computed(() => {
+  if (isMobileOrTablet.value) {
+    return "300px";
+  } else {
+    return "500px";
+  }
+});
+const imageUploadBackground = computed(() => {
+  if (isUploaded.value) {
+    return "transparent";
+  } else {
+    return "#f0f2f5";
+  }
+});
 </script>
 
 <template>
-  <AUpload
-    ref="uploadInput"
-    accept="image/*"
-    list-type="picture-card"
-    class="w-100 position-relative upload"
-    :show-upload-list="false"
-    style="padding: 2px"
-    :before-upload="() => false"
-    @change="onChange"
+  <div
+    class="d-flex flex-column justify-content-center w-100 common-border-radius"
+    :class="{ 'align-items-center': !isUploaded }"
+    :style="`min-height: ${fileInputMinHeight}; background-color: ${imageUploadBackground}`"
   >
+    <FileUpload
+      :show-upload-button="false"
+      :show-cancel-button="false"
+      :multiple="false"
+      accept="image/*"
+      mode="basic"
+      class="upload w-100 position-relative mb-2"
+      @select="onSelect"
+      @clear="onClear"
+    >
+    </FileUpload>
     <img
       alt="uploaded image"
       ref="image"
@@ -68,11 +81,7 @@ onUpdated(removeInputFileCaptureAttribute);
       v-show="isUploaded"
       style="object-fit: contain"
     />
-    <div v-if="!isUploaded">
-      <plus-outlined></plus-outlined>
-      <div class="ant-upload-text">Upload</div>
-    </div>
-  </AUpload>
+  </div>
 </template>
 
 <style lang="scss" scoped>

@@ -2,6 +2,7 @@
 import { defineEmits, defineProps } from "vue";
 import JSONResultListItem from "@/components/formatter/JSONResultListItem.vue";
 import { JSONResult } from "@/types/JSONResult";
+import ResultDivider from "@/components/common/ResultDivider.vue";
 
 const props = defineProps<{ results: JSONResult[] }>();
 const emit = defineEmits<{
@@ -19,7 +20,9 @@ const onClickDelete = (id: string) => {
 </script>
 
 <template>
-  <ADivider v-if="results.length > 0">Results</ADivider>
+  <ResultDivider v-if="results.length > 0" align="center" color="#f0f2f5">
+    Results
+  </ResultDivider>
   <section class="d-flex flex-column-reverse">
     <JSONResultListItem
       v-for="(result, idx) in results"

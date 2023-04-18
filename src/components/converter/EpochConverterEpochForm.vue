@@ -2,8 +2,13 @@
 import { computed, Ref, ref } from "vue";
 import { DateTime, SystemZone } from "luxon";
 import { offsetList } from "@/constants/time";
-import { CaretDownOutlined, CaretRightOutlined } from "@ant-design/icons-vue";
 import { copyWithNotification } from "@/utils/copy";
+import Button from "primevue/button";
+import SelectButton from "primevue/selectbutton";
+import InputNumber from "primevue/inputnumber";
+import Checkbox from "primevue/checkbox";
+import Dropdown from "primevue/dropdown";
+import CommonToast from "@/components/common/CommonToast.vue";
 
 const epochInput = ref(DateTime.now().toUnixInteger());
 const unit: Ref<"s" | "ms"> = ref("s");
@@ -54,81 +59,101 @@ const setNow = () => {
 </script>
 
 <template>
-  <ARow justify="space-between">
-    <ACol :span="24" :lg="11">
-      <ARow class="mb-1" justify="space-between">
-        <ACol>
-          <AButton @click="setNow">Now</AButton>
-        </ACol>
-        <ACol>
-          <ARadioGroup
-            option-type="button"
-            v-model:value="unit"
-            :options="unitOptions"
-          />
-        </ACol>
-      </ARow>
-      <AInputNumber
-        size="large"
+  <CommonToast />
+  <div class="row justify-content-between">
+    <div
+      class="col col-12 col-lg-5 d-flex flex-column justify-content-center align-items-center"
+    >
+      <div class="w-100 m-0 mb-1 d-flex flex-row justify-content-between">
+        <Button size="small" severity="secondary" @click="setNow">Now</Button>
+        <SelectButton
+          :options="unitOptions"
+          v-model:model-value="unit"
+          option-label="label"
+          option-value="value"
+          :unselectable="true"
+        />
+      </div>
+      <InputNumber
         class="w-100 input-number"
-        :controls="false"
-        v-model:value="epochInput"
+        input-class="prevent-auto-zoom"
+        v-model:model-value="epochInput"
       />
-    </ACol>
-    <ACol class="my-2 m-lg-0" :span="24" :lg="2">
-      <ARow class="w-100 h-100 d-flex m-0 align-items-center" justify="center">
-        <CaretDownOutlined class="h4 d-lg-none" />
-        <CaretRightOutlined class="h4 d-none d-lg-block" />
-      </ARow>
-    </ACol>
-    <ACol :span="24" :lg="11">
-      <ARow class="mb-1 iso-format-config" align="middle">
-        <ACheckbox v-model:checked="useTimeDelimiter">Use Delimiter</ACheckbox>
-        <ACheckbox v-model:checked="useOffset">Use Offset</ACheckbox>
-        <ACheckbox v-model:checked="omitMilliseconds"
-          >Omit Milliseconds</ACheckbox
-        >
-      </ARow>
-      <ARow style="height: 38px">
-        <ATypographyText
-          class="h-100 w-100 mb-0 d-flex align-items-center formatted-time ps-2"
+    </div>
+    <div
+      class="col col-12 col-lg-2 d-flex justify-content-center align-items-center"
+    >
+      <Button
+        class="d-none d-lg-block"
+        icon="pi pi-angle-right"
+        outlined
+        disable
+      />
+      <Button
+        style="height: 35px"
+        class="d-lg-none my-4"
+        icon="pi pi-angle-down"
+        outlined
+        disabled
+      />
+    </div>
+    <div class="col col-12 col-lg-5">
+      <div class="row d-flex mb-1 justify-content-start">
+        <div class="col-6 col-lg-6 col-xl-4 mb-1">
+          <Checkbox
+            binary
+            v-model:model-value="useTimeDelimiter"
+            id="useDelimiter"
+          />
+          <label class="ms-1" for="useDelimiter">Use Delimiter</label>
+        </div>
+        <div class="col-6 col-lg-6 col-xl-4 mb-1">
+          <Checkbox binary v-model:model-value="useOffset" id="useOffset" />
+          <label class="ms-2" for="useOffset">Use Offset</label>
+        </div>
+        <div class="col-12 col-lg-6 col-xl-5 col-xxl-4 mb-1">
+          <Checkbox
+            binary
+            v-model:model-value="omitMilliseconds"
+            id="omitMilliseconds"
+          />
+          <label class="ms-2" for="omitMilliseconds">Omit Milliseconds</label>
+        </div>
+      </div>
+      <div class="row m-0" style="height: 38px">
+        <span
+          class="h-100 w-100 mb-0 d-flex align-items-center formatted-time ps-2 common-border-radius"
         >
           {{ ISODateTime }}
-        </ATypographyText>
-      </ARow>
-      <ARow>
-        <ASelect
-          v-model:value="offset"
-          class="w-100 my-1"
+        </span>
+      </div>
+      <div class="w-100 mb-0 mt-3">
+        <Dropdown
           :options="offsetList"
+          option-value="value"
+          option-label="label"
+          v-model:model-value="offset"
+          class="w-100"
         />
-      </ARow>
-      <AButton class="mt-2" block type="primary" @click="onClickCopy"
-        >Copy</AButton
-      >
-    </ACol>
-  </ARow>
+      </div>
+      <Button class="mt-2 d-block w-100" @click="onClickCopy"> Copy </Button>
+    </div>
+  </div>
 </template>
 
 <style lang="scss" scoped>
-.input-number {
-  &::v-deep(input) {
-    text-align: end;
-  }
-}
-
 .formatted-time {
   background-color: #f1f3f5;
   font-size: 1.1rem;
 }
 
-.iso-format-config {
-  height: initial;
-}
-
-@media (min-width: 992px) {
-  .iso-format-config {
-    min-height: 32px;
-  }
-}
+//.iso-format-config {
+//  height: initial;
+//}
+//
+//@media (min-width: 992px) {
+//  .iso-format-config {
+//    min-height: 32px;
+//  }
+//}
 </style>

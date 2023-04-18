@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import { defineEmits, defineProps, ref } from "vue";
 import { ImageConverterResult } from "@/types/ImageConverterResult";
-import {
-  DeleteOutlined,
-  DownloadOutlined,
-  LoadingOutlined,
-} from "@ant-design/icons-vue";
 import { copyWithNotification } from "@/utils/copy";
+import Card from "primevue/card";
+import Button from "primevue/button";
+import InputText from "primevue/inputtext";
+import ProgressSpinner from "primevue/progressspinner";
+import CommonToast from "@/components/common/CommonToast.vue";
 
 const props = defineProps<{ result: ImageConverterResult; index: number }>();
 const emit = defineEmits<{ (e: "delete", id: string): void }>();
@@ -48,81 +48,89 @@ const onClickDeleteResult = () => {
 </script>
 
 <template>
-  <ACard
+  <CommonToast />
+  <Card
     data-aos="fade-up"
     data-aos-once="true"
     data-aos-anchor-placement="bottom"
     class="pt-5 mb-2"
   >
-    <ATypographyText
-      :strong="true"
-      class="position-absolute"
-      style="left: 24px; top: 28px"
-      >{{ `# ${index}` }}</ATypographyText
-    >
-    <ARow class="image-result-item">
-      <ACol class="h-100 px-3" :span="24" :lg="16">
-        <div
-          class="image-result-display w-100 h-100 d-flex justify-content-center align-items-center"
-        >
-          <img
-            loading="lazy"
-            style="object-fit: contain"
-            :src="result.objectURL"
-            alt=""
-          />
+    <template #header>
+      <div class="d-flex justify-content-between px-4" style="height: 32px">
+        <div class="d-flex align-items-center px-2">
+          <span class="fw-bold">{{ `# ${props.index}` }}</span>
         </div>
-      </ACol>
-      <ACol :span="24" :lg="8" class="py-3 py-lg-0 image-result-control">
-        <div class="d-flex flex-column justify-content-start" style="flex: 1">
-          <ATypographyTitle :level="5">Download as</ATypographyTitle>
-          <div class="d-flex">
-            <AInput
-              v-model:value="downloadFileName"
-              :placeholder="downloadFileNamePlaceholder"
+        <div>
+          <Button
+            class="me-1 px-2 h-100"
+            severity="danger"
+            size="small"
+            style="width: 32px"
+            @click="onClickDeleteResult"
+            icon="pi pi-trash"
+          >
+          </Button>
+        </div>
+      </div>
+    </template>
+    <template #content>
+      <div class="row image-result-item">
+        <div class="h-100 px-3 col col-12 col-lg-8">
+          <div
+            class="image-result-display w-100 h-100 d-flex justify-content-center align-items-center"
+          >
+            <img
+              loading="lazy"
+              style="object-fit: contain"
+              :src="result.objectURL"
+              alt=""
             />
-            <ATypographyText style="font-size: 1.2rem; padding-left: 10px">{{
-              "." + props.result.type.split("/").at(-1)
-            }}</ATypographyText>
           </div>
         </div>
-        <AButton
-          class="mt-3 mt-lg-0 mb-2"
-          @click="copyAsBase64"
-          :disabled="copyingBase64"
-          size="large"
-          block
-        >
-          <template v-if="copyingBase64">
-            <LoadingOutlined />
-          </template>
-          <template v-else> Copy as Base64 </template>
-        </AButton>
-        <AButton
-          type="primary"
-          class="download d-flex align-items-center justify-content-center"
-          @click="onClickDownload"
-        >
-          <download-outlined /> Download</AButton
-        >
-      </ACol>
-    </ARow>
-    <div
-      class="position-absolute d-flex align-items-center"
-      style="top: 24px; right: 24px"
-    >
-      <AButton
-        danger
-        type="primary"
-        class="me-1 px-2"
-        @click="onClickDeleteResult"
-      >
-        <div class="d-flex align-items-center">
-          <DeleteOutlined />
+        <div class="col col-12 col-lg-4 py-3 py-lg-0 image-result-control">
+          <div
+            class="d-flex w-100 flex-column justify-content-start"
+            style="flex: 1"
+          >
+            <span class="fs-5">Download as:</span>
+            <div class="d-flex">
+              <InputText
+                v-model:model-value="downloadFileName"
+                :placeholder="downloadFileNamePlaceholder"
+                style="flex: 1"
+              />
+              <span
+                class="align-self-center"
+                style="font-size: 1.2rem; padding-left: 10px"
+              >
+                {{ "." + props.result.type.split("/").at(-1) }}
+              </span>
+            </div>
+          </div>
+          <Button
+            class="mt-3 mt-lg-0 mb-2 d-block"
+            @click="copyAsBase64"
+            :disabled="copyingBase64"
+            severity="secondary"
+            style="height: 44px"
+          >
+            <template v-if="copyingBase64">
+              <ProgressSpinner class="h-100" strokeWidth="10" />
+            </template>
+            <template v-else> Copy as Base64 </template>
+          </Button>
+          <Button
+            class="d-block"
+            @click="onClickDownload"
+            severity="primary"
+            style="height: 44px"
+          >
+            Download
+          </Button>
         </div>
-      </AButton>
-    </div>
-  </ACard>
+      </div>
+    </template>
+  </Card>
 </template>
 
 <style lang="scss" scoped>
@@ -131,9 +139,10 @@ const onClickDeleteResult = () => {
 }
 
 .image-result-display {
-  max-height: 400px;
+  max-height: 550px;
   & img {
-    max-height: 300px;
+    max-height: 450px;
+    max-width: 100%;
   }
 }
 

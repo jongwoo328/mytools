@@ -4,16 +4,12 @@ import GlobalBackTop from "@/components/common/GlobalBackTop.vue";
 </script>
 
 <template>
-  <ALayout ref="layoutRoot" id="main" class="align-items-center">
+  <div id="main" class="d-flex flex-column align-items-center">
     <PageHeader />
-    <ALayoutContent
-      id="view"
-      class="container pt-5"
-      style="padding-bottom: 100px"
-    >
+    <div id="view" class="container pt-5" style="padding-bottom: 100px">
       <router-view />
-    </ALayoutContent>
-  </ALayout>
+    </div>
+  </div>
   <GlobalBackTop />
 </template>
 
@@ -24,5 +20,10 @@ a {
 #main {
   overflow-y: auto;
   min-height: 100vh;
+  background-color: #f0f2f5;
+}
+
+body {
+  font-family: (--font-family);
 }
 </style>

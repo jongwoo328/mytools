@@ -2,6 +2,7 @@
 import { defineEmits, defineProps } from "vue";
 import { ImageConverterResult } from "@/types/ImageConverterResult";
 import ImageConverterResultListItem from "@/components/converter/ImageConverterResultListItem.vue";
+import ResultDivider from "@/components/common/ResultDivider.vue";
 
 const props = defineProps<{ results: ImageConverterResult[] }>();
 const emit = defineEmits<{
@@ -19,7 +20,9 @@ const onDelete = (id: string) => {
 </script>
 
 <template>
-  <ADivider v-if="results.length > 0">Results</ADivider>
+  <ResultDivider v-if="results.length > 0" align="center" color="#f0f2f5">
+    Results
+  </ResultDivider>
   <section class="d-flex flex-column-reverse">
     <ImageConverterResultListItem
       v-for="(result, idx) in results"
