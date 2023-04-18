@@ -20,8 +20,8 @@ const onClickButton = () => {
 <template>
   <Card>
     <template #title>
-      <RouterLink class="text-decoration-none" :to="tool.router">
-        <PageHeading weight="600" class="m-0" :level="3" :size="6">
+      <RouterLink class="text-decoration-none text-black" :to="tool.router">
+        <PageHeading weight="600" class="m-0" :level="3" :size="7">
           {{ tool.title }}
         </PageHeading>
       </RouterLink>
