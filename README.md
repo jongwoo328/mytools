@@ -15,7 +15,7 @@ The goals and principles guiding the project are the following:
 
 ## This project is using
 - Vue3
-- AWS CloudFront
+- AWS Amplify
 
 ## Reports & Suggestions
 If you have anything to report or suggest, please use [issues page](https://github.com/jongwoo328/mytools/issues).
