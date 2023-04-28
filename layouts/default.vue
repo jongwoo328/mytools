@@ -1,0 +1,41 @@
+<script setup lang="ts">
+import PageHeader from "@/components/common/PageHeader.vue";
+import GlobalBackTop from "@/components/common/GlobalBackTop.vue";
+
+const { isWindows } = useOs();
+
+const faviconHref = computed(() => {
+  if (isWindows) {
+    return "/favicon-win.ico";
+  }
+  return "/favicon-mac.ico";
+});
+</script>
+
+<template>
+  <Head>
+    <Link rel="icon" type="image/x-icon" :href="faviconHref" />
+  </Head>
+  <div id="main" class="d-flex flex-column align-items-center">
+    <PageHeader />
+    <div id="view" class="container pt-5" style="padding-bottom: 100px">
+      <slot />
+    </div>
+  </div>
+  <GlobalBackTop />
+</template>
+
+<style lang="scss">
+a {
+  text-decoration: none;
+}
+#main {
+  overflow-y: auto;
+  min-height: 100vh;
+  background-color: #f0f2f5;
+}
+
+body {
+  font-family: (--font-family);
+}
+</style>

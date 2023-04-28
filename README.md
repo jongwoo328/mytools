@@ -1,21 +1,42 @@
-# MyTools
+# Nuxt 3 Minimal Starter
 
-[Go to Webpage](https://tools.jongwoo.me)
+Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
-## Project Description
+## Setup
 
-This project aims to collect useful and frequently used functions in one place, for my personal use. However, it is open for others to use as well.
+Make sure to install the dependencies:
 
-The project offers features that can also be found on other websites, but with the added benefit of allowing users to perform operations solely using JavaScript in the browser, without relying on a server. This is particularly useful for sensitive data management.
+```bash
+# yarn
+yarn install
 
-The goals and principles guiding the project are the following:
+# npm
+npm install
 
-- To include minor, practical functions rather than complex or professional ones.
-- To ensure that the website's functions do not require server-side handling.
+# pnpm
+pnpm install
+```
 
-## This project is using
-- Vue3
-- AWS Amplify
+## Development Server
 
-## Reports & Suggestions
-If you have anything to report or suggest, please use [issues page](https://github.com/jongwoo328/mytools/issues).
+Start the development server on `http://localhost:3000`
+
+```bash
+npm run dev
+```
+
+## Production
+
+Build the application for production:
+
+```bash
+npm run build
+```
+
+Locally preview production build:
+
+```bash
+npm run preview
+```
+
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
