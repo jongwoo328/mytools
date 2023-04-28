@@ -14,8 +14,10 @@ The goals and principles guiding the project are the following:
 - To ensure that the website's functions do not require server-side handling.
 
 ## This project is using
-- Vue3
+
+- Nuxt3
 - AWS Amplify
 
 ## Reports & Suggestions
+
 If you have anything to report or suggest, please use [issues page](https://github.com/jongwoo328/mytools/issues).
