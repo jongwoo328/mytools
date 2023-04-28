@@ -4,12 +4,7 @@ import GlobalBackTop from "@/components/common/GlobalBackTop.vue";
 
 const { isWindows } = useOs();
 
-const faviconHref = computed(() => {
-  if (isWindows) {
-    return "/favicon-win.ico";
-  }
-  return "/favicon-mac.ico";
-});
+const faviconHref = isWindows ? "/favicon-win.ico" : "/favicon-mac.ico";
 </script>
 
 <template>
