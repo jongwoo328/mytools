@@ -5,6 +5,12 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: "My Tools",
+      meta: [
+        {
+          name: "naver-site-verification",
+          content: "d60b32a9c6b89b0ba2e0bdacd9525e95d56af731",
+        },
+      ],
     },
   },
 
