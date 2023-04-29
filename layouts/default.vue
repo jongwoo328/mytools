@@ -3,14 +3,19 @@ import PageHeader from "@/components/common/PageHeader.vue";
 import GlobalBackTop from "@/components/common/GlobalBackTop.vue";
 
 const { isWindows } = useOs();
-
-const faviconHref = isWindows ? "/favicon-win.ico" : "/favicon-mac.ico";
+useHead({
+  link: [
+    {
+      rel: "icon",
+      key: "favicon",
+      type: "image/x-icon",
+      href: isWindows ? "/favicon-win.ico" : "/favicon-mac.ico",
+    },
+  ],
+});
 </script>
 
 <template>
-  <Head>
-    <Link rel="icon" type="image/x-icon" :href="faviconHref" />
-  </Head>
   <div id="main" class="d-flex flex-column align-items-center">
     <PageHeader />
     <div id="view" class="container pt-5" style="padding-bottom: 100px">

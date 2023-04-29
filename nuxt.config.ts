@@ -5,13 +5,6 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: "My Tools",
-      // link: [
-      //   {
-      //     rel: "icon",
-      //     type: "image/ico",
-      //     href: "favicon-mac.ico",
-      //   },
-      // ],
     },
   },
 

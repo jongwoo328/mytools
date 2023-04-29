@@ -5,7 +5,7 @@ import { ref } from "vue";
 
 const htmlText = ref(
   "<style>" +
-    "\n\tli {font-weight: bold;} #listVue3 a {color: #67b686;} #listAWSAmplify a {color: rgb(255, 153, 0)}" +
+    "\n\tli {font-weight: bold;} #listNuxt3 a {color: rgb(104, 217, 136);} #listVercel a {color: rgb(0, 0, 0)}" +
     "\n</style>" +
     "\n\n<h1>My Tools webpage</h1>" +
     "\n<section>" +
@@ -16,11 +16,11 @@ const htmlText = ref(
     "\n\t</p>" +
     "\n\t<h2>Project is built with</h2>" +
     "\n\t<ul>" +
-    '\n\t\t<li id="listVue3">' +
-    '\n\t\t\t<a target="_blank" href="https://vuejs.org/">Vue 3</a>' +
+    '\n\t\t<li id="listNuxt3">' +
+    '\n\t\t\t<a target="_blank" href="https://nuxt.com/">Nuxt 3</a>' +
     "\n\t\t</li>" +
-    '\n\t\t<li id="listAWSAmplify">' +
-    '\n\t\t\t<a target="_blank" href="https://aws.amazon.com/ko/amplify/">AWS Amplify</a>' +
+    '\n\t\t<li id="listVercel">' +
+    '\n\t\t\t<a target="_blank" href="https://vercel.com">Vercel</a>' +
     "\n\t\t</li>" +
     "\n\t</ul>" +
     "\n</section>"
