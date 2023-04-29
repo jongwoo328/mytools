@@ -16,7 +16,7 @@ The goals and principles guiding the project are the following:
 ## This project is using
 
 - Nuxt3
-- AWS Amplify
+- Vercel
 
 ## Reports & Suggestions
 
