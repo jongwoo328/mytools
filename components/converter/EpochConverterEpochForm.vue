@@ -1,15 +1,17 @@
 <script lang="ts" setup>
 import { computed, Ref, ref } from "vue";
 import { DateTime, SystemZone } from "luxon";
-import { offsetList } from "@/constants/time";
+import { EpochTimeConvertTimeUnit, offsetList } from "@/constants/time";
 import { copyWithNotification } from "@/utils/copy";
 import CommonToast from "@/components/common/CommonToast.vue";
 
 const epochInput = ref(DateTime.now().toUnixInteger());
-const unit: Ref<"s" | "ms"> = ref("s");
+const unit: Ref<EpochTimeConvertTimeUnit> = ref(
+  EpochTimeConvertTimeUnit.SECONDS
+);
 const unitOptions = [
-  { label: "s", value: "s" },
-  { label: "ms", value: "ms" },
+  { label: "s", value: EpochTimeConvertTimeUnit.SECONDS },
+  { label: "ms", value: EpochTimeConvertTimeUnit.MILLISECONDS },
 ];
 const offset = ref(new SystemZone().offset(Date.now()));
 
@@ -20,12 +22,12 @@ const ISODateTime = computed(() => {
     suppressMilliseconds: omitMilliseconds.value,
   };
   switch (unit.value) {
-    case "s":
+    case EpochTimeConvertTimeUnit.SECONDS:
       isoFormattedTime = DateTime.fromSeconds(epochInput.value)
         .toUTC(offset.value)
         .toISO(option);
       break;
-    case "ms":
+    case EpochTimeConvertTimeUnit.MILLISECONDS:
       isoFormattedTime = DateTime.fromMillis(epochInput.value)
         .toUTC(offset.value)
         .toISO(option);
@@ -49,7 +51,7 @@ const onClickCopy = async () => {
 };
 const setNow = () => {
   epochInput.value = Date.now();
-  unit.value = "ms";
+  unit.value = EpochTimeConvertTimeUnit.MILLISECONDS;
 };
 </script>
 
@@ -131,7 +133,7 @@ const setNow = () => {
           class="w-100"
         />
       </div>
-      <Button class="mt-2 d-block w-100" @click="onClickCopy"> Copy </Button>
+      <Button class="mt-2 d-block w-100" @click="onClickCopy"> Copy</Button>
     </div>
   </div>
 </template>
@@ -141,14 +143,4 @@ const setNow = () => {
   background-color: #f1f3f5;
   font-size: 1.1rem;
 }
-
-//.iso-format-config {
-//  height: initial;
-//}
-//
-//@media (min-width: 992px) {
-//  .iso-format-config {
-//    min-height: 32px;
-//  }
-//}
 </style>

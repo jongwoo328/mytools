@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Codemirror } from "vue-codemirror";
 import { sql } from "@codemirror/lang-sql";
-import { computed, Ref, ref } from "vue";
+import { computed, ref } from "vue";
 import { SQLResult } from "@/types/SQLResult";
 import {
   format,
@@ -14,6 +14,7 @@ import ResultItem from "@/components/common/ResultItem.vue";
 import Button from "primevue/button";
 import SQLResultListItemSetting from "@/components/formatter/SQLResultListItemSetting.vue";
 import ResultDivider from "@/components/common/ResultDivider.vue";
+import { UnionFromAsConst } from "~/utils/type";
 
 const props = defineProps<{
   resultData: SQLResult;
@@ -21,12 +22,19 @@ const props = defineProps<{
 }>();
 const emit = defineEmits<{ (e: "delete", id: string): void }>();
 
-const expandToggle: Ref<"fit" | "revert"> = ref("revert");
+const ExpandToggle = {
+  FIT: "fit",
+  REVERT: "revert",
+} as const;
+
+const expandToggle = ref<UnionFromAsConst<typeof ExpandToggle>>(
+  ExpandToggle.REVERT
+);
 const sqlResultHeight = computed(() =>
-  expandToggle.value === "fit" ? "initial" : "400px"
+  expandToggle.value === ExpandToggle.FIT ? "initial" : "400px"
 );
 const sqlResultOverflowY = computed(() =>
-  expandToggle.value === "fit" ? "initial" : "auto"
+  expandToggle.value === ExpandToggle.FIT ? "initial" : "auto"
 );
 const formattedSQL = computed(() =>
   format(props.resultData.sql, {
@@ -41,18 +49,18 @@ const formattedSQL = computed(() =>
 
 const useTabs = ref(false);
 const tabWidth = ref(2);
-const keywordCase: Ref<KeywordCase> = ref("upper");
-const indentation: Ref<IndentStyle> = ref("standard");
-const logicalOperatorNewLine: Ref<LogicalOperatorNewline> = ref("before");
+const keywordCase = ref<KeywordCase>("upper");
+const indentation = ref<IndentStyle>("standard");
+const logicalOperatorNewLine = ref<LogicalOperatorNewline>("before");
 
 const onClickDeleteResult = () => {
   emit("delete", props.resultData.id);
 };
 const onClickExpandToggle = () => {
-  if (expandToggle.value === "fit") {
-    expandToggle.value = "revert";
+  if (expandToggle.value === ExpandToggle.FIT) {
+    expandToggle.value = ExpandToggle.REVERT;
   } else {
-    expandToggle.value = "fit";
+    expandToggle.value = ExpandToggle.FIT;
   }
 };
 const onClickCopy = async () => {
@@ -74,8 +82,10 @@ const onChangeLogicalOperatorNewLine = (v: LogicalOperatorNewline) => {
   logicalOperatorNewLine.value = v;
 };
 
-const expaneToggleLabel = computed(() =>
-  expandToggle.value === "revert" ? "Fit" : "Revert"
+const expandToggleLabel = computed(() =>
+  expandToggle.value === ExpandToggle.REVERT
+    ? ExpandToggle.FIT
+    : ExpandToggle.REVERT
 );
 </script>
 
@@ -133,7 +143,7 @@ const expaneToggleLabel = computed(() =>
       </div>
       <ResultDivider class="mb-0">
         <Button @click="onClickExpandToggle" size="small" outlined class="py-1">
-          {{ expaneToggleLabel }}
+          {{ expandToggleLabel }}
         </Button>
       </ResultDivider>
     </template>

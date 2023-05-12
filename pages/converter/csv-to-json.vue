@@ -8,6 +8,13 @@ import { v4 } from "uuid";
 import JSONResultList from "@/components/formatter/JSONResultList.vue";
 import PageHeading from "@/components/common/PageHeading.vue";
 import { FileUploadSelectEvent } from "primevue/fileupload";
+import { createEmptyFile, isEmptyFile } from "~/utils/file";
+
+const enum CsvToJsonEncodingType {
+  UTF8 = "UTF-8",
+  EUC_KR = "EUC-KR",
+  CP949 = "CP949",
+}
 
 const activeTabKey = ref(0);
 const tabOptions = [
@@ -22,9 +29,11 @@ const encodingOptions = [
   { label: "EUC-KR", value: "EUC-KR" },
   { label: "CP949", value: "CP949" },
 ];
-const selectedEncoding: Ref<"UTF-8" | "EUC_KR" | "CP949"> = ref("UTF-8");
+const selectedEncoding: Ref<CsvToJsonEncodingType> = ref(
+  CsvToJsonEncodingType.UTF8
+);
 
-const uploadFile: Ref<File | null> = ref(null);
+const uploadFile: Ref<File> = ref(createEmptyFile());
 
 const convertResultList: Ref<Array<JSONResult>> = ref([]);
 const parseFromText = () => {
@@ -38,7 +47,7 @@ const parseFromText = () => {
   });
 };
 const parseFromFile = () => {
-  if (uploadFile.value) {
+  if (!isEmptyFile(uploadFile.value)) {
     const file = uploadFile.value;
     Papa.parse(file, {
       header: headerIncluded.value,
@@ -63,7 +72,7 @@ const onFileChange = (event: FileUploadSelectEvent) => {
   uploadFile.value = event.files[0];
 };
 const onClear = () => {
-  uploadFile.value = null;
+  uploadFile.value = createEmptyFile();
 };
 </script>
 <template>

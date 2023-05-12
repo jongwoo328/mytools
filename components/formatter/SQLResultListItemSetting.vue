@@ -31,20 +31,21 @@ const props = defineProps({
 });
 
 const emit = defineEmits<{
-  (e: "update:useTabs", value: boolean): void;
-  (e: "update:tabWidth", value: number): void;
-  (e: "update:keywordCase", value: KeywordCase): void;
-  (e: "update:indentation", value: IndentStyle): void;
-  (e: "update:logicalOperatorNewLine", value: LogicalOperatorNewline): void;
+  (e: "update:useTabs", value: boolean | undefined): void;
+  (e: "update:tabWidth", value: number | undefined): void;
+  (e: "update:keywordCase", value: KeywordCase | undefined): void;
+  (e: "update:indentation", value: IndentStyle | undefined): void;
+  (
+    e: "update:logicalOperatorNewLine",
+    value: LogicalOperatorNewline | undefined
+  ): void;
 }>();
 
 const useTabs = ref(props.useTabs);
 const tabWidth = ref(props.tabWidth);
-const keywordCase: Ref<KeywordCase> = ref(props.keywordCase);
-const indentation: Ref<IndentStyle> = ref(props.indentation);
-const logicalOperatorNewLine: Ref<LogicalOperatorNewline> = ref(
-  props.logicalOperatorNewLine
-);
+const keywordCase = ref(props.keywordCase);
+const indentation = ref(props.indentation);
+const logicalOperatorNewLine = ref(props.logicalOperatorNewLine);
 
 const keywordCaseOption: { label: string; value: KeywordCase }[] = [
   { label: "Upper", value: "upper" },
@@ -83,7 +84,7 @@ watch(logicalOperatorNewLine, (newValue) => {
 <template>
   <div>
     <Panel toggleable>
-      <template #header> Advanced Setting </template>
+      <template #header> Advanced Setting</template>
       <template #default>
         <div class="row">
           <div
@@ -189,9 +190,11 @@ watch(logicalOperatorNewLine, (newValue) => {
 .form-col {
   height: 40px;
 }
+
 .forminput::v-deep(input) {
   width: 100%;
 }
+
 .forminput::v-deep(span.p-dropdown-label) {
   line-height: normal;
 }

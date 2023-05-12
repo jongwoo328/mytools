@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import eslintPlugin from "vite-plugin-eslint";
+
 const siteUrl = "https://tools.jongwoo.me";
 
 export default defineNuxtConfig({
@@ -14,8 +16,10 @@ export default defineNuxtConfig({
         },
         {
           name: "description",
-          content: "This website provides a collection of simple yet useful tools that work solely on the client-side, allowing users to enjoy their benefits without worrying about data leaks. The website features various functions including CSV to JSON converter, epoch time converter, image type converter, image cropper, JSON formatter, SQL formatter, and HTML viewer."
-        }
+          content:
+            "This website provides a collection of simple yet useful tools that work solely on the client-side, allowing users to enjoy their benefits without worrying about data leaks. " +
+            "The website features various functions including CSV to JSON converter, epoch time converter, image type converter, image cropper, JSON formatter, SQL formatter, and HTML viewer.",
+        },
       ],
     },
   },
@@ -23,6 +27,10 @@ export default defineNuxtConfig({
     public: {
       siteUrl,
     },
+  },
+
+  vite: {
+    plugins: [eslintPlugin()],
   },
 
   // nuxt-gtag

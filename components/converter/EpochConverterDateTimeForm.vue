@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed, Ref, ref } from "vue";
 import { DateTime, FixedOffsetZone, SystemZone } from "luxon";
-import { offsetList } from "@/constants/time";
+import { offsetList, EpochTimeConvertTimeUnit } from "@/constants/time";
 import { copyWithNotification } from "@/utils/copy";
 import CommonToast from "@/components/common/CommonToast.vue";
 
@@ -20,7 +20,10 @@ const time = computed(() => {
 const milliseconds = ref(Number(defaultDateTime.toFormat("S")));
 const offset = ref(new SystemZone().offset(Date.now()));
 const useMilliseconds = ref(false);
-const resultUnit: Ref<"s" | "ms"> = ref("s");
+
+const resultUnit: Ref<EpochTimeConvertTimeUnit> = ref(
+  EpochTimeConvertTimeUnit.SECONDS
+);
 
 const resultEpoch = computed(() => {
   const millisec = useMilliseconds.value ? milliseconds.value : 0;
@@ -31,9 +34,9 @@ const resultEpoch = computed(() => {
   }).toMillis();
 
   switch (resultUnit.value) {
-    case "s":
+    case EpochTimeConvertTimeUnit.SECONDS:
       return Math.floor(epochMs / 1000);
-    case "ms":
+    case EpochTimeConvertTimeUnit.MILLISECONDS:
       return epochMs;
     default:
       throw new TypeError(`Invalid Unit: ${resultUnit.value}`);
@@ -42,11 +45,11 @@ const resultEpoch = computed(() => {
 const unitOptions = [
   {
     label: "s",
-    value: "s",
+    value: EpochTimeConvertTimeUnit.SECONDS,
   },
   {
     label: "ms",
-    value: "ms",
+    value: EpochTimeConvertTimeUnit.MILLISECONDS,
   },
 ];
 

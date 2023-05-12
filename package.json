@@ -7,20 +7,33 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "lint": "eslint \"**/*.{ts,tsx,vue,js}\" --fix",
+    "lint-eslint": "eslint --ignore-path .gitignore **/*{ts,tsx,vue,js,json} --fix",
+    "lint-prettier": "prettier --write \"**/*.(ts|tsx|vue|js|json)\""
   },
   "devDependencies": {
+    "@nuxtjs/eslint-config-typescript": "^12.0.0",
     "@types/aos": "^3.0.4",
     "@types/luxon": "^3.3.0",
     "@types/node": "^18",
     "@types/papaparse": "^5.3.7",
     "@types/uuid": "^9.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.59.5",
+    "@typescript-eslint/parser": "^5.59.5",
+    "eslint": "^8.40.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-nuxt": "^4.0.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-vue": "^9.12.0",
     "nuxt": "^3.4.2",
     "nuxt-gtag": "^0.5.7",
     "nuxt-lodash": "^2.4.1",
     "nuxt-simple-sitemap": "^2.5.0",
+    "prettier": "^2.8.8",
     "sass": "^1.62.1",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "vite-plugin-eslint": "^1.8.1"
   },
   "dependencies": {
     "@codemirror/lang-html": "^6.4.3",
