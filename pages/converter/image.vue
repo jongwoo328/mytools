@@ -8,23 +8,23 @@ import { ImageConverterResult } from "@/types/ImageConverterResult";
 import { useImageUtil } from "@/composables/useImageUtil";
 import PageTitle from "@/components/common/PageTitle.vue";
 import { copyWithNotification } from "@/utils/copy";
+import { createEmptyFile, isEmptyFile } from "@/utils/file";
 import PageHeading from "@/components/common/PageHeading.vue";
 import CommonToast from "@/components/common/CommonToast.vue";
+import { createEmptyImageElement } from "~/utils/HTMLImage";
 
 const browser = useBrowser();
 const { asyncBlobToBase64 } = useImageUtil();
 
 const canvas = ref<HTMLCanvasElement>();
-const inputImage = ref();
+const inputImage = ref<File>(createEmptyFile());
 const inputImageType = ref("No Data");
-const imageObj: Ref<HTMLImageElement> = ref(
-  typeof window !== "undefined" ? new Image() : ({} as HTMLImageElement)
-);
+const imageObj: Ref<HTMLImageElement> = ref(createEmptyImageElement());
 const isConvertLoading = ref(false);
 const isImageLoaded = ref(false);
-const imageConverterResultList: Ref<ImageConverterResult[]> = ref([]);
+const imageConverterResultList: Ref<Array<ImageConverterResult>> = ref([]);
 
-const convertTo = ref(null);
+const convertTo: Ref<string> = ref("");
 const convertTypes = computed<{ label: string; value: string }[]>(() => {
   const list = [];
 
@@ -40,10 +40,7 @@ const convertTypes = computed<{ label: string; value: string }[]>(() => {
       value: "image/jpeg",
     });
   }
-  if (
-    inputImage.value?.type !== "image/webp" &&
-    browser.browserType.value !== Browser.Safari
-  ) {
+  if (inputImage.value?.type !== "image/webp" && browser.browserType.value !== Browser.Safari) {
     list.push({
       label: "WEBP",
       value: "image/webp",
@@ -58,7 +55,8 @@ const onClickConvert = async () => {
   }
   isConvertLoading.value = true;
   canvas.value?.toBlob(async (blob: Blob | null) => {
-    if (!inputImage.value || !canvas.value || !convertTo.value || !blob) {
+    if (isEmptyFile(inputImage.value) || !canvas.value || !convertTo.value || !blob) {
+      isConvertLoading.value = false;
       return;
     }
     const imageUrl = await asyncBlobToBase64(blob);
@@ -69,13 +67,14 @@ const onClickConvert = async () => {
       type: convertTo.value,
       originalType: inputImage.value.type,
     });
+
     isConvertLoading.value = false;
   }, convertTo.value);
 };
 
 const copyingBase64 = ref(false);
 const copyAsBase64 = async () => {
-  if (!inputImage.value) {
+  if (isEmptyFile(inputImage.value)) {
     return;
   }
 
@@ -85,12 +84,13 @@ const copyAsBase64 = async () => {
   copyingBase64.value = false;
 };
 
-watch(inputImage, (n, o) => {
-  if (!inputImage.value) {
+watch(inputImage, () => {
+  if (isEmptyFile(inputImage.value)) {
     return;
   }
+
   isImageLoaded.value = false;
-  convertTo.value = null;
+  convertTo.value = "";
   inputImageType.value = inputImage.value.type;
 
   imageObj.value.src = URL.createObjectURL(inputImage.value);
@@ -98,9 +98,15 @@ watch(inputImage, (n, o) => {
     if (!canvas.value) {
       return;
     }
-    canvas.value.width = imageObj.value.width;
-    canvas.value.height = imageObj.value.height;
-    canvas.value.getContext("2d")?.drawImage(imageObj.value, 0, 0);
+    if ("width" in canvas.value) {
+      canvas.value.width = imageObj.value.width;
+    }
+    if ("height" in canvas.value) {
+      canvas.value.height = imageObj.value.height;
+    }
+    if ("getContext" in canvas.value) {
+      canvas.value.getContext("2d")?.drawImage(imageObj.value, 0, 0);
+    }
     isImageLoaded.value = true;
   };
 });
@@ -114,7 +120,7 @@ watch(inputImage, (n, o) => {
   <PageTitle title="Image Converter" />
   <section>
     <div class="mb-3">
-      <PageHeading :level="3" :size="6" weight="600"> Added Image </PageHeading>
+      <PageHeading :level="3" :size="6" weight="600"> Added Image</PageHeading>
       <span> Only Support JPEG, PNG, WEBP(except Safari) </span>
     </div>
     <canvas ref="canvas" v-show="false"></canvas>
@@ -123,24 +129,16 @@ watch(inputImage, (n, o) => {
         <div class="row m-0">
           <div class="col col-12 col-lg-8 px-0">
             <div class="row m-0 h-100">
-              <div
-                class="w-100 h-100 d-flex justify-content-center align-items-center pb-1 pb-lg-0 pe-lg-1"
-              >
+              <div class="w-100 h-100 d-flex justify-content-center align-items-center pb-1 pb-lg-0 pe-lg-1">
                 <ImageInput :upload="true" v-model:file="inputImage" />
               </div>
             </div>
           </div>
-          <div
-            class="col col-12 col-lg-4 d-flex flex-column justify-content mt-3 mt-lg-0"
-          >
+          <div class="col col-12 col-lg-4 d-flex flex-column justify-content mt-3 mt-lg-0">
             <div class="mb-4 mb-lg-5">
               <div class="p-inputgroup">
                 <span class="p-inputgroup-addon px-5"> Type </span>
-                <InputText
-                  :disabled="true"
-                  v-model:model-value="inputImageType"
-                  class="text-center"
-                />
+                <InputText :disabled="true" v-model:model-value="inputImageType" class="text-center" />
               </div>
               <Button
                 @click="copyAsBase64"
@@ -152,12 +150,10 @@ watch(inputImage, (n, o) => {
                 <template v-if="copyingBase64">
                   <ProgressSpinner class="h-100" strokeWidth="10" />
                 </template>
-                <template v-else> Copy as Base64 </template>
+                <template v-else> Copy as Base64</template>
               </Button>
             </div>
-            <PageHeading :level="3" :size="6" weight="600">
-              Settings
-            </PageHeading>
+            <PageHeading :level="3" :size="6" weight="600"> Settings </PageHeading>
             <div class="mt-2">
               <span class="mt-1 fs-5 d-block">Convert to:</span>
               <Dropdown

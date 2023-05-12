@@ -1,3 +1,8 @@
+export const EpochTimeConvertTimeUnit = {
+  MILLISECONDS: "ms",
+  SECONDS: "s",
+} as const;
+
 export const offsetList = [
   {
     label: "-12:00",

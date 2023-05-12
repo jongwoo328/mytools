@@ -1,10 +1,6 @@
 <script lang="ts" setup>
-import { PropType, ref, Ref, watch } from "vue";
-import {
-  IndentStyle,
-  KeywordCase,
-  LogicalOperatorNewline,
-} from "sql-formatter";
+import { PropType, ref, watch } from "vue";
+import { IndentStyle, KeywordCase, LogicalOperatorNewline } from "sql-formatter";
 import Dropdown from "primevue/dropdown";
 
 const props = defineProps({
@@ -40,11 +36,9 @@ const emit = defineEmits<{
 
 const useTabs = ref(props.useTabs);
 const tabWidth = ref(props.tabWidth);
-const keywordCase: Ref<KeywordCase> = ref(props.keywordCase);
-const indentation: Ref<IndentStyle> = ref(props.indentation);
-const logicalOperatorNewLine: Ref<LogicalOperatorNewline> = ref(
-  props.logicalOperatorNewLine
-);
+const keywordCase = ref(props.keywordCase);
+const indentation = ref(props.indentation);
+const logicalOperatorNewLine = ref(props.logicalOperatorNewLine);
 
 const keywordCaseOption: { label: string; value: KeywordCase }[] = [
   { label: "Upper", value: "upper" },
@@ -83,31 +77,18 @@ watch(logicalOperatorNewLine, (newValue) => {
 <template>
   <div>
     <Panel toggleable>
-      <template #header> Advanced Setting </template>
+      <template #header> Advanced Setting</template>
       <template #default>
         <div class="row">
-          <div
-            class="col col-12 col-md-6 col-xl-4 mb-1 align-items-center form-col"
-          >
+          <div class="col col-12 col-md-6 col-xl-4 mb-1 align-items-center form-col">
             <div class="p-inputgroup h-100 justify-content-between row">
-              <label for="useTabs" class="align-self-center col">
-                Use Tabs
-              </label>
-              <InputSwitch
-                id="useTabs"
-                v-model:model-value="useTabs"
-                size="small"
-                class="align-self-center"
-              />
+              <label for="useTabs" class="align-self-center col"> Use Tabs </label>
+              <InputSwitch id="useTabs" v-model:model-value="useTabs" size="small" class="align-self-center" />
             </div>
           </div>
-          <div
-            class="col col-12 col-md-6 col-xl-4 mb-1 align-items-center form-col"
-          >
+          <div class="col col-12 col-md-6 col-xl-4 mb-1 align-items-center form-col">
             <div class="d-flex h-100 justify-content-between row form-col">
-              <label for="tabWidth" class="align-self-center col-6">
-                Tab Width
-              </label>
+              <label for="tabWidth" class="align-self-center col-6"> Tab Width </label>
               <div class="col-6 h-100">
                 <InputNumber
                   id="tabWidth"
@@ -119,13 +100,9 @@ watch(logicalOperatorNewLine, (newValue) => {
               </div>
             </div>
           </div>
-          <div
-            class="col col-12 col-md-6 col-xl-4 mb-1 align-items-center form-col"
-          >
+          <div class="col col-12 col-md-6 col-xl-4 mb-1 align-items-center form-col">
             <div class="d-flex h-100 justify-content-between row form-col">
-              <label for="keywordCase" class="align-self-center col-6">
-                Keyword
-              </label>
+              <label for="keywordCase" class="align-self-center col-6"> Keyword </label>
               <div class="col-6 h-100">
                 <Dropdown
                   id="keywordCase"
@@ -139,13 +116,9 @@ watch(logicalOperatorNewLine, (newValue) => {
               </div>
             </div>
           </div>
-          <div
-            class="col col-12 col-md-6 col-xl-4 mb-1 align-items-center form-col"
-          >
+          <div class="col col-12 col-md-6 col-xl-4 mb-1 align-items-center form-col">
             <div class="d-flex h-100 justify-content-between row form-col">
-              <label for="indent" class="align-self-center col-6">
-                Indent
-              </label>
+              <label for="indent" class="align-self-center col-6"> Indent </label>
               <div class="col-6 h-100">
                 <Dropdown
                   id="indent"
@@ -159,13 +132,9 @@ watch(logicalOperatorNewLine, (newValue) => {
               </div>
             </div>
           </div>
-          <div
-            class="col col-12 col-md-6 col-xl-4 mb-1 align-items-center form-col"
-          >
+          <div class="col col-12 col-md-6 col-xl-4 mb-1 align-items-center form-col">
             <div class="d-flex h-100 justify-content-between row form-col">
-              <label for="newline" class="align-self-center col-6">
-                AND/OR Newline
-              </label>
+              <label for="newline" class="align-self-center col-6"> AND/OR Newline </label>
               <div class="col-6 h-100">
                 <Dropdown
                   id="newline"
@@ -189,9 +158,11 @@ watch(logicalOperatorNewLine, (newValue) => {
 .form-col {
   height: 40px;
 }
+
 .forminput::v-deep(input) {
   width: 100%;
 }
+
 .forminput::v-deep(span.p-dropdown-label) {
   line-height: normal;
 }

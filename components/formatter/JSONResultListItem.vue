@@ -4,7 +4,7 @@ import VueJsonPretty from "vue-json-pretty";
 import { JSONResult } from "@/types/JSONResult";
 import { copyWithNotification } from "@/utils/copy";
 import { MenuItem } from "primevue/menuitem";
-import { breakpointsBootstrapV5 } from "@vueuse/core";
+import { breakpointsBootstrapV5, useBreakpoints } from "@vueuse/core";
 import ResultDivider from "@/components/common/ResultDivider.vue";
 import CommonToast from "@/components/common/CommonToast.vue";
 import ResultItem from "@/components/common/ResultItem.vue";
@@ -28,9 +28,7 @@ const onClickCopyAll = async () => {
   await copyWithNotification(stringifyResult());
 };
 const onClickSelectedNode = async () => {
-  await copyWithNotification(
-    JSON.stringify(getObjectFromPath(selected.value as string), null, 4)
-  );
+  await copyWithNotification(JSON.stringify(getObjectFromPath(selected.value as string), null, 4));
 };
 const onClickCopyPath = async () => {
   if (selected.value) {
@@ -90,10 +88,7 @@ const clickActions: MenuItem[] = [
   <CommonToast />
   <ResultItem>
     <template #header>
-      <div
-        class="d-flex justify-content-between px-4 mt-4"
-        style="height: 32px"
-      >
+      <div class="d-flex justify-content-between px-4 mt-4" style="height: 32px">
         <span class="fw-bold">
           {{ `# ${index}` }}
         </span>
@@ -182,7 +177,7 @@ const clickActions: MenuItem[] = [
           {{ virtualScroll ? "Fit" : "Revert" }}
         </Button>
       </ResultDivider>
-      <Divider class="mb-0"> </Divider>
+      <Divider class="mb-0"></Divider>
     </template>
   </ResultItem>
 </template>

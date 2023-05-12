@@ -8,6 +8,13 @@ import { v4 } from "uuid";
 import JSONResultList from "@/components/formatter/JSONResultList.vue";
 import PageHeading from "@/components/common/PageHeading.vue";
 import { FileUploadSelectEvent } from "primevue/fileupload";
+import { createEmptyFile, isEmptyFile } from "~/utils/file";
+
+const enum CsvToJsonEncodingType {
+  UTF8 = "UTF-8",
+  EUC_KR = "EUC-KR",
+  CP949 = "CP949",
+}
 
 const activeTabKey = ref(0);
 const tabOptions = [
@@ -22,9 +29,9 @@ const encodingOptions = [
   { label: "EUC-KR", value: "EUC-KR" },
   { label: "CP949", value: "CP949" },
 ];
-const selectedEncoding: Ref<"UTF-8" | "EUC_KR" | "CP949"> = ref("UTF-8");
+const selectedEncoding: Ref<CsvToJsonEncodingType> = ref(CsvToJsonEncodingType.UTF8);
 
-const uploadFile: Ref<File | null> = ref(null);
+const uploadFile: Ref<File> = ref(createEmptyFile());
 
 const convertResultList: Ref<Array<JSONResult>> = ref([]);
 const parseFromText = () => {
@@ -38,7 +45,7 @@ const parseFromText = () => {
   });
 };
 const parseFromFile = () => {
-  if (uploadFile.value) {
+  if (!isEmptyFile(uploadFile.value)) {
     const file = uploadFile.value;
     Papa.parse(file, {
       header: headerIncluded.value,
@@ -63,7 +70,7 @@ const onFileChange = (event: FileUploadSelectEvent) => {
   uploadFile.value = event.files[0];
 };
 const onClear = () => {
-  uploadFile.value = null;
+  uploadFile.value = createEmptyFile();
 };
 </script>
 <template>
@@ -72,14 +79,7 @@ const onClear = () => {
   </Head>
   <PageTitle title="CSV to JSON Converter" />
   <div class="mb-3">
-    <PageHeading
-      :level="3"
-      :size="6"
-      weight="600"
-      style="height: 44px; line-height: 2"
-    >
-      CSV File or Text
-    </PageHeading>
+    <PageHeading :level="3" :size="6" weight="600" style="height: 44px; line-height: 2"> CSV File or Text </PageHeading>
   </div>
   <Card>
     <template #content>
@@ -88,17 +88,10 @@ const onClear = () => {
         <template #default>
           <div class="row">
             <div class="col col-12 col-lg-6 d-flex justify-content-start row">
-              <label class="col col-6 align-self-center" for=""
-                >Header Included</label
-              >
-              <InputSwitch
-                class="col col-6 align-self-center"
-                v-model:model-value="headerIncluded"
-              />
+              <label class="col col-6 align-self-center" for="">Header Included</label>
+              <InputSwitch class="col col-6 align-self-center" v-model:model-value="headerIncluded" />
             </div>
-            <div
-              class="col col-12 col-lg-6 d-flex justify-content-start row mt-2"
-            >
+            <div class="col col-12 col-lg-6 d-flex justify-content-start row mt-2">
               <label class="col col-6 align-self-center" for="">Encoding</label>
               <Dropdown
                 :options="encodingOptions"
@@ -111,11 +104,7 @@ const onClear = () => {
           </div>
         </template>
       </Panel>
-      <TabMenu
-        class="mt-2 mb-3"
-        :model="tabOptions"
-        v-model:active-index="activeTabKey"
-      />
+      <TabMenu class="mt-2 mb-3" :model="tabOptions" v-model:active-index="activeTabKey" />
       <div v-show="activeTabKey === 0">
         <Textarea
           auto-resize
@@ -123,9 +112,7 @@ const onClear = () => {
           style="min-height: 300px"
           class="prevent-auto-zoom d-block w-100"
         />
-        <Button class="w-100 d-block mt-2" size="large" @click="parseFromText">
-          Parse
-        </Button>
+        <Button class="w-100 d-block mt-2" size="large" @click="parseFromText"> Parse </Button>
       </div>
       <div v-show="activeTabKey === 1">
         <div
@@ -143,16 +130,10 @@ const onClear = () => {
             @clear="onClear"
           />
         </div>
-        <span
-          v-for="(error, idx) in parseFromFileErrors"
-          :key="idx"
-          class="d-block text-end text-danger"
-        >
+        <span v-for="(error, idx) in parseFromFileErrors" :key="idx" class="d-block text-end text-danger">
           {{ error.message }}
         </span>
-        <Button class="w-100 d-block mt-2" size="large" @click="parseFromFile">
-          Parse
-        </Button>
+        <Button class="w-100 d-block mt-2" size="large" @click="parseFromFile"> Parse </Button>
       </div>
     </template>
   </Card>

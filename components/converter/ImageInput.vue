@@ -2,13 +2,14 @@
 import { computed, Ref, ref } from "vue";
 import { FileUploadSelectEvent } from "primevue/fileupload";
 import { breakpointsBootstrapV5 } from "@vueuse/core";
+import { createEmptyImageElement } from "~/utils/HTMLImage";
 
 const props = defineProps<{ file: File }>();
 const emit = defineEmits<{ (e: "update:file", file: File): void }>();
 
-const file: Ref<File | null> = ref(props.file);
-const image = ref<HTMLImageElement>();
-const isUploaded = computed(() => !!file.value);
+const file: Ref<File> = ref(props.file);
+const image = ref<HTMLImageElement>(createEmptyImageElement());
+const isUploaded = computed(() => !isEmptyFile(file.value));
 const breakpoints = useBreakpoints(breakpointsBootstrapV5);
 const isMobileOrTablet = breakpoints.smaller("lg");
 
@@ -23,7 +24,7 @@ const onSelect = (event: FileUploadSelectEvent) => {
 
   const reader = new FileReader();
   reader.onload = (e: ProgressEvent<FileReader>) => {
-    if (image.value && e.target && e.target.result) {
+    if (e.target && e.target.result) {
       image.value.src = e.target.result as string;
     }
   };
@@ -36,7 +37,7 @@ const onSelect = (event: FileUploadSelectEvent) => {
 const onClear = () => {
   if (image.value) {
     image.value.src = "#";
-    file.value = null;
+    file.value = createEmptyFile();
   }
 };
 
@@ -73,14 +74,7 @@ const imageUploadBackground = computed(() => {
       @clear="onClear"
     >
     </FileUpload>
-    <img
-      alt="uploaded image"
-      ref="image"
-      src="#"
-      class="w-100 h-100"
-      v-show="isUploaded"
-      style="object-fit: contain"
-    />
+    <img alt="uploaded image" ref="image" src="#" class="w-100 h-100" v-show="isUploaded" style="object-fit: contain" />
   </div>
 </template>
 

@@ -1,4 +1,3 @@
-import { defineNuxtPlugin } from "#app";
 import PrimeVue from "primevue/config";
 import Button from "primevue/button";
 import Card from "primevue/card";

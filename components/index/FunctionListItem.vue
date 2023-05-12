@@ -27,11 +27,7 @@ const onClickButton = () => {
         {{ props.tool.description }}
       </p>
       <div>
-        <Tag
-          :style="{ backgroundColor: tag.color }"
-          v-for="tag in props.tool.tags"
-          :key="tag.name"
-        >
+        <Tag :style="{ backgroundColor: tag.color }" v-for="tag in props.tool.tags" :key="tag.name">
           {{ tag.name }}
         </Tag>
       </div>

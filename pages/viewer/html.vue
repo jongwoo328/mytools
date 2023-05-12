@@ -23,7 +23,7 @@ const htmlText = ref(
     '\n\t\t\t<a target="_blank" href="https://vercel.com">Vercel</a>' +
     "\n\t\t</li>" +
     "\n\t</ul>" +
-    "\n</section>"
+    "\n</section>",
 );
 </script>
 
@@ -42,11 +42,7 @@ const htmlText = ref(
         </div>
         <div class="col col-12 viewer-code-section px-0 common-border-radius">
           <div class="h-100 html-input-wrap">
-            <Codemirror
-              :extensions="[html()]"
-              v-model="htmlText"
-              class="h-100 html-input prevent-auto-zoom"
-            />
+            <Codemirror :extensions="[html()]" v-model="htmlText" class="h-100 html-input prevent-auto-zoom" />
           </div>
         </div>
       </div>

@@ -1,19 +1,20 @@
 import { computed, ComputedRef } from "vue";
+import { UnionFromAsConst } from "~/utils/type";
 
-export enum Browser {
-  IE,
-  Safari,
-  Chrome,
-  MSEdge,
-  ChromiumEdge,
-  Firefox,
-  Opera,
-  Others,
-  NotBrowser,
-}
+export const Browser = {
+  IE: "IE",
+  Safari: "Safari",
+  Chrome: "Chrome",
+  MSEdge: "MSEdge",
+  ChromiumEdge: "ChromiumEdge",
+  Firefox: "Firefox",
+  Opera: "Opera",
+  Others: "Others",
+  NotBrowser: "NotBrowser",
+} as const;
 
 export function useBrowser() {
-  const browserType: ComputedRef<Browser> = computed(() => {
+  const browserType: ComputedRef<UnionFromAsConst<typeof Browser>> = computed(() => {
     if (typeof window === "undefined") {
       return Browser.NotBrowser;
     }

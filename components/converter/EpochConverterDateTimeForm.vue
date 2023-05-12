@@ -1,9 +1,10 @@
 <script lang="ts" setup>
 import { computed, Ref, ref } from "vue";
 import { DateTime, FixedOffsetZone, SystemZone } from "luxon";
-import { offsetList } from "@/constants/time";
+import { offsetList, EpochTimeConvertTimeUnit } from "@/constants/time";
 import { copyWithNotification } from "@/utils/copy";
 import CommonToast from "@/components/common/CommonToast.vue";
+import { UnionFromAsConst } from "~/utils/type";
 
 const defaultDateTime = DateTime.now();
 
@@ -20,7 +21,8 @@ const time = computed(() => {
 const milliseconds = ref(Number(defaultDateTime.toFormat("S")));
 const offset = ref(new SystemZone().offset(Date.now()));
 const useMilliseconds = ref(false);
-const resultUnit: Ref<"s" | "ms"> = ref("s");
+
+const resultUnit: Ref<UnionFromAsConst<typeof EpochTimeConvertTimeUnit>> = ref(EpochTimeConvertTimeUnit.SECONDS);
 
 const resultEpoch = computed(() => {
   const millisec = useMilliseconds.value ? milliseconds.value : 0;
@@ -31,9 +33,9 @@ const resultEpoch = computed(() => {
   }).toMillis();
 
   switch (resultUnit.value) {
-    case "s":
+    case EpochTimeConvertTimeUnit.SECONDS:
       return Math.floor(epochMs / 1000);
-    case "ms":
+    case EpochTimeConvertTimeUnit.MILLISECONDS:
       return epochMs;
     default:
       throw new TypeError(`Invalid Unit: ${resultUnit.value}`);
@@ -42,11 +44,11 @@ const resultEpoch = computed(() => {
 const unitOptions = [
   {
     label: "s",
-    value: "s",
+    value: EpochTimeConvertTimeUnit.SECONDS,
   },
   {
     label: "ms",
-    value: "ms",
+    value: EpochTimeConvertTimeUnit.MILLISECONDS,
   },
 ];
 
@@ -69,24 +71,13 @@ const setNow = () => {
       <div class="w-100 mb-1 d-flex justify-content-between">
         <Button @click="setNow" severity="secondary" size="small">Now</Button>
         <div class="d-flex align-items-center">
-          <Checkbox
-            v-model:model-value="useMilliseconds"
-            binary
-            id="useMilliseconds"
-          />
+          <Checkbox v-model:model-value="useMilliseconds" binary id="useMilliseconds" />
           <label class="ms-2" for="useMilliseconds">Use Milliseconds</label>
         </div>
       </div>
       <div class="row">
-        <div
-          class="col col-12"
-          :class="{ 'col-xl-5': useMilliseconds, 'col-xl-6': !useMilliseconds }"
-        >
-          <Calendar
-            v-model:model-value="dateInput"
-            class="w-100"
-            date-format="yy-mm-dd"
-          />
+        <div class="col col-12" :class="{ 'col-xl-5': useMilliseconds, 'col-xl-6': !useMilliseconds }">
+          <Calendar v-model:model-value="dateInput" class="w-100" date-format="yy-mm-dd" />
         </div>
         <div
           class="col mt-1"
@@ -97,13 +88,7 @@ const setNow = () => {
             'col-xl-6': !useMilliseconds,
           }"
         >
-          <Calendar
-            class="w-100"
-            time-only
-            v-model:model-value="timeInput"
-            hour-format="24"
-            show-seconds
-          />
+          <Calendar class="w-100" time-only v-model:model-value="timeInput" hour-format="24" show-seconds />
         </div>
         <div
           v-if="useMilliseconds"
@@ -116,12 +101,7 @@ const setNow = () => {
           }"
         >
           <div class="p-inputgroup">
-            <InputNumber
-              :min="0"
-              :max="999"
-              input-class="w-100 prevent-auto-zoom"
-              v-model:model-value="milliseconds"
-            />
+            <InputNumber :min="0" :max="999" input-class="w-100 prevent-auto-zoom" v-model:model-value="milliseconds" />
             <span class="p-inputgroup-addon">ms</span>
           </div>
         </div>
@@ -136,22 +116,9 @@ const setNow = () => {
         </div>
       </div>
     </div>
-    <div
-      class="col col-12 col-lg-2 d-flex justify-content-center align-items-center"
-    >
-      <Button
-        class="d-none d-lg-block"
-        icon="pi pi-angle-right"
-        outlined
-        disable
-      />
-      <Button
-        style="height: 35px"
-        class="d-lg-none my-4"
-        icon="pi pi-angle-down"
-        outlined
-        disabled
-      />
+    <div class="col col-12 col-lg-2 d-flex justify-content-center align-items-center">
+      <Button class="d-none d-lg-block" icon="pi pi-angle-right" outlined disable />
+      <Button style="height: 35px" class="d-lg-none my-4" icon="pi pi-angle-down" outlined disabled />
     </div>
     <div class="col col-12 col-lg-5">
       <div class="d-flex w-100 epoch-time-config mb-1 justify-content-end">
@@ -166,9 +133,7 @@ const setNow = () => {
         </div>
       </div>
       <div class="row m-0 mt-2" style="height: 38px">
-        <span
-          class="h-100 w-100 mb-0 d-flex align-items-center epoch-time ps-2 common-border-radius"
-        >
+        <span class="h-100 w-100 mb-0 d-flex align-items-center epoch-time ps-2 common-border-radius">
           {{ resultEpoch }}
         </span>
       </div>

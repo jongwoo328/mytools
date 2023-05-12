@@ -7,16 +7,12 @@ import CommonToast from "@/components/common/CommonToast.vue";
 const props = defineProps<{ result: ImageConverterResult; index: number }>();
 const emit = defineEmits<{ (e: "delete", id: string): void }>();
 
-const discreteFileNameWithNameAndType = (
-  fileName: string
-): [string, string] => {
+const discreteFileNameWithNameAndType = (fileName: string): [string, string] => {
   const index = fileName.lastIndexOf(".");
   return [fileName.substring(0, index), fileName.substring(index)];
 };
 const downloadFileName = ref("");
-const downloadFileNamePlaceholder = ref(
-  discreteFileNameWithNameAndType(props.result.originalName)[0]
-);
+const downloadFileNamePlaceholder = ref(discreteFileNameWithNameAndType(props.result.originalName)[0]);
 const onClickDownload = () => {
   const a = document.createElement("a");
   const type = props.result.type.split("/").at(-1);
@@ -45,12 +41,7 @@ const onClickDeleteResult = () => {
 
 <template>
   <CommonToast />
-  <Card
-    data-aos="fade-up"
-    data-aos-once="true"
-    data-aos-anchor-placement="bottom"
-    class="pt-5 mb-2"
-  >
+  <Card data-aos="fade-up" data-aos-once="true" data-aos-anchor-placement="bottom" class="pt-5 mb-2">
     <template #header>
       <div class="d-flex justify-content-between px-4" style="height: 32px">
         <div class="d-flex align-items-center px-2">
@@ -72,22 +63,12 @@ const onClickDeleteResult = () => {
     <template #content>
       <div class="row image-result-item">
         <div class="h-100 px-3 col col-12 col-lg-8">
-          <div
-            class="image-result-display w-100 h-100 d-flex justify-content-center align-items-center"
-          >
-            <img
-              loading="lazy"
-              style="object-fit: contain"
-              :src="result.objectURL"
-              alt=""
-            />
+          <div class="image-result-display w-100 h-100 d-flex justify-content-center align-items-center">
+            <img loading="lazy" style="object-fit: contain" :src="result.objectURL" alt="" />
           </div>
         </div>
         <div class="col col-12 col-lg-4 py-3 py-lg-0 image-result-control">
-          <div
-            class="d-flex w-100 flex-column justify-content-start"
-            style="flex: 1"
-          >
+          <div class="d-flex w-100 flex-column justify-content-start" style="flex: 1">
             <span class="fs-5">Download as:</span>
             <div class="d-flex">
               <InputText
@@ -95,10 +76,7 @@ const onClickDeleteResult = () => {
                 :placeholder="downloadFileNamePlaceholder"
                 style="flex: 1"
               />
-              <span
-                class="align-self-center"
-                style="font-size: 1.2rem; padding-left: 10px"
-              >
+              <span class="align-self-center" style="font-size: 1.2rem; padding-left: 10px">
                 {{ "." + props.result.type.split("/").at(-1) }}
               </span>
             </div>
@@ -115,14 +93,7 @@ const onClickDeleteResult = () => {
             </template>
             <template v-else> Copy as Base64 </template>
           </Button>
-          <Button
-            class="d-block"
-            @click="onClickDownload"
-            severity="primary"
-            style="height: 44px"
-          >
-            Download
-          </Button>
+          <Button class="d-block" @click="onClickDownload" severity="primary" style="height: 44px"> Download </Button>
         </div>
       </div>
     </template>
