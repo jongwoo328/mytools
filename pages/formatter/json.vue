@@ -35,13 +35,7 @@ const onFormatButtonClick = () => {
   </Head>
   <PageTitle title="JSON Formatter" />
   <section>
-    <PageHeading
-      class="d-block align-middle"
-      :level="3"
-      :size="6"
-      weight="600"
-      style="height: 44px; line-height: 2"
-    >
+    <PageHeading class="d-block align-middle" :level="3" :size="6" weight="600" style="height: 44px; line-height: 2">
       JSON text
     </PageHeading>
     <Textarea
@@ -52,12 +46,7 @@ const onFormatButtonClick = () => {
     />
     <div v-if="isJsonValid" style="height: 14px"></div>
     <span v-else class="float-end text-danger"> Input is not valid JSON </span>
-    <Button
-      class="mt-2 w-100 d-block"
-      :disabled="!isJsonValid"
-      @click="onFormatButtonClick"
-      size="large"
-    >
+    <Button class="mt-2 w-100 d-block" :disabled="!isJsonValid" @click="onFormatButtonClick" size="large">
       Format
     </Button>
   </section>

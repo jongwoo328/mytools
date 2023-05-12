@@ -12,16 +12,14 @@ const onClickDelete = (id: string) => {
   if (index !== -1) {
     emit(
       "update:results",
-      props.results.filter((result) => result.id !== id)
+      props.results.filter((result) => result.id !== id),
     );
   }
 };
 </script>
 
 <template>
-  <ResultDivider v-if="results.length > 0" align="center" color="#f0f2f5">
-    Results
-  </ResultDivider>
+  <ResultDivider v-if="results.length > 0" align="center" color="#f0f2f5"> Results </ResultDivider>
   <section class="d-flex flex-column-reverse">
     <JSONResultListItem
       v-for="(result, idx) in results"

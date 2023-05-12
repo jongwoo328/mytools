@@ -10,7 +10,8 @@ const image = ref() as Ref<HTMLImageElement>;
 const imageInput = ref() as Ref<HTMLInputElement>;
 const cropper = ref();
 const cropperImageSource = ref(
-  "https://images.unsplash.com/photo-1636622433525-127afdf3662d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=100"
+  // eslint-disable-next-line max-len
+  "https://images.unsplash.com/photo-1636622433525-127afdf3662d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=100",
 );
 
 const selectedAspectRatio: Ref<"Custom" | "Free" | number> = ref(16 / 9);
@@ -69,20 +70,17 @@ const aspectRatioOptions = [
   },
 ];
 
-watch(
-  [selectedAspectRatio, customRatioWidth, customRatioHeight],
-  ([selectedRatio, width, height]) => {
-    if (selectedRatio === "Custom") {
-      cropper.value.setAspectRatio(width / height);
-    } else if (selectedRatio === "Free") {
-      cropper.value.setAspectRatio(null);
-    } else {
-      cropper.value.setAspectRatio(selectedRatio);
-    }
-    const cropBoxData = cropper.value.getCropBoxData();
-    syncCropBoxAndInput(cropBoxData);
+watch([selectedAspectRatio, customRatioWidth, customRatioHeight], ([selectedRatio, width, height]) => {
+  if (selectedRatio === "Custom") {
+    cropper.value.setAspectRatio(width / height);
+  } else if (selectedRatio === "Free") {
+    cropper.value.setAspectRatio(null);
+  } else {
+    cropper.value.setAspectRatio(selectedRatio);
   }
-);
+  const cropBoxData = cropper.value.getCropBoxData();
+  syncCropBoxAndInput(cropBoxData);
+});
 watch(isCropperLocked, () => {
   if (isCropperLocked.value) {
     cropper.value.disable();
@@ -231,9 +229,7 @@ const buttonSideWidthPixel = computed(() => buttonSideWidth.value + "px");
   <Card>
     <template #content>
       <div class="row w-100 m-0">
-        <div
-          class="pb-1 pb-lg-0 pe-lg-2 d-flex justify-content-center align-items-center col col-12 col-lg-8"
-        >
+        <div class="pb-1 pb-lg-0 pe-lg-2 d-flex justify-content-center align-items-center col col-12 col-lg-8">
           <vue-cropper
             ref="cropper"
             :aspect-ratio="selectedAspectRatio"
@@ -245,14 +241,7 @@ const buttonSideWidthPixel = computed(() => buttonSideWidth.value + "px");
         </div>
         <div class="col col-12 col-lg-4">
           <img class="d-none" ref="image" alt="Added image" src="" />
-          <input
-            ref="imageInput"
-            id="crop-image"
-            class="d-none"
-            type="file"
-            accept="image/*"
-            @change="onChangeInput"
-          />
+          <input ref="imageInput" id="crop-image" class="d-none" type="file" accept="image/*" @change="onChangeInput" />
           <div class="options p-2">
             <div class="row option-list">
               <div class="col col-12">
@@ -282,9 +271,7 @@ const buttonSideWidthPixel = computed(() => buttonSideWidth.value + "px");
                     <div class="row justify-content-between">
                       <div class="pe-0" style="width: 45%">
                         <InputNumber
-                          :disabled="
-                            selectedAspectRatio !== 'Custom' || isCropperLocked
-                          "
+                          :disabled="selectedAspectRatio !== 'Custom' || isCropperLocked"
                           class="w-100"
                           show-buttons
                           :step="0.1"
@@ -294,17 +281,12 @@ const buttonSideWidthPixel = computed(() => buttonSideWidth.value + "px");
                           v-model:model-value="customRatioWidth"
                         />
                       </div>
-                      <div
-                        style="width: 10%"
-                        class="d-flex justify-content-center align-items-center"
-                      >
+                      <div style="width: 10%" class="d-flex justify-content-center align-items-center">
                         <span class="fs-4 fw-light">/</span>
                       </div>
                       <div class="ps-0" style="width: 45%">
                         <InputNumber
-                          :disabled="
-                            selectedAspectRatio !== 'Custom' || isCropperLocked
-                          "
+                          :disabled="selectedAspectRatio !== 'Custom' || isCropperLocked"
                           class="w-100"
                           show-buttons
                           :step="0.1"
@@ -337,10 +319,7 @@ const buttonSideWidthPixel = computed(() => buttonSideWidth.value + "px");
                           v-model:model-value="customCropWidth"
                         />
                       </div>
-                      <div
-                        style="width: 10%"
-                        class="d-flex justify-content-center align-items-center"
-                      >
+                      <div style="width: 10%" class="d-flex justify-content-center align-items-center">
                         <span class="fs-4 fw-light">/</span>
                       </div>
                       <div class="ps-0" style="width: 45%">
@@ -378,10 +357,7 @@ const buttonSideWidthPixel = computed(() => buttonSideWidth.value + "px");
                           v-model:model-value="customCropLeft"
                         />
                       </div>
-                      <div
-                        style="width: 10%"
-                        class="d-flex justify-content-center align-items-center"
-                      >
+                      <div style="width: 10%" class="d-flex justify-content-center align-items-center">
                         <span class="fs-4 fw-light">/</span>
                       </div>
                       <div class="ps-0" style="width: 45%">
@@ -438,9 +414,7 @@ const buttonSideWidthPixel = computed(() => buttonSideWidth.value + "px");
                         />
                       </div>
                     </div>
-                    <div
-                      class="col col-12 col-sm-6 col-md-4 col-lg-12 mt-1 mt-sm-0 mt-lg-1"
-                    >
+                    <div class="col col-12 col-sm-6 col-md-4 col-lg-12 mt-1 mt-sm-0 mt-lg-1">
                       <div class="w-100 d-flex">
                         <Button
                           severity="secondary"
@@ -472,9 +446,7 @@ const buttonSideWidthPixel = computed(() => buttonSideWidth.value + "px");
                         />
                       </div>
                     </div>
-                    <div
-                      class="col col-12 col-sm-6 col-md-4 col-lg-12 mt-1 mt-md-0 mt-lg-1"
-                    >
+                    <div class="col col-12 col-sm-6 col-md-4 col-lg-12 mt-1 mt-md-0 mt-lg-1">
                       <div class="w-100 d-flex">
                         <Button
                           :severity="isCropperLocked ? 'danger' : 'secondary'"
@@ -496,9 +468,7 @@ const buttonSideWidthPixel = computed(() => buttonSideWidth.value + "px");
                           size="small"
                           icon="pi pi-lock"
                           class="me-1"
-                          :style="`width: calc(0.25rem + ${
-                            buttonSideWidth * 2
-                          }px)`"
+                          :style="`width: calc(0.25rem + ${buttonSideWidth * 2}px)`"
                           @click="reset"
                         >
                           Reset
@@ -511,10 +481,7 @@ const buttonSideWidthPixel = computed(() => buttonSideWidth.value + "px");
             </div>
           </div>
           <div class="mt-2">
-            <label
-              for="crop-image"
-              class="p-button p-component p-button-outlined d-block w-100 mt-2"
-            >
+            <label for="crop-image" class="p-button p-component p-button-outlined d-block w-100 mt-2">
               Change Image
             </label>
             <Button class="d-block w-100 mt-2" @click="save">Save</Button>

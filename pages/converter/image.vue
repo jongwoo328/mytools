@@ -40,10 +40,7 @@ const convertTypes = computed<{ label: string; value: string }[]>(() => {
       value: "image/jpeg",
     });
   }
-  if (
-    inputImage.value?.type !== "image/webp" &&
-    browser.browserType.value !== Browser.Safari
-  ) {
+  if (inputImage.value?.type !== "image/webp" && browser.browserType.value !== Browser.Safari) {
     list.push({
       label: "WEBP",
       value: "image/webp",
@@ -58,12 +55,7 @@ const onClickConvert = async () => {
   }
   isConvertLoading.value = true;
   canvas.value?.toBlob(async (blob: Blob | null) => {
-    if (
-      isEmptyFile(inputImage.value) ||
-      !canvas.value ||
-      !convertTo.value ||
-      !blob
-    ) {
+    if (isEmptyFile(inputImage.value) || !canvas.value || !convertTo.value || !blob) {
       isConvertLoading.value = false;
       return;
     }
@@ -137,24 +129,16 @@ watch(inputImage, () => {
         <div class="row m-0">
           <div class="col col-12 col-lg-8 px-0">
             <div class="row m-0 h-100">
-              <div
-                class="w-100 h-100 d-flex justify-content-center align-items-center pb-1 pb-lg-0 pe-lg-1"
-              >
+              <div class="w-100 h-100 d-flex justify-content-center align-items-center pb-1 pb-lg-0 pe-lg-1">
                 <ImageInput :upload="true" v-model:file="inputImage" />
               </div>
             </div>
           </div>
-          <div
-            class="col col-12 col-lg-4 d-flex flex-column justify-content mt-3 mt-lg-0"
-          >
+          <div class="col col-12 col-lg-4 d-flex flex-column justify-content mt-3 mt-lg-0">
             <div class="mb-4 mb-lg-5">
               <div class="p-inputgroup">
                 <span class="p-inputgroup-addon px-5"> Type </span>
-                <InputText
-                  :disabled="true"
-                  v-model:model-value="inputImageType"
-                  class="text-center"
-                />
+                <InputText :disabled="true" v-model:model-value="inputImageType" class="text-center" />
               </div>
               <Button
                 @click="copyAsBase64"
@@ -169,9 +153,7 @@ watch(inputImage, () => {
                 <template v-else> Copy as Base64</template>
               </Button>
             </div>
-            <PageHeading :level="3" :size="6" weight="600">
-              Settings
-            </PageHeading>
+            <PageHeading :level="3" :size="6" weight="600"> Settings </PageHeading>
             <div class="mt-2">
               <span class="mt-1 fs-5 d-block">Convert to:</span>
               <Dropdown

@@ -9,7 +9,7 @@ const emit = defineEmits<{ (e: "update:file", file: File): void }>();
 
 const file: Ref<File> = ref(props.file);
 const image = ref<HTMLImageElement>(createEmptyImageElement());
-const isUploaded = computed(() => file.value.size !== 0);
+const isUploaded = computed(() => !isEmptyFile(file.value));
 const breakpoints = useBreakpoints(breakpointsBootstrapV5);
 const isMobileOrTablet = breakpoints.smaller("lg");
 
@@ -37,7 +37,7 @@ const onSelect = (event: FileUploadSelectEvent) => {
 const onClear = () => {
   if (image.value) {
     image.value.src = "#";
-    file.value = null;
+    file.value = createEmptyFile();
   }
 };
 
@@ -74,14 +74,7 @@ const imageUploadBackground = computed(() => {
       @clear="onClear"
     >
     </FileUpload>
-    <img
-      alt="uploaded image"
-      ref="image"
-      src="#"
-      class="w-100 h-100"
-      v-show="isUploaded"
-      style="object-fit: contain"
-    />
+    <img alt="uploaded image" ref="image" src="#" class="w-100 h-100" v-show="isUploaded" style="object-fit: contain" />
   </div>
 </template>
 

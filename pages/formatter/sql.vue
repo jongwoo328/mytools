@@ -70,9 +70,7 @@ const onFormatButtonClick = () => {
   <PageTitle title="SQL Formatter" />
   <section>
     <div class="mb-2 d-flex justify-content-between align-items-center">
-      <PageHeading class="d-inline-block m-0" :level="3" :size="6" weight="600">
-        SQL
-      </PageHeading>
+      <PageHeading class="d-inline-block m-0" :level="3" :size="6" weight="600"> SQL </PageHeading>
       <Dropdown
         size="small"
         :options="sqlLanguageOptions"
@@ -89,12 +87,7 @@ const onFormatButtonClick = () => {
     />
     <div v-if="isSQLValid" style="height: 14px"></div>
     <span v-else class="float-end text-danger"> Input is not valid SQL </span>
-    <Button
-      class="mt-2 d-block w-100"
-      :disabled="!isSQLValid"
-      size="large"
-      @click="onFormatButtonClick"
-    >
+    <Button class="mt-2 d-block w-100" :disabled="!isSQLValid" size="large" @click="onFormatButtonClick">
       Format
     </Button>
   </section>

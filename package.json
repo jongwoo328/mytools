@@ -1,5 +1,6 @@
 {
   "name": "mytools",
+  "type": "module",
   "version": "2.1.4",
   "private": true,
   "scripts": {

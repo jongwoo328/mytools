@@ -3,12 +3,7 @@ import { Codemirror } from "vue-codemirror";
 import { sql } from "@codemirror/lang-sql";
 import { computed, ref } from "vue";
 import { SQLResult } from "@/types/SQLResult";
-import {
-  format,
-  IndentStyle,
-  KeywordCase,
-  LogicalOperatorNewline,
-} from "sql-formatter";
+import { format, IndentStyle, KeywordCase, LogicalOperatorNewline } from "sql-formatter";
 import { copyWithNotification } from "@/utils/copy";
 import ResultItem from "@/components/common/ResultItem.vue";
 import Button from "primevue/button";
@@ -27,15 +22,9 @@ const ExpandToggle = {
   REVERT: "revert",
 } as const;
 
-const expandToggle = ref<UnionFromAsConst<typeof ExpandToggle>>(
-  ExpandToggle.REVERT
-);
-const sqlResultHeight = computed(() =>
-  expandToggle.value === ExpandToggle.FIT ? "initial" : "400px"
-);
-const sqlResultOverflowY = computed(() =>
-  expandToggle.value === ExpandToggle.FIT ? "initial" : "auto"
-);
+const expandToggle = ref<UnionFromAsConst<typeof ExpandToggle>>(ExpandToggle.REVERT);
+const sqlResultHeight = computed(() => (expandToggle.value === ExpandToggle.FIT ? "initial" : "400px"));
+const sqlResultOverflowY = computed(() => (expandToggle.value === ExpandToggle.FIT ? "initial" : "auto"));
 const formattedSQL = computed(() =>
   format(props.resultData.sql, {
     language: props.resultData.language,
@@ -44,7 +33,7 @@ const formattedSQL = computed(() =>
     keywordCase: keywordCase.value,
     indentStyle: indentation.value,
     logicalOperatorNewline: logicalOperatorNewLine.value,
-  })
+  }),
 );
 
 const useTabs = ref(false);
@@ -83,19 +72,14 @@ const onChangeLogicalOperatorNewLine = (v: LogicalOperatorNewline) => {
 };
 
 const expandToggleLabel = computed(() =>
-  expandToggle.value === ExpandToggle.REVERT
-    ? ExpandToggle.FIT
-    : ExpandToggle.REVERT
+  expandToggle.value === ExpandToggle.REVERT ? ExpandToggle.FIT : ExpandToggle.REVERT,
 );
 </script>
 
 <template>
   <ResultItem>
     <template #header>
-      <div
-        class="d-flex justify-content-between px-4 mt-4"
-        style="height: 32px"
-      >
+      <div class="d-flex justify-content-between px-4 mt-4" style="height: 32px">
         <div class="d-flex align-items-center">
           <span class="fw-bold">{{ `# ${props.index}` }}</span>
         </div>
@@ -134,12 +118,7 @@ const expandToggleLabel = computed(() =>
         @update:tab-width="onChangeTabWidth"
       />
       <div class="sql-result-wrap common-border-radius">
-        <Codemirror
-          :disabled="true"
-          :extensions="[sql()]"
-          v-model="formattedSQL"
-          class="sql-result"
-        />
+        <Codemirror :disabled="true" :extensions="[sql()]" v-model="formattedSQL" class="sql-result" />
       </div>
       <ResultDivider class="mb-0">
         <Button @click="onClickExpandToggle" size="small" outlined class="py-1">
