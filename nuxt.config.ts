@@ -1,7 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+const siteUrl = "https://tools.jongwoo.me";
+
 export default defineNuxtConfig({
   ssr: true,
-  modules: ["nuxt-gtag", "nuxt-lodash", "@vueuse/nuxt"],
+  modules: ["nuxt-gtag", "nuxt-lodash", "@vueuse/nuxt", "nuxt-simple-sitemap"],
   app: {
     head: {
       title: "My Tools",
@@ -11,6 +13,11 @@ export default defineNuxtConfig({
           content: "d60b32a9c6b89b0ba2e0bdacd9525e95d56af731",
         },
       ],
+    },
+  },
+  runtimeConfig: {
+    public: {
+      siteUrl,
     },
   },
 
