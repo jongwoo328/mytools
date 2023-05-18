@@ -5,7 +5,7 @@ const siteUrl = "https://tools.jongwoo.me";
 
 export default defineNuxtConfig({
   ssr: true,
-  modules: ["nuxt-gtag", "nuxt-lodash", "@vueuse/nuxt", "nuxt-simple-sitemap"],
+  modules: ["nuxt-gtag", "nuxt-lodash", "@vueuse/nuxt", "nuxt-simple-sitemap", "@nuxtjs/web-vitals"],
   app: {
     head: {
       title: "My Tools",
@@ -33,6 +33,11 @@ export default defineNuxtConfig({
 
   vite: {
     plugins: [eslintPlugin()],
+  },
+
+  webVitals: {
+    debug: false,
+    disabled: false,
   },
 
   // nuxt-gtag
