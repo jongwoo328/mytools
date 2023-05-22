@@ -30,6 +30,9 @@ export default defineNuxtConfig({
       siteUrl,
     },
   },
+  sitemap: {
+    autoLastmod: true,
+  },
 
   vite: {
     plugins: [eslintPlugin()],
