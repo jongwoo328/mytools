@@ -176,7 +176,6 @@ const clickActions: MenuItem[] = [
           {{ virtualScroll ? "Fit" : "Revert" }}
         </Button>
       </ResultDivider>
-      <Divider class="mb-0"></Divider>
     </template>
   </ResultItem>
 </template>
