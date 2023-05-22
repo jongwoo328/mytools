@@ -75,11 +75,11 @@ const onClear = () => {
 </script>
 <template>
   <Head>
-    <Title>My Tools : CSV to JSON</Title>
+    <Title>CSV to JSON Converter</Title>
   </Head>
   <PageTitle title="CSV to JSON Converter" />
   <div class="mb-3">
-    <PageHeading :level="3" :size="6" weight="600" style="height: 44px; line-height: 2"> CSV File or Text </PageHeading>
+    <PageHeading :level="3" :size="6" weight="600" style="height: 44px; line-height: 2"> CSV File or Text</PageHeading>
   </div>
   <Card>
     <template #content>
@@ -112,7 +112,7 @@ const onClear = () => {
           style="min-height: 300px"
           class="prevent-auto-zoom d-block w-100"
         />
-        <Button class="w-100 d-block mt-2" size="large" @click="parseFromText"> Parse </Button>
+        <Button class="w-100 d-block mt-2" size="large" @click="parseFromText"> Parse</Button>
       </div>
       <div v-show="activeTabKey === 1">
         <div
@@ -133,7 +133,7 @@ const onClear = () => {
         <span v-for="(error, idx) in parseFromFileErrors" :key="idx" class="d-block text-end text-danger">
           {{ error.message }}
         </span>
-        <Button class="w-100 d-block mt-2" size="large" @click="parseFromFile"> Parse </Button>
+        <Button class="w-100 d-block mt-2" size="large" @click="parseFromFile"> Parse</Button>
       </div>
     </template>
   </Card>

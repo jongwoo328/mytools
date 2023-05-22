@@ -3,7 +3,6 @@ import { computed, Ref, ref } from "vue";
 import { DateTime, FixedOffsetZone, SystemZone } from "luxon";
 import { offsetList, EpochTimeConvertTimeUnit } from "@/constants/time";
 import { copyWithNotification } from "@/utils/copy";
-import CommonToast from "@/components/common/CommonToast.vue";
 import { UnionFromAsConst } from "~/utils/type";
 
 const defaultDateTime = DateTime.now();
@@ -65,7 +64,6 @@ const setNow = () => {
 </script>
 
 <template>
-  <CommonToast />
   <div class="row">
     <div class="col col-12 col-lg-5">
       <div class="w-100 mb-1 d-flex justify-content-between">

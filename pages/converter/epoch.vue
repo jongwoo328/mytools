@@ -7,7 +7,7 @@ import PageHeading from "@/components/common/PageHeading.vue";
 
 <template>
   <Head>
-    <Title>My Tools : Epoch Converter</Title>
+    <Title>Epoch Converter</Title>
   </Head>
   <PageTitle title="Epoch Converter" />
   <div class="row mt-3">
@@ -29,7 +29,7 @@ import PageHeading from "@/components/common/PageHeading.vue";
       <Card>
         <template #header>
           <div class="px-4 pt-4">
-            <PageHeading :level="3" :size="6" weight="600"> Time ️<span class="mx-3">➡️</span> Epoch </PageHeading>
+            <PageHeading :level="3" :size="6" weight="600"> Time ️<span class="mx-3">➡️</span> Epoch</PageHeading>
           </div>
         </template>
         <template #content>

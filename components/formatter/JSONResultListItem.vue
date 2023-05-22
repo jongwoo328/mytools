@@ -6,7 +6,6 @@ import { copyWithNotification } from "@/utils/copy";
 import { MenuItem } from "primevue/menuitem";
 import { breakpointsBootstrapV5, useBreakpoints } from "@vueuse/core";
 import ResultDivider from "@/components/common/ResultDivider.vue";
-import CommonToast from "@/components/common/CommonToast.vue";
 import ResultItem from "@/components/common/ResultItem.vue";
 
 const emit = defineEmits<{ (e: "delete", id: string): void }>();
@@ -85,7 +84,6 @@ const clickActions: MenuItem[] = [
 </script>
 
 <template>
-  <CommonToast />
   <ResultItem>
     <template #header>
       <div class="d-flex justify-content-between px-4 mt-4" style="height: 32px">
@@ -171,15 +169,21 @@ const clickActions: MenuItem[] = [
         :showIcon="true"
         v-model:selectedValue="selected"
         rootPath="$"
+        class="font-monospace-code"
       />
       <ResultDivider class="mb-0">
         <Button @click="onClickExpandToggle" size="small" outlined class="py-1">
           {{ virtualScroll ? "Fit" : "Revert" }}
         </Button>
       </ResultDivider>
-      <Divider class="mb-0"></Divider>
     </template>
   </ResultItem>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.sql-result {
+  &::v-deep(.cm-line) {
+    font-family: Monaco, Menlo, Consolas, Bitstream Vera Sans Mono, monospace;
+  }
+}
+</style>

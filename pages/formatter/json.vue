@@ -31,7 +31,7 @@ const onFormatButtonClick = () => {
 
 <template>
   <Head>
-    <Title>My Tools : JSON Formatter</Title>
+    <Title>JSON Formatter</Title>
   </Head>
   <PageTitle title="JSON Formatter" />
   <section>

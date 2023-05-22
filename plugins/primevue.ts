@@ -22,6 +22,8 @@ import Textarea from "primevue/textarea";
 import Panel from "primevue/panel";
 import InputSwitch from "primevue/inputswitch";
 import TabMenu from "primevue/tabmenu";
+import TabView from "primevue/tabview";
+import TabPanel from "primevue/tabpanel";
 import ToastService from "primevue/toastservice";
 
 export default defineNuxtPlugin((nuxtApp) => {
@@ -50,4 +52,6 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.component("Panel", Panel);
   nuxtApp.vueApp.component("InputSwitch", InputSwitch);
   nuxtApp.vueApp.component("TabMenu", TabMenu);
+  nuxtApp.vueApp.component("TabView", TabView);
+  nuxtApp.vueApp.component("TabPanel", TabPanel);
 });

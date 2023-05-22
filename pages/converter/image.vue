@@ -10,7 +10,6 @@ import PageTitle from "@/components/common/PageTitle.vue";
 import { copyWithNotification } from "@/utils/copy";
 import { createEmptyFile, isEmptyFile } from "@/utils/file";
 import PageHeading from "@/components/common/PageHeading.vue";
-import CommonToast from "@/components/common/CommonToast.vue";
 import { createEmptyImageElement } from "~/utils/HTMLImage";
 
 const browser = useBrowser();
@@ -113,9 +112,8 @@ watch(inputImage, () => {
 </script>
 
 <template>
-  <CommonToast />
   <Head>
-    <Title>My Tools : Image Converter</Title>
+    <Title>Image Converter</Title>
   </Head>
   <PageTitle title="Image Converter" />
   <section>
@@ -153,7 +151,7 @@ watch(inputImage, () => {
                 <template v-else> Copy as Base64</template>
               </Button>
             </div>
-            <PageHeading :level="3" :size="6" weight="600"> Settings </PageHeading>
+            <PageHeading :level="3" :size="6" weight="600"> Settings</PageHeading>
             <div class="mt-2">
               <span class="mt-1 fs-5 d-block">Convert to:</span>
               <Dropdown

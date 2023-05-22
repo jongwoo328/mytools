@@ -65,6 +65,11 @@ const menus = [
         label: "Image Cropper",
         command: hideDrawer,
       },
+      {
+        to: "/converter/url",
+        label: "URL En/Decoder",
+        command: hideDrawer,
+      },
     ],
   },
   {
