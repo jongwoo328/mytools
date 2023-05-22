@@ -29,7 +29,7 @@ const htmlText = ref(
 
 <template>
   <Head>
-    <Title>My Tools : HTML Viewer</Title>
+    <Title>HTML Viewer</Title>
   </Head>
   <PageTitle title="HTML Viewer" />
   <Card>
@@ -56,6 +56,7 @@ const htmlText = ref(
     font-family: Monaco, Menlo, Consolas, Bitstream Vera Sans Mono, monospace;
   }
 }
+
 .html-view-wrap {
   height: 500px;
   border: 1px solid #adb5bd;
@@ -65,6 +66,7 @@ const htmlText = ref(
 .viewer-code-section {
   border: 1px solid #f1f3f5;
 }
+
 .html-input-wrap {
   background-color: #f8f9fa;
   overflow-y: auto;

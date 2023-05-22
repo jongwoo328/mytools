@@ -3,7 +3,6 @@ import { computed, Ref, ref } from "vue";
 import { DateTime, SystemZone } from "luxon";
 import { EpochTimeConvertTimeUnit, offsetList } from "@/constants/time";
 import { copyWithNotification } from "@/utils/copy";
-import CommonToast from "@/components/common/CommonToast.vue";
 import { UnionFromAsConst } from "~/utils/type";
 
 const epochInput = ref(DateTime.now().toUnixInteger());
@@ -54,7 +53,6 @@ const setNow = () => {
 </script>
 
 <template>
-  <CommonToast />
   <div class="row justify-content-between">
     <div class="col col-12 col-lg-5 d-flex flex-column justify-content-center align-items-center">
       <div class="w-100 m-0 mb-1 d-flex flex-row justify-content-between">

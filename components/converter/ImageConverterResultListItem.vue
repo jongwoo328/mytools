@@ -2,7 +2,6 @@
 import { ref } from "vue";
 import { ImageConverterResult } from "@/types/ImageConverterResult";
 import { copyWithNotification } from "@/utils/copy";
-import CommonToast from "@/components/common/CommonToast.vue";
 
 const props = defineProps<{ result: ImageConverterResult; index: number }>();
 const emit = defineEmits<{ (e: "delete", id: string): void }>();
@@ -40,7 +39,6 @@ const onClickDeleteResult = () => {
 </script>
 
 <template>
-  <CommonToast />
   <Card data-aos="fade-up" data-aos-once="true" data-aos-anchor-placement="bottom" class="pt-5 mb-2">
     <template #header>
       <div class="d-flex justify-content-between px-4" style="height: 32px">
@@ -91,9 +89,9 @@ const onClickDeleteResult = () => {
             <template v-if="copyingBase64">
               <ProgressSpinner class="h-100" strokeWidth="10" />
             </template>
-            <template v-else> Copy as Base64 </template>
+            <template v-else> Copy as Base64</template>
           </Button>
-          <Button class="d-block" @click="onClickDownload" severity="primary" style="height: 44px"> Download </Button>
+          <Button class="d-block" @click="onClickDownload" severity="primary" style="height: 44px"> Download</Button>
         </div>
       </div>
     </template>
@@ -107,6 +105,7 @@ const onClickDeleteResult = () => {
 
 .image-result-display {
   max-height: 550px;
+
   & img {
     max-height: 450px;
     max-width: 100%;
@@ -141,9 +140,11 @@ const onClickDeleteResult = () => {
   .image-result-control {
     display: flex;
     justify-content: space-between;
+
     & > div {
       width: 70%;
     }
+
     & > button.download {
       height: 20%;
     }

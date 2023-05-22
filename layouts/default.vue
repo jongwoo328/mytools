@@ -19,6 +19,7 @@ useHead({
   <div id="main" class="d-flex flex-column align-items-center">
     <PageHeader />
     <div id="view" class="container pt-5" style="padding-bottom: 100px">
+      <CommonToast />
       <slot />
     </div>
   </div>
@@ -29,6 +30,7 @@ useHead({
 a {
   text-decoration: none;
 }
+
 #main {
   overflow-y: auto;
   min-height: 100vh;

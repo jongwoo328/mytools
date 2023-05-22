@@ -223,7 +223,7 @@ const buttonSideWidthPixel = computed(() => buttonSideWidth.value + "px");
 
 <template>
   <Head>
-    <Title>My Tools : Crop Image</Title>
+    <Title>Image Cropper</Title>
   </Head>
   <PageTitle title="Image Cropper" />
   <Card>

@@ -118,7 +118,7 @@ const expandToggleLabel = computed(() =>
         @update:tab-width="onChangeTabWidth"
       />
       <div class="sql-result-wrap common-border-radius">
-        <Codemirror :disabled="true" :extensions="[sql()]" v-model="formattedSQL" class="sql-result" />
+        <Codemirror :disabled="true" :extensions="[sql()]" v-model="formattedSQL" class="font-monospace-code" />
       </div>
       <ResultDivider class="mb-0">
         <Button @click="onClickExpandToggle" size="small" outlined class="py-1">
@@ -130,12 +130,6 @@ const expandToggleLabel = computed(() =>
 </template>
 
 <style lang="scss" scoped>
-.sql-result {
-  &::v-deep(.cm-line) {
-    font-family: Monaco, Menlo, Consolas, Bitstream Vera Sans Mono, monospace;
-  }
-}
-
 .sql-result-wrap {
   height: v-bind(sqlResultHeight);
   overflow-y: v-bind(sqlResultOverflowY);
