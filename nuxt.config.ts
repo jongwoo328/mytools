@@ -8,6 +8,9 @@ export default defineNuxtConfig({
   modules: ["nuxt-gtag", "nuxt-lodash", "@vueuse/nuxt", "nuxt-simple-sitemap", "@nuxtjs/web-vitals"],
   app: {
     head: {
+      htmlAttrs: {
+        lang: "en",
+      },
       title: "My Tools",
       meta: [
         {
@@ -20,7 +23,7 @@ export default defineNuxtConfig({
             "This website provides a collection of simple yet useful tools that work solely on the client-side, " +
             "allowing users to enjoy their benefits without worrying about data leaks. " +
             "The website features various functions including CSV to JSON converter, epoch time converter, " +
-            "image type converter, image cropper, JSON formatter, SQL formatter, and HTML viewer.",
+            "image type converter, image cropper, JSON formatter, SQL formatter, HTML viewer, and Color converter",
         },
       ],
     },

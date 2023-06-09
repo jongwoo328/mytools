@@ -70,6 +70,12 @@ const availableTools: AvailableTool[] = [
     description: "URL encoder and decoder",
     tags: [Tags.Converter],
   },
+  {
+    title: "Color Code Converter",
+    router: "converter/color",
+    description: "Color Code Converter supports RGB, HEX, CMYK, HSL",
+    tags: [Tags.Converter],
+  },
 ];
 </script>
 

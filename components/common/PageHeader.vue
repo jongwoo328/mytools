@@ -70,6 +70,11 @@ const menus = [
         label: "URL En/Decoder",
         command: hideDrawer,
       },
+      {
+        to: "/converter/color",
+        label: "Color Converter",
+        command: hideDrawer,
+      },
     ],
   },
   {
