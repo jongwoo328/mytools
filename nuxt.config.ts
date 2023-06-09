@@ -5,7 +5,16 @@ const siteUrl = "https://tools.jongwoo.me";
 
 export default defineNuxtConfig({
   ssr: true,
-  modules: ["nuxt-gtag", "nuxt-lodash", "@vueuse/nuxt", "nuxt-simple-sitemap", "@nuxtjs/web-vitals"],
+  modules: ["nuxt-gtag", "nuxt-lodash", "@vueuse/nuxt", "nuxt-simple-sitemap", "@nuxtjs/web-vitals", "@nuxtjs/robots"],
+
+  // nuxt-robots
+  robots: {
+    rules: {
+      UserAgent: "*",
+      Disallow: "",
+      Sitemap: "https://tools.jongwoo.me/sitemap.xml",
+    },
+  },
   app: {
     head: {
       htmlAttrs: {

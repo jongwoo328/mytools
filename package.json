@@ -39,6 +39,7 @@
   "dependencies": {
     "@codemirror/lang-html": "^6.4.3",
     "@codemirror/lang-sql": "^6.5.0",
+    "@nuxtjs/robots": "^3.0.0",
     "@nuxtjs/web-vitals": "^0.2.6",
     "@vueuse/nuxt": "^10.1.2",
     "aos": "^2.3.4",

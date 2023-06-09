@@ -7,6 +7,9 @@ dependencies:
   '@codemirror/lang-sql':
     specifier: ^6.5.0
     version: 6.5.0
+  '@nuxtjs/robots':
+    specifier: ^3.0.0
+    version: 3.0.0
   '@nuxtjs/web-vitals':
     specifier: ^0.2.6
     version: 0.2.6
@@ -1281,6 +1284,16 @@ packages:
       - eslint-import-resolver-webpack
       - supports-color
     dev: true
+
+  /@nuxtjs/robots@3.0.0:
+    resolution: {integrity: sha512-qsHGW1KXBvV5Kq7u3huPnFCUTbHS4Fk8Za2mNPgmUXcwLgp3exvhPtdZfIdjrCF/aZk3A8OZONNmGghs6CecBA==}
+    dependencies:
+      '@nuxt/kit': 3.5.3
+      h3: 1.6.6
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
+    dev: false
 
   /@nuxtjs/web-vitals@0.2.6:
     resolution: {integrity: sha512-hoLo/Lcl63rDEm1gR/VN3sSG7mO4UKzJF69lyKjm+cSWtnSinSQo4n/8V0qmDqVgC3GPfvC1X/IqZx5FaRSS/g==}
