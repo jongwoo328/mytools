@@ -45,30 +45,26 @@ const hslText = computed(() => {
 <template>
   <div class="row">
     <div class="col col-12 d-flex align-items-center" v-if="showHex">
-      <span class="result-item-name fw-bold">HEX</span>
+      <span class="fw-bold">HEX</span>
       <span class="flex-grow-1 text-end pe-2">{{ hexText }}</span>
-      <Button class="py-1" size="small" text @click="copyWithNotification(hexText)">Copy</Button>
+      <Button icon="pi pi-copy" class="py-1" size="small" text @click="copyWithNotification(hexText)" />
     </div>
     <div class="col col-12 d-flex align-items-center" v-if="showHex">
-      <span class="result-item-name fw-bold">RGB</span>
+      <span class="fw-bold">RGB</span>
       <span class="flex-grow-1 text-end pe-2">{{ rgbText }}</span>
-      <Button class="py-1" size="small" text @click="copyWithNotification(rgbText)">Copy</Button>
+      <Button icon="pi pi-copy" class="py-1" size="small" text @click="copyWithNotification(rgbText)" />
     </div>
     <div class="col col-12 d-flex align-items-center" v-if="showCmyk">
-      <span class="result-item-name fw-bold">CMYK</span>
+      <span class="fw-bold">CMYK</span>
       <span class="flex-grow-1 text-end pe-2">{{ cmykText }}</span>
-      <Button class="py-1" size="small" text @click="copyWithNotification(cmykText)">Copy</Button>
+      <Button icon="pi pi-copy" class="py-1" size="small" text @click="copyWithNotification(cmykText)" />
     </div>
     <div class="col col-12 d-flex align-items-center" v-if="showHsl">
-      <span class="result-item-name fw-bold">HSL</span>
+      <span class="fw-bold">HSL</span>
       <span class="flex-grow-1 text-end pe-2">{{ hslText }}</span>
-      <Button class="py-1" size="small" text @click="copyWithNotification(hslText)">Copy</Button>
+      <Button icon="pi pi-copy" class="py-1" size="small" text @click="copyWithNotification(hslText)" />
     </div>
   </div>
 </template>
 
-<style scoped lang="scss">
-.result-item-name {
-  padding: 0 2rem;
-}
-</style>
+<style scoped lang="scss"></style>
