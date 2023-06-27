@@ -14,7 +14,7 @@ const cropperImageSource = ref(
   "https://images.unsplash.com/photo-1636622433525-127afdf3662d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=100",
 );
 
-const selectedAspectRatio: Ref<"Custom" | "Free" | number> = ref(16 / 9);
+const selectedAspectRatio: Ref<"Custom" | number> = ref(16 / 9);
 const customRatioWidth = ref(1.618);
 const customRatioHeight = ref(1);
 const customCropWidth = ref(100);
@@ -73,7 +73,7 @@ const aspectRatioOptions = [
 watch([selectedAspectRatio, customRatioWidth, customRatioHeight], ([selectedRatio, width, height]) => {
   if (selectedRatio === "Custom") {
     cropper.value.setAspectRatio(width / height);
-  } else if (selectedRatio === "Free") {
+  } else if (selectedRatio === -1) {
     cropper.value.setAspectRatio(null);
   } else {
     cropper.value.setAspectRatio(selectedRatio);
@@ -105,7 +105,7 @@ const onCropResize = (e: any) => {
 const calcHeightFromWidth = (width: number, cropBoxData: CropBoxData) => {
   if (selectedAspectRatio.value === "Custom") {
     return width / (customRatioWidth.value / customRatioHeight.value);
-  } else if (selectedAspectRatio.value === "Free") {
+  } else if (selectedAspectRatio.value === -1) {
     return cropBoxData.height;
   } else {
     return width / selectedAspectRatio.value;
@@ -115,7 +115,7 @@ const calcHeightFromWidth = (width: number, cropBoxData: CropBoxData) => {
 const calcWidthFromHeight = (height: number, cropBoxData: CropBoxData) => {
   if (selectedAspectRatio.value === "Custom") {
     return height * (customRatioWidth.value / customRatioHeight.value);
-  } else if (selectedAspectRatio.value === "Free") {
+  } else if (selectedAspectRatio.value === -1) {
     return cropBoxData.width;
   } else {
     return height * selectedAspectRatio.value;
