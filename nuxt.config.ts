@@ -7,6 +7,10 @@ export default defineNuxtConfig({
   ssr: true,
   modules: ["nuxt-gtag", "nuxt-lodash", "@vueuse/nuxt", "nuxt-simple-sitemap", "@nuxtjs/web-vitals", "@nuxtjs/robots"],
 
+  routeRules: {
+    "/**": { prerender: true },
+  },
+
   // nuxt-robots
   robots: {
     rules: {
