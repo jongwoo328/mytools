@@ -19,6 +19,11 @@ watch(hexPickedColor, () => {
     hexCode.value = hexPickedColor.value;
   }
 });
+watch(hexCode, () => {
+  if (isHexCodeValid.value) {
+    hexPickedColor.value = hexCode.value;
+  }
+});
 
 const rgbRed = ref(0);
 const rgbGreen = ref(0);
