@@ -9,6 +9,7 @@ export default defineNuxtConfig({
 
   routeRules: {
     "/**": { prerender: true },
+    "/viewer/html": { ssr: true, prerender: false },
   },
 
   // nuxt-robots
