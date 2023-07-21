@@ -42,7 +42,7 @@ const htmlText = ref(
         </div>
         <div class="col col-12 viewer-code-section px-0 common-border-radius">
           <div class="h-100 html-input-wrap">
-            <Codemirror :extensions="[html()]" v-model="htmlText" class="h-100 html-input prevent-auto-zoom" />
+            <Codemirror :extensions="[html()]" v-model="htmlText" class="h-100 font-monospace-code prevent-auto-zoom" />
           </div>
         </div>
       </div>
@@ -51,12 +51,6 @@ const htmlText = ref(
 </template>
 
 <style lang="scss" scoped>
-.html-input {
-  &::v-deep(.cm-line) {
-    font-family: Monaco, Menlo, Consolas, Bitstream Vera Sans Mono, monospace;
-  }
-}
-
 .html-view-wrap {
   height: 500px;
   border: 1px solid #adb5bd;
