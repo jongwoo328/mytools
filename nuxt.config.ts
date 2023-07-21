@@ -25,7 +25,7 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: "en",
       },
-      title: "My Tools",
+      title: "Tools For Developer",
       meta: [
         {
           name: "naver-site-verification",

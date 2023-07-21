@@ -86,7 +86,7 @@ const availableTools: AvailableTool[] = [
 </script>
 
 <template>
-  <PageHeading :size="8" :level="1" weight="600"> 🛠️ Tools For Web Development</PageHeading>
+  <PageHeading :size="8" :level="1" weight="600"> 🛠️ Tools For Developer</PageHeading>
   <div class="row mt-5 gx-3 gy-3">
     <div class="col col-12 col-md-6 col-xl-4" v-for="availableTool in availableTools" :key="availableTool.title">
       <FunctionListItem :tool="availableTool"></FunctionListItem>
