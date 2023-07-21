@@ -28,7 +28,7 @@ const onClickCopy = () => {
     </div>
     <Card>
       <template #content>
-        <PageHeading :size="6" :level="3" weight="600">Input</PageHeading>
+        <PageHeading :size="6" :level="2" weight="600">Input</PageHeading>
         <Textarea v-model="inputText" class="prevent-auto-zoom d-block w-100" auto-resize />
         <TabView v-model:active-index="activeTabKey" class="mt-3 tab-view">
           <TabPanel header="Encoder">

@@ -86,6 +86,11 @@ const menus = [
         label: "HTML",
         command: hideDrawer,
       },
+      {
+        to: "/viewer/text-diff",
+        label: "Text Diff Checker",
+        command: hideDrawer,
+      },
     ],
   },
 ];

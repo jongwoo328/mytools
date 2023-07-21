@@ -79,7 +79,7 @@ const onClear = () => {
   </Head>
   <PageTitle title="CSV to JSON Converter" />
   <div class="mb-3">
-    <PageHeading :level="3" :size="6" weight="600" style="height: 44px; line-height: 2"> CSV File or Text</PageHeading>
+    <PageHeading :level="2" :size="6" weight="600" style="height: 44px; line-height: 2"> CSV File or Text</PageHeading>
   </div>
   <Card>
     <template #content>

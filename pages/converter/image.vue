@@ -118,7 +118,7 @@ watch(inputImage, () => {
   <PageTitle title="Image Converter" />
   <section>
     <div class="mb-3">
-      <PageHeading :level="3" :size="6" weight="600"> Added Image</PageHeading>
+      <PageHeading :level="2" :size="6" weight="600"> Added Image</PageHeading>
       <span> Only Support JPEG, PNG, WEBP(except Safari) </span>
     </div>
     <canvas ref="canvas" v-show="false"></canvas>

@@ -20,6 +20,6 @@ body {
     border-radius: 6px;
 }
 
-.font-monospace-code * {
-    font-family: Monaco, Menlo, Consolas, Bitstream Vera Sans Mono, monospace;
+.font-monospace-code, .font-monospace-code * {
+    font-family: Monaco, Menlo, Consolas, Bitstream Vera Sans Mono, monospace !important;
 }

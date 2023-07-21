@@ -35,7 +35,7 @@ const onFormatButtonClick = () => {
   </Head>
   <PageTitle title="JSON Formatter" />
   <section>
-    <PageHeading class="d-block align-middle" :level="3" :size="6" weight="600" style="height: 44px; line-height: 2">
+    <PageHeading class="d-block align-middle" :level="2" :size="6" weight="600" style="height: 44px; line-height: 2">
       JSON text
     </PageHeading>
     <Textarea
