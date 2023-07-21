@@ -70,7 +70,7 @@ const onFormatButtonClick = () => {
   <PageTitle title="SQL Formatter" />
   <section>
     <div class="mb-2 d-flex justify-content-between align-items-center">
-      <PageHeading class="d-inline-block m-0" :level="3" :size="6" weight="600"> SQL</PageHeading>
+      <PageHeading class="d-inline-block m-0" :level="2" :size="6" weight="600"> SQL</PageHeading>
       <Dropdown
         size="small"
         :options="sqlLanguageOptions"

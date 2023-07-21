@@ -17,7 +17,7 @@ const onClickButton = () => {
   <Card>
     <template #title>
       <RouterLink class="text-decoration-none text-black" :to="tool.router">
-        <PageHeading weight="600" class="m-0" :level="3" :size="7">
+        <PageHeading weight="600" class="m-0" :level="2" :size="7">
           {{ tool.title }}
         </PageHeading>
       </RouterLink>
@@ -31,7 +31,7 @@ const onClickButton = () => {
           {{ tag.name }}
         </Tag>
       </div>
-      <Button @click="onClickButton" class="w-100 d-block mt-3"> Start </Button>
+      <Button @click="onClickButton" class="w-100 d-block mt-3"> Start</Button>
     </template>
   </Card>
 </template>

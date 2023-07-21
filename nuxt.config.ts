@@ -9,6 +9,7 @@ export default defineNuxtConfig({
 
   routeRules: {
     "/**": { prerender: true },
+    "/viewer/html": { ssr: true, prerender: false },
   },
 
   // nuxt-robots
@@ -24,7 +25,7 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: "en",
       },
-      title: "My Tools",
+      title: "Tools For Developer",
       meta: [
         {
           name: "naver-site-verification",

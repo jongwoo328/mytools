@@ -76,11 +76,17 @@ const availableTools: AvailableTool[] = [
     description: "Color Code Converter supports RGB, HEX, CMYK, HSL",
     tags: [Tags.Converter],
   },
+  {
+    title: "Text Difference Checker",
+    router: "viewer/text-diff",
+    description: "Discover text discrepancies easily",
+    tags: [Tags.Viewer],
+  },
 ];
 </script>
 
 <template>
-  <PageHeading :size="8" :level="1" weight="600"> 🛠️ Available Tools</PageHeading>
+  <PageHeading :size="8" :level="1" weight="600"> 🛠️ Tools For Developer</PageHeading>
   <div class="row mt-5 gx-3 gy-3">
     <div class="col col-12 col-md-6 col-xl-4" v-for="availableTool in availableTools" :key="availableTool.title">
       <FunctionListItem :tool="availableTool"></FunctionListItem>
