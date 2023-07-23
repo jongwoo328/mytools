@@ -7,6 +7,13 @@ import { DiffType } from "@/types/textDiff";
 
 const text1 = ref("");
 const text2 = ref("");
+const resetText1 = () => {
+  text1.value = "";
+};
+const resetText2 = () => {
+  text2.value = "";
+};
+
 const diffType = ref<DiffType>("chars");
 const diffTypeOptions = [
   { label: "Characters", value: "chars" },
@@ -23,7 +30,7 @@ const inputLayoutOptions = [
 
 let diffResult = ref<Change[]>([]);
 
-function checkDiff(text1: string, text2: string, diffType: DiffType) {
+const checkDiff = (text1: string, text2: string, diffType: DiffType) => {
   if (diffType === "chars") {
     diffResult.value = Diff.diffChars(text1, text2);
   } else if (diffType === "words") {
@@ -31,7 +38,7 @@ function checkDiff(text1: string, text2: string, diffType: DiffType) {
   } else if (diffType === "lines") {
     diffResult.value = Diff.diffLines(text1, text2);
   }
-}
+};
 
 watch([text1, text2, diffType], () => {
   checkDiff(text1.value, text2.value, diffType.value);
@@ -42,7 +49,7 @@ watch([text1, text2, diffType], () => {
   <div class="row">
     <div class="col col-12">
       <div class="row">
-        <div class="d-flex justify-content-end">
+        <div class="d-flex justify-content-end mb-3">
           <SelectButton option-value="value" :options="inputLayoutOptions" v-model="inputLayout">
             <template #option="slotProps">
               <i :class="slotProps.option.icon"></i>
@@ -50,7 +57,10 @@ watch([text1, text2, diffType], () => {
           </SelectButton>
         </div>
         <div class="col" :class="{ 'col-12': inputLayout === 'vertical', 'col-6': inputLayout === 'horizontal' }">
-          <PageHeading :size="7" :level="2">Reference</PageHeading>
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <PageHeading :size="7" :level="2">Reference</PageHeading>
+            <Button @click="resetText1" icon="pi pi-trash" text rounded severity="danger" size="small"></Button>
+          </div>
           <Textarea
             class="prevent-auto-zoom w-100 font-monospace-code overflow-auto"
             v-model="text1"
@@ -59,7 +69,10 @@ watch([text1, text2, diffType], () => {
           />
         </div>
         <div class="col" :class="{ 'col-12': inputLayout === 'vertical', 'col-6': inputLayout === 'horizontal' }">
-          <PageHeading :size="7" :level="2">Comparison</PageHeading>
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <PageHeading :size="7" :level="2">Comparison</PageHeading>
+            <Button @click="resetText2" icon="pi pi-trash" text rounded severity="danger" size="small"></Button>
+          </div>
           <Textarea
             class="prevent-auto-zoom w-100 font-monospace-code overflow-auto"
             v-model="text2"
