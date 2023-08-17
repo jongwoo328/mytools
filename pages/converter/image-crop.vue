@@ -285,7 +285,13 @@ const test = (e) => {
         <div class="col col-12 col-lg-4">
           <img class="d-none" ref="image" alt="Added image" src="" />
           <input ref="imageInput" id="crop-image" class="d-none" type="file" accept="image/*" @change="onChangeInput" />
-          <div class="options p-2">
+          <div class="mt-2 mt-lg-0">
+            <Button class="d-block w-100" @click="save">Save</Button>
+            <label for="crop-image" class="p-button p-component p-button-outlined d-block w-100 mt-2">
+              Change Image
+            </label>
+          </div>
+          <div class="options mt-2 p-2">
             <div class="row option-list">
               <div class="col col-12">
                 <div class="row">
@@ -536,12 +542,6 @@ const test = (e) => {
                 </div>
               </div>
             </div>
-          </div>
-          <div class="mt-2">
-            <label for="crop-image" class="p-button p-component p-button-outlined d-block w-100 mt-2">
-              Change Image
-            </label>
-            <Button class="d-block w-100 mt-2" @click="save">Save</Button>
           </div>
         </div>
       </div>
