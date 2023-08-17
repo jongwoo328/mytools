@@ -270,6 +270,7 @@ watch([pressUp, pressRight, pressLeft, pressDown], () => {
       <div class="row w-100 m-0">
         <div class="pb-1 pb-lg-0 pe-lg-2 d-flex justify-content-center align-items-center col col-12 col-lg-8">
           <vue-cropper
+            :check-cross-origin="false"
             ref="cropper"
             :aspect-ratio="selectedAspectRatio"
             :src="cropperImageSource"
