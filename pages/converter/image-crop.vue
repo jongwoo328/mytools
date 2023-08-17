@@ -3,7 +3,7 @@ import PageTitle from "@/components/common/PageTitle.vue";
 import { computed, Ref, ref, watch } from "vue";
 import { useImageUtil } from "@/composables/useImageUtil";
 import { v4 } from "uuid";
-import { breakpointsBootstrapV5 } from "@vueuse/core";
+import { breakpointsBootstrapV5, useMagicKeys } from "@vueuse/core";
 
 const { asyncBlobToBase64 } = useImageUtil();
 const image = ref() as Ref<HTMLImageElement>;
@@ -11,7 +11,7 @@ const imageInput = ref() as Ref<HTMLInputElement>;
 const cropper = ref();
 const cropperImageSource = ref(
   // eslint-disable-next-line max-len
-  "https://images.unsplash.com/photo-1636622433525-127afdf3662d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=100",
+  "https://img.jongwoo.me/tools/ghost.avif",
 );
 
 const selectedAspectRatio: Ref<"Custom" | number> = ref(16 / 9);
@@ -219,6 +219,45 @@ const buttonSideWidth = computed(() => {
   return 44;
 });
 const buttonSideWidthPixel = computed(() => buttonSideWidth.value + "px");
+
+const moveUp = () => {
+  move(0, -1);
+};
+const moveDown = () => {
+  move(0, 1);
+};
+
+const moveLeft = () => {
+  move(-1, 0);
+};
+
+const moveRight = () => {
+  move(1, 0);
+};
+
+const useKeyboardArrow = ref(true);
+const keys = useMagicKeys();
+const pressUp = keys["Control+Shift+Up"];
+const pressDown = keys["Control+Shift+Down"];
+const pressLeft = keys["Control+Shift+Left"];
+const pressRight = keys["Control+Shift+Right"];
+watch([pressUp, pressRight, pressLeft, pressDown], () => {
+  if (!useKeyboardArrow.value) {
+    return;
+  }
+  if (pressUp.value) {
+    moveUp();
+  }
+  if (pressLeft.value) {
+    moveLeft();
+  }
+  if (pressRight.value) {
+    moveRight();
+  }
+  if (pressDown.value) {
+    moveDown();
+  }
+});
 </script>
 
 <template>
@@ -389,28 +428,28 @@ const buttonSideWidthPixel = computed(() => buttonSideWidth.value + "px");
                           size="small"
                           icon="pi pi-arrow-left"
                           class="me-1 control-button"
-                          @click="move(-5, 0)"
+                          @click="moveLeft"
                         />
                         <Button
                           severity="secondary"
                           size="small"
                           icon="pi pi-arrow-up"
                           class="me-1 control-button"
-                          @click="move(0, -5)"
+                          @click="moveUp"
                         />
                         <Button
                           severity="secondary"
                           size="small"
                           icon="pi pi-arrow-right"
                           class="me-1 control-button"
-                          @click="move(5, 0)"
+                          @click="moveRight"
                         />
                         <Button
                           severity="secondary"
                           size="small"
                           icon="pi pi-arrow-down"
                           class="me-1 control-button"
-                          @click="move(0, 5)"
+                          @click="moveDown"
                         />
                       </div>
                     </div>
@@ -475,6 +514,20 @@ const buttonSideWidthPixel = computed(() => buttonSideWidth.value + "px");
                         </Button>
                       </div>
                     </div>
+                  </div>
+                </div>
+                <div class="row mt-3">
+                  <span>Control Configuration</span>
+                  <div class="col col-12 mt-2 px-4 d-flex">
+                    <div>
+                      <InputSwitch class="d-inline-block" input-id="useKeyboardArrow" v-model="useKeyboardArrow" />
+                    </div>
+                    <label class="ms-3" for="useKeyboardArrow" style="text-wrap: initial">
+                      <span>Use Keyboard Arrow</span>
+                      <span>
+                        (<kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>←</kbd>,<kbd>↑</kbd>,<kbd>↓</kbd>,<kbd>→</kbd>)
+                      </span>
+                    </label>
                   </div>
                 </div>
               </div>
