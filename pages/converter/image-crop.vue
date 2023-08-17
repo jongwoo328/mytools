@@ -9,10 +9,7 @@ const { asyncBlobToBase64 } = useImageUtil();
 const image = ref() as Ref<HTMLImageElement>;
 const imageInput = ref() as Ref<HTMLInputElement>;
 const cropper = ref();
-const cropperImageSource = ref(
-  // eslint-disable-next-line max-len
-  "https://img.jongwoo.me/tools/ghost.avif",
-);
+const cropperImageSource = ref("https://img.jongwoo.me/tools/ghost.png");
 
 const selectedAspectRatio: Ref<"Custom" | number> = ref(16 / 9);
 const customRatioWidth = ref(1.618);
@@ -258,6 +255,10 @@ watch([pressUp, pressRight, pressLeft, pressDown], () => {
     moveDown();
   }
 });
+
+const test = (e) => {
+  console.log(e);
+};
 </script>
 
 <template>
@@ -272,10 +273,12 @@ watch([pressUp, pressRight, pressLeft, pressDown], () => {
           <vue-cropper
             :check-cross-origin="false"
             ref="cropper"
+            class="w-100"
             :aspect-ratio="selectedAspectRatio"
             :src="cropperImageSource"
             @ready="onCropperReady"
             @cropmove="onCropResize"
+            @zoom="test"
             :style="{ height: '100%', width: '100%' }"
           />
         </div>
