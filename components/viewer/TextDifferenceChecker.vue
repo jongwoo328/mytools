@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import PageHeading from "@/components/common/PageHeading.vue";
 import TextDifferenceCheckerViewer from "@/components/viewer/TextDifferenceCheckerViewer.vue";
-import * as Diff from "diff";
 import { Change } from "diff";
 import { DiffType } from "@/types/textDiff";
+import TextDiffWorker from "@/assets/scripts/textDiffWorker?worker";
+
+const worker = new TextDiffWorker();
+worker.onmessage = (e) => {
+  diffResult.value = e.data;
+};
 
 const text1 = ref("");
 const text2 = ref("");
@@ -30,18 +35,12 @@ const inputLayoutOptions = [
 
 let diffResult = ref<Change[]>([]);
 
-const checkDiff = (text1: string, text2: string, diffType: DiffType) => {
-  if (diffType === "chars") {
-    diffResult.value = Diff.diffChars(text1, text2);
-  } else if (diffType === "words") {
-    diffResult.value = Diff.diffWords(text1, text2);
-  } else if (diffType === "lines") {
-    diffResult.value = Diff.diffLines(text1, text2);
-  }
-};
-
 watch([text1, text2, diffType], () => {
-  checkDiff(text1.value, text2.value, diffType.value);
+  worker.postMessage({
+    text1: text1.value,
+    text2: text2.value,
+    diffType: diffType.value,
+  });
 });
 </script>
 
@@ -92,7 +91,7 @@ watch([text1, text2, diffType], () => {
           </div>
         </div>
         <div class="col py-2">
-          <div class="diff-viewer-wrap" style="min-height: 23px">
+          <div class="diff-viewer-wrap">
             <TextDifferenceCheckerViewer :changes="diffResult" :diff-type="diffType" />
           </div>
         </div>
@@ -104,5 +103,8 @@ watch([text1, text2, diffType], () => {
 <style scoped lang="scss">
 .diff-viewer-wrap {
   border: 1px solid #ced4da;
+  min-height: 83px;
+  overflow-x: auto;
+  padding: 5px;
 }
 </style>
