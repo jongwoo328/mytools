@@ -25,6 +25,7 @@ import TabMenu from "primevue/tabmenu";
 import TabView from "primevue/tabview";
 import TabPanel from "primevue/tabpanel";
 import ColorPicker from "primevue/colorpicker";
+import Skeleton from "primevue/skeleton";
 import ToastService from "primevue/toastservice";
 
 export default defineNuxtPlugin((nuxtApp) => {
@@ -56,4 +57,5 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.component("TabView", TabView);
   nuxtApp.vueApp.component("TabPanel", TabPanel);
   nuxtApp.vueApp.component("ColorPicker", ColorPicker);
+  nuxtApp.vueApp.component("Skeleton", Skeleton);
 });
