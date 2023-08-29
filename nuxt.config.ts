@@ -10,6 +10,7 @@ export default defineNuxtConfig({
   routeRules: {
     "/**": { prerender: true },
     "/viewer/html": { ssr: true, prerender: false },
+    "/viewr/text-diff": { ssr: false },
   },
 
   // nuxt-robots

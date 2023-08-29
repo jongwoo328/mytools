@@ -10,7 +10,9 @@ import TextDifferenceChecker from "~/components/viewer/TextDifferenceChecker.vue
   <PageTitle title="Text Difference Checker" />
   <Card>
     <template #content>
-      <TextDifferenceChecker />
+      <ClientOnly>
+        <TextDifferenceChecker />
+      </ClientOnly>
     </template>
   </Card>
 </template>
