@@ -194,11 +194,6 @@ const move = (offsetX: number, offsetY: number) => {
 };
 
 const save = () => {
-  console.log(
-    cropper.value.getCroppedCanvas().toBlob((b) => {
-      console.log(b);
-    }),
-  );
   cropper.value.getCroppedCanvas().toBlob((blob: Blob) => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
