@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import VueJsonPretty from "vue-json-pretty";
 import { JSONResult } from "@/types/JSONResult";
 import { copyWithNotification } from "@/utils/copy";
 import { MenuItem } from "primevue/menuitem";
 import { breakpointsBootstrapV5, useBreakpoints } from "@vueuse/core";
 import ResultDivider from "@/components/common/ResultDivider.vue";
 import ResultItem from "@/components/common/ResultItem.vue";
+import { parseJsonPathToKeyArray } from "@/utils/json";
 
 const emit = defineEmits<{ (e: "delete", id: string): void }>();
 const props = defineProps<{
@@ -18,6 +18,8 @@ const breakpoints = useBreakpoints(breakpointsBootstrapV5);
 const isMobileOrTablet = breakpoints.smaller("md");
 
 const selected = ref("");
+const isSelectedEmpty = computed(() => selected.value.length === 0);
+
 const virtualScroll = ref(true);
 
 const getObjectFromPath = (path: string) => {
@@ -28,6 +30,13 @@ const onClickCopyAll = async () => {
 };
 const onClickSelectedNode = async () => {
   await copyWithNotification(JSON.stringify(getObjectFromPath(selected.value as string), null, 4));
+};
+const onClickCopyKey = async () => {
+  const lastKey =
+    parseJsonPathToKeyArray(selected.value)
+      .filter((key) => key !== "$")
+      .at(-1) ?? "";
+  await copyWithNotification(lastKey);
 };
 const onClickCopyPath = async () => {
   if (selected.value) {
@@ -67,12 +76,21 @@ const clickActions: MenuItem[] = [
     style: {
       fontSize: "16px",
     },
+    disabled: () => isSelectedEmpty.value,
+  },
+  {
+    label: "Copy Key",
+    icon: "pi pi-copy",
+    command: onClickCopyKey,
+    class: "click-action",
+    disabled: () => isSelectedEmpty.value,
   },
   {
     label: "Copy Node",
     icon: "pi pi-copy",
     command: onClickSelectedNode,
     class: "click-action",
+    disabled: () => isSelectedEmpty.value,
   },
   {
     label: "Download",
@@ -137,7 +155,16 @@ const clickActions: MenuItem[] = [
               icon="pi pi-copy"
               @click="onClickCopyPath"
               class="py-1 px-2 h-100 me-1"
-              :disabled="useLodashIsNull(selected)"
+              :disabled="isSelectedEmpty"
+            />
+            <Button
+              outlined
+              label="Copy Key"
+              size="small"
+              icon="pi pi-copy"
+              @click="onClickCopyKey"
+              class="py-1 px-2 h-100 me-1"
+              :disabled="isSelectedEmpty"
             />
             <Button
               outlined
@@ -146,7 +173,7 @@ const clickActions: MenuItem[] = [
               icon="pi pi-copy"
               @click="onClickSelectedNode"
               class="py-1 px-2 h-100 me-1"
-              :disabled="useLodashIsNull(selected)"
+              :disabled="isSelectedEmpty"
             />
             <Button
               outlined
