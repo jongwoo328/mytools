@@ -194,6 +194,11 @@ const move = (offsetX: number, offsetY: number) => {
 };
 
 const save = () => {
+  console.log(
+    cropper.value.getCroppedCanvas().toBlob((b) => {
+      console.log(b);
+    }),
+  );
   cropper.value.getCroppedCanvas().toBlob((blob: Blob) => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -271,7 +276,6 @@ const test = (e) => {
       <div class="row w-100 m-0">
         <div class="pb-1 pb-lg-0 pe-lg-2 d-flex justify-content-center align-items-center col col-12 col-lg-8">
           <vue-cropper
-            :check-cross-origin="false"
             ref="cropper"
             class="w-100"
             :aspect-ratio="selectedAspectRatio"
