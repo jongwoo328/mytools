@@ -119,9 +119,11 @@ watchDebounced(
     </div>
     <div class="col col-12 mt-3">
       <div class="row">
+        <div class="d-flex justify-content-between">
+          <PageHeading class="m-0" :size="7" :level="2">Result</PageHeading>
+        </div>
         <div class="d-flex justify-content-between align-items-center">
           <div class="d-flex align-items-center">
-            <PageHeading class="m-0" :size="7" :level="2">Result</PageHeading>
             <ProgressSpinner stroke-width="8" style="height: 20px; width: 50px" class="m-0" v-if="isCalculating" />
             <Button
               @click="cancelWorker"
@@ -129,7 +131,7 @@ watchDebounced(
               :loading="!isTimeOver"
               size="small"
               v-if="isCalculating && showCancelButton"
-              class="py-2 px-3"
+              class="py-1 px-2"
               >Cancel
             </Button>
           </div>
