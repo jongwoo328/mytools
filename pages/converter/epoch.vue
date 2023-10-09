@@ -3,6 +3,25 @@ import PageTitle from "@/components/common/PageTitle.vue";
 import EpochConverterEpochForm from "@/components/converter/EpochConverterEpochForm.vue";
 import EpochConverterDateTimeForm from "@/components/converter/EpochConverterDateTimeForm.vue";
 import PageHeading from "@/components/common/PageHeading.vue";
+
+useJsonld(() => ({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Tools For Developer",
+      item: "https://tools.jongwoo.me",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Epoch Converter",
+      item: "https://tools.jongwoo.me/converter/epoch",
+    },
+  ],
+}));
 </script>
 
 <template>

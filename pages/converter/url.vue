@@ -3,6 +3,25 @@ import PageTitle from "~/components/common/PageTitle.vue";
 import PageHeading from "~/components/common/PageHeading.vue";
 import { copyWithNotification } from "~/utils/copy";
 
+useJsonld(() => ({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Tools For Developer",
+      item: "https://tools.jongwoo.me",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "URL Encoder, Decoder",
+      item: "https://tools.jongwoo.me/converter/url",
+    },
+  ],
+}));
+
 const inputText = ref("");
 const activeTabKey = ref(0);
 const encodedText = computed(() => encodeURI(inputText.value));

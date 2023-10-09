@@ -1,11 +1,19 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import eslintPlugin from "vite-plugin-eslint";
 
-const siteUrl = "https://tools.jongwoo.me";
+export const siteUrl = "https://tools.jongwoo.me";
 
 export default defineNuxtConfig({
   ssr: true,
-  modules: ["nuxt-gtag", "nuxt-lodash", "@vueuse/nuxt", "nuxt-simple-sitemap", "@nuxtjs/web-vitals", "@nuxtjs/robots"],
+  modules: [
+    "nuxt-gtag",
+    "nuxt-lodash",
+    "@vueuse/nuxt",
+    "nuxt-simple-sitemap",
+    "@nuxtjs/web-vitals",
+    "@nuxtjs/robots",
+    "nuxt-jsonld",
+  ],
 
   routeRules: {
     "/**": { prerender: true },

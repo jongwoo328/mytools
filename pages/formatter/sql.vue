@@ -7,6 +7,25 @@ import SQLResultList from "@/components/formatter/SQLResultList.vue";
 import PageTitle from "@/components/common/PageTitle.vue";
 import PageHeading from "@/components/common/PageHeading.vue";
 
+useJsonld(() => ({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Tools For Developer",
+      item: "https://tools.jongwoo.me",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "SQL Formatter",
+      item: "https://tools.jongwoo.me/formatter/sql",
+    },
+  ],
+}));
+
 const SQLFormatterResults: Ref<SQLResult[]> = ref([]);
 const sqlLanguageOptions = [
   {

@@ -10,6 +10,25 @@ import PageHeading from "@/components/common/PageHeading.vue";
 import { FileUploadSelectEvent } from "primevue/fileupload";
 import { createEmptyFile, isEmptyFile } from "~/utils/file";
 
+useJsonld(() => ({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Tools For Developer",
+      item: "https://tools.jongwoo.me",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "CSV to JSON Converter",
+      item: "https://tools.jongwoo.me/converter/csv-to-json",
+    },
+  ],
+}));
+
 const enum CsvToJsonEncodingType {
   UTF8 = "UTF-8",
   EUC_KR = "EUC-KR",

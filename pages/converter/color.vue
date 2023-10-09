@@ -5,6 +5,25 @@ import CmykColor from "~/models/CmykColor";
 import HslColor from "~/models/HslColor";
 import ColorConvertResult from "~/components/converter/ColorConvertResult.vue";
 
+useJsonld(() => ({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Tools For Developer",
+      item: "https://tools.jongwoo.me",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Color Code Converter",
+      item: "https://tools.jongwoo.me/converter/color",
+    },
+  ],
+}));
+
 const rgbPickedColor = ref("000000");
 const cmykPickedColor = ref("000000");
 const hslPickedColor = ref("000000");

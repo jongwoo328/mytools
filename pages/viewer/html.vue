@@ -3,6 +3,25 @@ import PageTitle from "@/components/common/PageTitle.vue";
 import { html } from "@codemirror/lang-html";
 import { ref } from "vue";
 
+useJsonld(() => ({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Tools For Developer",
+      item: "https://tools.jongwoo.me",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "HTML Viewer",
+      item: "https://tools.jongwoo.me/viewer/html",
+    },
+  ],
+}));
+
 const htmlText = ref(
   "<style>" +
     "\n\tli {font-weight: bold;} #listNuxt3 {color: rgb(104, 217, 136);} #listVercel {color: rgb(0, 0, 0)}" +
