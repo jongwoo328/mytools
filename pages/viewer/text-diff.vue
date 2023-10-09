@@ -6,6 +6,7 @@ import TextDifferenceChecker from "~/components/viewer/TextDifferenceChecker.vue
 <template>
   <Head>
     <Title>Text Difference Checker</Title>
+    <Meta name="description" content="View text differences with display in github-like representation." />
   </Head>
   <PageTitle title="Text Difference Checker" />
   <Card>

@@ -76,6 +76,7 @@ const onClear = () => {
 <template>
   <Head>
     <Title>CSV to JSON Converter</Title>
+    <Meta name="description" content="Converting CSV to JSON. Upload file is also available." />
   </Head>
   <PageTitle title="CSV to JSON Converter" />
   <div class="mb-3">

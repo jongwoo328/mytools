@@ -33,10 +33,8 @@ export default defineNuxtConfig({
         {
           name: "description",
           content:
-            "This website provides a collection of simple yet useful tools that work solely on the client-side, " +
-            "allowing users to enjoy their benefits without worrying about data leaks. " +
-            "The website features various functions including CSV to JSON converter, epoch time converter, " +
-            "image type converter, image cropper, JSON formatter, SQL formatter, HTML viewer, and Color converter",
+            "Provides a variety of development-required features without a server, " +
+            "enabling safe use without worrying about data leakage",
         },
       ],
     },

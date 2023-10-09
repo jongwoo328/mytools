@@ -66,6 +66,7 @@ const onFormatButtonClick = () => {
 <template>
   <Head>
     <Title>SQL Formatter</Title>
+    <Meta name="description" content="Format SQL in a variety of ways that are commonly used" />
   </Head>
   <PageTitle title="SQL Formatter" />
   <section>

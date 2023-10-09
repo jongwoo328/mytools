@@ -32,6 +32,7 @@ const onFormatButtonClick = () => {
 <template>
   <Head>
     <Title>JSON Formatter</Title>
+    <Meta name="description" content="Format JSON text and extract its elements." />
   </Head>
   <PageTitle title="JSON Formatter" />
   <section>

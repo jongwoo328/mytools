@@ -255,15 +255,12 @@ watch([pressUp, pressRight, pressLeft, pressDown], () => {
     moveDown();
   }
 });
-
-const test = (e) => {
-  console.log(e);
-};
 </script>
 
 <template>
   <Head>
     <Title>Image Cropper</Title>
+    <Meta name="description" content="Crop image and save result." />
   </Head>
   <PageTitle title="Image Cropper" />
   <Card>
@@ -277,7 +274,6 @@ const test = (e) => {
             :src="cropperImageSource"
             @ready="onCropperReady"
             @cropmove="onCropResize"
-            @zoom="test"
             :style="{ height: '100%', width: '100%' }"
           />
         </div>

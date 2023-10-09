@@ -8,6 +8,7 @@ import PageHeading from "@/components/common/PageHeading.vue";
 <template>
   <Head>
     <Title>Epoch Converter</Title>
+    <Meta name="description" content="Convert epoch to date time and vice versa." />
   </Head>
   <PageTitle title="Epoch Converter" />
   <div class="row mt-3">
