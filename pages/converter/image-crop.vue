@@ -5,6 +5,25 @@ import { useImageUtil } from "@/composables/useImageUtil";
 import { v4 } from "uuid";
 import { breakpointsBootstrapV5, useMagicKeys } from "@vueuse/core";
 
+useJsonld(() => ({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Tools For Developer",
+      item: "https://tools.jongwoo.me",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Image Cropper",
+      item: "https://tools.jongwoo.me/converter/image-crop",
+    },
+  ],
+}));
+
 const { asyncBlobToBase64 } = useImageUtil();
 const image = ref() as Ref<HTMLImageElement>;
 const imageInput = ref() as Ref<HTMLInputElement>;

@@ -31,6 +31,9 @@ dependencies:
   luxon:
     specifier: ^3.4.0
     version: 3.4.3
+  nuxt-jsonld:
+    specifier: ^2.0.8
+    version: 2.0.8(typescript@5.2.2)
   papaparse:
     specifier: ^5.4.1
     version: 5.4.1
@@ -4723,6 +4726,15 @@ packages:
       - supports-color
     dev: true
 
+  /nuxt-jsonld@2.0.8(typescript@5.2.2):
+    resolution: {integrity: sha512-EnrEdh8q5TKqrY1ZaIU9xe9iqHc0bj/QR5b8BEO2ckWXIR6rHV+XxWMfdHMgGbo6fzrZTLTtlWUG2q0L7q45HQ==}
+    dependencies:
+      pathe: 1.1.1
+      schema-dts: 1.1.2(typescript@5.2.2)
+    transitivePeerDependencies:
+      - typescript
+    dev: false
+
   /nuxt-lodash@2.5.0:
     resolution: {integrity: sha512-nd7YrKzJH7kqMEwyAlwk0T8Fi/G1heAaWJENFm6SUIwYgR6AOigp/ryLya+JBEP+ZmGrJbIHq+mhWNdvKsLK7g==}
     dependencies:
@@ -5713,6 +5725,14 @@ packages:
       chokidar: 3.5.3
       immutable: 4.3.4
       source-map-js: 1.0.2
+
+  /schema-dts@1.1.2(typescript@5.2.2):
+    resolution: {integrity: sha512-MpNwH0dZJHinVxk9bT8XUdjKTxMYrA5bLtrrGmFA6PTLwlOKnhi67XoRd6/ty+Djt6ZC0slR57qFhZDNMI6DhQ==}
+    peerDependencies:
+      typescript: '>=4.1.0'
+    dependencies:
+      typescript: 5.2.2
+    dev: false
 
   /scule@1.0.0:
     resolution: {integrity: sha512-4AsO/FrViE/iDNEPaAQlb77tf0csuq27EsVpy6ett584EcRTp6pTDLoGWVxCD77y5iU5FauOvhsI4o1APwPoSQ==}

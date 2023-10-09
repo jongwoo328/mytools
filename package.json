@@ -48,6 +48,7 @@
     "codemirror": "^6.0.1",
     "diff": "^5.1.0",
     "luxon": "^3.4.0",
+    "nuxt-jsonld": "^2.0.8",
     "papaparse": "^5.4.1",
     "primeicons": "^6.0.1",
     "primevue": "~3.34.1",

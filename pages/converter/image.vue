@@ -12,6 +12,25 @@ import { createEmptyFile, isEmptyFile } from "@/utils/file";
 import PageHeading from "@/components/common/PageHeading.vue";
 import { createEmptyImageElement } from "~/utils/HTMLImage";
 
+useJsonld(() => ({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Tools For Developer",
+      item: "https://tools.jongwoo.me",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Image Converter",
+      item: "https://tools.jongwoo.me/converter/image",
+    },
+  ],
+}));
+
 const browser = useBrowser();
 const { asyncBlobToBase64 } = useImageUtil();
 
