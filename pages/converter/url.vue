@@ -20,6 +20,7 @@ const onClickCopy = () => {
 <template>
   <Head>
     <Title>URL Encoder / Decoder</Title>
+    <Meta name="description" content="A simple URL encoder and decoder." />
   </Head>
   <PageTitle title="URL Encoder / Decoder" />
   <section>

@@ -101,6 +101,7 @@ watch([hslHue, hslSaturation, hslLightness], () => {
 <template>
   <Head>
     <Title>Color Code Converter</Title>
+    <Meta name="description" content="Convert color code to other formats like RGB, HEX, CMYK, HSL." />
   </Head>
   <PageTitle title="Color Code Converter" />
   <div class="mb-3">

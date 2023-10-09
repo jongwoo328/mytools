@@ -30,6 +30,7 @@ const htmlText = ref(
 <template>
   <Head>
     <Title>HTML Viewer</Title>
+    <Meta name="description" content="A simple HTML viewer which can be used with CSS, JavaScript." />
   </Head>
   <PageTitle title="HTML Viewer" />
   <Card>

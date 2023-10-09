@@ -114,6 +114,7 @@ watch(inputImage, () => {
 <template>
   <Head>
     <Title>Image Converter</Title>
+    <Meta name="description" content="Convert image to other formats like PNG, JPEG, WEBP, Base64." />
   </Head>
   <PageTitle title="Image Converter" />
   <section>
