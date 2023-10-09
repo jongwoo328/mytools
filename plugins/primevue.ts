@@ -27,6 +27,7 @@ import TabPanel from "primevue/tabpanel";
 import ColorPicker from "primevue/colorpicker";
 import Skeleton from "primevue/skeleton";
 import ToastService from "primevue/toastservice";
+import ToggleButton from "primevue/togglebutton";
 
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.use(PrimeVue, { ripple: true });
@@ -58,4 +59,5 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.component("TabPanel", TabPanel);
   nuxtApp.vueApp.component("ColorPicker", ColorPicker);
   nuxtApp.vueApp.component("Skeleton", Skeleton);
+  nuxtApp.vueApp.component("ToggleButton", ToggleButton);
 });

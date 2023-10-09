@@ -8,13 +8,13 @@ const props = defineProps<{
 }>();
 
 const router = useRouter();
-const onClickButton = () => {
+const onClickItem = () => {
   router.push(props.tool.router);
 };
 </script>
 
 <template>
-  <Card>
+  <Card @click="onClickItem" class="tool-item">
     <template #title>
       <RouterLink class="text-decoration-none text-black" :to="tool.router">
         <PageHeading weight="600" class="m-0" :level="2" :size="7">
@@ -26,12 +26,23 @@ const onClickButton = () => {
       <p class="mb-2" style="min-height: 44px">
         {{ props.tool.description }}
       </p>
-      <div>
-        <Tag :style="{ backgroundColor: tag.color }" v-for="tag in props.tool.tags" :key="tag.name">
-          {{ tag.name }}
-        </Tag>
-      </div>
-      <Button @click="onClickButton" class="w-100 d-block mt-3"> Start</Button>
+    </template>
+    <template #footer>
+      <Tag :style="{ backgroundColor: tag.color }" v-for="tag in props.tool.tags" :key="tag.name">
+        {{ tag.name }}
+      </Tag>
     </template>
   </Card>
 </template>
+
+<style lang="scss">
+.tool-item {
+  cursor: pointer;
+  box-shadow: none;
+  border: 1px solid lightgray;
+
+  &:hover {
+    border-color: #3b82f6;
+  }
+}
+</style>

@@ -36,8 +36,4 @@ a {
   min-height: 100vh;
   background-color: #f0f2f5;
 }
-
-body {
-  font-family: (--font-family);
-}
 </style>
