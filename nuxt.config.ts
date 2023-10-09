@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import eslintPlugin from "vite-plugin-eslint";
 
-export const siteUrl = "https://tools.jongwoo.me";
+const siteUrl = "https://tools.jongwoo.me";
 
 export default defineNuxtConfig({
   ssr: true,
