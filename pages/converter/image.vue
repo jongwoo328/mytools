@@ -6,11 +6,11 @@ import ImageConverterResultList from "@/components/converter/ImageConverterResul
 import { v4 } from "uuid";
 import { ImageConverterResult } from "@/types/ImageConverterResult";
 import { useImageUtil } from "@/composables/useImageUtil";
-import PageTitle from "@/components/common/PageTitle.vue";
 import { copyWithNotification } from "@/utils/copy";
 import { createEmptyFile, isEmptyFile } from "@/utils/file";
 import PageHeading from "@/components/common/PageHeading.vue";
 import { createEmptyImageElement } from "~/utils/HTMLImage";
+import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 
 useJsonld(() => ({
   "@context": "https://schema.org",
@@ -135,12 +135,8 @@ watch(inputImage, () => {
     <Title>Image Converter</Title>
     <Meta name="description" content="Convert image to other formats like PNG, JPEG, WEBP, Base64." />
   </Head>
-  <PageTitle title="Image Converter" />
-  <section>
-    <div class="mb-3">
-      <PageHeading :level="2" :size="6" weight="600"> Added Image</PageHeading>
-      <span> Only Support JPEG, PNG, WEBP(except Safari) </span>
-    </div>
+  <ToolPageLayout title="Image Converter" description="Only Support JPEG, PNG, WEBP(except Safari)">
+    <PageHeading :level="2" :size="6" weight="600"> Added Image</PageHeading>
     <canvas ref="canvas" v-show="false"></canvas>
     <Card>
       <template #content>
@@ -197,6 +193,12 @@ watch(inputImage, () => {
         </div>
       </template>
     </Card>
-  </section>
-  <ImageConverterResultList v-model:results="imageConverterResultList" />
+
+    <ImageConverterResultList v-model:results="imageConverterResultList" />
+  </ToolPageLayout>
+  <!--  <PageTitle title="Image Converter" />-->
+
+  <!--  <div class="mb-3">-->
+  <!--    <span> Only Support JPEG, PNG, WEBP(except Safari) </span>-->
+  <!--  </div>-->
 </template>

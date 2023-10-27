@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import PageTitle from "@/components/common/PageTitle.vue";
 import { computed, Ref, ref, watch } from "vue";
 import { useImageUtil } from "@/composables/useImageUtil";
 import { v4 } from "uuid";
 import { breakpointsBootstrapV5, useMagicKeys } from "@vueuse/core";
+import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 
 useJsonld(() => ({
   "@context": "https://schema.org",
@@ -281,286 +281,294 @@ watch([pressUp, pressRight, pressLeft, pressDown], () => {
     <Title>Image Cropper</Title>
     <Meta name="description" content="Crop image and save result." />
   </Head>
-  <PageTitle title="Image Cropper" />
-  <Card>
-    <template #content>
-      <div class="row w-100 m-0">
-        <div class="pb-1 pb-lg-0 pe-lg-2 d-flex justify-content-center align-items-center col col-12 col-lg-8">
-          <vue-cropper
-            ref="cropper"
-            class="w-100"
-            :aspect-ratio="selectedAspectRatio"
-            :src="cropperImageSource"
-            @ready="onCropperReady"
-            @cropmove="onCropResize"
-            :style="{ height: '100%', width: '100%' }"
-          />
-        </div>
-        <div class="col col-12 col-lg-4">
-          <img class="d-none" ref="image" alt="Added image" src="" />
-          <input ref="imageInput" id="crop-image" class="d-none" type="file" accept="image/*" @change="onChangeInput" />
-          <div class="mt-2 mt-lg-0">
-            <Button class="d-block w-100" @click="save">Save</Button>
-            <label for="crop-image" class="p-button p-component p-button-outlined d-block w-100 mt-2">
-              Change Image
-            </label>
+  <ToolPageLayout title="Image Cropper">
+    <Card>
+      <template #content>
+        <div class="row w-100 m-0">
+          <div class="pb-1 pb-lg-0 pe-lg-2 d-flex justify-content-center align-items-center col col-12 col-lg-8">
+            <vue-cropper
+              ref="cropper"
+              class="w-100"
+              :aspect-ratio="selectedAspectRatio"
+              :src="cropperImageSource"
+              @ready="onCropperReady"
+              @cropmove="onCropResize"
+              :style="{ height: '100%', width: '100%' }"
+            />
           </div>
-          <div class="options mt-2 p-2">
-            <div class="row option-list">
-              <div class="col col-12">
-                <div class="row">
-                  <div class="col col-12 d-flex align-items-center mt-2">
-                    <label for="aspectRatio">Aspect Ratio</label>
-                  </div>
-                  <div class="col col-12 mt-2">
-                    <Dropdown
-                      id="aspectRatio"
-                      :options="aspectRatioOptions"
-                      v-model:model-value="selectedAspectRatio"
-                      option-label="label"
-                      option-value="value"
-                      class="w-100"
-                      :disabled="isCropperLocked"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="col col-12">
-                <div class="row">
-                  <div class="col col-12 mt-2">
-                    <label for="">Custom Ratio</label>
-                  </div>
-                  <div class="col col-12 mt-2">
-                    <div class="row justify-content-between">
-                      <div class="pe-0" style="width: 45%">
-                        <InputNumber
-                          :disabled="selectedAspectRatio !== 'Custom' || isCropperLocked"
-                          class="w-100"
-                          show-buttons
-                          :step="0.1"
-                          input-class="w-100 prevent-auto-zoom"
-                          :min="1"
-                          :max="30"
-                          v-model:model-value="customRatioWidth"
-                        />
-                      </div>
-                      <div style="width: 10%" class="d-flex justify-content-center align-items-center">
-                        <span class="fs-4 fw-light">/</span>
-                      </div>
-                      <div class="ps-0" style="width: 45%">
-                        <InputNumber
-                          :disabled="selectedAspectRatio !== 'Custom' || isCropperLocked"
-                          class="w-100"
-                          show-buttons
-                          :step="0.1"
-                          input-class="w-100 prevent-auto-zoom"
-                          :min="1"
-                          :max="30"
-                          v-model:model-value="customRatioHeight"
-                        />
-                      </div>
+          <div class="col col-12 col-lg-4">
+            <img class="d-none" ref="image" alt="Added image" src="" />
+            <input
+              ref="imageInput"
+              id="crop-image"
+              class="d-none"
+              type="file"
+              accept="image/*"
+              @change="onChangeInput"
+            />
+            <div class="mt-2 mt-lg-0">
+              <Button class="d-block w-100" @click="save">Save</Button>
+              <label for="crop-image" class="p-button p-component p-button-outlined d-block w-100 mt-2">
+                Change Image
+              </label>
+            </div>
+            <div class="options mt-2 p-2">
+              <div class="row option-list">
+                <div class="col col-12">
+                  <div class="row">
+                    <div class="col col-12 d-flex align-items-center mt-2">
+                      <label for="aspectRatio">Aspect Ratio</label>
+                    </div>
+                    <div class="col col-12 mt-2">
+                      <Dropdown
+                        id="aspectRatio"
+                        :options="aspectRatioOptions"
+                        v-model:model-value="selectedAspectRatio"
+                        option-label="label"
+                        option-value="value"
+                        class="w-100"
+                        :disabled="isCropperLocked"
+                      />
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="col col-12">
-                <div class="row">
-                  <div class="col col-12 mt-2">
-                    <label for="">Crop Size (W/H)</label>
-                  </div>
-                  <div class="col col-12 mt-2">
-                    <div class="row justify-content-between">
-                      <div class="pe-0" style="width: 45%">
-                        <InputNumber
-                          :disabled="isCropperLocked"
-                          class="w-100"
-                          show-buttons
-                          :step="1"
-                          input-class="w-100 prevent-auto-zoom"
-                          :min="1"
-                          :max="10000"
-                          v-model:model-value="customCropWidth"
-                        />
-                      </div>
-                      <div style="width: 10%" class="d-flex justify-content-center align-items-center">
-                        <span class="fs-4 fw-light">/</span>
-                      </div>
-                      <div class="ps-0" style="width: 45%">
-                        <InputNumber
-                          :disabled="isCropperLocked"
-                          class="w-100"
-                          show-buttons
-                          :step="1"
-                          input-class="w-100 prevent-auto-zoom"
-                          :min="1"
-                          :max="10000"
-                          v-model:model-value="customCropHeight"
-                        />
+                <div class="col col-12">
+                  <div class="row">
+                    <div class="col col-12 mt-2">
+                      <label for="">Custom Ratio</label>
+                    </div>
+                    <div class="col col-12 mt-2">
+                      <div class="row justify-content-between">
+                        <div class="pe-0" style="width: 45%">
+                          <InputNumber
+                            :disabled="selectedAspectRatio !== 'Custom' || isCropperLocked"
+                            class="w-100"
+                            show-buttons
+                            :step="0.1"
+                            input-class="w-100 prevent-auto-zoom"
+                            :min="1"
+                            :max="30"
+                            v-model:model-value="customRatioWidth"
+                          />
+                        </div>
+                        <div style="width: 10%" class="d-flex justify-content-center align-items-center">
+                          <span class="fs-4 fw-light">/</span>
+                        </div>
+                        <div class="ps-0" style="width: 45%">
+                          <InputNumber
+                            :disabled="selectedAspectRatio !== 'Custom' || isCropperLocked"
+                            class="w-100"
+                            show-buttons
+                            :step="0.1"
+                            input-class="w-100 prevent-auto-zoom"
+                            :min="1"
+                            :max="30"
+                            v-model:model-value="customRatioHeight"
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="col col-12">
-                <div class="row">
-                  <div class="col col-12 mt-2">
-                    <label for="">Crop Position (X/Y)</label>
-                  </div>
-                  <div class="col col-12 mt-2">
-                    <div class="row justify-content-between">
-                      <div class="pe-0" style="width: 45%">
-                        <InputNumber
-                          :disabled="isCropperLocked"
-                          class="w-100"
-                          show-buttons
-                          :step="1"
-                          input-class="w-100 prevent-auto-zoom"
-                          :min="0"
-                          :max="10000"
-                          v-model:model-value="customCropLeft"
-                        />
-                      </div>
-                      <div style="width: 10%" class="d-flex justify-content-center align-items-center">
-                        <span class="fs-4 fw-light">/</span>
-                      </div>
-                      <div class="ps-0" style="width: 45%">
-                        <InputNumber
-                          :disabled="isCropperLocked"
-                          class="w-100"
-                          show-buttons
-                          :step="1"
-                          input-class="w-100 prevent-auto-zoom"
-                          :min="0"
-                          :max="10000"
-                          v-model:model-value="customCropTop"
-                        />
+                <div class="col col-12">
+                  <div class="row">
+                    <div class="col col-12 mt-2">
+                      <label for="">Crop Size (W/H)</label>
+                    </div>
+                    <div class="col col-12 mt-2">
+                      <div class="row justify-content-between">
+                        <div class="pe-0" style="width: 45%">
+                          <InputNumber
+                            :disabled="isCropperLocked"
+                            class="w-100"
+                            show-buttons
+                            :step="1"
+                            input-class="w-100 prevent-auto-zoom"
+                            :min="1"
+                            :max="10000"
+                            v-model:model-value="customCropWidth"
+                          />
+                        </div>
+                        <div style="width: 10%" class="d-flex justify-content-center align-items-center">
+                          <span class="fs-4 fw-light">/</span>
+                        </div>
+                        <div class="ps-0" style="width: 45%">
+                          <InputNumber
+                            :disabled="isCropperLocked"
+                            class="w-100"
+                            show-buttons
+                            :step="1"
+                            input-class="w-100 prevent-auto-zoom"
+                            :min="1"
+                            :max="10000"
+                            v-model:model-value="customCropHeight"
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="col col-12">
-                <div class="row">
-                  <div class="col col-12 mt-2">
-                    <label for="">Control</label>
-                  </div>
-                  <div class="col col-12 row m-0 mt-2">
-                    <div class="col col-12 col-sm-6 col-md-4 col-lg-12">
-                      <div class="w-100 d-flex">
-                        <Button
-                          severity="secondary"
-                          size="small"
-                          icon="pi pi-arrow-left"
-                          class="me-1 control-button"
-                          @click="moveLeft"
-                        />
-                        <Button
-                          severity="secondary"
-                          size="small"
-                          icon="pi pi-arrow-up"
-                          class="me-1 control-button"
-                          @click="moveUp"
-                        />
-                        <Button
-                          severity="secondary"
-                          size="small"
-                          icon="pi pi-arrow-right"
-                          class="me-1 control-button"
-                          @click="moveRight"
-                        />
-                        <Button
-                          severity="secondary"
-                          size="small"
-                          icon="pi pi-arrow-down"
-                          class="me-1 control-button"
-                          @click="moveDown"
-                        />
-                      </div>
+                <div class="col col-12">
+                  <div class="row">
+                    <div class="col col-12 mt-2">
+                      <label for="">Crop Position (X/Y)</label>
                     </div>
-                    <div class="col col-12 col-sm-6 col-md-4 col-lg-12 mt-1 mt-sm-0 mt-lg-1">
-                      <div class="w-100 d-flex">
-                        <Button
-                          severity="secondary"
-                          size="small"
-                          icon="pi pi-replay"
-                          class="me-1 control-button"
-                          @click="rotate(-90)"
-                        />
-                        <Button
-                          severity="secondary"
-                          size="small"
-                          icon="pi pi-refresh"
-                          class="me-1 control-button"
-                          @click="rotate(90)"
-                        />
-                        <Button
-                          severity="secondary"
-                          size="small"
-                          icon="pi pi-search-plus"
-                          class="me-1 control-button"
-                          @click="zoom(0.1)"
-                        />
-                        <Button
-                          severity="secondary"
-                          size="small"
-                          icon="pi pi-search-minus"
-                          class="me-1 control-button"
-                          @click="zoom(-0.1)"
-                        />
-                      </div>
-                    </div>
-                    <div class="col col-12 col-sm-6 col-md-4 col-lg-12 mt-1 mt-md-0 mt-lg-1">
-                      <div class="w-100 d-flex">
-                        <Button
-                          :severity="isCropperLocked ? 'danger' : 'secondary'"
-                          size="small"
-                          icon="pi pi-lock"
-                          class="me-1 control-button"
-                          @click="isCropperLocked = true"
-                        />
-                        <Button
-                          :severity="isCropperLocked ? 'secondary' : 'danger'"
-                          size="small"
-                          icon="pi pi-lock-open"
-                          class="me-1 control-button"
-                          @click="isCropperLocked = false"
-                        />
-                        <Button
-                          severity="secondary"
-                          :disabled="isCropperLocked"
-                          size="small"
-                          icon="pi pi-lock"
-                          class="me-1"
-                          :style="`width: calc(0.25rem + ${buttonSideWidth * 2}px)`"
-                          @click="reset"
-                        >
-                          Reset
-                        </Button>
+                    <div class="col col-12 mt-2">
+                      <div class="row justify-content-between">
+                        <div class="pe-0" style="width: 45%">
+                          <InputNumber
+                            :disabled="isCropperLocked"
+                            class="w-100"
+                            show-buttons
+                            :step="1"
+                            input-class="w-100 prevent-auto-zoom"
+                            :min="0"
+                            :max="10000"
+                            v-model:model-value="customCropLeft"
+                          />
+                        </div>
+                        <div style="width: 10%" class="d-flex justify-content-center align-items-center">
+                          <span class="fs-4 fw-light">/</span>
+                        </div>
+                        <div class="ps-0" style="width: 45%">
+                          <InputNumber
+                            :disabled="isCropperLocked"
+                            class="w-100"
+                            show-buttons
+                            :step="1"
+                            input-class="w-100 prevent-auto-zoom"
+                            :min="0"
+                            :max="10000"
+                            v-model:model-value="customCropTop"
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="row mt-3">
-                  <span>Control Configuration</span>
-                  <div class="col col-12 mt-2 px-4 d-flex">
-                    <div>
-                      <InputSwitch class="d-inline-block" input-id="useKeyboardArrow" v-model="useKeyboardArrow" />
+                <div class="col col-12">
+                  <div class="row">
+                    <div class="col col-12 mt-2">
+                      <label for="">Control</label>
                     </div>
-                    <label class="ms-3" for="useKeyboardArrow" style="text-wrap: initial">
-                      <span>Use Keyboard Arrow</span>
-                      <span>
-                        (<kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>←</kbd>,<kbd>↑</kbd>,<kbd>↓</kbd>,<kbd>→</kbd>)
-                      </span>
-                    </label>
+                    <div class="col col-12 row m-0 mt-2">
+                      <div class="col col-12 col-sm-6 col-md-4 col-lg-12">
+                        <div class="w-100 d-flex">
+                          <Button
+                            severity="secondary"
+                            size="small"
+                            icon="pi pi-arrow-left"
+                            class="me-1 control-button"
+                            @click="moveLeft"
+                          />
+                          <Button
+                            severity="secondary"
+                            size="small"
+                            icon="pi pi-arrow-up"
+                            class="me-1 control-button"
+                            @click="moveUp"
+                          />
+                          <Button
+                            severity="secondary"
+                            size="small"
+                            icon="pi pi-arrow-right"
+                            class="me-1 control-button"
+                            @click="moveRight"
+                          />
+                          <Button
+                            severity="secondary"
+                            size="small"
+                            icon="pi pi-arrow-down"
+                            class="me-1 control-button"
+                            @click="moveDown"
+                          />
+                        </div>
+                      </div>
+                      <div class="col col-12 col-sm-6 col-md-4 col-lg-12 mt-1 mt-sm-0 mt-lg-1">
+                        <div class="w-100 d-flex">
+                          <Button
+                            severity="secondary"
+                            size="small"
+                            icon="pi pi-replay"
+                            class="me-1 control-button"
+                            @click="rotate(-90)"
+                          />
+                          <Button
+                            severity="secondary"
+                            size="small"
+                            icon="pi pi-refresh"
+                            class="me-1 control-button"
+                            @click="rotate(90)"
+                          />
+                          <Button
+                            severity="secondary"
+                            size="small"
+                            icon="pi pi-search-plus"
+                            class="me-1 control-button"
+                            @click="zoom(0.1)"
+                          />
+                          <Button
+                            severity="secondary"
+                            size="small"
+                            icon="pi pi-search-minus"
+                            class="me-1 control-button"
+                            @click="zoom(-0.1)"
+                          />
+                        </div>
+                      </div>
+                      <div class="col col-12 col-sm-6 col-md-4 col-lg-12 mt-1 mt-md-0 mt-lg-1">
+                        <div class="w-100 d-flex">
+                          <Button
+                            :severity="isCropperLocked ? 'danger' : 'secondary'"
+                            size="small"
+                            icon="pi pi-lock"
+                            class="me-1 control-button"
+                            @click="isCropperLocked = true"
+                          />
+                          <Button
+                            :severity="isCropperLocked ? 'secondary' : 'danger'"
+                            size="small"
+                            icon="pi pi-lock-open"
+                            class="me-1 control-button"
+                            @click="isCropperLocked = false"
+                          />
+                          <Button
+                            severity="secondary"
+                            :disabled="isCropperLocked"
+                            size="small"
+                            icon="pi pi-lock"
+                            class="me-1"
+                            :style="`width: calc(0.25rem + ${buttonSideWidth * 2}px)`"
+                            @click="reset"
+                          >
+                            Reset
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mt-3">
+                    <span>Control Configuration</span>
+                    <div class="col col-12 mt-2 px-4 d-flex">
+                      <div>
+                        <InputSwitch class="d-inline-block" input-id="useKeyboardArrow" v-model="useKeyboardArrow" />
+                      </div>
+                      <label class="ms-3" for="useKeyboardArrow" style="text-wrap: initial">
+                        <span>Use Keyboard Arrow</span>
+                        <span>
+                          (<kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>←</kbd>,<kbd>↑</kbd>,<kbd>↓</kbd>,<kbd>→</kbd>)
+                        </span>
+                      </label>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </template>
-  </Card>
+      </template>
+    </Card>
+  </ToolPageLayout>
 </template>
 
 <style lang="scss" scoped>

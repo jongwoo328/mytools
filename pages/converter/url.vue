@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import PageTitle from "~/components/common/PageTitle.vue";
 import PageHeading from "~/components/common/PageHeading.vue";
 import { copyWithNotification } from "~/utils/copy";
+import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 
 useJsonld(() => ({
   "@context": "https://schema.org",
@@ -41,11 +41,7 @@ const onClickCopy = () => {
     <Title>URL Encoder / Decoder</Title>
     <Meta name="description" content="A simple URL encoder and decoder." />
   </Head>
-  <PageTitle title="URL Encoder / Decoder" />
-  <section>
-    <div class="mb-3">
-      <span>Encode or Decode URL</span>
-    </div>
+  <ToolPageLayout title="URL Encoder / Decoder" description="Encode or Decode URL">
     <Card>
       <template #content>
         <PageHeading :size="6" :level="2" weight="600">Input</PageHeading>
@@ -71,7 +67,7 @@ const onClickCopy = () => {
         </div>
       </template>
     </Card>
-  </section>
+  </ToolPageLayout>
 </template>
 
 <style scoped lang="scss">

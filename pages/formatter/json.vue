@@ -3,8 +3,8 @@ import { computed, Ref, ref } from "vue";
 import { v4 } from "uuid";
 import JSONResultList from "@/components/formatter/JSONResultList.vue";
 import { JSONResult } from "@/types/JSONResult";
-import PageTitle from "@/components/common/PageTitle.vue";
 import PageHeading from "@/components/common/PageHeading.vue";
+import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 
 useJsonld(() => ({
   "@context": "https://schema.org",
@@ -53,8 +53,7 @@ const onFormatButtonClick = () => {
     <Title>JSON Formatter</Title>
     <Meta name="description" content="Format JSON text and extract its elements." />
   </Head>
-  <PageTitle title="JSON Formatter" />
-  <section>
+  <ToolPageLayout title="JSON Formatter">
     <PageHeading class="d-block align-middle" :level="2" :size="6" weight="600" style="height: 44px; line-height: 2">
       JSON text
     </PageHeading>
@@ -69,6 +68,6 @@ const onFormatButtonClick = () => {
     <Button class="mt-2 w-100 d-block" :disabled="!isJsonValid" @click="onFormatButtonClick" size="large">
       Format
     </Button>
-  </section>
-  <JSONResultList v-model:results="JSONFormatResults" />
+    <JSONResultList v-model:results="JSONFormatResults" />
+  </ToolPageLayout>
 </template>
