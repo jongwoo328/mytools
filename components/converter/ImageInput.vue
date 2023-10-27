@@ -69,6 +69,7 @@ const imageUploadBackground = computed(() => {
       :multiple="false"
       accept="image/*"
       mode="basic"
+      custom-upload
       class="upload w-100 position-relative mb-2"
       @select="onSelect"
       @clear="onClear"

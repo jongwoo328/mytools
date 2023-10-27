@@ -147,6 +147,7 @@ const onClear = () => {
               :multiple="false"
               accept="text/csv"
               mode="basic"
+              custom-upload
               class="upload w-100 position-relative mb-2"
               @select="onFileChange"
               @clear="onClear"

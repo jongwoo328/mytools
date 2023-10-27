@@ -19,6 +19,10 @@ const Tags = {
     name: "Viewer",
     color: "#228be6",
   },
+  Calculator: {
+    name: "Calculator",
+    color: "#845ef7",
+  },
 };
 
 const availableTools: AvailableTool[] = [
@@ -82,14 +86,21 @@ const availableTools: AvailableTool[] = [
     description: "Discover text discrepancies easily",
     tags: [Tags.Viewer],
   },
+  {
+    title: "Text Length Calculator",
+    router: "/calculator/text-length",
+    description: "Calculate text length and bytes",
+    tags: [Tags.Calculator],
+  },
 ];
 
 const toolFilter = reactive({
   isFormatter: true,
   isConverter: true,
   isViewer: true,
+  isCalculator: true,
 });
-const { isFormatter, isConverter, isViewer } = toRefs(toolFilter);
+const { isFormatter, isConverter, isViewer, isCalculator } = toRefs(toolFilter);
 
 const filteredTools = computed(() => {
   return availableTools.filter((tool) => {
@@ -100,6 +111,9 @@ const filteredTools = computed(() => {
       return true;
     }
     if (isViewer.value && tool.tags.includes(Tags.Viewer)) {
+      return true;
+    }
+    if (isCalculator.value && tool.tags.includes(Tags.Calculator)) {
       return true;
     }
     return false;
@@ -120,7 +134,10 @@ const filteredTools = computed(() => {
         class="py-1"
         :pt="{
           root: {
-            class: [{ 'filter-selected-formatter': isFormatter }],
+            style: {
+              backgroundColor: Tags.Formatter.color,
+              borderColor: Tags.Formatter.color,
+            },
           },
         }"
       />
@@ -133,7 +150,10 @@ const filteredTools = computed(() => {
         class="py-1"
         :pt="{
           root: {
-            class: [{ 'filter-selected-converter': isConverter }],
+            style: {
+              backgroundColor: Tags.Converter.color,
+              borderColor: Tags.Converter.color,
+            },
           },
         }"
       />
@@ -146,7 +166,26 @@ const filteredTools = computed(() => {
         class="py-1"
         :pt="{
           root: {
-            class: [{ 'filter-selected-viewer': isViewer }],
+            style: {
+              backgroundColor: Tags.Viewer.color,
+              borderColor: Tags.Viewer.color,
+            },
+          },
+        }"
+      />
+      <ToggleButton
+        v-model="isCalculator"
+        onIcon="pi pi-check"
+        offIcon="pi pi-times"
+        on-label="Calculator"
+        off-label="Calculator"
+        class="py-1"
+        :pt="{
+          root: {
+            style: {
+              backgroundColor: Tags.Calculator.color,
+              borderColor: Tags.Calculator.color,
+            },
           },
         }"
       />
@@ -160,19 +199,4 @@ const filteredTools = computed(() => {
   <ServiceInformationModal :show-modal-initial="showModal" />
 </template>
 
-<style lang="scss" scoped>
-.filter-selected-formatter {
-  background-color: v-bind("Tags.Formatter.color") !important;
-  border-color: v-bind("Tags.Formatter.color") !important;
-}
-
-.filter-selected-converter {
-  background-color: v-bind("Tags.Converter.color") !important;
-  border-color: v-bind("Tags.Converter.color") !important;
-}
-
-.filter-selected-viewer {
-  background-color: v-bind("Tags.Viewer.color") !important;
-  border-color: v-bind("Tags.Viewer.color") !important;
-}
-</style>
+<style lang="scss" scoped></style>
