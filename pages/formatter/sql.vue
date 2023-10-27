@@ -4,8 +4,8 @@ import { format } from "sql-formatter";
 import { v4 } from "uuid";
 import { SelectableSQLLanguage, SQLResult } from "@/types/SQLResult";
 import SQLResultList from "@/components/formatter/SQLResultList.vue";
-import PageTitle from "@/components/common/PageTitle.vue";
 import PageHeading from "@/components/common/PageHeading.vue";
+import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 
 useJsonld(() => ({
   "@context": "https://schema.org",
@@ -87,8 +87,7 @@ const onFormatButtonClick = () => {
     <Title>SQL Formatter</Title>
     <Meta name="description" content="Format SQL in a variety of ways that are commonly used" />
   </Head>
-  <PageTitle title="SQL Formatter" />
-  <section>
+  <ToolPageLayout title="SQL Formatter">
     <div class="mb-2 d-flex justify-content-between align-items-center">
       <PageHeading class="d-inline-block m-0" :level="2" :size="6" weight="600"> SQL</PageHeading>
       <Dropdown
@@ -110,6 +109,6 @@ const onFormatButtonClick = () => {
     <Button class="mt-2 d-block w-100" :disabled="!isSQLValid" size="large" @click="onFormatButtonClick">
       Format
     </Button>
-  </section>
-  <SQLResultList v-model:results="SQLFormatterResults" />
+    <SQLResultList v-model:results="SQLFormatterResults" />
+  </ToolPageLayout>
 </template>

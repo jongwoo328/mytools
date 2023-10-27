@@ -10,6 +10,7 @@ const openKeys = ref({
   formatter: true,
   converter: true,
   viewer: true,
+  calculator: true,
 });
 
 const onClickHome = () => {
@@ -89,6 +90,17 @@ const menus = [
       {
         to: "/viewer/text-diff",
         label: "Text Diff Checker",
+        command: hideDrawer,
+      },
+    ],
+  },
+  {
+    label: "Calculator",
+    key: "calculator",
+    items: [
+      {
+        to: "/calculator/text-length",
+        label: "Text Length Calculator",
         command: hideDrawer,
       },
     ],

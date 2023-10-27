@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import PageTitle from "~/components/common/PageTitle.vue";
 import RgbColor from "~/models/RgbColor";
 import CmykColor from "~/models/CmykColor";
 import HslColor from "~/models/HslColor";
 import ColorConvertResult from "~/components/converter/ColorConvertResult.vue";
+import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 
 useJsonld(() => ({
   "@context": "https://schema.org",
@@ -122,92 +122,90 @@ watch([hslHue, hslSaturation, hslLightness], () => {
     <Title>Color Code Converter</Title>
     <Meta name="description" content="Convert color code to other formats like RGB, HEX, CMYK, HSL." />
   </Head>
-  <PageTitle title="Color Code Converter" />
-  <div class="mb-3">
-    <span> Color Code Converter supports RGB, HEX, CMYK, HSL </span>
-  </div>
-  <Card>
-    <template #content>
-      <div class="row m-0">
-        <TabView>
-          <TabPanel header="HEX">
-            <ColorPicker v-model="hexPickedColor" class="w-100" :pt="{ input: { class: 'color-picker' } }" />
-            <div class="row mt-2">
-              <div class="p-inputgroup">
-                <span class="p-inputgroup-addon">#</span>
-                <InputText class="prevent-auto-zoom" v-model="hexCode" :class="{ 'p-invalid': !isHexCodeValid }" />
+  <ToolPageLayout title="Color Code Converter" description="Color Code Converter supports RGB, HEX, CMYK, HSL">
+    <Card>
+      <template #content>
+        <div class="row m-0">
+          <TabView>
+            <TabPanel header="HEX">
+              <ColorPicker v-model="hexPickedColor" class="w-100" :pt="{ input: { class: 'color-picker' } }" />
+              <div class="row mt-2">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">#</span>
+                  <InputText class="prevent-auto-zoom" v-model="hexCode" :class="{ 'p-invalid': !isHexCodeValid }" />
+                </div>
               </div>
-            </div>
-            <ColorConvertResult class="mt-4" :hex="hexPickedColor" />
-          </TabPanel>
-          <TabPanel header="RGB">
-            <ColorPicker v-model="rgbPickedColor" class="w-100" :pt="{ input: { class: 'color-picker' } }" />
-            <div class="row mt-2">
-              <div class="p-inputgroup">
-                <span class="p-inputgroup-addon">R</span>
-                <InputNumber class="prevent-auto-zoom" :min="0" :max="255" v-model="rgbRed" />
+              <ColorConvertResult class="mt-4" :hex="hexPickedColor" />
+            </TabPanel>
+            <TabPanel header="RGB">
+              <ColorPicker v-model="rgbPickedColor" class="w-100" :pt="{ input: { class: 'color-picker' } }" />
+              <div class="row mt-2">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">R</span>
+                  <InputNumber class="prevent-auto-zoom" :min="0" :max="255" v-model="rgbRed" />
+                </div>
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">G</span>
+                  <InputNumber class="prevent-auto-zoom" :min="0" :max="255" v-model="rgbGreen" />
+                </div>
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">B</span>
+                  <InputNumber class="prevent-auto-zoom" :min="0" :max="255" v-model="rgbBlue" />
+                </div>
               </div>
-              <div class="p-inputgroup">
-                <span class="p-inputgroup-addon">G</span>
-                <InputNumber class="prevent-auto-zoom" :min="0" :max="255" v-model="rgbGreen" />
+              <ColorConvertResult class="mt-4" :hex="rgbPickedColor" />
+            </TabPanel>
+            <TabPanel header="CMYK">
+              <ColorPicker v-model="cmykPickedColor" class="w-100" :pt="{ input: { class: 'color-picker' } }" />
+              <div class="row mt-2">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">C</span>
+                  <InputNumber :min="0" :max="100" class="prevent-auto-zoom" v-model="cmykCyan" />
+                  <span class="p-inputgroup-addon">%</span>
+                </div>
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">M</span>
+                  <InputNumber :min="0" :max="100" class="prevent-auto-zoom" v-model="cmykMagenta" />
+                  <span class="p-inputgroup-addon">%</span>
+                </div>
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">Y</span>
+                  <InputNumber :min="0" :max="100" class="prevent-auto-zoom" v-model="cmykYellow" />
+                  <span class="p-inputgroup-addon">%</span>
+                </div>
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">K</span>
+                  <InputNumber :min="0" :max="100" class="prevent-auto-zoom" v-model="cmykKey" />
+                  <span class="p-inputgroup-addon">%</span>
+                </div>
               </div>
-              <div class="p-inputgroup">
-                <span class="p-inputgroup-addon">B</span>
-                <InputNumber class="prevent-auto-zoom" :min="0" :max="255" v-model="rgbBlue" />
+              <ColorConvertResult class="mt-4" :hex="cmykPickedColor" />
+            </TabPanel>
+            <TabPanel header="HSL">
+              <ColorPicker v-model="hslPickedColor" class="w-100" :pt="{ input: { class: 'color-picker' } }" />
+              <div class="row mt-2">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">H</span>
+                  <InputNumber :min="0" :max="360" class="prevent-auto-zoom" v-model="hslHue" />
+                </div>
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">S</span>
+                  <InputNumber :min="0" :max="100" class="prevent-auto-zoom" v-model="hslSaturation" />
+                  <span class="p-inputgroup-addon">%</span>
+                </div>
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">L</span>
+                  <InputNumber class="prevent-auto-zoom" v-model="hslLightness" />
+                  <span class="p-inputgroup-addon">%</span>
+                </div>
               </div>
-            </div>
-            <ColorConvertResult class="mt-4" :hex="rgbPickedColor" />
-          </TabPanel>
-          <TabPanel header="CMYK">
-            <ColorPicker v-model="cmykPickedColor" class="w-100" :pt="{ input: { class: 'color-picker' } }" />
-            <div class="row mt-2">
-              <div class="p-inputgroup">
-                <span class="p-inputgroup-addon">C</span>
-                <InputNumber :min="0" :max="100" class="prevent-auto-zoom" v-model="cmykCyan" />
-                <span class="p-inputgroup-addon">%</span>
-              </div>
-              <div class="p-inputgroup">
-                <span class="p-inputgroup-addon">M</span>
-                <InputNumber :min="0" :max="100" class="prevent-auto-zoom" v-model="cmykMagenta" />
-                <span class="p-inputgroup-addon">%</span>
-              </div>
-              <div class="p-inputgroup">
-                <span class="p-inputgroup-addon">Y</span>
-                <InputNumber :min="0" :max="100" class="prevent-auto-zoom" v-model="cmykYellow" />
-                <span class="p-inputgroup-addon">%</span>
-              </div>
-              <div class="p-inputgroup">
-                <span class="p-inputgroup-addon">K</span>
-                <InputNumber :min="0" :max="100" class="prevent-auto-zoom" v-model="cmykKey" />
-                <span class="p-inputgroup-addon">%</span>
-              </div>
-            </div>
-            <ColorConvertResult class="mt-4" :hex="cmykPickedColor" />
-          </TabPanel>
-          <TabPanel header="HSL">
-            <ColorPicker v-model="hslPickedColor" class="w-100" :pt="{ input: { class: 'color-picker' } }" />
-            <div class="row mt-2">
-              <div class="p-inputgroup">
-                <span class="p-inputgroup-addon">H</span>
-                <InputNumber :min="0" :max="360" class="prevent-auto-zoom" v-model="hslHue" />
-              </div>
-              <div class="p-inputgroup">
-                <span class="p-inputgroup-addon">S</span>
-                <InputNumber :min="0" :max="100" class="prevent-auto-zoom" v-model="hslSaturation" />
-                <span class="p-inputgroup-addon">%</span>
-              </div>
-              <div class="p-inputgroup">
-                <span class="p-inputgroup-addon">L</span>
-                <InputNumber class="prevent-auto-zoom" v-model="hslLightness" />
-                <span class="p-inputgroup-addon">%</span>
-              </div>
-            </div>
-            <ColorConvertResult class="mt-4" :hex="hslPickedColor" />
-          </TabPanel>
-        </TabView>
-      </div>
-    </template>
-  </Card>
+              <ColorConvertResult class="mt-4" :hex="hslPickedColor" />
+            </TabPanel>
+          </TabView>
+        </div>
+      </template>
+    </Card>
+  </ToolPageLayout>
 </template>
 
 <style scoped lang="scss">

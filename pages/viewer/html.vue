@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import PageTitle from "@/components/common/PageTitle.vue";
 import { html } from "@codemirror/lang-html";
 import { ref } from "vue";
+import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 
 useJsonld(() => ({
   "@context": "https://schema.org",
@@ -51,23 +51,28 @@ const htmlText = ref(
     <Title>HTML Viewer</Title>
     <Meta name="description" content="A simple HTML viewer which can be used with CSS, JavaScript." />
   </Head>
-  <PageTitle title="HTML Viewer" />
-  <Card>
-    <template #content>
-      <div class="row m-0 w-100">
-        <div class="col col-12 mb-3 px-0">
-          <div class="html-view-wrap">
-            <iframe class="w-100 h-100" :srcdoc="htmlText" />
+  <ToolPageLayout title="HTML Viewer">
+    <Card>
+      <template #content>
+        <div class="row m-0 w-100">
+          <div class="col col-12 mb-3 px-0">
+            <div class="html-view-wrap">
+              <iframe class="w-100 h-100" :srcdoc="htmlText" />
+            </div>
+          </div>
+          <div class="col col-12 viewer-code-section px-0 common-border-radius">
+            <div class="h-100 html-input-wrap">
+              <Codemirror
+                :extensions="[html()]"
+                v-model="htmlText"
+                class="h-100 font-monospace-code prevent-auto-zoom"
+              />
+            </div>
           </div>
         </div>
-        <div class="col col-12 viewer-code-section px-0 common-border-radius">
-          <div class="h-100 html-input-wrap">
-            <Codemirror :extensions="[html()]" v-model="htmlText" class="h-100 font-monospace-code prevent-auto-zoom" />
-          </div>
-        </div>
-      </div>
-    </template>
-  </Card>
+      </template>
+    </Card>
+  </ToolPageLayout>
 </template>
 
 <style lang="scss" scoped>
