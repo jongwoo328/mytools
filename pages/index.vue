@@ -132,14 +132,7 @@ const filteredTools = computed(() => {
         on-label="Formatter"
         off-label="Formatter"
         class="py-1"
-        :pt="{
-          root: {
-            style: {
-              backgroundColor: Tags.Formatter.color,
-              borderColor: Tags.Formatter.color,
-            },
-          },
-        }"
+        :class="[{ 'filter-selected-formatter': isFormatter }]"
       />
       <ToggleButton
         v-model="isConverter"
@@ -148,14 +141,7 @@ const filteredTools = computed(() => {
         on-label="Converter"
         off-label="Converter"
         class="py-1"
-        :pt="{
-          root: {
-            style: {
-              backgroundColor: Tags.Converter.color,
-              borderColor: Tags.Converter.color,
-            },
-          },
-        }"
+        :class="[{ 'filter-selected-converter': isConverter }]"
       />
       <ToggleButton
         v-model="isViewer"
@@ -164,14 +150,7 @@ const filteredTools = computed(() => {
         on-label="Viewer"
         off-label="Viewer"
         class="py-1"
-        :pt="{
-          root: {
-            style: {
-              backgroundColor: Tags.Viewer.color,
-              borderColor: Tags.Viewer.color,
-            },
-          },
-        }"
+        :class="[{ 'filter-selected-viewer': isViewer }]"
       />
       <ToggleButton
         v-model="isCalculator"
@@ -180,14 +159,7 @@ const filteredTools = computed(() => {
         on-label="Calculator"
         off-label="Calculator"
         class="py-1"
-        :pt="{
-          root: {
-            style: {
-              backgroundColor: Tags.Calculator.color,
-              borderColor: Tags.Calculator.color,
-            },
-          },
-        }"
+        :class="[{ 'filter-selected-calculator': isCalculator }]"
       />
     </div>
   </div>
@@ -199,4 +171,24 @@ const filteredTools = computed(() => {
   <ServiceInformationModal :show-modal-initial="showModal" />
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.filter-selected-formatter {
+  background-color: v-bind("Tags.Formatter.color") !important;
+  border-color: v-bind("Tags.Formatter.color") !important;
+}
+
+.filter-selected-converter {
+  background-color: v-bind("Tags.Converter.color") !important;
+  border-color: v-bind("Tags.Converter.color") !important;
+}
+
+.filter-selected-viewer {
+  background-color: v-bind("Tags.Viewer.color") !important;
+  border-color: v-bind("Tags.Viewer.color") !important;
+}
+
+.filter-selected-calculator {
+  background-color: v-bind("Tags.Calculator.color") !important;
+  border-color: v-bind("Tags.Calculator.color") !important;
+}
+</style>
