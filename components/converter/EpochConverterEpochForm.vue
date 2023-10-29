@@ -15,16 +15,29 @@ const offset = ref(new SystemZone().offset(Date.now()));
 
 const ISODateTime = computed(() => {
   let isoFormattedTime;
+  let dateTime;
   const option = {
     includeOffset: useOffset.value,
     suppressMilliseconds: omitMilliseconds.value,
   };
   switch (unit.value) {
     case EpochTimeConvertTimeUnit.SECONDS:
-      isoFormattedTime = DateTime.fromSeconds(epochInput.value).toUTC(offset.value).toISO(option);
+      dateTime = DateTime.fromSeconds(epochInput.value);
+      isoFormattedTime = dateTime
+        .set({
+          millisecond: omitMilliseconds.value ? 0 : dateTime.millisecond,
+        })
+        .toUTC(offset.value)
+        .toISO(option);
       break;
     case EpochTimeConvertTimeUnit.MILLISECONDS:
-      isoFormattedTime = DateTime.fromMillis(epochInput.value).toUTC(offset.value).toISO(option);
+      dateTime = DateTime.fromMillis(epochInput.value);
+      isoFormattedTime = dateTime
+        .set({
+          millisecond: omitMilliseconds.value ? 0 : dateTime.millisecond,
+        })
+        .toUTC(offset.value)
+        .toISO(option);
       break;
     default:
       return `Invalid Unit: ${unit.value}`;
