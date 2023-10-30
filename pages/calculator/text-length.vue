@@ -14,7 +14,6 @@ const activeTabKey = ref(0);
 
 const textInput = ref("");
 const uploadFile: Ref<File> = ref(createEmptyFile());
-const fileReader = ref<null | FileReader>(null);
 
 const onFileChange = (e: FileUploadSelectEvent) => {
   uploadFile.value = e.files[0];
@@ -23,10 +22,21 @@ const onClear = () => {
   uploadFile.value = createEmptyFile();
 };
 
+const readFileAsync = (file: File) => {
+  return new Promise((res, rej) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      res(reader.result);
+    };
+    reader.onerror = rej;
+    reader.readAsText(file, "UTF-8");
+  });
+};
+
 const result = asyncComputed(async () => {
-  let textLength;
-  let textLengthWithoutSpaces;
-  let bytes;
+  let textLength = 0;
+  let textLengthWithoutSpaces = 0;
+  let bytes = 0;
   if (activeTabKey.value === 0) {
     // input text
     textLength = textInput.value.length;
@@ -34,20 +44,16 @@ const result = asyncComputed(async () => {
     bytes = new Blob([textInput.value]).size;
   } else if (activeTabKey.value === 1) {
     // file
-    const fileText = await uploadFile.value.text();
+    const fileText = (await readFileAsync(uploadFile.value)) as string;
     textLength = fileText.length;
     textLengthWithoutSpaces = fileText.replace(/\s/g, "").length;
-    bytes = uploadFile.value.size;
+    bytes = new Blob([fileText]).size;
   }
   return {
     textLength: new Intl.NumberFormat("en-US").format(textLength),
     textLengthWithoutSpaces: new Intl.NumberFormat("en-US").format(textLengthWithoutSpaces),
     bytes: `${new Intl.NumberFormat("en-US").format(bytes)} (${humanReadableBytes(bytes)})`,
   };
-});
-
-onMounted(() => {
-  fileReader.value = new FileReader();
 });
 </script>
 
@@ -77,17 +83,15 @@ onMounted(() => {
               :show-upload-button="false"
               :show-cancel-button="false"
               :multiple="false"
-              accept="text/*"
+              accept="text/*, application/json,
+              application/ld+json, application/xml, application/yaml,
+              application/x-sh, application/xhtml+xml"
               mode="basic"
               custom-upload
               class="w-100 position-relative mb-2"
               @select="onFileChange"
               @clear="onClear"
-            >
-              <template #empty>
-                <p>test</p>
-              </template>
-            </FileUpload>
+            />
           </div>
         </div>
         <PageHeading class="mt-4" :size="6" :level="2" weight="600"> Result</PageHeading>
