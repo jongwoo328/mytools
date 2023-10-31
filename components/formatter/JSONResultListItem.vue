@@ -19,10 +19,22 @@ const isMobileOrTablet = breakpoints.smaller("md");
 
 const selected = ref("");
 const isSelectedEmpty = computed(() => selected.value.length === 0);
+const isFormatTypeMinified = computed(() => formatType.value === "minified");
 
 const virtualScroll = ref(true);
 
+type FormatType = "formatted" | "minified";
+const formatType = ref<FormatType>("formatted");
+const formatTypeOptions = [
+  { label: "Formatted", value: "formatted" },
+  { label: "Minified", value: "minified" },
+];
+const minifiedResult = ref(JSON.stringify(props.resultData.result));
+
 const getObjectFromPath = (path: string) => {
+  if (path === "$") {
+    return props.resultData.result;
+  }
   return useLodashGet(props.resultData.result, useLodashTrimStart(path, "$."));
 };
 const onClickCopyAll = async () => {
@@ -55,7 +67,7 @@ const onClickDeleteResult = () => {
 };
 
 const stringifyResult = () => {
-  return JSON.stringify(props.resultData.result, null, 4);
+  return JSON.stringify(props.resultData.result, null, formatType.value === "formatted" ? 4 : 0);
 };
 
 const download = () => {
@@ -104,14 +116,25 @@ const clickActions: MenuItem[] = [
 <template>
   <ResultItem>
     <template #header>
-      <div class="d-flex justify-content-between px-4 mt-4" style="height: 32px">
-        <span class="fw-bold">
+      <div style="height: 64px" class="px-4 pt-4 pb-2 d-flex justify-content-between align-items-center">
+        <span class="d-block fw-bold">
           {{ `# ${index}` }}
         </span>
-        <div class="d-flex">
+        <Dropdown
+          option-label="label"
+          option-value="value"
+          :options="formatTypeOptions"
+          size="small"
+          class="p-0 h-100 format-type-select"
+          v-model="formatType"
+          :model="formatTypeOptions"
+        />
+      </div>
+      <div class="d-flex justify-content-end px-4" style="height: 32px">
+        <div class="d-flex gap-1">
           <Button
             severity="danger"
-            class="p-0 me-1"
+            class="p-0"
             icon="pi pi-trash"
             size="small"
             @click="onClickDeleteResult"
@@ -120,7 +143,7 @@ const clickActions: MenuItem[] = [
           <Button
             severity="secondary"
             icon="pi pi-refresh"
-            class="p-0 me-1"
+            class="p-0"
             size="small"
             @click="onClickResetSelect"
             :disabled="useLodashIsNull(selected)"
@@ -155,7 +178,7 @@ const clickActions: MenuItem[] = [
               icon="pi pi-copy"
               @click="onClickCopyPath"
               class="py-1 px-2 h-100 me-1"
-              :disabled="isSelectedEmpty"
+              :disabled="isSelectedEmpty || isFormatTypeMinified"
             />
             <Button
               outlined
@@ -164,7 +187,7 @@ const clickActions: MenuItem[] = [
               icon="pi pi-copy"
               @click="onClickCopyKey"
               class="py-1 px-2 h-100 me-1"
-              :disabled="isSelectedEmpty"
+              :disabled="isSelectedEmpty || isFormatTypeMinified"
             />
             <Button
               outlined
@@ -173,7 +196,7 @@ const clickActions: MenuItem[] = [
               icon="pi pi-copy"
               @click="onClickSelectedNode"
               class="py-1 px-2 h-100 me-1"
-              :disabled="isSelectedEmpty"
+              :disabled="isSelectedEmpty || isFormatTypeMinified"
             />
             <Button
               outlined
@@ -188,21 +211,32 @@ const clickActions: MenuItem[] = [
       </div>
     </template>
     <template #conetent>
-      <VueJsonPretty
-        :data="resultData.result"
-        :virtual="virtualScroll"
-        selectableType="single"
-        :showSelectController="true"
-        :showIcon="true"
-        v-model:selectedValue="selected"
-        rootPath="$"
-        class="font-monospace-code"
-      />
-      <ResultDivider class="mb-0">
-        <Button @click="onClickExpandToggle" size="small" outlined class="py-1">
-          {{ virtualScroll ? "Fit" : "Revert" }}
-        </Button>
-      </ResultDivider>
+      <div v-if="formatType === 'formatted'">
+        <VueJsonPretty
+          :data="resultData.result"
+          :virtual="virtualScroll"
+          selectableType="single"
+          :showSelectController="true"
+          :showIcon="true"
+          v-model:selectedValue="selected"
+          rootPath="$"
+          class="font-monospace-code"
+        />
+        <ResultDivider class="mb-0">
+          <Button @click="onClickExpandToggle" size="small" outlined class="py-1">
+            {{ virtualScroll ? "Fit" : "Revert" }}
+          </Button>
+        </ResultDivider>
+      </div>
+      <div v-else-if="formatType === 'minified'">
+        <Textarea
+          auto-resize
+          v-model="minifiedResult"
+          disabled
+          style="min-height: 400px; max-height: 650px"
+          class="text-black overflow-y-scroll prevent-auto-zoom font-monospace-code d-block w-100"
+        />
+      </div>
     </template>
   </ResultItem>
 </template>
@@ -211,6 +245,12 @@ const clickActions: MenuItem[] = [
 .sql-result {
   &::v-deep(.cm-line) {
     font-family: Monaco, Menlo, Consolas, Bitstream Vera Sans Mono, monospace;
+  }
+}
+
+.format-type-select {
+  &::v-deep(.p-dropdown-label.p-inputtext) {
+    line-height: 1;
   }
 }
 </style>
