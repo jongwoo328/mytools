@@ -289,6 +289,8 @@ watch([pressUp, pressRight, pressLeft, pressDown], () => {
             <vue-cropper
               ref="cropper"
               class="w-100"
+              :check-orientation="false"
+              :check-cross-origin="false"
               :aspect-ratio="selectedAspectRatio"
               :src="cropperImageSource"
               @ready="onCropperReady"
