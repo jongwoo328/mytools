@@ -6,6 +6,25 @@ import { FileUploadSelectEvent } from "primevue/fileupload";
 import PageHeading from "@/components/common/PageHeading.vue";
 import { humanReadableBytes } from "~/utils/unit";
 
+useJsonld(() => ({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Tools For Developer",
+      item: "https://tools.jongwoo.me",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Text Length Calculator",
+      item: "https://tools.jongwoo.me/calculator/text-length",
+    },
+  ],
+}));
+
 const tabOptions = [
   { label: "Text", icon: "pi pi-pencil" },
   { label: "File", icon: "pi pi-file" },
