@@ -2,6 +2,8 @@
 import TextDifferenceChecker from "~/components/viewer/TextDifferenceChecker.vue";
 import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 
+const { t: $t } = useI18n();
+
 useJsonld(() => ({
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -9,13 +11,13 @@ useJsonld(() => ({
     {
       "@type": "ListItem",
       position: 1,
-      name: "Tools For Developer",
+      name: $t("title"),
       item: "https://tools.jongwoo.me",
     },
     {
       "@type": "ListItem",
       position: 2,
-      name: "Text Difference Checker",
+      name: $t("viewer.text-diff.title"),
       item: "https://tools.jongwoo.me/viewer/text-diff",
     },
   ],
@@ -24,10 +26,10 @@ useJsonld(() => ({
 
 <template>
   <Head>
-    <Title>Text Difference Checker</Title>
-    <Meta name="description" content="View text differences with display in github-like representation." />
+    <Title>{{ $t("viewer.text-diff.head.title") }}</Title>
+    <Meta name="description" :content="$t('viewer.text-diff.head.description')" />
   </Head>
-  <ToolPageLayout title="Text Difference Checker">
+  <ToolPageLayout :title="$t('viewer.text-diff.title')">
     <Card>
       <template #content>
         <TextDifferenceChecker />

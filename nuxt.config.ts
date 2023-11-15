@@ -13,10 +13,36 @@ export default defineNuxtConfig({
     "@nuxtjs/web-vitals",
     "@nuxtjs/robots",
     "nuxt-jsonld",
+    "@nuxtjs/i18n",
   ],
 
   routeRules: {
     "/**": { prerender: true },
+  },
+
+  // nuxtjs/i18n
+  i18n: {
+    vueI18n: "./i18n.config.ts",
+    strategy: "prefix",
+    defaultLocale: "en",
+    locales: [
+      {
+        code: "en",
+        iso: "en-US",
+        file: "en.json",
+        name: "English",
+      },
+      {
+        code: "ko",
+        iso: "ko-KR",
+        file: "ko.json",
+        name: "한국어",
+      },
+    ],
+    langDir: "locales/",
+    compilation: {
+      strictMessage: false,
+    },
   },
 
   // nuxt-robots
@@ -78,6 +104,7 @@ export default defineNuxtConfig({
 
   css: [
     "@/assets/styles/main.css",
+    "@/assets/styles/flag.css",
     "bootstrap/dist/css/bootstrap.min.css",
     "primevue/resources/themes/lara-light-blue/theme.css",
     "primevue/resources/primevue.css",

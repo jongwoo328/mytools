@@ -11,32 +11,27 @@ const onClickDontShowAgain = () => {
 </script>
 
 <template>
-  <Dialog header="Welcome!" modal v-model:visible="modalVisibility">
+  <Dialog :header="$t('index.modal.title')" modal v-model:visible="modalVisibility">
     <div class="mt-3">
       <p>
-        This webpage provides a variety of tools that can be used primarily for web development, with the following
-        features
+        {{ $t("index.modal.description") }}
       </p>
       <ul>
         <li>
-          <p>
-            All functionality is implemented without going through the server
-            <br />
-            (This means that sensitive information is still available on this website.)
-          </p>
+          <p v-html="$t('index.modal.features.0')" />
         </li>
         <li>
-          <p>Each feature comes with options for customization</p>
+          <p>{{ $t("index.modal.features.1") }}</p>
         </li>
         <li>
-          <p>No ads</p>
+          <p>{{ $t("index.modal.features.2") }}</p>
         </li>
       </ul>
     </div>
     <template #footer>
       <div class="mt-3">
-        <Button label="OK" text @click="modalVisibility = false" />
-        <Button label="Don't show again" autofocus @click="onClickDontShowAgain" />
+        <Button :label="$t('index.modal.button.close')" text @click="modalVisibility = false" />
+        <Button :label="$t('index.modal.button.dont_show_again')" autofocus @click="onClickDontShowAgain" />
       </div>
     </template>
   </Dialog>

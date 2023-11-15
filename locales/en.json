@@ -1,0 +1,157 @@
+{
+  "title": "Tools For Developer",
+  "index": {
+    "filter": {
+      "calculator": {
+        "off": "Calculator",
+        "on": "Calculator"
+      },
+      "converter": {
+        "off": "Converter",
+        "on": "Converter"
+      },
+      "formatter": {
+        "off": "Formatter",
+        "on": "Formatter"
+      },
+      "viewer": {
+        "off": "Viewer",
+        "on": "Viewer"
+      }
+    },
+    "menu": {
+      "calculator": {
+        "items": {
+          "text_length_calculator_label": "Text Length"
+        },
+        "label": "Calculator"
+      },
+      "converter": {
+        "items": {
+          "color_code_converter_label": "Color Converter",
+          "csv_to_json_converter_label": "CSV to JSON",
+          "epoch_converter_label": "Epoch",
+          "image_converter_label": "Image",
+          "image_cropper_label": "Image Cropper",
+          "url_encoder/decoder_label": "URL En/Decoder"
+        },
+        "label": "Converter"
+      },
+      "formatter": {
+        "items": {
+          "json_formatter_label": "JSON",
+          "sql_formatter_label": "SQL"
+        },
+        "label": "Formatter"
+      },
+      "viewer": {
+        "items": {
+          "html_viewer_label": "HTML",
+          "text_difference_checker_label": "Text Diff Checker"
+        },
+        "label": "Viewer"
+      }
+    },
+    "modal": {
+      "button": {
+        "close": "OK",
+        "dont_show_again": "Don't show again"
+      },
+      "description": "This webpage provides a variety of tools that can be used primarily for web development, with the following features",
+      "features": {
+        "0": "All functionality is implemented without going through the server<br />(This means that sensitive information is still available on this website.)",
+        "1": "Each feature comes with options for customization",
+        "2": "No ads"
+      },
+      "title": "Welcome!"
+    },
+    "tags": {
+      "calculator": "Calculator",
+      "converter": "Converter",
+      "formatter": "Formatter",
+      "viewer": "Viewer"
+    },
+    "title": "🛠️ Tools For Developer",
+    "tools": {
+      "color_code_converter": {
+        "description": "Color Code Converter supports RGB, HEX, CMYK, HSL",
+        "title": "Color Code Converter"
+      },
+      "csv_to_json_converter": {
+        "description": "Convert CSV to JSON",
+        "title": "CSV to JSON Converter"
+      },
+      "epoch_converter": {
+        "description": "Converting between epoch and human-readable time",
+        "title": "Epoch Converter"
+      },
+      "html_viewer": {
+        "description": "HTML viewer",
+        "title": "HTML Viewer"
+      },
+      "image_converter": {
+        "description": "Convert image (JPEG, PNG, WEBP, Base64)",
+        "title": "Image Converter"
+      },
+      "image_cropper": {
+        "description": "Crop image",
+        "title": "Image Cropper"
+      },
+      "json_formatter": {
+        "description": "Formatting JSON text",
+        "title": "JSON Formatter"
+      },
+      "sql_formatter": {
+        "description": "Formatting SQL",
+        "title": "SQL Formatter"
+      },
+      "text_difference_checker": {
+        "description": "Discover text discrepancies easily",
+        "title": "Text Difference Checker"
+      },
+      "text_length_calculator": {
+        "description": "Calculate text length and bytes",
+        "title": "Text Length Calculator"
+      },
+      "url_encoder/decoder": {
+        "description": "URL encoder and decoder",
+        "title": "URL Encoder/Decoder"
+      }
+    }
+  },
+  "viewer": {
+    "html": {
+      "head": {
+        "description": "A simple HTML viewer which can be used with CSS, JavaScript.",
+        "title": "HTML Viewer"
+      },
+      "title": "HTML Viewer",
+      "example_html": {
+        "title": "My Tools webpage",
+        "sub_title_1": "Description",
+        "description_1": "This project aims to collect useful and frequently used functions in one place, for my personal use.",
+        "description_2": "However, it is open for others to use as well.",
+        "sub_title_2": "Project is built with",
+        "description_3": "Nuxt 3",
+        "description_4": "Vercel"
+      }
+    },
+    "text-diff": {
+      "head": {
+        "description": "View text differences with display in github-like representation.",
+        "title": "Text Difference Checker"
+      },
+      "title": "Text Difference Checker",
+      "diff_type_label": "Compare :",
+      "diff_type_options": {
+        "chars": "Characters",
+        "words": "Words",
+        "lines": "Lines"
+      },
+      "reference": "Reference",
+      "comparison": "Comparison",
+      "result": "Result",
+      "cancel": "Cancel"
+    }
+  }
+}

@@ -28,7 +28,7 @@ const onClickItem = () => {
       </p>
     </template>
     <template #footer>
-      <Tag :style="{ backgroundColor: tag.color }" v-for="tag in props.tool.tags" :key="tag.name">
+      <Tag :style="{ backgroundColor: tag.color }" v-for="tag in props.tool.tags" :key="tag.id">
         {{ tag.name }}
       </Tag>
     </template>

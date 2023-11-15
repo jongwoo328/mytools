@@ -4,92 +4,98 @@ import FunctionListItem from "@/components/index/FunctionListItem.vue";
 import ServiceInformationModal from "@/components/common/ServiceInformationModal.vue";
 import PageHeading from "@/components/common/PageHeading.vue";
 
+const { t: $t } = useI18n();
+
 const showModal = useLocalStorage("showServiceInformationModal", true);
 
 const Tags = {
   Formatter: {
-    name: "Formatter",
+    id: "Formatter",
+    name: $t("index.tags.formatter"),
     color: "#fab005",
   },
   Converter: {
-    name: "Converter",
+    id: "Converter",
+    name: $t("index.tags.converter"),
     color: "#40c057",
   },
   Viewer: {
-    name: "Viewer",
+    id: "Viewer",
+    name: $t("index.tags.viewer"),
     color: "#228be6",
   },
   Calculator: {
-    name: "Calculator",
+    id: "Calculator",
+    name: $t("index.tags.calculator"),
     color: "#845ef7",
   },
 };
 
 const availableTools: AvailableTool[] = [
   {
-    title: "JSON Formatter",
+    title: $t("index.tools.json_formatter.title"),
     router: "/formatter/json",
-    description: "Formatting JSON text",
+    description: $t("index.tools.json_formatter.description"),
     tags: [Tags.Formatter],
   },
   {
-    title: "SQL Formatter",
+    title: $t("index.tools.sql_formatter.title"),
     router: "/formatter/sql",
-    description: "Formatting SQL",
+    description: $t("index.tools.sql_formatter.description"),
     tags: [Tags.Formatter],
   },
   {
-    title: "Image Converter",
+    title: $t("index.tools.image_converter.title"),
     router: "/converter/image",
-    description: "Convert image (JPEG, PNG, WEBP, Base64)",
+    description: $t("index.tools.image_converter.description"),
     tags: [Tags.Converter],
   },
   {
-    title: "HTML Viewer",
+    title: $t("index.tools.html_viewer.title"),
     router: "/viewer/html",
-    description: "HTML viewer",
+    description: $t("index.tools.html_viewer.description"),
     tags: [Tags.Viewer],
   },
   {
-    title: "Epoch Converter",
+    title: $t("index.tools.epoch_converter.title"),
     router: "/converter/epoch",
-    description: "Converting between epoch and human-readable time",
+    description: $t("index.tools.epoch_converter.description"),
     tags: [Tags.Converter],
   },
   {
-    title: "CSV to JSON Converter",
+    title: $t("index.tools.csv_to_json_converter.title"),
     router: "/converter/csv-to-json",
-    description: "Convert CSV to JSON",
+    description: $t("index.tools.csv_to_json_converter.description"),
     tags: [Tags.Converter],
   },
   {
-    title: "Image Cropper",
+    title: $t("index.tools.image_cropper.title"),
     router: "/converter/image-crop",
-    description: "Crop image",
+    description: $t("index.tools.image_cropper.description"),
     tags: [Tags.Converter],
   },
   {
-    title: "URL Encoder/Decoder",
+    title: $t("index.tools.url_encoder/decoder.title"),
     router: "/converter/url",
-    description: "URL encoder and decoder",
+    description: $t("index.tools.url_encoder/decoder.description"),
     tags: [Tags.Converter],
   },
   {
-    title: "Color Code Converter",
+    title: $t("index.tools.color_code_converter.title"),
     router: "/converter/color",
-    description: "Color Code Converter supports RGB, HEX, CMYK, HSL",
+    description: $t("index.tools.color_code_converter.description"),
     tags: [Tags.Converter],
   },
   {
-    title: "Text Difference Checker",
+    title: $t("index.tools.text_difference_checker.title"),
     router: "/viewer/text-diff",
-    description: "Discover text discrepancies easily",
+    description: $t("index.tools.text_difference_checker.description"),
     tags: [Tags.Viewer],
   },
   {
-    title: "Text Length Calculator",
+    title: $t("index.tools.text_length_calculator.title"),
     router: "/calculator/text-length",
-    description: "Calculate text length and bytes",
+    description: $t("index.tools.text_length_calculator.description"),
     tags: [Tags.Calculator],
   },
 ];
@@ -122,15 +128,17 @@ const filteredTools = computed(() => {
 </script>
 
 <template>
-  <PageHeading :size="8" :level="1" weight="600"> 🛠️ Tools For Developer</PageHeading>
+  <PageHeading :size="8" :level="1" weight="600">
+    {{ $t("index.title") }}
+  </PageHeading>
   <div class="mt-3">
     <div class="d-flex flex-wrap justify-content-start gap-1">
       <ToggleButton
         v-model="isFormatter"
         onIcon="pi pi-check"
         offIcon="pi pi-times"
-        on-label="Formatter"
-        off-label="Formatter"
+        :on-label="$t('index.filter.formatter.on')"
+        :off-label="$t('index.filter.formatter.off')"
         class="py-1"
         :class="[{ 'filter-selected-formatter': isFormatter }]"
       />
@@ -138,8 +146,8 @@ const filteredTools = computed(() => {
         v-model="isConverter"
         onIcon="pi pi-check"
         offIcon="pi pi-times"
-        on-label="Converter"
-        off-label="Converter"
+        :on-label="$t('index.filter.converter.on')"
+        :off-label="$t('index.filter.converter.off')"
         class="py-1"
         :class="[{ 'filter-selected-converter': isConverter }]"
       />
@@ -147,8 +155,8 @@ const filteredTools = computed(() => {
         v-model="isViewer"
         onIcon="pi pi-check"
         offIcon="pi pi-times"
-        on-label="Viewer"
-        off-label="Viewer"
+        :on-label="$t('index.filter.viewer.on')"
+        :off-label="$t('index.filter.viewer.off')"
         class="py-1"
         :class="[{ 'filter-selected-viewer': isViewer }]"
       />
@@ -156,8 +164,8 @@ const filteredTools = computed(() => {
         v-model="isCalculator"
         onIcon="pi pi-check"
         offIcon="pi pi-times"
-        on-label="Calculator"
-        off-label="Calculator"
+        :on-label="$t('index.filter.calculator.on')"
+        :off-label="$t('index.filter.calculator.off')"
         class="py-1"
         :class="[{ 'filter-selected-calculator': isCalculator }]"
       />

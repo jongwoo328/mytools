@@ -3,6 +3,8 @@ import { html } from "@codemirror/lang-html";
 import { ref } from "vue";
 import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 
+const { t: $t } = useI18n();
+
 useJsonld(() => ({
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -10,13 +12,13 @@ useJsonld(() => ({
     {
       "@type": "ListItem",
       position: 1,
-      name: "Tools For Developer",
+      name: $t("title"),
       item: "https://tools.jongwoo.me",
     },
     {
       "@type": "ListItem",
       position: 2,
-      name: "HTML Viewer",
+      name: $t("viewer.html.title"),
       item: "https://tools.jongwoo.me/viewer/html",
     },
   ],
@@ -26,20 +28,20 @@ const htmlText = ref(
   "<style>" +
     "\n\tli {font-weight: bold;} #listNuxt3 {color: rgb(104, 217, 136);} #listVercel {color: rgb(0, 0, 0)}" +
     "\n</style>" +
-    "\n\n<h1>My Tools webpage</h1>" +
+    `\n\n<h1>${$t("viewer.html.example_html.title")}</h1>` +
     "\n<section>" +
-    "\n\t<h2>Description</h2>" +
+    `\n\t<h2>${$t("viewer.html.example_html.sub_title_1")}</h2>` +
     "\n\t<p>" +
-    "\n\t\tThis project aims to collect useful and frequently used functions in one place, for my personal use." +
-    "\n\t\tHowever, it is open for others to use as well." +
+    `\n\t\t${$t("viewer.html.example_html.description_1")}` +
+    `\n\t\t${$t("viewer.html.example_html.description_2")}` +
     "\n\t</p>" +
-    "\n\t<h2>Project is built with</h2>" +
+    `\n\t<h2>${$t("viewer.html.example_html.sub_title_2")}</h2>` +
     "\n\t<ul>" +
     '\n\t\t<li id="listNuxt3">' +
-    "\n\t\t\tNuxt 3" +
+    `\n\t\t\t${$t("viewer.html.example_html.description_3")}` +
     "\n\t\t</li>" +
     '\n\t\t<li id="listVercel">' +
-    "\n\t\t\tVercel" +
+    `\n\t\t\t${$t("viewer.html.example_html.description_4")}` +
     "\n\t\t</li>" +
     "\n\t</ul>" +
     "\n</section>",
@@ -48,10 +50,10 @@ const htmlText = ref(
 
 <template>
   <Head>
-    <Title>HTML Viewer</Title>
-    <Meta name="description" content="A simple HTML viewer which can be used with CSS, JavaScript." />
+    <Title>{{ $t("viewer.html.head.title") }}</Title>
+    <Meta name="description" :content="$t('viewer.html.head.description')" />
   </Head>
-  <ToolPageLayout title="HTML Viewer">
+  <ToolPageLayout :title="$t('viewer.html.title')">
     <Card>
       <template #content>
         <div class="row m-0 w-100">

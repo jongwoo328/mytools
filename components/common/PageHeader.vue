@@ -4,6 +4,8 @@ import { useRouter } from "vue-router";
 import { breakpointsBootstrapV5 } from "@vueuse/core";
 
 const router = useRouter();
+const { t: $t, locale } = useI18n();
+const switchLocalePath = useSwitchLocalePath();
 
 const drawerVisible = ref(false);
 const openKeys = ref({
@@ -27,83 +29,94 @@ const hideDrawer = () => {
 
 const menus = [
   {
-    label: "Formatter",
+    label: $t("index.menu.formatter.label"),
     key: "formatter",
     items: [
       {
         to: "/formatter/json",
-        label: "JSON",
+        label: $t("index.menu.formatter.items.json_formatter_label"),
         command: hideDrawer,
       },
       {
         to: "/formatter/sql",
-        label: "SQL",
+        label: $t("index.menu.formatter.items.sql_formatter_label"),
         command: hideDrawer,
       },
     ],
   },
   {
-    label: "Converter",
+    label: $t("index.menu.converter.label"),
     key: "converter",
     items: [
       {
         to: "/converter/image",
-        label: "Image",
+        label: $t("index.menu.converter.items.image_converter_label"),
         command: hideDrawer,
       },
       {
         to: "/converter/epoch",
-        label: "Epoch",
+        label: $t("index.menu.converter.items.epoch_converter_label"),
         command: hideDrawer,
       },
       {
         to: "/converter/csv-to-json",
-        label: "CSV to JSON",
+        label: $t("index.menu.converter.items.csv_to_json_converter_label"),
         command: hideDrawer,
       },
       {
         to: "/converter/image-crop",
-        label: "Image Cropper",
+        label: $t("index.menu.converter.items.image_cropper_label"),
         command: hideDrawer,
       },
       {
         to: "/converter/url",
-        label: "URL En/Decoder",
+        label: $t("index.menu.converter.items.url_encoder/decoder_label"),
         command: hideDrawer,
       },
       {
         to: "/converter/color",
-        label: "Color Converter",
+        label: $t("index.menu.converter.items.color_code_converter_label"),
         command: hideDrawer,
       },
     ],
   },
   {
-    label: "Viewer",
+    label: $t("index.menu.viewer.label"),
     key: "viewer",
     items: [
       {
         to: "/viewer/html",
-        label: "HTML",
+        label: $t("index.menu.viewer.items.html_viewer_label"),
         command: hideDrawer,
       },
       {
         to: "/viewer/text-diff",
-        label: "Text Diff Checker",
+        label: $t("index.menu.viewer.items.text_difference_checker_label"),
         command: hideDrawer,
       },
     ],
   },
   {
-    label: "Calculator",
+    label: $t("index.menu.calculator.label"),
     key: "calculator",
     items: [
       {
         to: "/calculator/text-length",
-        label: "Text Length Calculator",
+        label: $t("index.menu.calculator.items.text_length_calculator_label"),
         command: hideDrawer,
       },
     ],
+  },
+];
+
+const localeList = [
+  {
+    label: "en",
+    value: "en",
+  },
+  {
+    label: "ko",
+    value: "ko",
   },
 ];
 </script>
@@ -124,6 +137,31 @@ const menus = [
     <Menubar v-else :model="menus" class="w-100">
       <template #start>
         <Button text @click="onClickHome" class="w-100 me-2 py-2" label="🛠️" />
+      </template>
+      <template #end>
+        <Dropdown size="small" :options="localeList" option-label="label" option-value="value" v-model="locale">
+          <template #value="slotProps">
+            <div class="d-flex justify-content-between align-items-center">
+              <span v-if="slotProps.value === 'ko'" class="flag flag-kr" style="width: 22px; height: 15px" />
+              <span v-else-if="slotProps.value === 'en'" class="flag flag-us" style="width: 22px; height: 15px" />
+              <span>{{ slotProps.value }}</span>
+            </div>
+          </template>
+          <template #option="slotProps">
+            <template v-if="slotProps.option.value === 'ko'">
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="flag flag-kr" style="width: 22px; height: 15px" />
+                <span>ko</span>
+              </div>
+            </template>
+            <template v-else-if="slotProps.option.value === 'en'">
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="flag flag-us" style="width: 22px; height: 15px" />
+                <span>en</span>
+              </div>
+            </template>
+          </template>
+        </Dropdown>
       </template>
     </Menubar>
   </ClientOnly>
