@@ -28,7 +28,6 @@ const { asyncBlobToBase64 } = useImageUtil();
 const image = ref() as Ref<HTMLImageElement>;
 const imageInput = ref() as Ref<HTMLInputElement>;
 const cropper = ref();
-const cropperImageSource = ref("https://s3.ap-northeast-2.amazonaws.com/public-store.jongwoo.me/tools/ghost.png");
 
 const selectedAspectRatio: Ref<"Custom" | number> = ref(16 / 9);
 const customRatioWidth = ref(1.618);
@@ -292,7 +291,7 @@ watch([pressUp, pressRight, pressLeft, pressDown], () => {
               :check-orientation="false"
               :check-cross-origin="false"
               :aspect-ratio="selectedAspectRatio"
-              :src="cropperImageSource"
+              src="/static/images/ghost.png"
               @ready="onCropperReady"
               @cropmove="onCropResize"
               :style="{ height: '100%', width: '100%' }"
