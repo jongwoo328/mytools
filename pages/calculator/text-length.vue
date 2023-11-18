@@ -16,7 +16,7 @@ useJsonld(() => ({
     {
       "@type": "ListItem",
       position: 1,
-      name: "Tools For Developer",
+      name: $t("title"),
       item: `https://tools.jongwoo.me${localePath("/")}`,
     },
     {

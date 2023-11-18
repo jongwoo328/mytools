@@ -238,7 +238,6 @@ const clickActions: MenuItem[] = [
                 : $t("formatter.json.result_list.expand_toggle_btn_label.revert")
             }}
           </Button>
-          x
         </ResultDivider>
       </div>
       <div v-else-if="formatType === 'minified'">

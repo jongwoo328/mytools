@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import PageHeading from "~/components/common/PageHeading.vue";
 import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
+import { ac } from "~/.output/public/_nuxt/entry.cb9c3cc4";
 
 const { copyData } = useCopy();
+const { t: $t } = useI18n();
+const localePath = useLocalePath();
+
 useJsonld(() => ({
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -10,14 +14,14 @@ useJsonld(() => ({
     {
       "@type": "ListItem",
       position: 1,
-      name: "Tools For Developer",
-      item: "https://tools.jongwoo.me",
+      name: $t("title"),
+      item: `https://tools.jongwoo.me${localePath("/")}`,
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "URL Encoder, Decoder",
-      item: "https://tools.jongwoo.me/converter/url",
+      item: `https://tools.jongwoo.me${localePath("/converter/url")}`,
     },
   ],
 }));
@@ -38,24 +42,26 @@ const onClickCopy = () => {
 
 <template>
   <Head>
-    <Title>URL Encoder / Decoder</Title>
-    <Meta name="description" content="A simple URL encoder and decoder." />
+    <Title>{{ $t("converter.url.head.title") }}</Title>
+    <Meta name="description" :content="$t('converter.url.head.description')" />
   </Head>
-  <ToolPageLayout title="URL Encoder / Decoder" description="Encode or Decode URL">
+  <ToolPageLayout :title="$t('converter.url.title')" :description="$t('converter.url.description')">
     <Card>
       <template #content>
-        <PageHeading :size="6" :level="2" weight="600">Input</PageHeading>
+        <PageHeading :size="6" :level="2" weight="600">
+          {{ $t("converter.url.text_input_label") }}
+        </PageHeading>
         <Textarea v-model="inputText" class="prevent-auto-zoom d-block w-100" auto-resize />
         <TabView v-model:active-index="activeTabKey" class="mt-3 tab-view">
-          <TabPanel header="Encoder">
-            <div class="d-block w-100 converted-text p-2 font-monospace-code">
+          <TabPanel :header="$t('converter.url.convert_type.encoder')">
+            <div v-if="activeTabKey === 0" class="d-block w-100 converted-text p-2 font-monospace-code">
               <span>
                 {{ encodedText }}
               </span>
             </div>
           </TabPanel>
-          <TabPanel header="Decoder">
-            <div class="d-block w-100 converted-text p-2 font-monospace-code">
+          <TabPanel :header="$t('converter.url.convert_type.decoder')">
+            <div v-if="activeTabKey === 1" class="d-block w-100 converted-text p-2 font-monospace-code">
               <span>
                 {{ decodedText }}
               </span>
@@ -63,7 +69,9 @@ const onClickCopy = () => {
           </TabPanel>
         </TabView>
         <div class="px-2">
-          <Button @click="onClickCopy" class="w-100 d-block">Copy</Button>
+          <Button @click="onClickCopy" class="w-100 d-block">
+            {{ $t("converter.url.copy_btn_label") }}
+          </Button>
         </div>
       </template>
     </Card>

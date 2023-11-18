@@ -270,5 +270,161 @@
         "bytes": "Bytes"
       }
     }
+  },
+  "converter": {
+    "image": {
+      "head": {
+        "description": "Convert image to other formats like PNG, JPEG, WEBP, Base64.",
+        "title": "Image Converter"
+      },
+      "title": "Image Converter",
+      "description": "Only Support JPEG, PNG, WEBP(except Safari)",
+      "image_input_label": "Image",
+      "image_input_btn_label": "Choose",
+      "image_type_label": "Type",
+      "image_type": {
+        "no_data": "No Data"
+      },
+      "copy_as_base64_btn_label": "Copy as Base64",
+      "settings": {
+        "label": "Settings",
+        "convert_to": {
+          "label": "Convert to:",
+          "options": {
+            "png": "PNG",
+            "jpeg": "JPEG",
+            "webp": "WEBP"
+          }
+        }
+      },
+      "convert_btn_label": "Convert",
+      "result_list": {
+        "divider_text": "Results",
+        "file_name_label": "Download as:",
+        "actions": {
+          "download_btn_label": "Download",
+          "copy_as_base64_btn_label": "Copy as Base64"
+        }
+      }
+    },
+    "epoch": {
+      "head": {
+        "description": "Convert epoch to date time and vice versa.",
+        "title": "Epoch Converter"
+      },
+      "title": "Epoch Converter",
+      "epoch_to_iso8601": {
+        "title": "Epoch to Time (ISO8601)",
+        "set_now_btn_label": "Now",
+        "options": {
+          "use_delimiter": "Use Delimiter",
+          "use_offset": "Use Offset",
+          "omit_milliseconds": "Omit Milliseconds"
+        },
+        "copy_btn_label": "Copy"
+      },
+      "time_to_epoch": {
+        "title": "Time to Epoch",
+        "set_now_btn_label": "Now",
+        "options": {
+          "use_milliseconds": "Use Milliseconds"
+        },
+        "copy_btn_label": "Copy"
+      }
+    },
+    "csv_to_json": {
+      "head": {
+        "description": "Converting CSV to JSON. Upload file is also available.",
+        "title": "CSV to JSON Converter"
+      },
+      "title": "CSV to JSON Converter",
+      "csv_input_label": "CSV File or Text",
+      "options": {
+        "label": "Configuration",
+        "header_included": {
+          "label": "Header Included"
+        },
+        "encoding": {
+          "label": "Encoding"
+        },
+        "input_type": {
+          "text": "Text",
+          "file": "File"
+        }
+      },
+      "input_file_btn_label": "Choose",
+      "parse_btn_label": "Parse"
+    },
+    "image_crop": {
+      "head": {
+        "description": "Crop image and save result.",
+        "title": "Image Cropper"
+      },
+      "title": "Image Cropper",
+      "save_btn_label": "Save",
+      "change_image_btn_label": "Change Image",
+      "options": {
+        "aspect_ratio": {
+          "label": "Aspect Ratio",
+          "options": {
+            "custom": "Custom",
+            "free": "Free"
+          }
+        },
+        "custom_ratio": {
+          "label": "Custom Ratio"
+        },
+        "crop_size": {
+          "label": "Crop Size (W/H)"
+        },
+        "crop_position": {
+          "label": "Crop Position (X/Y)"
+        },
+        "control": {
+          "label": "Control",
+          "reset": "Reset"
+        },
+        "control_configuration": {
+          "label": "Control Configuration",
+          "use_keyboard_arrow": "Use Keyboard Arrow"
+        }
+      }
+    },
+    "url": {
+      "head": {
+        "description": "A simple URL encoder and decoder.",
+        "title": "URL Encoder / Decoder"
+      },
+      "title": "URL Encoder / Decoder",
+      "description": "Encode or Decode URL",
+      "text_input_label": "Input",
+      "convert_type": {
+        "encoder": "Encoder",
+        "decoder": "Decoder"
+      },
+      "copy_btn_label": "Copy"
+    },
+    "color": {
+      "head": {
+        "description": "Convert color code to other formats like RGB, HEX, CMYK, HSL.",
+        "title": "Color Code Converter"
+      },
+      "title": "Color Code Converter",
+      "description": "Color Code Converter supports RGB, HEX, CMYK, HSL",
+      "options": {
+        "hex": {
+          "label": "HEX"
+        },
+        "rgb": {
+          "label": "RGB"
+        },
+        "cmyk": {
+          "label": "CMYK"
+        },
+        "hsl": {
+          "label": "HSL"
+        }
+      }
+    }
   }
 }
