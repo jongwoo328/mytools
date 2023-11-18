@@ -247,5 +247,28 @@
         }
       }
     }
+  },
+  "calculator": {
+    "text_length": {
+      "head": {
+        "description": "Calculate UTF-8 text length (with/without spaces) and bytes.",
+        "title": "Text Length Calculator"
+      },
+      "title": "Text Length Calculator",
+      "text_input": {
+        "label": "Input",
+        "type": {
+          "text": "Text",
+          "file": "File"
+        },
+        "file_input_btn_label": "Choose"
+      },
+      "result": {
+        "label": "Result",
+        "length": "Length",
+        "length_without_spaces": "Length (Without spaces)",
+        "bytes": "Bytes"
+      }
+    }
   }
 }
