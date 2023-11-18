@@ -1,5 +1,11 @@
 {
   "title": "Tools For Developer",
+  "common": {
+    "toast": {
+      "copy_success": "Copied!",
+      "copy_fail": "Failed"
+    }
+  },
   "index": {
     "filter": {
       "calculator": {
@@ -152,6 +158,94 @@
       "comparison": "Comparison",
       "result": "Result",
       "cancel": "Cancel"
+    }
+  },
+  "formatter": {
+    "sql": {
+      "head": {
+        "description": "Format SQL in a variety of ways that are commonly used",
+        "title": "SQL Formatter"
+      },
+      "title": "SQL Formatter",
+      "sql_input_label": "SQL",
+      "sql_language_options": {
+        "sql": "SQL",
+        "mysql": "MySQL",
+        "mariadb": "MariaDB",
+        "transactsql": "Transact-SQL",
+        "postgresql": "PostgreSQL",
+        "amazonredshift": "Amazon Redshift",
+        "spark": "Spark",
+        "snowflake": "Snowflake"
+      },
+      "sql_input_invalid_message": "Input is not valid SQL",
+      "sql_format_btn_label": "Format",
+      "result_list": {
+        "divider_text": "Results",
+        "advanced_setting": {
+          "header_text": "Advanced Setting",
+          "use_tabs": {
+            "label": "Use Tabs"
+          },
+          "tab_width": {
+            "label": "Tab Width"
+          },
+          "keyword": {
+            "label": "Keyword",
+            "options": {
+              "upper": "Upper",
+              "lower": "Lower",
+              "preserve": "Preserve"
+            }
+          },
+          "indent": {
+            "label": "Indent",
+            "options": {
+              "standard": "Standard",
+              "tabular_left": "Tabular,Left"
+            }
+          },
+          "and_or_or_newline": {
+            "label": "AND/OR Newline",
+            "options": {
+              "before": "Before",
+              "after": "After"
+            }
+          }
+        },
+        "expand_toggle_btn_label": {
+          "fit": "Fit",
+          "revert": "Revert"
+        }
+      }
+    },
+    "json": {
+      "head": {
+        "description": "Format JSON text and extract its elements.",
+        "title": "JSON Formatter"
+      },
+      "title": "JSON Formatter",
+      "json_text_input_label": "JSON text",
+      "json_text_input_invalid_message": "Input is not valid JSON",
+      "json_format_btn_label": "Format",
+      "result_list": {
+        "divider_text": "Results",
+        "format_type_options": {
+          "formatted": "Formatted",
+          "minified": "Minified"
+        },
+        "actions": {
+          "copy_all": "Copy All",
+          "copy_path": "Copy Path",
+          "copy_key": "Copy Key",
+          "copy_node": "Copy Node",
+          "download": "Download"
+        },
+        "expand_toggle_btn_label": {
+          "fit": "Fit",
+          "revert": "Revert"
+        }
+      }
     }
   }
 }

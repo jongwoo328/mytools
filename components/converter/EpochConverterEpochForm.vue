@@ -2,8 +2,9 @@
 import { computed, Ref, ref } from "vue";
 import { DateTime, SystemZone } from "luxon";
 import { EpochTimeConvertTimeUnit, offsetList } from "@/constants/time";
-import { copyWithNotification } from "@/utils/copy";
 import { UnionFromAsConst } from "~/utils/type";
+
+const { copyData } = useCopy();
 
 const epochInput = ref(DateTime.now().toUnixInteger());
 const unit: Ref<UnionFromAsConst<typeof EpochTimeConvertTimeUnit>> = ref(EpochTimeConvertTimeUnit.SECONDS);
@@ -57,7 +58,7 @@ const useOffset = ref(true);
 const omitMilliseconds = ref(false);
 
 const onClickCopy = async () => {
-  await copyWithNotification(ISODateTime.value);
+  await copyData(ISODateTime.value);
 };
 const setNow = () => {
   epochInput.value = Date.now();

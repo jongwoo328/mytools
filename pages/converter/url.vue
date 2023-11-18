@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import PageHeading from "~/components/common/PageHeading.vue";
-import { copyWithNotification } from "~/utils/copy";
 import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 
+const { copyData } = useCopy();
 useJsonld(() => ({
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -29,9 +29,9 @@ const decodedText = computed(() => decodeURI(inputText.value));
 
 const onClickCopy = () => {
   if (activeTabKey.value === 0) {
-    copyWithNotification(encodedText.value);
+    copyData(encodedText.value);
   } else {
-    copyWithNotification(decodedText.value);
+    copyData(decodedText.value);
   }
 };
 </script>

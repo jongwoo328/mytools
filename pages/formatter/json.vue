@@ -6,6 +6,9 @@ import { JSONResult } from "@/types/JSONResult";
 import PageHeading from "@/components/common/PageHeading.vue";
 import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 
+const { t: $t } = useI18n();
+const localePath = useLocalePath();
+
 useJsonld(() => ({
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -14,13 +17,13 @@ useJsonld(() => ({
       "@type": "ListItem",
       position: 1,
       name: "Tools For Developer",
-      item: "https://tools.jongwoo.me",
+      item: `https://tools.jongwoo.me${localePath("/")}`,
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "JSON Formatter",
-      item: "https://tools.jongwoo.me/formatter/json",
+      item: `https://tools.jongwoo.me${localePath("/formatter/json")}`,
     },
   ],
 }));
@@ -50,12 +53,12 @@ const onFormatButtonClick = () => {
 
 <template>
   <Head>
-    <Title>JSON Formatter</Title>
-    <Meta name="description" content="Format JSON text and extract its elements." />
+    <Title>{{ $t("formatter.json.head.title") }}</Title>
+    <Meta name="description" :content="$t('formatter.json.head.description')" />
   </Head>
-  <ToolPageLayout title="JSON Formatter">
+  <ToolPageLayout :title="$t('formatter.json.title')">
     <PageHeading class="d-block align-middle" :level="2" :size="6" weight="600" style="height: 44px; line-height: 2">
-      JSON text
+      {{ $t("formatter.json.json_text_input_label") }}
     </PageHeading>
     <Textarea
       auto-resize
@@ -64,9 +67,11 @@ const onFormatButtonClick = () => {
       class="prevent-auto-zoom d-block w-100"
     />
     <div v-if="isJsonValid" style="height: 14px"></div>
-    <span v-else class="float-end text-danger"> Input is not valid JSON </span>
+    <span v-else class="float-end text-danger">
+      {{ $t("formatter.json.json_text_input_invalid_message") }}
+    </span>
     <Button class="mt-2 w-100 d-block" :disabled="!isJsonValid" @click="onFormatButtonClick" size="large">
-      Format
+      {{ $t("formatter.json.json_format_btn_label") }}
     </Button>
     <JSONResultList v-model:results="JSONFormatResults" />
   </ToolPageLayout>

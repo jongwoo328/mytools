@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import RgbColor from "~/models/RgbColor";
-import { copyWithNotification } from "~/utils/copy";
 import CmykColor from "~/models/CmykColor";
 import HslColor from "~/models/HslColor";
+
+const { copyData } = useCopy();
 
 interface ColorConvertResultProps {
   readonly hex: string;
@@ -47,22 +48,22 @@ const hslText = computed(() => {
     <div class="col col-12 d-flex align-items-center" v-if="showHex">
       <span class="fw-bold">HEX</span>
       <span class="flex-grow-1 text-end pe-2">{{ hexText }}</span>
-      <Button icon="pi pi-copy" class="py-1" size="small" text @click="copyWithNotification(hexText)" />
+      <Button icon="pi pi-copy" class="py-1" size="small" text @click="copyData(hexText)" />
     </div>
     <div class="col col-12 d-flex align-items-center" v-if="showHex">
       <span class="fw-bold">RGB</span>
       <span class="flex-grow-1 text-end pe-2">{{ rgbText }}</span>
-      <Button icon="pi pi-copy" class="py-1" size="small" text @click="copyWithNotification(rgbText)" />
+      <Button icon="pi pi-copy" class="py-1" size="small" text @click="copyData(rgbText)" />
     </div>
     <div class="col col-12 d-flex align-items-center" v-if="showCmyk">
       <span class="fw-bold">CMYK</span>
       <span class="flex-grow-1 text-end pe-2">{{ cmykText }}</span>
-      <Button icon="pi pi-copy" class="py-1" size="small" text @click="copyWithNotification(cmykText)" />
+      <Button icon="pi pi-copy" class="py-1" size="small" text @click="copyData(cmykText)" />
     </div>
     <div class="col col-12 d-flex align-items-center" v-if="showHsl">
       <span class="fw-bold">HSL</span>
       <span class="flex-grow-1 text-end pe-2">{{ hslText }}</span>
-      <Button icon="pi pi-copy" class="py-1" size="small" text @click="copyWithNotification(hslText)" />
+      <Button icon="pi pi-copy" class="py-1" size="small" text @click="copyData(hslText)" />
     </div>
   </div>
 </template>

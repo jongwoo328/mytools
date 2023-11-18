@@ -19,7 +19,9 @@ const onClickDelete = (id: string) => {
 </script>
 
 <template>
-  <ResultDivider v-if="results.length > 0" align="center" color="#f0f2f5"> Results </ResultDivider>
+  <ResultDivider v-if="results.length > 0" align="center" color="#f0f2f5">
+    {{ $t("formatter.sql.result_list.divider_text") }}
+  </ResultDivider>
   <section class="d-flex flex-column-reverse">
     <SQLResultListItem
       v-for="(result, idx) in results"
@@ -27,7 +29,6 @@ const onClickDelete = (id: string) => {
       :index="idx"
       :result-data="result"
       @delete="onClickDelete"
-    >
-    </SQLResultListItem>
+    />
   </section>
 </template>

@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import { ImageConverterResult } from "@/types/ImageConverterResult";
-import { copyWithNotification } from "@/utils/copy";
+
+const { copyData } = useCopy();
 
 const props = defineProps<{ result: ImageConverterResult; index: number }>();
 const emit = defineEmits<{ (e: "delete", id: string): void }>();
@@ -29,7 +30,7 @@ const onClickDownload = () => {
 const copyingBase64 = ref(false);
 const copyAsBase64 = async () => {
   copyingBase64.value = true;
-  await copyWithNotification(props.result.objectURL);
+  await copyData(props.result.objectURL);
   copyingBase64.value = false;
 };
 

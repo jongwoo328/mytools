@@ -4,6 +4,7 @@ import { ref } from "vue";
 import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 
 const { t: $t } = useI18n();
+const localePath = useLocalePath();
 
 useJsonld(() => ({
   "@context": "https://schema.org",
@@ -13,13 +14,13 @@ useJsonld(() => ({
       "@type": "ListItem",
       position: 1,
       name: $t("title"),
-      item: "https://tools.jongwoo.me",
+      item: `https://tools.jongwoo.me${localePath("/")}`,
     },
     {
       "@type": "ListItem",
       position: 2,
       name: $t("viewer.html.title"),
-      item: "https://tools.jongwoo.me/viewer/html",
+      item: `https://tools.jongwoo.me${localePath("/viewer/html")}`,
     },
   ],
 }));

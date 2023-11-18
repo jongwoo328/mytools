@@ -19,7 +19,9 @@ const onClickDelete = (id: string) => {
 </script>
 
 <template>
-  <ResultDivider v-if="results.length > 0" align="center" color="#f0f2f5"> Results </ResultDivider>
+  <ResultDivider v-if="results.length > 0" align="center" color="#f0f2f5">
+    {{ $t("formatter.json.result_list.divider_text") }}
+  </ResultDivider>
   <section class="d-flex flex-column-reverse">
     <JSONResultListItem
       v-for="(result, idx) in results"

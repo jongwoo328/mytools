@@ -4,12 +4,14 @@ import { sql } from "@codemirror/lang-sql";
 import { computed, ref } from "vue";
 import { SQLResult } from "@/types/SQLResult";
 import { format, IndentStyle, KeywordCase, LogicalOperatorNewline } from "sql-formatter";
-import { copyWithNotification } from "@/utils/copy";
 import ResultItem from "@/components/common/ResultItem.vue";
 import Button from "primevue/button";
 import SQLResultListItemSetting from "@/components/formatter/SQLResultListItemSetting.vue";
 import ResultDivider from "@/components/common/ResultDivider.vue";
 import { UnionFromAsConst } from "~/utils/type";
+
+const { t: $t } = useI18n();
+const { copyData } = useCopy();
 
 const props = defineProps<{
   resultData: SQLResult;
@@ -53,7 +55,7 @@ const onClickExpandToggle = () => {
   }
 };
 const onClickCopy = async () => {
-  await copyWithNotification(formattedSQL.value);
+  await copyData(formattedSQL.value);
 };
 const onChangeUseTabs = (v: boolean) => {
   useTabs.value = v;
@@ -72,7 +74,9 @@ const onChangeLogicalOperatorNewLine = (v: LogicalOperatorNewline) => {
 };
 
 const expandToggleLabel = computed(() =>
-  expandToggle.value === ExpandToggle.REVERT ? ExpandToggle.FIT : ExpandToggle.REVERT,
+  expandToggle.value === ExpandToggle.REVERT
+    ? $t("formatter.sql.result_list.expand_toggle_btn_label.fit")
+    : $t("formatter.sql.result_list.expand_toggle_btn_label.revert"),
 );
 </script>
 

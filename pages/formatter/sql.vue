@@ -7,6 +7,9 @@ import SQLResultList from "@/components/formatter/SQLResultList.vue";
 import PageHeading from "@/components/common/PageHeading.vue";
 import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 
+const { t: $t } = useI18n();
+const localePath = useLocalePath();
+
 useJsonld(() => ({
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -14,14 +17,14 @@ useJsonld(() => ({
     {
       "@type": "ListItem",
       position: 1,
-      name: "Tools For Developer",
-      item: "https://tools.jongwoo.me",
+      name: $t("title"),
+      item: `https://tools.jongwoo.me${localePath("/")}`,
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "SQL Formatter",
-      item: "https://tools.jongwoo.me/formatter/sql",
+      item: `https://tools.jongwoo.me${localePath("/formatter/sql")}`,
     },
   ],
 }));
@@ -29,35 +32,35 @@ useJsonld(() => ({
 const SQLFormatterResults: Ref<SQLResult[]> = ref([]);
 const sqlLanguageOptions = [
   {
-    label: "SQL",
+    label: $t("formatter.sql.sql_language_options.sql"),
     value: "sql",
   },
   {
-    label: "MySQL",
+    label: $t("formatter.sql.sql_language_options.mysql"),
     value: "mysql",
   },
   {
-    label: "MariaDB",
+    label: $t("formatter.sql.sql_language_options.mariadb"),
     value: "mariadb",
   },
   {
-    label: "Transact-SQL",
+    label: $t("formatter.sql.sql_language_options.transactsql"),
     value: "transactsql",
   },
   {
-    label: "PostgreSQL",
+    label: $t("formatter.sql.sql_language_options.postgresql"),
     value: "postgresql",
   },
   {
-    label: "Amazon Redshift",
+    label: $t("formatter.sql.sql_language_options.amazonredshift"),
     value: "redshift",
   },
   {
-    label: "Spark",
+    label: $t("formatter.sql.sql_language_options.spark"),
     value: "spark",
   },
   {
-    label: "Snowflake",
+    label: $t("formatter.sql.sql_language_options.snowflake"),
     value: "snowflake",
   },
 ];
@@ -84,12 +87,14 @@ const onFormatButtonClick = () => {
 
 <template>
   <Head>
-    <Title>SQL Formatter</Title>
-    <Meta name="description" content="Format SQL in a variety of ways that are commonly used" />
+    <Title>{{ $t("formatter.sql.head.title") }}</Title>
+    <Meta name="description" :content="$t('formatter.sql.head.description')" />
   </Head>
-  <ToolPageLayout title="SQL Formatter">
+  <ToolPageLayout :title="$t('formatter.sql.title')">
     <div class="mb-2 d-flex justify-content-between align-items-center">
-      <PageHeading class="d-inline-block m-0" :level="2" :size="6" weight="600"> SQL</PageHeading>
+      <PageHeading class="d-inline-block m-0" :level="2" :size="6" weight="600">
+        {{ $t("formatter.sql.sql_input_label") }}
+      </PageHeading>
       <Dropdown
         size="small"
         :options="sqlLanguageOptions"
@@ -105,9 +110,11 @@ const onFormatButtonClick = () => {
       class="prevent-auto-zoom d-block w-100"
     />
     <div v-if="isSQLValid" style="height: 14px"></div>
-    <span v-else class="float-end text-danger"> Input is not valid SQL </span>
+    <span v-else class="float-end text-danger">
+      {{ $t("formatter.sql.sql_input_invalid_message") }}
+    </span>
     <Button class="mt-2 d-block w-100" :disabled="!isSQLValid" size="large" @click="onFormatButtonClick">
-      Format
+      {{ $t("formatter.sql.sql_format_btn_label") }}
     </Button>
     <SQLResultList v-model:results="SQLFormatterResults" />
   </ToolPageLayout>

@@ -2,8 +2,9 @@
 import { computed, Ref, ref } from "vue";
 import { DateTime, FixedOffsetZone, SystemZone } from "luxon";
 import { offsetList, EpochTimeConvertTimeUnit } from "@/constants/time";
-import { copyWithNotification } from "@/utils/copy";
 import { UnionFromAsConst } from "~/utils/type";
+
+const { copyData } = useCopy();
 
 const defaultDateTime = DateTime.now();
 
@@ -52,7 +53,7 @@ const unitOptions = [
 ];
 
 const onClickCopy = async () => {
-  await copyWithNotification(resultEpoch.value.toString());
+  await copyData(resultEpoch.value.toString());
 };
 
 const setNow = () => {

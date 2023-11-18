@@ -6,7 +6,6 @@ import ImageConverterResultList from "@/components/converter/ImageConverterResul
 import { v4 } from "uuid";
 import { ImageConverterResult } from "@/types/ImageConverterResult";
 import { useImageUtil } from "@/composables/useImageUtil";
-import { copyWithNotification } from "@/utils/copy";
 import { createEmptyFile, isEmptyFile } from "@/utils/file";
 import PageHeading from "@/components/common/PageHeading.vue";
 import { createEmptyImageElement } from "~/utils/HTMLImage";
@@ -32,6 +31,7 @@ useJsonld(() => ({
 }));
 
 const browser = useBrowser();
+const { copyData } = useCopy();
 const { asyncBlobToBase64 } = useImageUtil();
 
 const canvas = ref<HTMLCanvasElement>();
@@ -98,7 +98,7 @@ const copyAsBase64 = async () => {
 
   copyingBase64.value = true;
   await new Promise((r) => setTimeout(r, 0));
-  await copyWithNotification(await asyncBlobToBase64(inputImage.value));
+  await copyData(await asyncBlobToBase64(inputImage.value));
   copyingBase64.value = false;
 };
 

@@ -3,6 +3,7 @@ import TextDifferenceChecker from "~/components/viewer/TextDifferenceChecker.vue
 import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 
 const { t: $t } = useI18n();
+const localePath = useLocalePath();
 
 useJsonld(() => ({
   "@context": "https://schema.org",
@@ -12,13 +13,13 @@ useJsonld(() => ({
       "@type": "ListItem",
       position: 1,
       name: $t("title"),
-      item: "https://tools.jongwoo.me",
+      item: `https://tools.jongwoo.me${localePath("/")}`,
     },
     {
       "@type": "ListItem",
       position: 2,
       name: $t("viewer.text-diff.title"),
-      item: "https://tools.jongwoo.me/viewer/text-diff",
+      item: `https://tools.jongwoo.me${localePath("/viewer/text-diff")}`,
     },
   ],
 }));
