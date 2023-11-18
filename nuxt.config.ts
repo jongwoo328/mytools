@@ -104,7 +104,6 @@ export default defineNuxtConfig({
 
   css: [
     "@/assets/styles/main.css",
-    "@/assets/styles/flag.css",
     "bootstrap/dist/css/bootstrap.min.css",
     "primevue/resources/themes/lara-light-blue/theme.css",
     "primevue/resources/primevue.css",

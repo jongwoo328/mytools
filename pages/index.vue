@@ -5,6 +5,7 @@ import ServiceInformationModal from "@/components/common/ServiceInformationModal
 import PageHeading from "@/components/common/PageHeading.vue";
 
 const { t: $t } = useI18n();
+const localePath = useLocalePath();
 
 const showModal = useLocalStorage("showServiceInformationModal", true);
 
@@ -34,67 +35,67 @@ const Tags = {
 const availableTools: AvailableTool[] = [
   {
     title: $t("index.tools.json_formatter.title"),
-    router: "/formatter/json",
+    router: localePath("/formatter/json"),
     description: $t("index.tools.json_formatter.description"),
     tags: [Tags.Formatter],
   },
   {
     title: $t("index.tools.sql_formatter.title"),
-    router: "/formatter/sql",
+    router: localePath("/formatter/sql"),
     description: $t("index.tools.sql_formatter.description"),
     tags: [Tags.Formatter],
   },
   {
     title: $t("index.tools.image_converter.title"),
-    router: "/converter/image",
+    router: localePath("/converter/image"),
     description: $t("index.tools.image_converter.description"),
     tags: [Tags.Converter],
   },
   {
     title: $t("index.tools.html_viewer.title"),
-    router: "/viewer/html",
+    router: localePath("/viewer/html"),
     description: $t("index.tools.html_viewer.description"),
     tags: [Tags.Viewer],
   },
   {
     title: $t("index.tools.epoch_converter.title"),
-    router: "/converter/epoch",
+    router: localePath("/converter/epoch"),
     description: $t("index.tools.epoch_converter.description"),
     tags: [Tags.Converter],
   },
   {
     title: $t("index.tools.csv_to_json_converter.title"),
-    router: "/converter/csv-to-json",
+    router: localePath("/converter/csv-to-json"),
     description: $t("index.tools.csv_to_json_converter.description"),
     tags: [Tags.Converter],
   },
   {
     title: $t("index.tools.image_cropper.title"),
-    router: "/converter/image-crop",
+    router: localePath("/converter/image-crop"),
     description: $t("index.tools.image_cropper.description"),
     tags: [Tags.Converter],
   },
   {
     title: $t("index.tools.url_encoder/decoder.title"),
-    router: "/converter/url",
+    router: localePath("/converter/url"),
     description: $t("index.tools.url_encoder/decoder.description"),
     tags: [Tags.Converter],
   },
   {
     title: $t("index.tools.color_code_converter.title"),
-    router: "/converter/color",
+    router: localePath("/converter/color"),
     description: $t("index.tools.color_code_converter.description"),
     tags: [Tags.Converter],
   },
   {
     title: $t("index.tools.text_difference_checker.title"),
-    router: "/viewer/text-diff",
+    router: localePath("/viewer/text-diff"),
     description: $t("index.tools.text_difference_checker.description"),
     tags: [Tags.Viewer],
   },
   {
     title: $t("index.tools.text_length_calculator.title"),
-    router: "/calculator/text-length",
+    router: localePath("/calculator/text-length"),
     description: $t("index.tools.text_length_calculator.description"),
     tags: [Tags.Calculator],
   },
