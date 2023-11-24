@@ -313,7 +313,7 @@
       },
       "title": "Epoch 변환기",
       "epoch_to_iso8601": {
-        "title": "Epoch to ISO8601",
+        "title": "Epoch - ISO8601 변환",
         "set_now_btn_label": "현재 시각",
         "options": {
           "use_delimiter": "구분자 사용",
@@ -323,7 +323,7 @@
         "copy_btn_label": "복사"
       },
       "time_to_epoch": {
-        "title": "ISO8601 to Epoch",
+        "title": "ISO8601 - Epoch 변환",
         "set_now_btn_label": "현재 시각",
         "options": {
           "use_milliseconds": "밀리초 사용"
