@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import PageHeader from "@/components/common/PageHeader.vue";
 import GlobalBackTop from "@/components/common/GlobalBackTop.vue";
+import { breakpointsBootstrapV5 } from "@vueuse/core";
+import LocaleDropdown from "@/components/common/LocaleDropdown.vue";
 
 const { locale, t } = useI18n();
 const { isWindows } = useOs();
+
+const breakpoints = useBreakpoints(breakpointsBootstrapV5);
+const isMobileOrTablet = breakpoints.smaller("lg");
 
 useHead({
   link: [
@@ -24,8 +29,16 @@ useHead({
 <template>
   <div id="main" class="d-flex flex-column align-items-center">
     <PageHeader />
-    <div id="view" class="container pt-5" style="padding-bottom: 100px">
+    <div
+      id="view"
+      class="container"
+      :class="{ 'pt-5': !isMobileOrTablet, 'pt-3': isMobileOrTablet }"
+      style="padding-bottom: 100px"
+    >
       <CommonToast />
+      <div v-if="isMobileOrTablet" class="w-100 d-flex justify-content-end pt-2">
+        <LocaleDropdown />
+      </div>
       <slot />
     </div>
   </div>

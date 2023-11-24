@@ -2,10 +2,11 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { breakpointsBootstrapV5 } from "@vueuse/core";
+import LocaleDropdown from "~/components/common/LocaleDropdown.vue";
 
 const router = useRouter();
-const { t, locale, availableLocales } = useI18n();
-const switchLocalePath = useSwitchLocalePath();
+const { t } = useI18n();
+
 const localePath = useLocalePath();
 
 const drawerVisible = ref(false);
@@ -109,10 +110,6 @@ const menus = [
     ],
   },
 ];
-
-watch(locale, () => {
-  router.replace(switchLocalePath(locale.value));
-});
 </script>
 
 <template>
@@ -133,7 +130,7 @@ watch(locale, () => {
         <Button text @click="onClickHome" class="w-100 me-2 py-2" label="🛠️" />
       </template>
       <template #end>
-        <Dropdown size="small" :options="availableLocales" v-model="locale" />
+        <LocaleDropdown />
       </template>
     </Menubar>
   </ClientOnly>
