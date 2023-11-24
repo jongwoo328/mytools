@@ -4,7 +4,7 @@ import { useRouter } from "vue-router";
 import { breakpointsBootstrapV5 } from "@vueuse/core";
 
 const router = useRouter();
-const { t: $t, locale, availableLocales } = useI18n();
+const { t, locale, availableLocales } = useI18n();
 const switchLocalePath = useSwitchLocalePath();
 const localePath = useLocalePath();
 
@@ -30,80 +30,80 @@ const hideDrawer = () => {
 
 const menus = [
   {
-    label: () => $t("index.menu.formatter.label"),
+    label: () => t("index.menu.formatter.label"),
     key: "formatter",
     items: [
       {
         to: () => localePath(localePath("/formatter/json")),
-        label: () => $t("index.menu.formatter.items.json_formatter_label"),
+        label: () => t("index.menu.formatter.items.json_formatter_label"),
         command: hideDrawer,
       },
       {
         to: () => localePath(localePath("/formatter/sql")),
-        label: () => $t("index.menu.formatter.items.sql_formatter_label"),
+        label: () => t("index.menu.formatter.items.sql_formatter_label"),
         command: hideDrawer,
       },
     ],
   },
   {
-    label: () => $t("index.menu.converter.label"),
+    label: () => t("index.menu.converter.label"),
     key: "converter",
     items: [
       {
         to: () => localePath("/converter/image"),
-        label: () => $t("index.menu.converter.items.image_converter_label"),
+        label: () => t("index.menu.converter.items.image_converter_label"),
         command: hideDrawer,
       },
       {
         to: () => localePath("/converter/epoch"),
-        label: () => $t("index.menu.converter.items.epoch_converter_label"),
+        label: () => t("index.menu.converter.items.epoch_converter_label"),
         command: hideDrawer,
       },
       {
         to: () => localePath("/converter/csv-to-json"),
-        label: () => $t("index.menu.converter.items.csv_to_json_converter_label"),
+        label: () => t("index.menu.converter.items.csv_to_json_converter_label"),
         command: hideDrawer,
       },
       {
         to: () => localePath("/converter/image-crop"),
-        label: () => $t("index.menu.converter.items.image_cropper_label"),
+        label: () => t("index.menu.converter.items.image_cropper_label"),
         command: hideDrawer,
       },
       {
         to: () => localePath("/converter/url"),
-        label: () => $t("index.menu.converter.items.url_encoder/decoder_label"),
+        label: () => t("index.menu.converter.items.url_encoder/decoder_label"),
         command: hideDrawer,
       },
       {
         to: () => localePath("/converter/color"),
-        label: () => $t("index.menu.converter.items.color_code_converter_label"),
+        label: () => t("index.menu.converter.items.color_code_converter_label"),
         command: hideDrawer,
       },
     ],
   },
   {
-    label: () => $t("index.menu.viewer.label"),
+    label: () => t("index.menu.viewer.label"),
     key: "viewer",
     items: [
       {
         to: () => localePath("/viewer/html"),
-        label: () => $t("index.menu.viewer.items.html_viewer_label"),
+        label: () => t("index.menu.viewer.items.html_viewer_label"),
         command: hideDrawer,
       },
       {
         to: () => localePath("/viewer/text-diff"),
-        label: () => $t("index.menu.viewer.items.text_difference_checker_label"),
+        label: () => t("index.menu.viewer.items.text_difference_checker_label"),
         command: hideDrawer,
       },
     ],
   },
   {
-    label: () => $t("index.menu.calculator.label"),
+    label: () => t("index.menu.calculator.label"),
     key: "calculator",
     items: [
       {
         to: () => localePath("/calculator/text-length"),
-        label: () => $t("index.menu.calculator.items.text_length_calculator_label"),
+        label: () => t("index.menu.calculator.items.text_length_calculator_label"),
         command: hideDrawer,
       },
     ],

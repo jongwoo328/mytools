@@ -10,7 +10,7 @@ import { FileUploadSelectEvent } from "primevue/fileupload";
 import { createEmptyFile, isEmptyFile } from "~/utils/file";
 import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 
-const { t: $t } = useI18n();
+const { t } = useI18n();
 const localePath = useLocalePath();
 
 useJsonld(() => ({
@@ -20,7 +20,7 @@ useJsonld(() => ({
     {
       "@type": "ListItem",
       position: 1,
-      name: $t("title"),
+      name: t("title"),
       item: `https://tools.jongwoo.me${localePath("/")}`,
     },
     {
@@ -41,11 +41,11 @@ const enum CsvToJsonEncodingType {
 const activeTabKey = ref(0);
 const tabOptions = [
   {
-    label: $t("converter.csv_to_json.options.input_type.text"),
+    label: t("converter.csv_to_json.options.input_type.text"),
     icon: "pi pi-pencil",
   },
   {
-    label: $t("converter.csv_to_json.options.input_type.file"),
+    label: t("converter.csv_to_json.options.input_type.file"),
     icon: "pi pi-file",
   },
 ];
@@ -103,30 +103,30 @@ const onClear = () => {
 </script>
 <template>
   <Head>
-    <Title>{{ $t("converter.csv_to_json.head.title") }}</Title>
-    <Meta name="description" :content="$t('converter.csv_to_json.head.description')" />
+    <Title>{{ t("converter.csv_to_json.head.title") }}</Title>
+    <Meta name="description" :content="t('converter.csv_to_json.head.description')" />
   </Head>
-  <ToolPageLayout :title="$t('converter.csv_to_json.title')">
+  <ToolPageLayout :title="t('converter.csv_to_json.title')">
     <div class="mb-3">
       <PageHeading :level="2" :size="6" weight="600" style="height: 44px; line-height: 2">
-        {{ $t("converter.csv_to_json.csv_input_label") }}
+        {{ t("converter.csv_to_json.csv_input_label") }}
       </PageHeading>
     </div>
     <Card>
       <template #content>
         <Panel toggleable>
-          <template #header>{{ $t("converter.csv_to_json.options.label") }}</template>
+          <template #header>{{ t("converter.csv_to_json.options.label") }}</template>
           <template #default>
             <div class="row">
               <div class="col col-12 col-lg-6 d-flex justify-content-start row">
                 <label class="col col-6 align-self-center" for="">
-                  {{ $t("converter.csv_to_json.options.header_included.label") }}
+                  {{ t("converter.csv_to_json.options.header_included.label") }}
                 </label>
                 <InputSwitch class="col col-6 align-self-center" v-model:model-value="headerIncluded" />
               </div>
               <div class="col col-12 col-lg-6 d-flex justify-content-start row mt-2">
                 <label class="col col-6 align-self-center" for="">
-                  {{ $t("converter.csv_to_json.options.encoding.label") }}
+                  {{ t("converter.csv_to_json.options.encoding.label") }}
                 </label>
                 <Dropdown
                   :options="encodingOptions"
@@ -148,7 +148,7 @@ const onClear = () => {
             class="prevent-auto-zoom d-block w-100"
           />
           <Button class="w-100 d-block mt-2" size="large" @click="parseFromText">
-            {{ $t("converter.csv_to_json.parse_btn_label") }}
+            {{ t("converter.csv_to_json.parse_btn_label") }}
           </Button>
         </div>
         <div v-show="activeTabKey === 1">
@@ -166,14 +166,14 @@ const onClear = () => {
               class="upload w-100 position-relative mb-2"
               @select="onFileChange"
               @clear="onClear"
-              :choose-label="$t('converter.csv_to_json.input_file_btn_label')"
+              :choose-label="t('converter.csv_to_json.input_file_btn_label')"
             />
           </div>
           <span v-for="(error, idx) in parseFromFileErrors" :key="idx" class="d-block text-end text-danger">
             {{ error.message }}
           </span>
           <Button class="w-100 d-block mt-2" size="large" @click="parseFromFile">
-            {{ $t("converter.csv_to_json.parse_btn_label") }}
+            {{ t("converter.csv_to_json.parse_btn_label") }}
           </Button>
         </div>
       </template>

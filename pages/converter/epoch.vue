@@ -4,7 +4,7 @@ import EpochConverterDateTimeForm from "@/components/converter/EpochConverterDat
 import PageHeading from "@/components/common/PageHeading.vue";
 import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 
-const { t: $t } = useI18n();
+const { t } = useI18n();
 const localePath = useLocalePath();
 
 useJsonld(() => ({
@@ -14,7 +14,7 @@ useJsonld(() => ({
     {
       "@type": "ListItem",
       position: 1,
-      name: $t("title"),
+      name: t("title"),
       item: `https://tools.jongwoo.me${localePath("/")}`,
     },
     {
@@ -29,17 +29,17 @@ useJsonld(() => ({
 
 <template>
   <Head>
-    <Title>{{ $t("converter.epoch.head.title") }}</Title>
-    <Meta name="description" :content="$t('converter.epoch.head.description')" />
+    <Title>{{ t("converter.epoch.head.title") }}</Title>
+    <Meta name="description" :content="t('converter.epoch.head.description')" />
   </Head>
-  <ToolPageLayout :title="$t('converter.epoch.title')">
+  <ToolPageLayout :title="t('converter.epoch.title')">
     <div class="row mt-3">
       <div class="col col-12 mb-2">
         <Card>
           <template #header>
             <div class="px-4 pt-4">
               <PageHeading class="mb-4" :level="2" :size="6" weight="600">
-                {{ $t("converter.epoch.epoch_to_iso8601.title") }}
+                {{ t("converter.epoch.epoch_to_iso8601.title") }}
               </PageHeading>
             </div>
           </template>
@@ -53,7 +53,7 @@ useJsonld(() => ({
           <template #header>
             <div class="px-4 pt-4">
               <PageHeading :level="2" :size="6" weight="600">
-                {{ $t("converter.epoch.time_to_epoch.title") }}
+                {{ t("converter.epoch.time_to_epoch.title") }}
               </PageHeading>
             </div>
           </template>

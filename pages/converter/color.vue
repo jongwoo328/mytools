@@ -5,7 +5,7 @@ import HslColor from "~/models/HslColor";
 import ColorConvertResult from "~/components/converter/ColorConvertResult.vue";
 import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 
-const { t: $t } = useI18n();
+const { t } = useI18n();
 const localePath = useLocalePath();
 
 useJsonld(() => ({
@@ -15,7 +15,7 @@ useJsonld(() => ({
     {
       "@type": "ListItem",
       position: 1,
-      name: $t("title"),
+      name: t("title"),
       item: `https://tools.jongwoo.me${localePath("/")}`,
     },
     {
@@ -122,15 +122,15 @@ watch([hslHue, hslSaturation, hslLightness], () => {
 
 <template>
   <Head>
-    <Title>{{ $t("converter.color.head.title") }}</Title>
-    <Meta name="description" :content="$t('converter.color.head.description')" />
+    <Title>{{ t("converter.color.head.title") }}</Title>
+    <Meta name="description" :content="t('converter.color.head.description')" />
   </Head>
-  <ToolPageLayout :title="$t('converter.color.title')" :description="$t('converter.color.description')">
+  <ToolPageLayout :title="t('converter.color.title')" :description="t('converter.color.description')">
     <Card>
       <template #content>
         <div class="row m-0">
           <TabView>
-            <TabPanel :header="$t('converter.color.options.hex.label')">
+            <TabPanel :header="t('converter.color.options.hex.label')">
               <ColorPicker v-model="hexPickedColor" class="w-100" :pt="{ input: { class: 'color-picker' } }" />
               <div class="row mt-2">
                 <div class="p-inputgroup">
@@ -140,7 +140,7 @@ watch([hslHue, hslSaturation, hslLightness], () => {
               </div>
               <ColorConvertResult class="mt-4" :hex="hexPickedColor" />
             </TabPanel>
-            <TabPanel :header="$t('converter.color.options.rgb.label')">
+            <TabPanel :header="t('converter.color.options.rgb.label')">
               <ColorPicker v-model="rgbPickedColor" class="w-100" :pt="{ input: { class: 'color-picker' } }" />
               <div class="row mt-2">
                 <div class="p-inputgroup">
@@ -158,7 +158,7 @@ watch([hslHue, hslSaturation, hslLightness], () => {
               </div>
               <ColorConvertResult class="mt-4" :hex="rgbPickedColor" />
             </TabPanel>
-            <TabPanel :header="$t('converter.color.options.cmyk.label')">
+            <TabPanel :header="t('converter.color.options.cmyk.label')">
               <ColorPicker v-model="cmykPickedColor" class="w-100" :pt="{ input: { class: 'color-picker' } }" />
               <div class="row mt-2">
                 <div class="p-inputgroup">
@@ -184,7 +184,7 @@ watch([hslHue, hslSaturation, hslLightness], () => {
               </div>
               <ColorConvertResult class="mt-4" :hex="cmykPickedColor" />
             </TabPanel>
-            <TabPanel :header="$t('converter.color.options.hsl.label')">
+            <TabPanel :header="t('converter.color.options.hsl.label')">
               <ColorPicker v-model="hslPickedColor" class="w-100" :pt="{ input: { class: 'color-picker' } }" />
               <div class="row mt-2">
                 <div class="p-inputgroup">

@@ -6,7 +6,7 @@ import { JSONResult } from "@/types/JSONResult";
 import PageHeading from "@/components/common/PageHeading.vue";
 import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 
-const { t: $t } = useI18n();
+const { t } = useI18n();
 const localePath = useLocalePath();
 
 useJsonld(() => ({
@@ -16,7 +16,7 @@ useJsonld(() => ({
     {
       "@type": "ListItem",
       position: 1,
-      name: $t("title"),
+      name: t("title"),
       item: `https://tools.jongwoo.me${localePath("/")}`,
     },
     {
@@ -53,12 +53,12 @@ const onFormatButtonClick = () => {
 
 <template>
   <Head>
-    <Title>{{ $t("formatter.json.head.title") }}</Title>
-    <Meta name="description" :content="$t('formatter.json.head.description')" />
+    <Title>{{ t("formatter.json.head.title") }}</Title>
+    <Meta name="description" :content="t('formatter.json.head.description')" />
   </Head>
-  <ToolPageLayout :title="$t('formatter.json.title')">
+  <ToolPageLayout :title="t('formatter.json.title')">
     <PageHeading class="d-block align-middle" :level="2" :size="6" weight="600" style="height: 44px; line-height: 2">
-      {{ $t("formatter.json.json_text_input_label") }}
+      {{ t("formatter.json.json_text_input_label") }}
     </PageHeading>
     <Textarea
       auto-resize
@@ -68,10 +68,10 @@ const onFormatButtonClick = () => {
     />
     <div v-if="isJsonValid" style="height: 14px"></div>
     <span v-else class="float-end text-danger">
-      {{ $t("formatter.json.json_text_input_invalid_message") }}
+      {{ t("formatter.json.json_text_input_invalid_message") }}
     </span>
     <Button class="mt-2 w-100 d-block" :disabled="!isJsonValid" @click="onFormatButtonClick" size="large">
-      {{ $t("formatter.json.json_format_btn_label") }}
+      {{ t("formatter.json.json_format_btn_label") }}
     </Button>
     <JSONResultList v-model:results="JSONFormatResults" />
   </ToolPageLayout>

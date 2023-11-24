@@ -7,7 +7,7 @@ import ResultDivider from "@/components/common/ResultDivider.vue";
 import ResultItem from "@/components/common/ResultItem.vue";
 import { parseJsonPathToKeyArray } from "@/utils/json";
 
-const { t: $t } = useI18n();
+const { t } = useI18n();
 const { copyData } = useCopy();
 
 const emit = defineEmits<{ (e: "delete", id: string): void }>();
@@ -29,11 +29,11 @@ type FormatType = "formatted" | "minified";
 const formatType = ref<FormatType>("formatted");
 const formatTypeOptions = [
   {
-    label: $t("formatter.json.result_list.format_type_options.formatted"),
+    label: t("formatter.json.result_list.format_type_options.formatted"),
     value: "formatted",
   },
   {
-    label: $t("formatter.json.result_list.format_type_options.minified"),
+    label: t("formatter.json.result_list.format_type_options.minified"),
     value: "minified",
   },
 ];
@@ -90,7 +90,7 @@ const download = () => {
 
 const clickActions: MenuItem[] = [
   {
-    label: $t("formatter.json.result_list.actions.copy_path"),
+    label: t("formatter.json.result_list.actions.copy_path"),
     icon: "pi pi-copy",
     command: onClickCopyPath,
     style: {
@@ -99,21 +99,21 @@ const clickActions: MenuItem[] = [
     disabled: () => isSelectedEmpty.value,
   },
   {
-    label: $t("formatter.json.result_list.actions.copy_key"),
+    label: t("formatter.json.result_list.actions.copy_key"),
     icon: "pi pi-copy",
     command: onClickCopyKey,
     class: "click-action",
     disabled: () => isSelectedEmpty.value,
   },
   {
-    label: $t("formatter.json.result_list.actions.copy_node"),
+    label: t("formatter.json.result_list.actions.copy_node"),
     icon: "pi pi-copy",
     command: onClickSelectedNode,
     class: "click-action",
     disabled: () => isSelectedEmpty.value,
   },
   {
-    label: $t("formatter.json.result_list.actions.download"),
+    label: t("formatter.json.result_list.actions.download"),
     icon: "pi pi-download",
     command: download,
     class: "click-action",
@@ -160,7 +160,7 @@ const clickActions: MenuItem[] = [
           <SplitButton
             v-show="isMobileOrTablet"
             outlined
-            :label="$t('formatter.json.result_list.actions.copy_all')"
+            :label="t('formatter.json.result_list.actions.copy_all')"
             severity="info"
             size="small"
             icon="pi pi-copy"
@@ -173,7 +173,7 @@ const clickActions: MenuItem[] = [
           <div v-show="!isMobileOrTablet" class="h-100">
             <Button
               outlined
-              :label="$t('formatter.json.result_list.actions.copy_all')"
+              :label="t('formatter.json.result_list.actions.copy_all')"
               size="small"
               icon="pi pi-copy"
               @click="onClickCopyAll"
@@ -181,7 +181,7 @@ const clickActions: MenuItem[] = [
             />
             <Button
               outlined
-              :label="$t('formatter.json.result_list.actions.copy_path')"
+              :label="t('formatter.json.result_list.actions.copy_path')"
               size="small"
               icon="pi pi-copy"
               @click="onClickCopyPath"
@@ -190,7 +190,7 @@ const clickActions: MenuItem[] = [
             />
             <Button
               outlined
-              :label="$t('formatter.json.result_list.actions.copy_key')"
+              :label="t('formatter.json.result_list.actions.copy_key')"
               size="small"
               icon="pi pi-copy"
               @click="onClickCopyKey"
@@ -199,7 +199,7 @@ const clickActions: MenuItem[] = [
             />
             <Button
               outlined
-              :label="$t('formatter.json.result_list.actions.copy_node')"
+              :label="t('formatter.json.result_list.actions.copy_node')"
               size="small"
               icon="pi pi-copy"
               @click="onClickSelectedNode"
@@ -208,7 +208,7 @@ const clickActions: MenuItem[] = [
             />
             <Button
               outlined
-              :label="$t('formatter.json.result_list.actions.download')"
+              :label="t('formatter.json.result_list.actions.download')"
               size="small"
               icon="pi pi-download"
               @click="download"
@@ -234,8 +234,8 @@ const clickActions: MenuItem[] = [
           <Button @click="onClickExpandToggle" size="small" outlined class="py-1">
             {{
               virtualScroll
-                ? $t("formatter.json.result_list.expand_toggle_btn_label.fit")
-                : $t("formatter.json.result_list.expand_toggle_btn_label.revert")
+                ? t("formatter.json.result_list.expand_toggle_btn_label.fit")
+                : t("formatter.json.result_list.expand_toggle_btn_label.revert")
             }}
           </Button>
         </ResultDivider>

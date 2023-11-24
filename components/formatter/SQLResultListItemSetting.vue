@@ -3,7 +3,7 @@ import { PropType, ref, watch } from "vue";
 import { IndentStyle, KeywordCase, LogicalOperatorNewline } from "sql-formatter";
 import Dropdown from "primevue/dropdown";
 
-const { t: $t } = useI18n();
+const { t } = useI18n();
 
 const props = defineProps({
   useTabs: {
@@ -44,25 +44,25 @@ const logicalOperatorNewLine = ref(props.logicalOperatorNewLine);
 
 const keywordCaseOption: { label: string; value: KeywordCase }[] = [
   {
-    label: $t("formatter.sql.result_list.advanced_setting.keyword.options.upper"),
+    label: t("formatter.sql.result_list.advanced_setting.keyword.options.upper"),
     value: "upper",
   },
   {
-    label: $t("formatter.sql.result_list.advanced_setting.keyword.options.lower"),
+    label: t("formatter.sql.result_list.advanced_setting.keyword.options.lower"),
     value: "lower",
   },
   {
-    label: $t("formatter.sql.result_list.advanced_setting.keyword.options.preserve"),
+    label: t("formatter.sql.result_list.advanced_setting.keyword.options.preserve"),
     value: "preserve",
   },
 ];
 const indentOption: { label: string; value: IndentStyle }[] = [
   {
-    label: $t("formatter.sql.result_list.advanced_setting.indent.options.standard"),
+    label: t("formatter.sql.result_list.advanced_setting.indent.options.standard"),
     value: "standard",
   },
   {
-    label: $t("formatter.sql.result_list.advanced_setting.indent.options.tabular_left"),
+    label: t("formatter.sql.result_list.advanced_setting.indent.options.tabular_left"),
     value: "tabularLeft",
   },
 ];
@@ -71,11 +71,11 @@ const logicalOperatorNewLineOption: {
   value: LogicalOperatorNewline;
 }[] = [
   {
-    label: $t("formatter.sql.result_list.advanced_setting.and_or_or_newline.options.before"),
+    label: t("formatter.sql.result_list.advanced_setting.and_or_or_newline.options.before"),
     value: "before",
   },
   {
-    label: $t("formatter.sql.result_list.advanced_setting.and_or_or_newline.options.after"),
+    label: t("formatter.sql.result_list.advanced_setting.and_or_or_newline.options.after"),
     value: "after",
   },
 ];
@@ -100,13 +100,13 @@ watch(logicalOperatorNewLine, (newValue) => {
 <template>
   <div>
     <Panel toggleable>
-      <template #header>{{ $t("formatter.sql.result_list.advanced_setting.header_text") }}</template>
+      <template #header>{{ t("formatter.sql.result_list.advanced_setting.header_text") }}</template>
       <template #default>
         <div class="row">
           <div class="col col-12 col-md-6 col-xl-4 mb-1 align-items-center form-col">
             <div class="p-inputgroup h-100 justify-content-between row">
               <label for="useTabs" class="align-self-center col">
-                {{ $t("formatter.sql.result_list.advanced_setting.use_tabs.label") }}
+                {{ t("formatter.sql.result_list.advanced_setting.use_tabs.label") }}
               </label>
               <InputSwitch id="useTabs" v-model:model-value="useTabs" size="small" class="align-self-center" />
             </div>
@@ -114,7 +114,7 @@ watch(logicalOperatorNewLine, (newValue) => {
           <div class="col col-12 col-md-6 col-xl-4 mb-1 align-items-center form-col">
             <div class="d-flex h-100 justify-content-between row form-col">
               <label for="tabWidth" class="align-self-center col-6">
-                {{ $t("formatter.sql.result_list.advanced_setting.tab_width.label") }}
+                {{ t("formatter.sql.result_list.advanced_setting.tab_width.label") }}
               </label>
               <div class="col-6 h-100">
                 <InputNumber
@@ -130,7 +130,7 @@ watch(logicalOperatorNewLine, (newValue) => {
           <div class="col col-12 col-md-6 col-xl-4 mb-1 align-items-center form-col">
             <div class="d-flex h-100 justify-content-between row form-col">
               <label for="keywordCase" class="align-self-center col-6">
-                {{ $t("formatter.sql.result_list.advanced_setting.keyword.label") }}
+                {{ t("formatter.sql.result_list.advanced_setting.keyword.label") }}
               </label>
               <div class="col-6 h-100">
                 <Dropdown
@@ -148,7 +148,7 @@ watch(logicalOperatorNewLine, (newValue) => {
           <div class="col col-12 col-md-6 col-xl-4 mb-1 align-items-center form-col">
             <div class="d-flex h-100 justify-content-between row form-col">
               <label for="indent" class="align-self-center col-6">
-                {{ $t("formatter.sql.result_list.advanced_setting.indent.label") }}
+                {{ t("formatter.sql.result_list.advanced_setting.indent.label") }}
               </label>
               <div class="col-6 h-100">
                 <Dropdown
@@ -166,7 +166,7 @@ watch(logicalOperatorNewLine, (newValue) => {
           <div class="col col-12 col-md-6 col-xl-4 mb-1 align-items-center form-col">
             <div class="d-flex h-100 justify-content-between row form-col">
               <label for="newline" class="align-self-center col-6">
-                {{ $t("formatter.sql.result_list.advanced_setting.and_or_or_newline.label") }}
+                {{ t("formatter.sql.result_list.advanced_setting.and_or_or_newline.label") }}
               </label>
               <div class="col-6 h-100">
                 <Dropdown

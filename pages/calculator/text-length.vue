@@ -6,7 +6,7 @@ import { FileUploadSelectEvent } from "primevue/fileupload";
 import PageHeading from "@/components/common/PageHeading.vue";
 import { humanReadableBytes } from "~/utils/unit";
 
-const { t: $t } = useI18n();
+const { t } = useI18n();
 const localePath = useLocalePath();
 
 useJsonld(() => ({
@@ -16,7 +16,7 @@ useJsonld(() => ({
     {
       "@type": "ListItem",
       position: 1,
-      name: $t("title"),
+      name: t("title"),
       item: `https://tools.jongwoo.me${localePath("/")}`,
     },
     {
@@ -30,11 +30,11 @@ useJsonld(() => ({
 
 const tabOptions = [
   {
-    label: $t("calculator.text_length.text_input.type.text"),
+    label: t("calculator.text_length.text_input.type.text"),
     icon: "pi pi-pencil",
   },
   {
-    label: $t("calculator.text_length.text_input.type.file"),
+    label: t("calculator.text_length.text_input.type.file"),
     icon: "pi pi-file",
   },
 ];
@@ -87,14 +87,14 @@ const result = asyncComputed(async () => {
 
 <template>
   <Head>
-    <Title>{{ $t("calculator.text_length.head.title") }}</Title>
-    <Meta name="description" :content="$t('calculator.text_length.head.description')" />
+    <Title>{{ t("calculator.text_length.head.title") }}</Title>
+    <Meta name="description" :content="t('calculator.text_length.head.description')" />
   </Head>
-  <ToolPageLayout :title="$t('index.tools.text_length_calculator.title')">
+  <ToolPageLayout :title="t('index.tools.text_length_calculator.title')">
     <Card>
       <template #content>
         <PageHeading :size="6" :level="2" weight="600">
-          {{ $t("calculator.text_length.text_input.label") }}
+          {{ t("calculator.text_length.text_input.label") }}
         </PageHeading>
         <TabMenu class="mb-3" :model="tabOptions" v-model:active-index="activeTabKey" />
         <div v-show="activeTabKey === 0">
@@ -121,19 +121,19 @@ const result = asyncComputed(async () => {
               class="w-100 position-relative mb-2"
               @select="onFileChange"
               @clear="onClear"
-              :choose-label="$t('calculator.text_length.text_input.file_input_btn_label')"
+              :choose-label="t('calculator.text_length.text_input.file_input_btn_label')"
             />
           </div>
         </div>
         <PageHeading class="mt-4" :size="6" :level="2" weight="600">
-          {{ $t("calculator.text_length.result.label") }}
+          {{ t("calculator.text_length.result.label") }}
         </PageHeading>
         <div class="row mt-4">
-          <p class="col col-6">{{ $t("calculator.text_length.result.length") }}</p>
+          <p class="col col-6">{{ t("calculator.text_length.result.length") }}</p>
           <p class="col col-6">: {{ result?.textLength ?? "0" }}</p>
-          <p class="col col-6">{{ $t("calculator.text_length.result.length_without_spaces") }}</p>
+          <p class="col col-6">{{ t("calculator.text_length.result.length_without_spaces") }}</p>
           <p class="col col-6">: {{ result?.textLengthWithoutSpaces ?? "0" }}</p>
-          <p class="col col-6">{{ $t("calculator.text_length.result.bytes") }}</p>
+          <p class="col col-6">{{ t("calculator.text_length.result.bytes") }}</p>
           <p class="col col-6">: {{ result?.bytes ?? "0" }}</p>
         </div>
       </template>

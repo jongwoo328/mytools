@@ -2,7 +2,7 @@
 import TextDifferenceChecker from "~/components/viewer/TextDifferenceChecker.vue";
 import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 
-const { t: $t } = useI18n();
+const { t } = useI18n();
 const localePath = useLocalePath();
 
 useJsonld(() => ({
@@ -12,13 +12,13 @@ useJsonld(() => ({
     {
       "@type": "ListItem",
       position: 1,
-      name: $t("title"),
+      name: t("title"),
       item: `https://tools.jongwoo.me${localePath("/")}`,
     },
     {
       "@type": "ListItem",
       position: 2,
-      name: $t("viewer.text-diff.title"),
+      name: t("viewer.text-diff.title"),
       item: `https://tools.jongwoo.me${localePath("/viewer/text-diff")}`,
     },
   ],
@@ -27,10 +27,10 @@ useJsonld(() => ({
 
 <template>
   <Head>
-    <Title>{{ $t("viewer.text-diff.head.title") }}</Title>
-    <Meta name="description" :content="$t('viewer.text-diff.head.description')" />
+    <Title>{{ t("viewer.text-diff.head.title") }}</Title>
+    <Meta name="description" :content="t('viewer.text-diff.head.description')" />
   </Head>
-  <ToolPageLayout :title="$t('viewer.text-diff.title')">
+  <ToolPageLayout :title="t('viewer.text-diff.title')">
     <Card>
       <template #content>
         <TextDifferenceChecker />

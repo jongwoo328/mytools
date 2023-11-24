@@ -5,7 +5,7 @@ import { v4 } from "uuid";
 import { breakpointsBootstrapV5, useMagicKeys } from "@vueuse/core";
 import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 
-const { t: $t } = useI18n();
+const { t } = useI18n();
 const localePath = useLocalePath();
 
 useJsonld(() => ({
@@ -15,7 +15,7 @@ useJsonld(() => ({
     {
       "@type": "ListItem",
       position: 1,
-      name: $t("title"),
+      name: t("title"),
       item: `https://tools.jongwoo.me${localePath("/")}`,
     },
     {
@@ -80,11 +80,11 @@ const aspectRatioOptions = [
     value: 16 / 9,
   },
   {
-    label: $t("converter.image_crop.options.aspect_ratio.options.custom"),
+    label: t("converter.image_crop.options.aspect_ratio.options.custom"),
     value: "Custom",
   },
   {
-    label: $t("converter.image_crop.options.aspect_ratio.options.free"),
+    label: t("converter.image_crop.options.aspect_ratio.options.free"),
     value: -1,
   },
 ];
@@ -281,10 +281,10 @@ watch([pressUp, pressRight, pressLeft, pressDown], () => {
 
 <template>
   <Head>
-    <Title>{{ $t("converter.image_crop.head.title") }}</Title>
-    <Meta name="description" :content="$t('converter.image_crop.head.description')" />
+    <Title>{{ t("converter.image_crop.head.title") }}</Title>
+    <Meta name="description" :content="t('converter.image_crop.head.description')" />
   </Head>
-  <ToolPageLayout :title="$t('image_crop.title')">
+  <ToolPageLayout :title="t('image_crop.title')">
     <Card>
       <template #content>
         <div class="row w-100 m-0">
@@ -313,10 +313,10 @@ watch([pressUp, pressRight, pressLeft, pressDown], () => {
             />
             <div class="mt-2 mt-lg-0">
               <Button class="d-block w-100" @click="save">
-                {{ $t("converter.image_crop.save_btn_label") }}
+                {{ t("converter.image_crop.save_btn_label") }}
               </Button>
               <label for="crop-image" class="p-button p-component p-button-outlined d-block w-100 mt-2">
-                {{ $t("converter.image_crop.change_image_btn_label") }}
+                {{ t("converter.image_crop.change_image_btn_label") }}
               </label>
             </div>
             <div class="options mt-2 p-2">
@@ -325,7 +325,7 @@ watch([pressUp, pressRight, pressLeft, pressDown], () => {
                   <div class="row">
                     <div class="col col-12 d-flex align-items-center mt-2">
                       <label for="aspectRatio">
-                        {{ $t("converter.image_crop.options.aspect_ratio.label") }}
+                        {{ t("converter.image_crop.options.aspect_ratio.label") }}
                       </label>
                     </div>
                     <div class="col col-12 mt-2">
@@ -345,7 +345,7 @@ watch([pressUp, pressRight, pressLeft, pressDown], () => {
                   <div class="row">
                     <div class="col col-12 mt-2">
                       <label for="">
-                        {{ $t("converter.image_crop.options.custom_ratio.label") }}
+                        {{ t("converter.image_crop.options.custom_ratio.label") }}
                       </label>
                     </div>
                     <div class="col col-12 mt-2">
@@ -385,7 +385,7 @@ watch([pressUp, pressRight, pressLeft, pressDown], () => {
                   <div class="row">
                     <div class="col col-12 mt-2">
                       <label for="">
-                        {{ $t("converter.image_crop.options.crop_size.label") }}
+                        {{ t("converter.image_crop.options.crop_size.label") }}
                       </label>
                     </div>
                     <div class="col col-12 mt-2">
@@ -425,7 +425,7 @@ watch([pressUp, pressRight, pressLeft, pressDown], () => {
                   <div class="row">
                     <div class="col col-12 mt-2">
                       <label for="">
-                        {{ $t("converter.image_crop.options.crop_position.label") }}
+                        {{ t("converter.image_crop.options.crop_position.label") }}
                       </label>
                     </div>
                     <div class="col col-12 mt-2">
@@ -465,7 +465,7 @@ watch([pressUp, pressRight, pressLeft, pressDown], () => {
                   <div class="row">
                     <div class="col col-12 mt-2">
                       <label for="">
-                        {{ $t("converter.image_crop.options.control.label") }}
+                        {{ t("converter.image_crop.options.control.label") }}
                       </label>
                     </div>
                     <div class="col col-12 row m-0 mt-2">
@@ -558,7 +558,7 @@ watch([pressUp, pressRight, pressLeft, pressDown], () => {
                             :style="`width: calc(0.25rem + ${buttonSideWidth * 2}px)`"
                             @click="reset"
                           >
-                            {{ $t("converter.image_crop.options.control.reset") }}
+                            {{ t("converter.image_crop.options.control.reset") }}
                           </Button>
                         </div>
                       </div>
@@ -566,7 +566,7 @@ watch([pressUp, pressRight, pressLeft, pressDown], () => {
                   </div>
                   <div class="row mt-3">
                     <span>
-                      {{ $t("converter.image_crop.options.control_configuration.label") }}
+                      {{ t("converter.image_crop.options.control_configuration.label") }}
                     </span>
                     <div class="col col-12 mt-2 px-4 d-flex">
                       <div>
@@ -574,7 +574,7 @@ watch([pressUp, pressRight, pressLeft, pressDown], () => {
                       </div>
                       <label class="ms-3" for="useKeyboardArrow" style="text-wrap: initial">
                         <span>
-                          {{ $t("converter.image_crop.options.control_configuration.use_keyboard_arrow") }}
+                          {{ t("converter.image_crop.options.control_configuration.use_keyboard_arrow") }}
                         </span>
                         <span>
                           (<kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>←</kbd>,<kbd>↑</kbd>,<kbd>↓</kbd>,<kbd>→</kbd>)

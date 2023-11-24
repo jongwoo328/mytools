@@ -5,7 +5,7 @@ import { Change } from "diff";
 import { DiffType } from "@/types/textDiff";
 import TextDiffWorker from "@/assets/scripts/textDiffWorker?worker";
 
-const { t: $t } = useI18n();
+const { t } = useI18n();
 
 const isCalculating = ref(false);
 const isTimeOver = ref(false);
@@ -40,9 +40,9 @@ const resetText2 = () => {
 
 const diffType = ref<DiffType>("chars");
 const diffTypeOptions = [
-  { label: $t("viewer.text-diff.diff_type_options.chars"), value: "chars" },
-  { label: $t("viewer.text-diff.diff_type_options.words"), value: "words" },
-  { label: $t("viewer.text-diff.diff_type_options.lines"), value: "lines" },
+  { label: t("viewer.text-diff.diff_type_options.chars"), value: "chars" },
+  { label: t("viewer.text-diff.diff_type_options.words"), value: "words" },
+  { label: t("viewer.text-diff.diff_type_options.lines"), value: "lines" },
 ];
 
 type InputLayout = "vertical" | "horizontal";
@@ -96,7 +96,7 @@ watchDebounced(
         <div class="col" :class="{ 'col-12': inputLayout === 'vertical', 'col-6': inputLayout === 'horizontal' }">
           <div class="d-flex justify-content-between align-items-center mb-1">
             <PageHeading :size="7" :level="2">
-              {{ $t("viewer.text-diff.reference") }}
+              {{ t("viewer.text-diff.reference") }}
             </PageHeading>
             <Button @click="resetText1" icon="pi pi-trash" text rounded severity="danger" size="small"></Button>
           </div>
@@ -110,7 +110,7 @@ watchDebounced(
         <div class="col" :class="{ 'col-12': inputLayout === 'vertical', 'col-6': inputLayout === 'horizontal' }">
           <div class="d-flex justify-content-between align-items-center mb-1">
             <PageHeading :size="7" :level="2">
-              {{ $t("viewer.text-diff.comparison") }}
+              {{ t("viewer.text-diff.comparison") }}
             </PageHeading>
             <Button @click="resetText2" icon="pi pi-trash" text rounded severity="danger" size="small"></Button>
           </div>
@@ -127,7 +127,7 @@ watchDebounced(
       <div class="row">
         <div class="d-flex justify-content-between">
           <PageHeading class="m-0" :size="7" :level="2">
-            {{ $t("viewer.text-diff.result") }}
+            {{ t("viewer.text-diff.result") }}
           </PageHeading>
         </div>
         <div class="d-flex justify-content-between align-items-center">
@@ -141,12 +141,12 @@ watchDebounced(
               v-if="isCalculating && showCancelButton"
               class="py-1 px-2"
             >
-              {{ $t("viewer.text-diff.cancel") }}
+              {{ t("viewer.text-diff.cancel") }}
             </Button>
           </div>
           <div>
             <span class="me-2">
-              {{ $t("viewer.text-diff.diff_type_label") }}
+              {{ t("viewer.text-diff.diff_type_label") }}
             </span>
             <Dropdown option-label="label" option-value="value" :options="diffTypeOptions" v-model="diffType" />
           </div>

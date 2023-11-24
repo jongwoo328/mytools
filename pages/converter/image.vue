@@ -11,7 +11,7 @@ import PageHeading from "@/components/common/PageHeading.vue";
 import { createEmptyImageElement } from "~/utils/HTMLImage";
 import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 
-const { t: $t } = useI18n();
+const { t } = useI18n();
 const localePath = useLocalePath();
 
 useJsonld(() => ({
@@ -21,7 +21,7 @@ useJsonld(() => ({
     {
       "@type": "ListItem",
       position: 1,
-      name: $t("title"),
+      name: t("title"),
       item: `https://tools.jongwoo.me${localePath("/")}`,
     },
     {
@@ -39,7 +39,7 @@ const { asyncBlobToBase64 } = useImageUtil();
 
 const canvas = ref<HTMLCanvasElement>();
 const inputImage = ref<File>(createEmptyFile());
-const inputImageType = ref($t("converter.image.image_type.no_data"));
+const inputImageType = ref(t("converter.image.image_type.no_data"));
 const imageObj: Ref<HTMLImageElement> = ref(createEmptyImageElement());
 const isConvertLoading = ref(false);
 const isImageLoaded = ref(false);
@@ -51,19 +51,19 @@ const convertTypes = computed<{ label: string; value: string }[]>(() => {
 
   if (inputImage.value?.type !== "image/png") {
     list.push({
-      label: $t("converter.image.settings.convert_to.options.png"),
+      label: t("converter.image.settings.convert_to.options.png"),
       value: "image/png",
     });
   }
   if (inputImage.value?.type !== "image/jpeg") {
     list.push({
-      label: $t("converter.image.settings.convert_to.options.jpeg"),
+      label: t("converter.image.settings.convert_to.options.jpeg"),
       value: "image/jpeg",
     });
   }
   if (inputImage.value?.type !== "image/webp" && browser.browserType.value !== Browser.Safari) {
     list.push({
-      label: $t("converter.image.settings.convert_to.options.webp"),
+      label: t("converter.image.settings.convert_to.options.webp"),
       value: "image/webp",
     });
   }
@@ -135,12 +135,12 @@ watch(inputImage, () => {
 
 <template>
   <Head>
-    <Title>{{ $t("converter.image.head.title") }}</Title>
-    <Meta name="description" :content="$t('converter.image.head.description')" />
+    <Title>{{ t("converter.image.head.title") }}</Title>
+    <Meta name="description" :content="t('converter.image.head.description')" />
   </Head>
-  <ToolPageLayout :title="$t('converter.image.title')" :description="$t('converter.image.description')">
+  <ToolPageLayout :title="t('converter.image.title')" :description="t('converter.image.description')">
     <PageHeading :level="2" :size="6" weight="600">
-      {{ $t("converter.image.image_input_label") }}
+      {{ t("converter.image.image_input_label") }}
     </PageHeading>
     <canvas ref="canvas" v-show="false" />
     <Card>
@@ -157,7 +157,7 @@ watch(inputImage, () => {
             <div class="mb-4 mb-lg-5">
               <div class="p-inputgroup">
                 <span class="p-inputgroup-addon px-5">
-                  {{ $t("converter.image.image_type_label") }}
+                  {{ t("converter.image.image_type_label") }}
                 </span>
                 <InputText :disabled="true" v-model:model-value="inputImageType" class="text-center" />
               </div>
@@ -172,16 +172,16 @@ watch(inputImage, () => {
                   <ProgressSpinner class="h-100" strokeWidth="10" />
                 </template>
                 <template v-else>
-                  {{ $t("converter.image.copy_as_base64_btn_label") }}
+                  {{ t("converter.image.copy_as_base64_btn_label") }}
                 </template>
               </Button>
             </div>
             <PageHeading :level="3" :size="6" weight="600">
-              {{ $t("converter.image.settings.label") }}
+              {{ t("converter.image.settings.label") }}
             </PageHeading>
             <div class="mt-2">
               <span class="mt-1 fs-5 d-block">
-                {{ $t("converter.image.settings.convert_to.label") }}
+                {{ t("converter.image.settings.convert_to.label") }}
               </span>
               <Dropdown
                 :options="convertTypes"
@@ -198,7 +198,7 @@ watch(inputImage, () => {
               @click="onClickConvert"
             >
               <template v-if="!isConvertLoading">
-                {{ $t("converter.image.convert_btn_label") }}
+                {{ t("converter.image.convert_btn_label") }}
               </template>
               <template v-else>
                 <ProgressSpinner class="h-100" stroke-width="10" />

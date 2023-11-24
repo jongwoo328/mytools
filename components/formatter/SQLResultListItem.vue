@@ -10,7 +10,7 @@ import SQLResultListItemSetting from "@/components/formatter/SQLResultListItemSe
 import ResultDivider from "@/components/common/ResultDivider.vue";
 import { UnionFromAsConst } from "~/utils/type";
 
-const { t: $t } = useI18n();
+const { t } = useI18n();
 const { copyData } = useCopy();
 
 const props = defineProps<{
@@ -75,8 +75,8 @@ const onChangeLogicalOperatorNewLine = (v: LogicalOperatorNewline) => {
 
 const expandToggleLabel = computed(() =>
   expandToggle.value === ExpandToggle.REVERT
-    ? $t("formatter.sql.result_list.expand_toggle_btn_label.fit")
-    : $t("formatter.sql.result_list.expand_toggle_btn_label.revert"),
+    ? t("formatter.sql.result_list.expand_toggle_btn_label.fit")
+    : t("formatter.sql.result_list.expand_toggle_btn_label.revert"),
 );
 </script>
 
