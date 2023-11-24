@@ -2,7 +2,9 @@
 import PageHeader from "@/components/common/PageHeader.vue";
 import GlobalBackTop from "@/components/common/GlobalBackTop.vue";
 
+const { locale, t } = useI18n();
 const { isWindows } = useOs();
+
 useHead({
   link: [
     {
@@ -12,6 +14,10 @@ useHead({
       href: isWindows ? "/favicon-win.ico" : "/favicon-mac.ico",
     },
   ],
+  htmlAttrs: {
+    lang: locale,
+  },
+  title: () => t("title"),
 });
 </script>
 

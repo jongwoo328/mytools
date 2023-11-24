@@ -55,9 +55,6 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      htmlAttrs: {
-        lang: "en",
-      },
       title: "Tools For Developer",
       meta: [
         {
