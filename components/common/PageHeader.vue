@@ -34,12 +34,12 @@ const menus = [
     key: "formatter",
     items: [
       {
-        to: () => localePath(localePath("/formatter/json")),
+        to: () => localePath("/formatter/json"),
         label: () => t("index.menu.formatter.items.json_formatter_label"),
         command: hideDrawer,
       },
       {
-        to: () => localePath(localePath("/formatter/sql")),
+        to: () => localePath("/formatter/sql"),
         label: () => t("index.menu.formatter.items.sql_formatter_label"),
         command: hideDrawer,
       },
