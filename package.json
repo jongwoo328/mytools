@@ -1,7 +1,7 @@
 {
   "name": "mytools",
   "type": "module",
-  "version": "2.6.8",
+  "version": "3.0.0",
   "private": true,
   "scripts": {
     "build": "nuxt build",
