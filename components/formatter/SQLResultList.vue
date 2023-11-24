@@ -3,6 +3,8 @@ import SQLResultListItem from "@/components/formatter/SQLResultListItem.vue";
 import { SQLResult } from "@/types/SQLResult";
 import ResultDivider from "@/components/common/ResultDivider.vue";
 
+const { t } = useI18n();
+
 const props = defineProps<{ results: SQLResult[] }>();
 const emit = defineEmits<{
   (e: "update:results", results: SQLResult[]): void;
@@ -20,7 +22,7 @@ const onClickDelete = (id: string) => {
 
 <template>
   <ResultDivider v-if="results.length > 0" align="center" color="#f0f2f5">
-    {{ $t("formatter.sql.result_list.divider_text") }}
+    {{ t("formatter.sql.result_list.divider_text") }}
   </ResultDivider>
   <section class="d-flex flex-column-reverse">
     <SQLResultListItem

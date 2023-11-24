@@ -5,6 +5,7 @@ import { EpochTimeConvertTimeUnit, offsetList } from "@/constants/time";
 import { UnionFromAsConst } from "~/utils/type";
 
 const { copyData } = useCopy();
+const { t } = useI18n();
 
 const epochInput = ref(DateTime.now().toUnixInteger());
 const unit: Ref<UnionFromAsConst<typeof EpochTimeConvertTimeUnit>> = ref(EpochTimeConvertTimeUnit.SECONDS);
@@ -71,7 +72,7 @@ const setNow = () => {
     <div class="col col-12 col-lg-5 d-flex flex-column justify-content-center align-items-center">
       <div class="w-100 m-0 mb-1 d-flex flex-row justify-content-between">
         <Button size="small" severity="secondary" @click="setNow">
-          {{ $t("converter.epoch.epoch_to_iso8601.set_now_btn_label") }}
+          {{ t("converter.epoch.epoch_to_iso8601.set_now_btn_label") }}
         </Button>
         <SelectButton
           :options="unitOptions"
@@ -92,19 +93,19 @@ const setNow = () => {
         <div class="col-6 col-lg-6 col-xl-4 mb-1">
           <Checkbox binary v-model:model-value="useTimeDelimiter" id="useDelimiter" />
           <label class="ms-1" for="useDelimiter">
-            {{ $t("converter.epoch.epoch_to_iso8601.options.use_delimiter") }}
+            {{ t("converter.epoch.epoch_to_iso8601.options.use_delimiter") }}
           </label>
         </div>
         <div class="col-6 col-lg-6 col-xl-4 mb-1">
           <Checkbox binary v-model:model-value="useOffset" id="useOffset" />
           <label class="ms-2" for="useOffset">
-            {{ $t("converter.epoch.epoch_to_iso8601.options.use_offset") }}
+            {{ t("converter.epoch.epoch_to_iso8601.options.use_offset") }}
           </label>
         </div>
         <div class="col-12 col-lg-6 col-xl-5 col-xxl-4 mb-1">
           <Checkbox binary v-model:model-value="omitMilliseconds" id="omitMilliseconds" />
           <label class="ms-2" for="omitMilliseconds">
-            {{ $t("converter.epoch.epoch_to_iso8601.options.omit_milliseconds") }}
+            {{ t("converter.epoch.epoch_to_iso8601.options.omit_milliseconds") }}
           </label>
         </div>
       </div>
@@ -123,7 +124,7 @@ const setNow = () => {
         />
       </div>
       <Button class="mt-2 d-block w-100" @click="onClickCopy">
-        {{ $t("converter.epoch.epoch_to_iso8601.copy_btn_label") }}
+        {{ t("converter.epoch.epoch_to_iso8601.copy_btn_label") }}
       </Button>
     </div>
   </div>

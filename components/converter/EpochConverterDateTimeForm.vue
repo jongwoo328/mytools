@@ -5,6 +5,7 @@ import { offsetList, EpochTimeConvertTimeUnit } from "@/constants/time";
 import { UnionFromAsConst } from "~/utils/type";
 
 const { copyData } = useCopy();
+const { t } = useI18n();
 
 const defaultDateTime = DateTime.now();
 
@@ -69,12 +70,12 @@ const setNow = () => {
     <div class="col col-12 col-lg-5">
       <div class="w-100 mb-1 d-flex justify-content-between">
         <Button @click="setNow" severity="secondary" size="small">
-          {{ $t("converter.epoch.time_to_epoch.set_now_btn_label") }}
+          {{ t("converter.epoch.time_to_epoch.set_now_btn_label") }}
         </Button>
         <div class="d-flex align-items-center">
           <Checkbox v-model:model-value="useMilliseconds" binary id="useMilliseconds" />
           <label class="ms-2" for="useMilliseconds">
-            {{ $t("converter.epoch.time_to_epoch.options.use_milliseconds") }}
+            {{ t("converter.epoch.time_to_epoch.options.use_milliseconds") }}
           </label>
         </div>
       </div>
@@ -141,7 +142,7 @@ const setNow = () => {
         </span>
       </div>
       <Button @click="onClickCopy" class="w-100 d-block mt-2">
-        {{ $t("converter.epoch.time_to_epoch.copy_btn_label") }}
+        {{ t("converter.epoch.time_to_epoch.copy_btn_label") }}
       </Button>
     </div>
   </div>
