@@ -4,6 +4,7 @@ import { FileUploadSelectEvent } from "primevue/fileupload";
 import { breakpointsBootstrapV5 } from "@vueuse/core";
 import { createEmptyImageElement } from "~/utils/HTMLImage";
 
+const { t } = useI18n();
 const props = defineProps<{ file: File }>();
 const emit = defineEmits<{ (e: "update:file", file: File): void }>();
 
@@ -73,6 +74,7 @@ const imageUploadBackground = computed(() => {
       class="upload w-100 position-relative mb-2"
       @select="onSelect"
       @clear="onClear"
+      :choose-label="t('converter.image.image_input_btn_label')"
     >
     </FileUpload>
     <img alt="uploaded image" ref="image" src="#" class="w-100 h-100" v-show="isUploaded" style="object-fit: contain" />

@@ -2,8 +2,10 @@
 import { computed, Ref, ref } from "vue";
 import { DateTime, FixedOffsetZone, SystemZone } from "luxon";
 import { offsetList, EpochTimeConvertTimeUnit } from "@/constants/time";
-import { copyWithNotification } from "@/utils/copy";
 import { UnionFromAsConst } from "~/utils/type";
+
+const { copyData } = useCopy();
+const { t } = useI18n();
 
 const defaultDateTime = DateTime.now();
 
@@ -52,7 +54,7 @@ const unitOptions = [
 ];
 
 const onClickCopy = async () => {
-  await copyWithNotification(resultEpoch.value.toString());
+  await copyData(resultEpoch.value.toString());
 };
 
 const setNow = () => {
@@ -67,10 +69,14 @@ const setNow = () => {
   <div class="row">
     <div class="col col-12 col-lg-5">
       <div class="w-100 mb-1 d-flex justify-content-between">
-        <Button @click="setNow" severity="secondary" size="small">Now</Button>
+        <Button @click="setNow" severity="secondary" size="small">
+          {{ t("converter.epoch.time_to_epoch.set_now_btn_label") }}
+        </Button>
         <div class="d-flex align-items-center">
           <Checkbox v-model:model-value="useMilliseconds" binary id="useMilliseconds" />
-          <label class="ms-2" for="useMilliseconds">Use Milliseconds</label>
+          <label class="ms-2" for="useMilliseconds">
+            {{ t("converter.epoch.time_to_epoch.options.use_milliseconds") }}
+          </label>
         </div>
       </div>
       <div class="row">
@@ -78,7 +84,7 @@ const setNow = () => {
           <Calendar v-model:model-value="dateInput" class="w-100" date-format="yy-mm-dd" />
         </div>
         <div
-          class="col mt-1"
+          class="col mt-2 mt-xl-0"
           :class="{
             'col-12': !useMilliseconds,
             'col-6': useMilliseconds,
@@ -90,7 +96,7 @@ const setNow = () => {
         </div>
         <div
           v-if="useMilliseconds"
-          class="col"
+          class="col mt-2 mt-xl-0"
           :class="{
             'col-6': useMilliseconds,
             'col-12': !useMilliseconds,
@@ -98,7 +104,7 @@ const setNow = () => {
             'col-xl-6': !useMilliseconds,
           }"
         >
-          <div class="p-inputgroup">
+          <div class="p-inputgroup pb-1">
             <InputNumber :min="0" :max="999" input-class="w-100 prevent-auto-zoom" v-model:model-value="milliseconds" />
             <span class="p-inputgroup-addon">ms</span>
           </div>
@@ -135,7 +141,9 @@ const setNow = () => {
           {{ resultEpoch }}
         </span>
       </div>
-      <Button @click="onClickCopy" class="w-100 d-block mt-2">Copy</Button>
+      <Button @click="onClickCopy" class="w-100 d-block mt-2">
+        {{ t("converter.epoch.time_to_epoch.copy_btn_label") }}
+      </Button>
     </div>
   </div>
 </template>

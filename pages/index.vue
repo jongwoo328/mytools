@@ -4,92 +4,99 @@ import FunctionListItem from "@/components/index/FunctionListItem.vue";
 import ServiceInformationModal from "@/components/common/ServiceInformationModal.vue";
 import PageHeading from "@/components/common/PageHeading.vue";
 
+const { t } = useI18n();
+const localePath = useLocalePath();
+
 const showModal = useLocalStorage("showServiceInformationModal", true);
 
 const Tags = {
   Formatter: {
-    name: "Formatter",
+    id: "Formatter",
+    name: t("index.tags.formatter"),
     color: "#fab005",
   },
   Converter: {
-    name: "Converter",
+    id: "Converter",
+    name: t("index.tags.converter"),
     color: "#40c057",
   },
   Viewer: {
-    name: "Viewer",
+    id: "Viewer",
+    name: t("index.tags.viewer"),
     color: "#228be6",
   },
   Calculator: {
-    name: "Calculator",
+    id: "Calculator",
+    name: t("index.tags.calculator"),
     color: "#845ef7",
   },
 };
 
 const availableTools: AvailableTool[] = [
   {
-    title: "JSON Formatter",
-    router: "/formatter/json",
-    description: "Formatting JSON text",
+    title: t("index.tools.json_formatter.title"),
+    router: localePath("/formatter/json"),
+    description: t("index.tools.json_formatter.description"),
     tags: [Tags.Formatter],
   },
   {
-    title: "SQL Formatter",
-    router: "/formatter/sql",
-    description: "Formatting SQL",
+    title: t("index.tools.sql_formatter.title"),
+    router: localePath("/formatter/sql"),
+    description: t("index.tools.sql_formatter.description"),
     tags: [Tags.Formatter],
   },
   {
-    title: "Image Converter",
-    router: "/converter/image",
-    description: "Convert image (JPEG, PNG, WEBP, Base64)",
+    title: t("index.tools.image_converter.title"),
+    router: localePath("/converter/image"),
+    description: t("index.tools.image_converter.description"),
     tags: [Tags.Converter],
   },
   {
-    title: "HTML Viewer",
-    router: "/viewer/html",
-    description: "HTML viewer",
+    title: t("index.tools.html_viewer.title"),
+    router: localePath("/viewer/html"),
+    description: t("index.tools.html_viewer.description"),
     tags: [Tags.Viewer],
   },
   {
-    title: "Epoch Converter",
-    router: "/converter/epoch",
-    description: "Converting between epoch and human-readable time",
+    title: t("index.tools.epoch_converter.title"),
+    router: localePath("/converter/epoch"),
+    description: t("index.tools.epoch_converter.description"),
     tags: [Tags.Converter],
   },
   {
-    title: "CSV to JSON Converter",
-    router: "/converter/csv-to-json",
-    description: "Convert CSV to JSON",
+    title: t("index.tools.csv_to_json_converter.title"),
+    router: localePath("/converter/csv-to-json"),
+    description: t("index.tools.csv_to_json_converter.description"),
     tags: [Tags.Converter],
   },
   {
-    title: "Image Cropper",
-    router: "/converter/image-crop",
-    description: "Crop image",
+    title: t("index.tools.image_cropper.title"),
+    router: localePath("/converter/image-crop"),
+    description: t("index.tools.image_cropper.description"),
     tags: [Tags.Converter],
   },
   {
-    title: "URL Encoder/Decoder",
-    router: "/converter/url",
-    description: "URL encoder and decoder",
+    title: t("index.tools.url_encoder/decoder.title"),
+    router: localePath("/converter/url"),
+    description: t("index.tools.url_encoder/decoder.description"),
     tags: [Tags.Converter],
   },
   {
-    title: "Color Code Converter",
-    router: "/converter/color",
-    description: "Color Code Converter supports RGB, HEX, CMYK, HSL",
+    title: t("index.tools.color_code_converter.title"),
+    router: localePath("/converter/color"),
+    description: t("index.tools.color_code_converter.description"),
     tags: [Tags.Converter],
   },
   {
-    title: "Text Difference Checker",
-    router: "/viewer/text-diff",
-    description: "Discover text discrepancies easily",
+    title: t("index.tools.text_difference_checker.title"),
+    router: localePath("/viewer/text-diff"),
+    description: t("index.tools.text_difference_checker.description"),
     tags: [Tags.Viewer],
   },
   {
-    title: "Text Length Calculator",
-    router: "/calculator/text-length",
-    description: "Calculate text length and bytes",
+    title: t("index.tools.text_length_calculator.title"),
+    router: localePath("/calculator/text-length"),
+    description: t("index.tools.text_length_calculator.description"),
     tags: [Tags.Calculator],
   },
 ];
@@ -122,15 +129,17 @@ const filteredTools = computed(() => {
 </script>
 
 <template>
-  <PageHeading :size="8" :level="1" weight="600"> 🛠️ Tools For Developer</PageHeading>
+  <PageHeading :size="8" :level="1" weight="600">
+    {{ t("index.title") }}
+  </PageHeading>
   <div class="mt-3">
     <div class="d-flex flex-wrap justify-content-start gap-1">
       <ToggleButton
         v-model="isFormatter"
         onIcon="pi pi-check"
         offIcon="pi pi-times"
-        on-label="Formatter"
-        off-label="Formatter"
+        :on-label="t('index.filter.formatter.on')"
+        :off-label="t('index.filter.formatter.off')"
         class="py-1"
         :class="[{ 'filter-selected-formatter': isFormatter }]"
       />
@@ -138,8 +147,8 @@ const filteredTools = computed(() => {
         v-model="isConverter"
         onIcon="pi pi-check"
         offIcon="pi pi-times"
-        on-label="Converter"
-        off-label="Converter"
+        :on-label="t('index.filter.converter.on')"
+        :off-label="t('index.filter.converter.off')"
         class="py-1"
         :class="[{ 'filter-selected-converter': isConverter }]"
       />
@@ -147,8 +156,8 @@ const filteredTools = computed(() => {
         v-model="isViewer"
         onIcon="pi pi-check"
         offIcon="pi pi-times"
-        on-label="Viewer"
-        off-label="Viewer"
+        :on-label="t('index.filter.viewer.on')"
+        :off-label="t('index.filter.viewer.off')"
         class="py-1"
         :class="[{ 'filter-selected-viewer': isViewer }]"
       />
@@ -156,8 +165,8 @@ const filteredTools = computed(() => {
         v-model="isCalculator"
         onIcon="pi pi-check"
         offIcon="pi pi-times"
-        on-label="Calculator"
-        off-label="Calculator"
+        :on-label="t('index.filter.calculator.on')"
+        :off-label="t('index.filter.calculator.off')"
         class="py-1"
         :class="[{ 'filter-selected-calculator': isCalculator }]"
       />

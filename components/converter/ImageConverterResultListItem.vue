@@ -1,7 +1,9 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import { ImageConverterResult } from "@/types/ImageConverterResult";
-import { copyWithNotification } from "@/utils/copy";
+
+const { copyData } = useCopy();
+const { t } = useI18n();
 
 const props = defineProps<{ result: ImageConverterResult; index: number }>();
 const emit = defineEmits<{ (e: "delete", id: string): void }>();
@@ -29,7 +31,7 @@ const onClickDownload = () => {
 const copyingBase64 = ref(false);
 const copyAsBase64 = async () => {
   copyingBase64.value = true;
-  await copyWithNotification(props.result.objectURL);
+  await copyData(props.result.objectURL);
   copyingBase64.value = false;
 };
 
@@ -67,7 +69,7 @@ const onClickDeleteResult = () => {
         </div>
         <div class="col col-12 col-lg-4 py-3 py-lg-0 image-result-control">
           <div class="d-flex w-100 flex-column justify-content-start" style="flex: 1">
-            <span class="fs-5">Download as:</span>
+            <span class="fs-5">{{ t("converter.image.result_list.file_name_label") }}</span>
             <div class="d-flex">
               <InputText
                 v-model:model-value="downloadFileName"
@@ -89,9 +91,13 @@ const onClickDeleteResult = () => {
             <template v-if="copyingBase64">
               <ProgressSpinner class="h-100" strokeWidth="10" />
             </template>
-            <template v-else> Copy as Base64</template>
+            <template v-else>
+              {{ t("converter.image.result_list.actions.copy_as_base64_btn_label") }}
+            </template>
           </Button>
-          <Button class="d-block" @click="onClickDownload" severity="primary" style="height: 44px"> Download</Button>
+          <Button class="d-block" @click="onClickDownload" severity="primary" style="height: 44px">
+            {{ t("converter.image.result_list.actions.download_btn_label") }}
+          </Button>
         </div>
       </div>
     </template>

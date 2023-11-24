@@ -1,0 +1,429 @@
+{
+  "title": "Tools For Developer",
+  "common": {
+    "toast": {
+      "copy_success": "Copied!",
+      "copy_fail": "Failed"
+    }
+  },
+  "index": {
+    "filter": {
+      "calculator": {
+        "off": "Calculator",
+        "on": "Calculator"
+      },
+      "converter": {
+        "off": "Converter",
+        "on": "Converter"
+      },
+      "formatter": {
+        "off": "Formatter",
+        "on": "Formatter"
+      },
+      "viewer": {
+        "off": "Viewer",
+        "on": "Viewer"
+      }
+    },
+    "menu": {
+      "calculator": {
+        "items": {
+          "text_length_calculator_label": "Text Length"
+        },
+        "label": "Calculator"
+      },
+      "converter": {
+        "items": {
+          "color_code_converter_label": "Color Converter",
+          "csv_to_json_converter_label": "CSV to JSON",
+          "epoch_converter_label": "Epoch (Unix Time)",
+          "image_converter_label": "Image Format",
+          "image_cropper_label": "Image Cropper",
+          "url_encoder/decoder_label": "URL Encoder/Decoder"
+        },
+        "label": "Converter"
+      },
+      "formatter": {
+        "items": {
+          "json_formatter_label": "JSON",
+          "sql_formatter_label": "SQL"
+        },
+        "label": "Formatter"
+      },
+      "viewer": {
+        "items": {
+          "html_viewer_label": "HTML",
+          "text_difference_checker_label": "Text Diff Checker"
+        },
+        "label": "Viewer"
+      }
+    },
+    "modal": {
+      "button": {
+        "close": "Confirm",
+        "dont_show_again": "Don't show again"
+      },
+      "description": "This website provides a variety of tools that can be used primarily for web development, with the following features",
+      "features": {
+        "0": "All functionality is implemented without going through the server<br />(This means that sensitive information is still available on this website.)",
+        "1": "Each feature comes with options for customization",
+        "2": "No ads"
+      },
+      "title": "Welcome!"
+    },
+    "tags": {
+      "calculator": "Calculator",
+      "converter": "Converter",
+      "formatter": "Formatter",
+      "viewer": "Viewer"
+    },
+    "title": "🛠️ Tools For Developer",
+    "tools": {
+      "color_code_converter": {
+        "description": "Color Code Converter supports RGB, HEX, CMYK, HSL",
+        "title": "Color Code Converter"
+      },
+      "csv_to_json_converter": {
+        "description": "Convert CSV to JSON",
+        "title": "CSV to JSON Converter"
+      },
+      "epoch_converter": {
+        "description": "Convert epoch(unix time) to ISO8601 and vice versa.",
+        "title": "Epoch Converter"
+      },
+      "html_viewer": {
+        "description": "A simple HTML viewer (with CSS, JavaScript)",
+        "title": "HTML Viewer"
+      },
+      "image_converter": {
+        "description": "Convert image (JPEG, PNG, WEBP, Base64)",
+        "title": "Image Converter"
+      },
+      "image_cropper": {
+        "description": "Crop image",
+        "title": "Image Cropper"
+      },
+      "json_formatter": {
+        "description": "Formatting JSON text and extract its elements",
+        "title": "JSON Formatter"
+      },
+      "sql_formatter": {
+        "description": "Formatting SQL",
+        "title": "SQL Formatter"
+      },
+      "text_difference_checker": {
+        "description": "Discover text discrepancies easily",
+        "title": "Text Difference Checker"
+      },
+      "text_length_calculator": {
+        "description": "Calculate text length (with/without spaces) and bytes",
+        "title": "Text Length Calculator"
+      },
+      "url_encoder/decoder": {
+        "description": "URL encoder and decoder",
+        "title": "URL Encoder/Decoder"
+      }
+    }
+  },
+  "viewer": {
+    "html": {
+      "head": {
+        "description": "A simple HTML viewer which can be used with CSS, JavaScript.",
+        "title": "HTML Viewer"
+      },
+      "title": "HTML Viewer",
+      "example_html": {
+        "title": "My Tools webpage",
+        "sub_title_1": "Description",
+        "description_1": "This project was started with the goal of bringing together useful and frequently used features in one place, so you can use them without worrying about data leaks.",
+        "sub_title_2": "Project is built with",
+        "description_3": "Nuxt 3",
+        "description_4": "Vercel"
+      }
+    },
+    "text-diff": {
+      "head": {
+        "description": "Easily see text differences by letter, word, or line",
+        "title": "Text Difference Checker"
+      },
+      "title": "Text Difference Checker",
+      "diff_type_label": "Compare :",
+      "diff_type_options": {
+        "chars": "Characters",
+        "words": "Words",
+        "lines": "Lines"
+      },
+      "reference": "Reference",
+      "comparison": "Comparison",
+      "result": "Result",
+      "cancel": "Cancel"
+    }
+  },
+  "formatter": {
+    "sql": {
+      "head": {
+        "description": "Format SQL in a variety of ways that are commonly used",
+        "title": "SQL Formatter"
+      },
+      "title": "SQL Formatter",
+      "sql_input_label": "SQL",
+      "sql_language_options": {
+        "sql": "SQL",
+        "mysql": "MySQL",
+        "mariadb": "MariaDB",
+        "transactsql": "Transact-SQL (MSSQL)",
+        "postgresql": "PostgreSQL",
+        "amazonredshift": "Amazon Redshift",
+        "spark": "Spark",
+        "snowflake": "Snowflake"
+      },
+      "sql_input_invalid_message": "Input is not valid SQL",
+      "sql_format_btn_label": "Format",
+      "result_list": {
+        "divider_text": "Results",
+        "advanced_setting": {
+          "header_text": "Advanced Setting",
+          "use_tabs": {
+            "label": "Use Tabs"
+          },
+          "tab_width": {
+            "label": "Tab Width"
+          },
+          "keyword": {
+            "label": "Keyword",
+            "options": {
+              "upper": "Upper",
+              "lower": "Lower",
+              "preserve": "Preserve"
+            }
+          },
+          "indent": {
+            "label": "Indent",
+            "options": {
+              "standard": "Standard",
+              "tabular_left": "Tabular,Left"
+            }
+          },
+          "and_or_or_newline": {
+            "label": "AND/OR Newline",
+            "options": {
+              "before": "Before",
+              "after": "After"
+            }
+          }
+        },
+        "expand_toggle_btn_label": {
+          "fit": "Fit",
+          "revert": "Revert"
+        }
+      }
+    },
+    "json": {
+      "head": {
+        "description": "Format JSON text and extract its elements.",
+        "title": "JSON Formatter"
+      },
+      "title": "JSON Formatter",
+      "json_text_input_label": "JSON text",
+      "json_text_input_invalid_message": "Input is not valid JSON",
+      "json_format_btn_label": "Format",
+      "result_list": {
+        "divider_text": "Results",
+        "format_type_options": {
+          "formatted": "Formatted",
+          "minified": "Minified"
+        },
+        "actions": {
+          "copy_all": "Copy All",
+          "copy_path": "Copy Path",
+          "copy_key": "Copy Key",
+          "copy_node": "Copy Node",
+          "download": "Download"
+        },
+        "expand_toggle_btn_label": {
+          "fit": "Fit",
+          "revert": "Revert"
+        }
+      }
+    }
+  },
+  "calculator": {
+    "text_length": {
+      "head": {
+        "description": "Calculate UTF-8 text length (with/without spaces) and bytes.",
+        "title": "Text Length Calculator"
+      },
+      "title": "Text Length Calculator",
+      "text_input": {
+        "label": "Input",
+        "type": {
+          "text": "Text",
+          "file": "File"
+        },
+        "file_input_btn_label": "Choose"
+      },
+      "result": {
+        "label": "Result",
+        "length": "Length",
+        "length_without_spaces": "Length (Without spaces)",
+        "bytes": "Bytes"
+      }
+    }
+  },
+  "converter": {
+    "image": {
+      "head": {
+        "description": "Convert image to other formats like PNG, JPEG, WEBP, Base64.",
+        "title": "Image Converter"
+      },
+      "title": "Image Converter",
+      "description": "Only Support JPEG, PNG, WEBP(except Safari)",
+      "image_input_label": "Image",
+      "image_input_btn_label": "Choose",
+      "image_type_label": "Type",
+      "image_type": {
+        "no_data": "No Data"
+      },
+      "copy_as_base64_btn_label": "Copy as Base64",
+      "settings": {
+        "label": "Settings",
+        "convert_to": {
+          "label": "Convert to:",
+          "options": {
+            "png": "PNG",
+            "jpeg": "JPEG",
+            "webp": "WEBP"
+          }
+        }
+      },
+      "convert_btn_label": "Convert",
+      "result_list": {
+        "divider_text": "Results",
+        "file_name_label": "Download as:",
+        "actions": {
+          "download_btn_label": "Download",
+          "copy_as_base64_btn_label": "Copy as Base64"
+        }
+      }
+    },
+    "epoch": {
+      "head": {
+        "description": "Convert epoch(unix time) to ISO8601 and vice versa.",
+        "title": "Epoch Converter"
+      },
+      "title": "Epoch Converter",
+      "epoch_to_iso8601": {
+        "title": "Epoch to ISO8601",
+        "set_now_btn_label": "Now",
+        "options": {
+          "use_delimiter": "Use Delimiter",
+          "use_offset": "Use Offset",
+          "omit_milliseconds": "Omit Milliseconds"
+        },
+        "copy_btn_label": "Copy"
+      },
+      "time_to_epoch": {
+        "title": "ISO8601 to Epoch",
+        "set_now_btn_label": "Now",
+        "options": {
+          "use_milliseconds": "Use Milliseconds"
+        },
+        "copy_btn_label": "Copy"
+      }
+    },
+    "csv_to_json": {
+      "head": {
+        "description": "Converting CSV to JSON (File input available)",
+        "title": "CSV to JSON Converter"
+      },
+      "title": "CSV to JSON Converter",
+      "csv_input_label": "CSV File or Text",
+      "options": {
+        "label": "Configuration",
+        "header_included": {
+          "label": "Header Included"
+        },
+        "encoding": {
+          "label": "Encoding"
+        },
+        "input_type": {
+          "text": "Text",
+          "file": "File"
+        }
+      },
+      "input_file_btn_label": "Choose",
+      "parse_btn_label": "Parse"
+    },
+    "image_crop": {
+      "head": {
+        "description": "Crop image and save result.",
+        "title": "Image Cropper"
+      },
+      "title": "Image Cropper",
+      "save_btn_label": "Save",
+      "change_image_btn_label": "Change Image",
+      "options": {
+        "aspect_ratio": {
+          "label": "Aspect Ratio",
+          "options": {
+            "custom": "Custom",
+            "free": "Free"
+          }
+        },
+        "custom_ratio": {
+          "label": "Custom Ratio"
+        },
+        "crop_size": {
+          "label": "Crop Size (W/H)"
+        },
+        "crop_position": {
+          "label": "Crop Position (X/Y)"
+        },
+        "control": {
+          "label": "Control",
+          "reset": "Reset"
+        },
+        "control_configuration": {
+          "label": "Control Configuration",
+          "use_keyboard_arrow": "Use Keyboard Arrow"
+        }
+      }
+    },
+    "url": {
+      "head": {
+        "description": "A simple URL encoder and decoder.",
+        "title": "URL Encoder / Decoder"
+      },
+      "title": "URL Encoder / Decoder",
+      "description": "Encode or Decode URL",
+      "text_input_label": "Input",
+      "convert_type": {
+        "encoder": "Encoder",
+        "decoder": "Decoder"
+      },
+      "copy_btn_label": "Copy"
+    },
+    "color": {
+      "head": {
+        "description": "Convert color code to other formats like RGB, HEX, CMYK, HSL.",
+        "title": "Color Code Converter"
+      },
+      "title": "Color Code Converter",
+      "description": "Color Code Converter supports RGB, HEX, CMYK, HSL",
+      "options": {
+        "hex": {
+          "label": "HEX"
+        },
+        "rgb": {
+          "label": "RGB"
+        },
+        "cmyk": {
+          "label": "CMYK"
+        },
+        "hsl": {
+          "label": "HSL"
+        }
+      }
+    }
+  }
+}

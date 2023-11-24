@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { JSONResult } from "@/types/JSONResult";
-import { copyWithNotification } from "@/utils/copy";
 import { MenuItem } from "primevue/menuitem";
 import { breakpointsBootstrapV5, useBreakpoints } from "@vueuse/core";
 import ResultDivider from "@/components/common/ResultDivider.vue";
 import ResultItem from "@/components/common/ResultItem.vue";
 import { parseJsonPathToKeyArray } from "@/utils/json";
+
+const { t } = useI18n();
+const { copyData } = useCopy();
 
 const emit = defineEmits<{ (e: "delete", id: string): void }>();
 const props = defineProps<{
@@ -26,8 +28,14 @@ const virtualScroll = ref(true);
 type FormatType = "formatted" | "minified";
 const formatType = ref<FormatType>("formatted");
 const formatTypeOptions = [
-  { label: "Formatted", value: "formatted" },
-  { label: "Minified", value: "minified" },
+  {
+    label: t("formatter.json.result_list.format_type_options.formatted"),
+    value: "formatted",
+  },
+  {
+    label: t("formatter.json.result_list.format_type_options.minified"),
+    value: "minified",
+  },
 ];
 const minifiedResult = ref(JSON.stringify(props.resultData.result));
 
@@ -38,21 +46,21 @@ const getObjectFromPath = (path: string) => {
   return useLodashGet(props.resultData.result, useLodashTrimStart(path, "$."));
 };
 const onClickCopyAll = async () => {
-  await copyWithNotification(stringifyResult());
+  await copyData(stringifyResult());
 };
 const onClickSelectedNode = async () => {
-  await copyWithNotification(JSON.stringify(getObjectFromPath(selected.value as string), null, 4));
+  await copyData(JSON.stringify(getObjectFromPath(selected.value as string), null, 4));
 };
 const onClickCopyKey = async () => {
   const lastKey =
     parseJsonPathToKeyArray(selected.value)
       .filter((key) => key !== "$")
       .at(-1) ?? "";
-  await copyWithNotification(lastKey);
+  await copyData(lastKey);
 };
 const onClickCopyPath = async () => {
   if (selected.value) {
-    await copyWithNotification(selected.value);
+    await copyData(selected.value);
   }
 };
 
@@ -82,7 +90,7 @@ const download = () => {
 
 const clickActions: MenuItem[] = [
   {
-    label: "Copy Path",
+    label: t("formatter.json.result_list.actions.copy_path"),
     icon: "pi pi-copy",
     command: onClickCopyPath,
     style: {
@@ -91,21 +99,21 @@ const clickActions: MenuItem[] = [
     disabled: () => isSelectedEmpty.value,
   },
   {
-    label: "Copy Key",
+    label: t("formatter.json.result_list.actions.copy_key"),
     icon: "pi pi-copy",
     command: onClickCopyKey,
     class: "click-action",
     disabled: () => isSelectedEmpty.value,
   },
   {
-    label: "Copy Node",
+    label: t("formatter.json.result_list.actions.copy_node"),
     icon: "pi pi-copy",
     command: onClickSelectedNode,
     class: "click-action",
     disabled: () => isSelectedEmpty.value,
   },
   {
-    label: "Download",
+    label: t("formatter.json.result_list.actions.download"),
     icon: "pi pi-download",
     command: download,
     class: "click-action",
@@ -152,7 +160,7 @@ const clickActions: MenuItem[] = [
           <SplitButton
             v-show="isMobileOrTablet"
             outlined
-            label="Copy All"
+            :label="t('formatter.json.result_list.actions.copy_all')"
             severity="info"
             size="small"
             icon="pi pi-copy"
@@ -165,7 +173,7 @@ const clickActions: MenuItem[] = [
           <div v-show="!isMobileOrTablet" class="h-100">
             <Button
               outlined
-              label="Copy All"
+              :label="t('formatter.json.result_list.actions.copy_all')"
               size="small"
               icon="pi pi-copy"
               @click="onClickCopyAll"
@@ -173,7 +181,7 @@ const clickActions: MenuItem[] = [
             />
             <Button
               outlined
-              label="Copy Path"
+              :label="t('formatter.json.result_list.actions.copy_path')"
               size="small"
               icon="pi pi-copy"
               @click="onClickCopyPath"
@@ -182,7 +190,7 @@ const clickActions: MenuItem[] = [
             />
             <Button
               outlined
-              label="Copy Key"
+              :label="t('formatter.json.result_list.actions.copy_key')"
               size="small"
               icon="pi pi-copy"
               @click="onClickCopyKey"
@@ -191,7 +199,7 @@ const clickActions: MenuItem[] = [
             />
             <Button
               outlined
-              label="Copy Node"
+              :label="t('formatter.json.result_list.actions.copy_node')"
               size="small"
               icon="pi pi-copy"
               @click="onClickSelectedNode"
@@ -200,7 +208,7 @@ const clickActions: MenuItem[] = [
             />
             <Button
               outlined
-              label="Download"
+              :label="t('formatter.json.result_list.actions.download')"
               size="small"
               icon="pi pi-download"
               @click="download"
@@ -224,7 +232,11 @@ const clickActions: MenuItem[] = [
         />
         <ResultDivider class="mb-0">
           <Button @click="onClickExpandToggle" size="small" outlined class="py-1">
-            {{ virtualScroll ? "Fit" : "Revert" }}
+            {{
+              virtualScroll
+                ? t("formatter.json.result_list.expand_toggle_btn_label.fit")
+                : t("formatter.json.result_list.expand_toggle_btn_label.revert")
+            }}
           </Button>
         </ResultDivider>
       </div>

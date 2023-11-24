@@ -4,6 +4,9 @@ import EpochConverterDateTimeForm from "@/components/converter/EpochConverterDat
 import PageHeading from "@/components/common/PageHeading.vue";
 import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 
+const { t } = useI18n();
+const localePath = useLocalePath();
+
 useJsonld(() => ({
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -11,14 +14,14 @@ useJsonld(() => ({
     {
       "@type": "ListItem",
       position: 1,
-      name: "Tools For Developer",
-      item: "https://tools.jongwoo.me",
+      name: t("title"),
+      item: `https://tools.jongwoo.me${localePath("/")}`,
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Epoch Converter",
-      item: "https://tools.jongwoo.me/converter/epoch",
+      item: `https://tools.jongwoo.me${localePath("/converter/epoch")}`,
     },
   ],
 }));
@@ -26,17 +29,17 @@ useJsonld(() => ({
 
 <template>
   <Head>
-    <Title>Epoch Converter</Title>
-    <Meta name="description" content="Convert epoch to date time and vice versa." />
+    <Title>{{ t("converter.epoch.head.title") }}</Title>
+    <Meta name="description" :content="t('converter.epoch.head.description')" />
   </Head>
-  <ToolPageLayout title="Epoch Converter">
+  <ToolPageLayout :title="t('converter.epoch.title')">
     <div class="row mt-3">
       <div class="col col-12 mb-2">
         <Card>
           <template #header>
             <div class="px-4 pt-4">
               <PageHeading class="mb-4" :level="2" :size="6" weight="600">
-                Epoch️<span class="mx-3">➡️</span> Time(ISO8601)
+                {{ t("converter.epoch.epoch_to_iso8601.title") }}
               </PageHeading>
             </div>
           </template>
@@ -49,7 +52,9 @@ useJsonld(() => ({
         <Card>
           <template #header>
             <div class="px-4 pt-4">
-              <PageHeading :level="2" :size="6" weight="600"> Time ️<span class="mx-3">➡️</span> Epoch</PageHeading>
+              <PageHeading :level="2" :size="6" weight="600">
+                {{ t("converter.epoch.time_to_epoch.title") }}
+              </PageHeading>
             </div>
           </template>
           <template #content>

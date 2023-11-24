@@ -2,8 +2,12 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { breakpointsBootstrapV5 } from "@vueuse/core";
+import LocaleDropdown from "~/components/common/LocaleDropdown.vue";
 
 const router = useRouter();
+const { t } = useI18n();
+
+const localePath = useLocalePath();
 
 const drawerVisible = ref(false);
 const openKeys = ref({
@@ -14,7 +18,7 @@ const openKeys = ref({
 });
 
 const onClickHome = () => {
-  router.push("/");
+  router.push(localePath("/"));
   drawerVisible.value = false;
 };
 
@@ -27,80 +31,80 @@ const hideDrawer = () => {
 
 const menus = [
   {
-    label: "Formatter",
+    label: () => t("index.menu.formatter.label"),
     key: "formatter",
     items: [
       {
-        to: "/formatter/json",
-        label: "JSON",
+        to: () => localePath("/formatter/json"),
+        label: () => t("index.menu.formatter.items.json_formatter_label"),
         command: hideDrawer,
       },
       {
-        to: "/formatter/sql",
-        label: "SQL",
+        to: () => localePath("/formatter/sql"),
+        label: () => t("index.menu.formatter.items.sql_formatter_label"),
         command: hideDrawer,
       },
     ],
   },
   {
-    label: "Converter",
+    label: () => t("index.menu.converter.label"),
     key: "converter",
     items: [
       {
-        to: "/converter/image",
-        label: "Image",
+        to: () => localePath("/converter/image"),
+        label: () => t("index.menu.converter.items.image_converter_label"),
         command: hideDrawer,
       },
       {
-        to: "/converter/epoch",
-        label: "Epoch",
+        to: () => localePath("/converter/epoch"),
+        label: () => t("index.menu.converter.items.epoch_converter_label"),
         command: hideDrawer,
       },
       {
-        to: "/converter/csv-to-json",
-        label: "CSV to JSON",
+        to: () => localePath("/converter/csv-to-json"),
+        label: () => t("index.menu.converter.items.csv_to_json_converter_label"),
         command: hideDrawer,
       },
       {
-        to: "/converter/image-crop",
-        label: "Image Cropper",
+        to: () => localePath("/converter/image-crop"),
+        label: () => t("index.menu.converter.items.image_cropper_label"),
         command: hideDrawer,
       },
       {
-        to: "/converter/url",
-        label: "URL En/Decoder",
+        to: () => localePath("/converter/url"),
+        label: () => t("index.menu.converter.items.url_encoder/decoder_label"),
         command: hideDrawer,
       },
       {
-        to: "/converter/color",
-        label: "Color Converter",
+        to: () => localePath("/converter/color"),
+        label: () => t("index.menu.converter.items.color_code_converter_label"),
         command: hideDrawer,
       },
     ],
   },
   {
-    label: "Viewer",
+    label: () => t("index.menu.viewer.label"),
     key: "viewer",
     items: [
       {
-        to: "/viewer/html",
-        label: "HTML",
+        to: () => localePath("/viewer/html"),
+        label: () => t("index.menu.viewer.items.html_viewer_label"),
         command: hideDrawer,
       },
       {
-        to: "/viewer/text-diff",
-        label: "Text Diff Checker",
+        to: () => localePath("/viewer/text-diff"),
+        label: () => t("index.menu.viewer.items.text_difference_checker_label"),
         command: hideDrawer,
       },
     ],
   },
   {
-    label: "Calculator",
+    label: () => t("index.menu.calculator.label"),
     key: "calculator",
     items: [
       {
-        to: "/calculator/text-length",
-        label: "Text Length Calculator",
+        to: () => localePath("/calculator/text-length"),
+        label: () => t("index.menu.calculator.items.text_length_calculator_label"),
         command: hideDrawer,
       },
     ],
@@ -124,6 +128,9 @@ const menus = [
     <Menubar v-else :model="menus" class="w-100">
       <template #start>
         <Button text @click="onClickHome" class="w-100 me-2 py-2" label="🛠️" />
+      </template>
+      <template #end>
+        <LocaleDropdown />
       </template>
     </Menubar>
   </ClientOnly>

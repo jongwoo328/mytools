@@ -6,6 +6,9 @@ import { FileUploadSelectEvent } from "primevue/fileupload";
 import PageHeading from "@/components/common/PageHeading.vue";
 import { humanReadableBytes } from "~/utils/unit";
 
+const { t } = useI18n();
+const localePath = useLocalePath();
+
 useJsonld(() => ({
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -13,21 +16,27 @@ useJsonld(() => ({
     {
       "@type": "ListItem",
       position: 1,
-      name: "Tools For Developer",
-      item: "https://tools.jongwoo.me",
+      name: t("title"),
+      item: `https://tools.jongwoo.me${localePath("/")}`,
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Text Length Calculator",
-      item: "https://tools.jongwoo.me/calculator/text-length",
+      item: `https://tools.jongwoo.me${localePath("/calculator/text-length")}`,
     },
   ],
 }));
 
 const tabOptions = [
-  { label: "Text", icon: "pi pi-pencil" },
-  { label: "File", icon: "pi pi-file" },
+  {
+    label: t("calculator.text_length.text_input.type.text"),
+    icon: "pi pi-pencil",
+  },
+  {
+    label: t("calculator.text_length.text_input.type.file"),
+    icon: "pi pi-file",
+  },
 ];
 const activeTabKey = ref(0);
 
@@ -78,13 +87,15 @@ const result = asyncComputed(async () => {
 
 <template>
   <Head>
-    <Title>Text Length Calculator</Title>
-    <Meta name="description" content="Calculate UTF-8 text length (with/without spaces) and bytes." />
+    <Title>{{ t("calculator.text_length.head.title") }}</Title>
+    <Meta name="description" :content="t('calculator.text_length.head.description')" />
   </Head>
-  <ToolPageLayout title="Text Length Calculator">
+  <ToolPageLayout :title="t('index.tools.text_length_calculator.title')">
     <Card>
       <template #content>
-        <PageHeading :size="6" :level="2" weight="600">Input</PageHeading>
+        <PageHeading :size="6" :level="2" weight="600">
+          {{ t("calculator.text_length.text_input.label") }}
+        </PageHeading>
         <TabMenu class="mb-3" :model="tabOptions" v-model:active-index="activeTabKey" />
         <div v-show="activeTabKey === 0">
           <Textarea
@@ -110,16 +121,19 @@ const result = asyncComputed(async () => {
               class="w-100 position-relative mb-2"
               @select="onFileChange"
               @clear="onClear"
+              :choose-label="t('calculator.text_length.text_input.file_input_btn_label')"
             />
           </div>
         </div>
-        <PageHeading class="mt-4" :size="6" :level="2" weight="600"> Result</PageHeading>
+        <PageHeading class="mt-4" :size="6" :level="2" weight="600">
+          {{ t("calculator.text_length.result.label") }}
+        </PageHeading>
         <div class="row mt-4">
-          <p class="col col-6">Length</p>
+          <p class="col col-6">{{ t("calculator.text_length.result.length") }}</p>
           <p class="col col-6">: {{ result?.textLength ?? "0" }}</p>
-          <p class="col col-6">Length (Without spaces)</p>
+          <p class="col col-6">{{ t("calculator.text_length.result.length_without_spaces") }}</p>
           <p class="col col-6">: {{ result?.textLengthWithoutSpaces ?? "0" }}</p>
-          <p class="col col-6">Bytes</p>
+          <p class="col col-6">{{ t("calculator.text_length.result.bytes") }}</p>
           <p class="col col-6">: {{ result?.bytes ?? "0" }}</p>
         </div>
       </template>

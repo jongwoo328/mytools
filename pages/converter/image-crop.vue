@@ -5,6 +5,9 @@ import { v4 } from "uuid";
 import { breakpointsBootstrapV5, useMagicKeys } from "@vueuse/core";
 import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 
+const { t } = useI18n();
+const localePath = useLocalePath();
+
 useJsonld(() => ({
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -12,14 +15,14 @@ useJsonld(() => ({
     {
       "@type": "ListItem",
       position: 1,
-      name: "Tools For Developer",
-      item: "https://tools.jongwoo.me",
+      name: t("title"),
+      item: `https://tools.jongwoo.me${localePath("/")}`,
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Image Cropper",
-      item: "https://tools.jongwoo.me/converter/image-crop",
+      item: `https://tools.jongwoo.me${localePath("/converter/image-crop")}`,
     },
   ],
 }));
@@ -76,11 +79,11 @@ const aspectRatioOptions = [
     value: 16 / 9,
   },
   {
-    label: "Custom",
+    label: t("converter.image_crop.options.aspect_ratio.options.custom"),
     value: "Custom",
   },
   {
-    label: "Free",
+    label: t("converter.image_crop.options.aspect_ratio.options.free"),
     value: -1,
   },
 ];
@@ -277,10 +280,10 @@ watch([pressUp, pressRight, pressLeft, pressDown], () => {
 
 <template>
   <Head>
-    <Title>Image Cropper</Title>
-    <Meta name="description" content="Crop image and save result." />
+    <Title>{{ t("converter.image_crop.head.title") }}</Title>
+    <Meta name="description" :content="t('converter.image_crop.head.description')" />
   </Head>
-  <ToolPageLayout title="Image Cropper">
+  <ToolPageLayout :title="t('converter.image_crop.title')">
     <Card>
       <template #content>
         <div class="row w-100 m-0">
@@ -308,9 +311,11 @@ watch([pressUp, pressRight, pressLeft, pressDown], () => {
               @change="onChangeInput"
             />
             <div class="mt-2 mt-lg-0">
-              <Button class="d-block w-100" @click="save">Save</Button>
+              <Button class="d-block w-100" @click="save">
+                {{ t("converter.image_crop.save_btn_label") }}
+              </Button>
               <label for="crop-image" class="p-button p-component p-button-outlined d-block w-100 mt-2">
-                Change Image
+                {{ t("converter.image_crop.change_image_btn_label") }}
               </label>
             </div>
             <div class="options mt-2 p-2">
@@ -318,7 +323,9 @@ watch([pressUp, pressRight, pressLeft, pressDown], () => {
                 <div class="col col-12">
                   <div class="row">
                     <div class="col col-12 d-flex align-items-center mt-2">
-                      <label for="aspectRatio">Aspect Ratio</label>
+                      <label for="aspectRatio">
+                        {{ t("converter.image_crop.options.aspect_ratio.label") }}
+                      </label>
                     </div>
                     <div class="col col-12 mt-2">
                       <Dropdown
@@ -336,7 +343,9 @@ watch([pressUp, pressRight, pressLeft, pressDown], () => {
                 <div class="col col-12">
                   <div class="row">
                     <div class="col col-12 mt-2">
-                      <label for="">Custom Ratio</label>
+                      <label for="">
+                        {{ t("converter.image_crop.options.custom_ratio.label") }}
+                      </label>
                     </div>
                     <div class="col col-12 mt-2">
                       <div class="row justify-content-between">
@@ -374,7 +383,9 @@ watch([pressUp, pressRight, pressLeft, pressDown], () => {
                 <div class="col col-12">
                   <div class="row">
                     <div class="col col-12 mt-2">
-                      <label for="">Crop Size (W/H)</label>
+                      <label for="">
+                        {{ t("converter.image_crop.options.crop_size.label") }}
+                      </label>
                     </div>
                     <div class="col col-12 mt-2">
                       <div class="row justify-content-between">
@@ -412,7 +423,9 @@ watch([pressUp, pressRight, pressLeft, pressDown], () => {
                 <div class="col col-12">
                   <div class="row">
                     <div class="col col-12 mt-2">
-                      <label for="">Crop Position (X/Y)</label>
+                      <label for="">
+                        {{ t("converter.image_crop.options.crop_position.label") }}
+                      </label>
                     </div>
                     <div class="col col-12 mt-2">
                       <div class="row justify-content-between">
@@ -450,7 +463,9 @@ watch([pressUp, pressRight, pressLeft, pressDown], () => {
                 <div class="col col-12">
                   <div class="row">
                     <div class="col col-12 mt-2">
-                      <label for="">Control</label>
+                      <label for="">
+                        {{ t("converter.image_crop.options.control.label") }}
+                      </label>
                     </div>
                     <div class="col col-12 row m-0 mt-2">
                       <div class="col col-12 col-sm-6 col-md-4 col-lg-12">
@@ -542,20 +557,24 @@ watch([pressUp, pressRight, pressLeft, pressDown], () => {
                             :style="`width: calc(0.25rem + ${buttonSideWidth * 2}px)`"
                             @click="reset"
                           >
-                            Reset
+                            {{ t("converter.image_crop.options.control.reset") }}
                           </Button>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="row mt-3">
-                    <span>Control Configuration</span>
+                    <span>
+                      {{ t("converter.image_crop.options.control_configuration.label") }}
+                    </span>
                     <div class="col col-12 mt-2 px-4 d-flex">
                       <div>
                         <InputSwitch class="d-inline-block" input-id="useKeyboardArrow" v-model="useKeyboardArrow" />
                       </div>
                       <label class="ms-3" for="useKeyboardArrow" style="text-wrap: initial">
-                        <span>Use Keyboard Arrow</span>
+                        <span>
+                          {{ t("converter.image_crop.options.control_configuration.use_keyboard_arrow") }}
+                        </span>
                         <span>
                           (<kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>←</kbd>,<kbd>↑</kbd>,<kbd>↓</kbd>,<kbd>→</kbd>)
                         </span>
