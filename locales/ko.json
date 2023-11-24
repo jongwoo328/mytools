@@ -1,3 +1,429 @@
 {
-  "title": "Tools For Developer"
+  "title": "개발자용 도구모음",
+  "common": {
+    "toast": {
+      "copy_success": "복사 완료!",
+      "copy_fail": "복사 실패"
+    }
+  },
+  "index": {
+    "filter": {
+      "calculator": {
+        "off": "계산기",
+        "on": "계산기"
+      },
+      "converter": {
+        "off": "변환기",
+        "on": "변환기"
+      },
+      "formatter": {
+        "off": "포매터",
+        "on": "포매터"
+      },
+      "viewer": {
+        "off": "뷰어",
+        "on": "뷰어"
+      }
+    },
+    "menu": {
+      "calculator": {
+        "items": {
+          "text_length_calculator_label": "텍스트 길이"
+        },
+        "label": "계산기"
+      },
+      "converter": {
+        "items": {
+          "color_code_converter_label": "색상 코드",
+          "csv_to_json_converter_label": "CSV - JSON 변환",
+          "epoch_converter_label": "Epoch (Unix 시간) 변환",
+          "image_converter_label": "이미지 포맷",
+          "image_cropper_label": "이미지 자르기",
+          "url_encoder/decoder_label": "URL 인코더/디코더"
+        },
+        "label": "변환기"
+      },
+      "formatter": {
+        "items": {
+          "json_formatter_label": "JSON",
+          "sql_formatter_label": "SQL"
+        },
+        "label": "포매터"
+      },
+      "viewer": {
+        "items": {
+          "html_viewer_label": "HTML",
+          "text_difference_checker_label": "텍스트 차이점 비교"
+        },
+        "label": "뷰어"
+      }
+    },
+    "modal": {
+      "button": {
+        "close": "확인",
+        "dont_show_again": "다시 보지 않기"
+      },
+      "description": "이 웹사이트는 아래 특징과 함께 주로 웹 개발에 사용할 수 있는 다양한 도구를 제공합니다.",
+      "features": {
+        "0": "모든 기능은 서버를 거치지 않고 구현됩니다<br />(이 웹사이트에서 민감한 정보가 포함된 데이터도 사용할 수 있습니다.)",
+        "1": "각 기능은 사용자 지정 옵션을 제공합니다.",
+        "2": "광고가 없습니다."
+      },
+      "title": "환영합니다!"
+    },
+    "tags": {
+      "calculator": "계산기",
+      "converter": "변환기",
+      "formatter": "포매터",
+      "viewer": "뷰어"
+    },
+    "title": "🛠️ 개발자용 도구모음",
+    "tools": {
+      "color_code_converter": {
+        "description": "RGB, HEX, CMYK, HSL을 지원하는 색상 코드 변환기",
+        "title": "색상 코드 변환"
+      },
+      "csv_to_json_converter": {
+        "description": "CSV 를 JSON 으로 변환",
+        "title": "CSV - JSON 변환"
+      },
+      "epoch_converter": {
+        "description": "Epoch(unix time)와 ISO8601형식간 변환",
+        "title": "Epoch (Unix 시간) 변환"
+      },
+      "html_viewer": {
+        "description": "HTML 뷰어 (CSS, JavaScript 사용 가능)",
+        "title": "HTML 뷰어"
+      },
+      "image_converter": {
+        "description": "이미지 변환 (JPEG, PNG, WEBP, Base64)",
+        "title": "이미지 변환"
+      },
+      "image_cropper": {
+        "description": "이미지 크롭",
+        "title": "이미지 크롭"
+      },
+      "json_formatter": {
+        "description": "JSON 텍스트를 포매팅하고 요소를 추출",
+        "title": "JSON 포매터"
+      },
+      "sql_formatter": {
+        "description": "SQL 텍스트를 포매팅",
+        "title": "SQL 포매터"
+      },
+      "text_difference_checker": {
+        "description": "텍스트간 불일치, 차이점을 쉽게 확인가능",
+        "title": "텍스트 차이점 비교"
+      },
+      "text_length_calculator": {
+        "description": "텍스트 길이를 계산 (공백 포함/미포함, 바이트)",
+        "title": "텍스트 길이 계산기"
+      },
+      "url_encoder/decoder": {
+        "description": "URL 인코딩, 디코딩 기능",
+        "title": "URL 인코더/디코더"
+      }
+    }
+  },
+  "viewer": {
+    "html": {
+      "head": {
+        "description": "CSS, JavaScript와 사용가능 한 간단한 HTML 뷰어",
+        "title": "HTML 뷰어"
+      },
+      "title": "HTML 뷰어",
+      "example_html": {
+        "title": "개발자용 도구모음 웹페이지",
+        "sub_title_1": "설명",
+        "description_1": "이 프로젝트는 유용하고 자주 사용하는 기능을 한 곳에 모아 데이터 유출 걱정 없이 사용하는 것을 목표로 시작되었습니다.",
+        "sub_title_2": "아래 기술로 구축됨",
+        "description_3": "Nuxt 3",
+        "description_4": "Vercel"
+      }
+    },
+    "text-diff": {
+      "head": {
+        "description": "글자, 단어, 줄 단위로 텍스트 차이점을 쉽게 확인",
+        "title": "텍스트 차이점 비교"
+      },
+      "title": "텍스트 차이점 비교",
+      "diff_type_label": "비교 방식 :",
+      "diff_type_options": {
+        "chars": "글자",
+        "words": "단어",
+        "lines": "줄"
+      },
+      "reference": "기준 텍스트",
+      "comparison": "비교 텍스트",
+      "result": "결과",
+      "cancel": "취소"
+    }
+  },
+  "formatter": {
+    "sql": {
+      "head": {
+        "description": "일반적으로 사용되는 다양한 방식으로 SQL 서식 지정",
+        "title": "SQL 포매터"
+      },
+      "title": "SQL 포매터",
+      "sql_input_label": "SQL",
+      "sql_language_options": {
+        "sql": "SQL",
+        "mysql": "MySQL",
+        "mariadb": "MariaDB",
+        "transactsql": "Transact-SQL (MSSQL)",
+        "postgresql": "PostgreSQL",
+        "amazonredshift": "Amazon Redshift",
+        "spark": "Spark",
+        "snowflake": "Snowflake"
+      },
+      "sql_input_invalid_message": "입력이 올바른 SQL이 아닙니다.",
+      "sql_format_btn_label": "서식 지정",
+      "result_list": {
+        "divider_text": "결과",
+        "advanced_setting": {
+          "header_text": "상세 설정",
+          "use_tabs": {
+            "label": "탭 사용"
+          },
+          "tab_width": {
+            "label": "탭 크기"
+          },
+          "keyword": {
+            "label": "키워드 형식",
+            "options": {
+              "upper": "대문자",
+              "lower": "소문자",
+              "preserve": "그대로 사용"
+            }
+          },
+          "indent": {
+            "label": "들여쓰기",
+            "options": {
+              "standard": "일반 형식",
+              "tabular_left": "표 형식,왼쪽정렬"
+            }
+          },
+          "and_or_or_newline": {
+            "label": "AND/OR 개행",
+            "options": {
+              "before": "키워드 전",
+              "after": "키워드 후"
+            }
+          }
+        },
+        "expand_toggle_btn_label": {
+          "fit": "텍스트 크기에 맞게",
+          "revert": "되돌리기"
+        }
+      }
+    },
+    "json": {
+      "head": {
+        "description": "JSON 텍스트를 정렬하고 해당 요소를 추출",
+        "title": "JSON 포매터"
+      },
+      "title": "JSON 포매터",
+      "json_text_input_label": "JSON 텍스트",
+      "json_text_input_invalid_message": "입력이 올바른 JSON 형식이 아닙니다.",
+      "json_format_btn_label": "정렬",
+      "result_list": {
+        "divider_text": "결과",
+        "format_type_options": {
+          "formatted": "정렬",
+          "minified": "최소화"
+        },
+        "actions": {
+          "copy_all": "전체 복사",
+          "copy_path": "경로 복사",
+          "copy_key": "키 복사",
+          "copy_node": "노드 복사",
+          "download": "다운로드"
+        },
+        "expand_toggle_btn_label": {
+          "fit": "텍스트 크기에 맞게",
+          "revert": "되돌리기"
+        }
+      }
+    }
+  },
+  "calculator": {
+    "text_length": {
+      "head": {
+        "description": "UTF-8 텍스트 길이(공백 포함/미포함) 및 바이트를 계산",
+        "title": "텍스트 길이 계산기"
+      },
+      "title": "텍스트 길이 계산기",
+      "text_input": {
+        "label": "입력",
+        "type": {
+          "text": "텍스트",
+          "file": "파일"
+        },
+        "file_input_btn_label": "선택"
+      },
+      "result": {
+        "label": "결과",
+        "length": "길이",
+        "length_without_spaces": "길이 (공백 미포함)",
+        "bytes": "바이트 (Bytes)"
+      }
+    }
+  },
+  "converter": {
+    "image": {
+      "head": {
+        "description": "이미지를 PNG, JPEG, WEBP, Base64 포맷으로 변환",
+        "title": "이미지 변환기"
+      },
+      "title": "이미지 변환기",
+      "description": "JPEG, PNG, Base64, WEBP(Safari 브라우저 제외)만 지원합니다.",
+      "image_input_label": "이미지",
+      "image_input_btn_label": "선택",
+      "image_type_label": "유형",
+      "image_type": {
+        "no_data": "데이터 없음"
+      },
+      "copy_as_base64_btn_label": "Base64로 복사",
+      "settings": {
+        "label": "변환 설정",
+        "convert_to": {
+          "label": "변환 대상:",
+          "options": {
+            "png": "PNG",
+            "jpeg": "JPEG",
+            "webp": "WEBP"
+          }
+        }
+      },
+      "convert_btn_label": "변환",
+      "result_list": {
+        "divider_text": "결과",
+        "file_name_label": "다른 이름으로 다운로드:",
+        "actions": {
+          "download_btn_label": "다운로드",
+          "copy_as_base64_btn_label": "Base64로 복사"
+        }
+      }
+    },
+    "epoch": {
+      "head": {
+        "description": "epoch(unix time)와 ISO8601형식간 변환",
+        "title": "Epoch 변환기"
+      },
+      "title": "Epoch 변환기",
+      "epoch_to_iso8601": {
+        "title": "Epoch to ISO8601",
+        "set_now_btn_label": "현재 시각",
+        "options": {
+          "use_delimiter": "구분자 사용",
+          "use_offset": "시간 오프셋 사용",
+          "omit_milliseconds": "밀리초 생략"
+        },
+        "copy_btn_label": "복사"
+      },
+      "time_to_epoch": {
+        "title": "ISO8601 to Epoch",
+        "set_now_btn_label": "현재 시각",
+        "options": {
+          "use_milliseconds": "밀리초 사용"
+        },
+        "copy_btn_label": "복사"
+      }
+    },
+    "csv_to_json": {
+      "head": {
+        "description": "CSV를 JSON으로 변환 (파일 입력 지원)",
+        "title": "CSV - JSON 변환기"
+      },
+      "title": "CSV - JSON 변환기",
+      "csv_input_label": "CSV 파일 / 텍스트",
+      "options": {
+        "label": "설정",
+        "header_included": {
+          "label": "CSV에 헤더 포함"
+        },
+        "encoding": {
+          "label": "인코딩 방식"
+        },
+        "input_type": {
+          "text": "텍스트",
+          "file": "파일"
+        }
+      },
+      "input_file_btn_label": "선택",
+      "parse_btn_label": "변환"
+    },
+    "image_crop": {
+      "head": {
+        "description": "이미지를 자르고 결과를 저장",
+        "title": "이미지 크롭"
+      },
+      "title": "이미지 크롭",
+      "save_btn_label": "저장",
+      "change_image_btn_label": "이미지 변경",
+      "options": {
+        "aspect_ratio": {
+          "label": "종횡비",
+          "options": {
+            "custom": "사용자 지정",
+            "free": "자유롭게 사용"
+          }
+        },
+        "custom_ratio": {
+          "label": "사용자 지정 비율"
+        },
+        "crop_size": {
+          "label": "크롭 크기 (W/H)"
+        },
+        "crop_position": {
+          "label": "위치 (X/Y)"
+        },
+        "control": {
+          "label": "조정",
+          "reset": "초기설정"
+        },
+        "control_configuration": {
+          "label": "조정 설정",
+          "use_keyboard_arrow": "단축키 사용"
+        }
+      }
+    },
+    "url": {
+      "head": {
+        "description": "간단한 URL 인코더/디코더.",
+        "title": "URL 인코더/디코더"
+      },
+      "title": "URL 인코더/디코더",
+      "description": "URL 인코딩 및 디코딩 가능",
+      "text_input_label": "입력",
+      "convert_type": {
+        "encoder": "인코더",
+        "decoder": "디코더"
+      },
+      "copy_btn_label": "복사"
+    },
+    "color": {
+      "head": {
+        "description": "RGB, HEX, CMYK, HSL 형식간 색상 코드 변환",
+        "title": "색상 코드 변환"
+      },
+      "title": "색상 코드 변환",
+      "description": "RGB, HEX, CMYK, HSL 형식간 색상 코드 변환",
+      "options": {
+        "hex": {
+          "label": "HEX"
+        },
+        "rgb": {
+          "label": "RGB"
+        },
+        "cmyk": {
+          "label": "CMYK"
+        },
+        "hsl": {
+          "label": "HSL"
+        }
+      }
+    }
+  }
 }

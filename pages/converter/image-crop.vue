@@ -284,7 +284,7 @@ watch([pressUp, pressRight, pressLeft, pressDown], () => {
     <Title>{{ t("converter.image_crop.head.title") }}</Title>
     <Meta name="description" :content="t('converter.image_crop.head.description')" />
   </Head>
-  <ToolPageLayout :title="t('image_crop.title')">
+  <ToolPageLayout :title="t('converter.image_crop.title')">
     <Card>
       <template #content>
         <div class="row w-100 m-0">

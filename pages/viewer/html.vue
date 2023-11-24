@@ -34,7 +34,6 @@ const htmlText = ref(
     `\n\t<h2>${t("viewer.html.example_html.sub_title_1")}</h2>` +
     "\n\t<p>" +
     `\n\t\t${t("viewer.html.example_html.description_1")}` +
-    `\n\t\t${t("viewer.html.example_html.description_2")}` +
     "\n\t</p>" +
     `\n\t<h2>${t("viewer.html.example_html.sub_title_2")}</h2>` +
     "\n\t<ul>" +

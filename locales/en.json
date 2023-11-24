@@ -36,10 +36,10 @@
         "items": {
           "color_code_converter_label": "Color Converter",
           "csv_to_json_converter_label": "CSV to JSON",
-          "epoch_converter_label": "Epoch",
-          "image_converter_label": "Image",
+          "epoch_converter_label": "Epoch (Unix Time)",
+          "image_converter_label": "Image Format",
           "image_cropper_label": "Image Cropper",
-          "url_encoder/decoder_label": "URL En/Decoder"
+          "url_encoder/decoder_label": "URL Encoder/Decoder"
         },
         "label": "Converter"
       },
@@ -60,10 +60,10 @@
     },
     "modal": {
       "button": {
-        "close": "OK",
+        "close": "Confirm",
         "dont_show_again": "Don't show again"
       },
-      "description": "This webpage provides a variety of tools that can be used primarily for web development, with the following features",
+      "description": "This website provides a variety of tools that can be used primarily for web development, with the following features",
       "features": {
         "0": "All functionality is implemented without going through the server<br />(This means that sensitive information is still available on this website.)",
         "1": "Each feature comes with options for customization",
@@ -88,11 +88,11 @@
         "title": "CSV to JSON Converter"
       },
       "epoch_converter": {
-        "description": "Converting between epoch and human-readable time",
+        "description": "Convert epoch(unix time) to ISO8601 and vice versa.",
         "title": "Epoch Converter"
       },
       "html_viewer": {
-        "description": "HTML viewer",
+        "description": "A simple HTML viewer (with CSS, JavaScript)",
         "title": "HTML Viewer"
       },
       "image_converter": {
@@ -104,7 +104,7 @@
         "title": "Image Cropper"
       },
       "json_formatter": {
-        "description": "Formatting JSON text",
+        "description": "Formatting JSON text and extract its elements",
         "title": "JSON Formatter"
       },
       "sql_formatter": {
@@ -116,7 +116,7 @@
         "title": "Text Difference Checker"
       },
       "text_length_calculator": {
-        "description": "Calculate text length and bytes",
+        "description": "Calculate text length (with/without spaces) and bytes",
         "title": "Text Length Calculator"
       },
       "url_encoder/decoder": {
@@ -135,8 +135,7 @@
       "example_html": {
         "title": "My Tools webpage",
         "sub_title_1": "Description",
-        "description_1": "This project aims to collect useful and frequently used functions in one place, for my personal use.",
-        "description_2": "However, it is open for others to use as well.",
+        "description_1": "This project was started with the goal of bringing together useful and frequently used features in one place, so you can use them without worrying about data leaks.",
         "sub_title_2": "Project is built with",
         "description_3": "Nuxt 3",
         "description_4": "Vercel"
@@ -144,7 +143,7 @@
     },
     "text-diff": {
       "head": {
-        "description": "View text differences with display in github-like representation.",
+        "description": "Easily see text differences by letter, word, or line",
         "title": "Text Difference Checker"
       },
       "title": "Text Difference Checker",
@@ -172,7 +171,7 @@
         "sql": "SQL",
         "mysql": "MySQL",
         "mariadb": "MariaDB",
-        "transactsql": "Transact-SQL",
+        "transactsql": "Transact-SQL (MSSQL)",
         "postgresql": "PostgreSQL",
         "amazonredshift": "Amazon Redshift",
         "spark": "Spark",
@@ -309,12 +308,12 @@
     },
     "epoch": {
       "head": {
-        "description": "Convert epoch to date time and vice versa.",
+        "description": "Convert epoch(unix time) to ISO8601 and vice versa.",
         "title": "Epoch Converter"
       },
       "title": "Epoch Converter",
       "epoch_to_iso8601": {
-        "title": "Epoch to Time (ISO8601)",
+        "title": "Epoch to ISO8601",
         "set_now_btn_label": "Now",
         "options": {
           "use_delimiter": "Use Delimiter",
@@ -324,7 +323,7 @@
         "copy_btn_label": "Copy"
       },
       "time_to_epoch": {
-        "title": "Time to Epoch",
+        "title": "ISO8601 to Epoch",
         "set_now_btn_label": "Now",
         "options": {
           "use_milliseconds": "Use Milliseconds"
@@ -334,7 +333,7 @@
     },
     "csv_to_json": {
       "head": {
-        "description": "Converting CSV to JSON. Upload file is also available.",
+        "description": "Converting CSV to JSON (File input available)",
         "title": "CSV to JSON Converter"
       },
       "title": "CSV to JSON Converter",

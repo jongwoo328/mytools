@@ -1,5 +1,5 @@
 import en from "./locales/en.json";
-// import ko from "./locales/ko.json";
+import ko from "./locales/ko.json";
 
 export default defineI18nConfig(() => ({
   legacy: false,
@@ -7,5 +7,6 @@ export default defineI18nConfig(() => ({
   lazy: true,
   messages: {
     en,
+    ko,
   },
 }));
