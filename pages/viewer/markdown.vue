@@ -84,6 +84,17 @@ def hello_world():
 > 이것은 인용문입니다.
 > > 중첩 인용문입니다.
 
+## 수식
+TeX의 math mode를 지원합니다
+
+$
+\\begin{align}
+\\vec{\\nabla} \\cdot \\vec{E} \\quad &=\\quad\\frac{\\rho}{\\epsilon_0} &&\\text{Gauss's Law} \\\\
+\\vec{\\nabla} \\cdot \\vec{B} \\quad &=\\quad 0 &&\\text{Gauss's Law for Magnetism}\\\\
+\\vec{\\nabla} \\times \\vec{E} \\quad &=\\hspace{10pt}-\\frac{\\partial{\\vec{B}}}{\\partial{t}}&&\\text{Faraday's Law of Induction} \\\\
+\\vec{\\nabla} \\times \\vec{B} \\quad &=\\quad \\mu_0\\left( \\epsilon_0\\frac{\\partial{\\vec{E}}}{\\partial{t}}+\\vec{J}\\right) &&\\text{Ampere's Circuital Law}
+\\end{align}
+$
 `);
 const layout = ref<"horizontal" | "vertical">("horizontal");
 const layoutOptions = [
@@ -119,7 +130,7 @@ const onScrollPanel = () => {
 
 function onMarkdownInputKeydown(e: KeyboardEvent) {
   if (e.key == "Tab") {
-    const textarea = e.target;
+    const textarea = e.target as HTMLTextAreaElement;
     e.preventDefault();
     const start = textarea.selectionStart;
     const end = textarea.selectionEnd;

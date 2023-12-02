@@ -55,6 +55,7 @@
     "markdown-it-anchor": "^8.6.7",
     "markdown-it-footnote": "^3.0.3",
     "markdown-it-highlightjs": "^4.0.1",
+    "markdown-it-mathjax3": "^4.3.2",
     "nuxt-jsonld": "^2.0.8",
     "papaparse": "^5.4.1",
     "primeicons": "^6.0.1",

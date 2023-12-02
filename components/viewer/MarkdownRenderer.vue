@@ -3,6 +3,7 @@ import MarkdownIt from "markdown-it";
 import MarkdownItHighlightJs from "markdown-it-highlightjs";
 import MarkdownItFootnote from "markdown-it-footnote";
 import MarkdownItAnchor from "markdown-it-anchor";
+import MarkDownItMathjax3 from "markdown-it-mathjax3";
 import hljs from "highlight.js";
 import "highlight.js/styles/atom-one-light.min.css";
 
@@ -25,7 +26,8 @@ const md = computed(() => {
     .use(MarkdownItHighlightJs, {
       hljs,
       auto: false,
-    });
+    })
+    .use(MarkDownItMathjax3);
 });
 
 const renderedHtml = computed(() => md.value.render(props.markdown));
