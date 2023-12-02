@@ -87,7 +87,8 @@ const renderedHtml = computed(() => md.value.render(props.markdown));
     }
 
     /* blockquote 내부의 텍스트 스타일 */
-    blockquote p {
+    & p,
+    & blockquote p {
       margin: 0;
     }
   }

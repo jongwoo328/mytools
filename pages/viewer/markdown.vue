@@ -52,9 +52,14 @@ ___
    1. 하위 항목 2-1
    2. 하위 항목 2-2
 
+## 인용문
+
+> 이것은 인용문입니다.
+> > 중첩 인용문입니다.
+
 ## 링크
 
-[Google 홈페이지](https://www.google.com)
+[이 프로젝트의 Github 페이지](https://github.com/jongwoo328/mytools)
 
 ## 이미지
 
@@ -72,19 +77,31 @@ def hello_world():
 \`\`\`
 
 ## 표
+> CommonMark에 명시되지 않은 기능입니다
 
 | 헤더 1   |  헤더 2  |   헤더 3 |
 | -------- | :------: | -------: |
 | 데이터 1 | 데이터 2 | 데이터 3 |
 | 데이터 4 | 데이터 5 | 데이터 6 |
 
+## 내부 링크
+[제목1](#제목1)
 
-## 인용문
+## 주석
+> CommonMark에 명시되지 않은 기능입니다
 
-> 이것은 인용문입니다.
-> > 중첩 인용문입니다.
+이 문장에 주석 1번이 추가됩니다. [^주석1]
+
+이 문장에 주석 2번이 추가됩니다. [^주석2]
+
+이 문장에 인라인 주석이 추가됩니다.^[인라인 주석입니다.]
+
+[^주석1]: 주석은 **마크업이 가능합니다**
+[^주석2]: 두번째 주석입니다
 
 ## 수식
+> CommonMark에 명시되지 않은 기능입니다
+
 TeX의 math mode를 지원합니다
 
 $
@@ -94,8 +111,7 @@ $
 \\vec{\\nabla} \\times \\vec{E} \\quad &=\\hspace{10pt}-\\frac{\\partial{\\vec{B}}}{\\partial{t}}&&\\text{Faraday's Law of Induction} \\\\
 \\vec{\\nabla} \\times \\vec{B} \\quad &=\\quad \\mu_0\\left( \\epsilon_0\\frac{\\partial{\\vec{E}}}{\\partial{t}}+\\vec{J}\\right) &&\\text{Ampere's Circuital Law}
 \\end{align}
-$
-`);
+$`);
 const layout = ref<"horizontal" | "vertical">("horizontal");
 const layoutOptions = [
   { icon: "pi pi-arrows-v", value: "vertical" },
@@ -198,7 +214,7 @@ function onMarkdownInputKeydown(e: KeyboardEvent) {
             </template>
           </SelectButton>
         </div>
-        <Splitter style="min-height: 600px; height: 800px" :layout="layout">
+        <Splitter id="markdown-viewer" :layout="layout">
           <SplitterPanel class="d-flex flex-column">
             <Textarea
               ref="markdownInput"
@@ -227,4 +243,8 @@ function onMarkdownInputKeydown(e: KeyboardEvent) {
   </ToolPageLayout>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+#markdown-viewer {
+  height: max(800px, 70vh);
+}
+</style>
