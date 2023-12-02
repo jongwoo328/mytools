@@ -29,12 +29,7 @@ useHead({
 <template>
   <div id="main" class="d-flex flex-column align-items-center">
     <PageHeader />
-    <div
-      id="view"
-      class="container"
-      :class="{ 'pt-5': !isMobileOrTablet, 'pt-3': isMobileOrTablet }"
-      style="padding-bottom: 100px"
-    >
+    <div id="view" class="container" style="padding-bottom: 100px">
       <CommonToast />
       <div v-if="isMobileOrTablet" class="w-100 d-flex justify-content-end pt-2">
         <LocaleDropdown />
@@ -54,5 +49,15 @@ a {
   overflow-y: auto;
   min-height: 100vh;
   background-color: #f0f2f5;
+}
+
+#view {
+  padding-top: 14px;
+}
+
+@media (min-width: 992px) {
+  #view {
+    padding-top: 42px;
+  }
 }
 </style>
