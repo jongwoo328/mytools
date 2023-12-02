@@ -192,11 +192,11 @@ watch(logicalOperatorNewLine, (newValue) => {
   height: 40px;
 }
 
-.forminput::v-deep(input) {
+.forminput:deep(input) {
   width: 100%;
 }
 
-.forminput::v-deep(span.p-dropdown-label) {
+.forminput:deep(span.p-dropdown-label) {
   line-height: normal;
 }
 </style>

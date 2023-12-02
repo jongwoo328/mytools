@@ -255,13 +255,13 @@ const clickActions: MenuItem[] = [
 
 <style lang="scss" scoped>
 .sql-result {
-  &::v-deep(.cm-line) {
+  &:deep(.cm-line) {
     font-family: Monaco, Menlo, Consolas, Bitstream Vera Sans Mono, monospace;
   }
 }
 
 .format-type-select {
-  &::v-deep(.p-dropdown-label.p-inputtext) {
+  &:deep(.p-dropdown-label.p-inputtext) {
     line-height: 1;
   }
 }

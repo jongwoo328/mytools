@@ -96,6 +96,11 @@ const menus = [
         label: () => t("index.menu.viewer.items.text_difference_checker_label"),
         command: hideDrawer,
       },
+      {
+        to: () => localePath("/viewer/markdown"),
+        label: () => t("index.menu.viewer.items.markdown_viewer_label"),
+        command: hideDrawer,
+      },
     ],
   },
   {

@@ -29,7 +29,8 @@
       "error",
       {
         "code": 120,
-        "ignoreRegExpLiterals": true
+        "ignoreRegExpLiterals": true,
+        "ignoreTemplateLiterals": true
       }
     ]
   }

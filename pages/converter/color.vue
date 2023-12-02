@@ -212,7 +212,7 @@ watch([hslHue, hslSaturation, hslLightness], () => {
 </template>
 
 <style scoped lang="scss">
-::v-deep(.color-picker) {
+:deep(.color-picker) {
   width: 100%;
   height: 100px;
 }
