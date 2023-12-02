@@ -93,7 +93,7 @@ const htmlText = ref(
   overflow-y: auto;
 }
 
-.html-input::v-deep(.cm-editor) {
+.html-input:deep(.cm-editor) {
   height: 350px;
 }
 
@@ -101,7 +101,7 @@ const htmlText = ref(
   .html-view-wrap {
     height: 480px;
   }
-  .html-input::v-deep(.cm-editor) {
+  .html-input:deep(.cm-editor) {
     height: 400px;
   }
 }

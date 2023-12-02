@@ -86,7 +86,7 @@ const onClickCopy = () => {
 }
 
 .tab-view {
-  &::v-deep(.p-tabview-panels) {
+  &:deep(.p-tabview-panels) {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
   }

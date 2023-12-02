@@ -24,7 +24,7 @@ defineProps({
 </template>
 
 <style lang="scss" scoped>
-.result-divider::v-deep(.p-divider-content) {
+.result-divider:deep(.p-divider-content) {
   background-color: v-bind("color");
 }
 </style>

@@ -83,24 +83,24 @@ const imageUploadBackground = computed(() => {
 
 <style lang="scss" scoped>
 .upload {
-  &::v-deep(div.ant-upload:first-of-type) {
+  &:deep(div.ant-upload:first-of-type) {
     width: 100%;
     height: 0;
     padding-top: 100%;
     box-sizing: content-box;
   }
 
-  &::v-deep(span.ant-upload:first-of-type) {
+  &:deep(span.ant-upload:first-of-type) {
     position: absolute;
     top: 0;
   }
 
-  &::v-deep(div.ant-upload-select) {
+  &:deep(div.ant-upload-select) {
     display: block;
     margin: 0;
   }
 
-  &::v-deep(div.ant-upload-select > span) {
+  &:deep(div.ant-upload-select > span) {
     width: 100%;
     display: flex;
     justify-content: center;

@@ -39,11 +39,11 @@ const renderedHtml = computed(() => md.value.render(props.markdown));
 
 <style scoped lang="scss">
 #renderedMarkdown {
-  &::v-deep(img) {
+  &:deep(img) {
     max-width: 100%;
   }
 
-  &::v-deep(table) {
+  &:deep(table) {
     & {
       margin-bottom: 1rem;
       width: 100%;
@@ -69,7 +69,7 @@ const renderedHtml = computed(() => md.value.render(props.markdown));
     }
   }
 
-  &::v-deep(blockquote) {
+  &:deep(blockquote) {
     & {
       margin: 20px 0;
       padding: 20px;
@@ -92,7 +92,7 @@ const renderedHtml = computed(() => md.value.render(props.markdown));
     }
   }
 
-  &::v-deep {
+  &:deep {
     /* 헤딩 공통 스타일 */
     h1,
     h2,
