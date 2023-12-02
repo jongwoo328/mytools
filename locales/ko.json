@@ -180,6 +180,9 @@
         "use_breaks": "줄바꿈 변환",
         "use_breaks_tooltip": "줄바꿈을 <br>로 변환합니다"
       },
+      "button": {
+        "copy": "복사"
+      },
       "example_input": {
         "heading1": "제목1",
         "heading2": "제목2",

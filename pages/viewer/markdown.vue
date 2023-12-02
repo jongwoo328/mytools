@@ -4,6 +4,7 @@ import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 import SplitterPanel from "primevue/splitterpanel";
 import Textarea from "primevue/textarea";
 
+const { copyData } = useCopy();
 const { t } = useI18n();
 const localePath = useLocalePath();
 
@@ -190,6 +191,10 @@ function onMarkdownInputKeydown(e: KeyboardEvent) {
     textarea.dispatchEvent(new Event("input", { bubbles: true, cancelable: true }));
   }
 }
+
+const onClickCopy = async () => {
+  await copyData(input.value);
+};
 </script>
 
 <template>
@@ -257,7 +262,8 @@ function onMarkdownInputKeydown(e: KeyboardEvent) {
             </div>
           </template>
         </Panel>
-        <div class="d-flex justify-content-end my-2">
+        <div class="d-flex justify-content-between my-2">
+          <Button icon="pi pi-copy" size="small" text @click="onClickCopy" :label="t('viewer.markdown.button.copy')" />
           <SelectButton option-value="value" :options="layoutOptions" v-model="layout">
             <template #option="slotProps">
               <i :class="slotProps.option.icon" />

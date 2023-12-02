@@ -180,6 +180,9 @@
         "use_breaks": "Use Break",
         "use_breaks_tooltip": "Convert line break in paragraphs into <br>"
       },
+      "button": {
+        "copy": "Copy"
+      },
       "example_input": {
         "heading1": "Heading1",
         "heading2": "Heading2",
