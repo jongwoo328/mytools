@@ -56,3 +56,7 @@ body {
 .font-monospace-code, .font-monospace-code * {
     font-family: Monaco, Menlo, Consolas, Bitstream Vera Sans Mono, monospace !important;
 }
+
+.font-monospace-only-code code, .font-monospace-only-code code * {
+    font-family: Monaco, Menlo, Consolas, Bitstream Vera Sans Mono, monospace !important;
+}

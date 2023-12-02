@@ -28,6 +28,9 @@ import ColorPicker from "primevue/colorpicker";
 import Skeleton from "primevue/skeleton";
 import ToastService from "primevue/toastservice";
 import ToggleButton from "primevue/togglebutton";
+import Splitter from "primevue/splitter";
+import SplitterPanel from "primevue/splitterpanel";
+import Tooltip from "primevue/tooltip";
 
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.use(PrimeVue, { ripple: true });
@@ -60,4 +63,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.component("ColorPicker", ColorPicker);
   nuxtApp.vueApp.component("Skeleton", Skeleton);
   nuxtApp.vueApp.component("ToggleButton", ToggleButton);
+  nuxtApp.vueApp.component("Splitter", Splitter);
+  nuxtApp.vueApp.component("SplitterPanel", SplitterPanel);
+  nuxtApp.vueApp.directive("tooltip", Tooltip);
 });
