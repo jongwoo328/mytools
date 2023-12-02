@@ -53,7 +53,8 @@
       "viewer": {
         "items": {
           "html_viewer_label": "HTML",
-          "text_difference_checker_label": "텍스트 차이 비교"
+          "text_difference_checker_label": "텍스트 차이 비교",
+          "markdown_viewer_label": "마크다운"
         },
         "label": "뷰어"
       }
@@ -122,6 +123,10 @@
       "url_encoder/decoder": {
         "description": "URL 인코딩, 디코딩 기능",
         "title": "URL 인코더/디코더"
+      },
+      "markdown_viewer": {
+        "description": "표와 TeX(수학 식)를 지원하는 마크다운 뷰어",
+        "title": "마크다운 뷰어"
       }
     }
   },

@@ -53,7 +53,8 @@
       "viewer": {
         "items": {
           "html_viewer_label": "HTML",
-          "text_difference_checker_label": "Text Diff Checker"
+          "text_difference_checker_label": "Text Diff Checker",
+          "markdown_viewer_label": "Markdown"
         },
         "label": "Viewer"
       }
@@ -122,6 +123,10 @@
       "url_encoder/decoder": {
         "description": "URL encoder and decoder",
         "title": "URL Encoder/Decoder"
+      },
+      "markdown_viewer": {
+        "description": "Markdown viewer with support for tables and TeX(Math formula)",
+        "title": "Markdown Viewer"
       }
     }
   },

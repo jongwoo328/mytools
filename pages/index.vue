@@ -99,6 +99,12 @@ const availableTools: AvailableTool[] = [
     description: t("index.tools.text_length_calculator.description"),
     tags: [Tags.Calculator],
   },
+  {
+    title: t("index.tools.markdown_viewer.title"),
+    router: localePath("/viewer/markdown"),
+    description: t("index.tools.markdown_viewer.description"),
+    tags: [Tags.Viewer],
+  },
 ];
 
 const toolFilter = reactive({
