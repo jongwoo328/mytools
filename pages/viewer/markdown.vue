@@ -276,7 +276,7 @@ const onClickCopy = async () => {
               ref="markdownInput"
               @scroll="onScrollTextArea"
               style="resize: none"
-              class="flex-grow-1"
+              class="flex-grow-1 prevent-auto-zoom"
               :auto-resize="false"
               :autofocus="false"
               v-model="input"
