@@ -4,6 +4,10 @@
     "toast": {
       "copy_success": "복사 완료!",
       "copy_fail": "복사 실패"
+    },
+    "locales": {
+      "en": "English",
+      "ko": "한국어"
     }
   },
   "index": {

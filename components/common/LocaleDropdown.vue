@@ -5,7 +5,7 @@ import { breakpointsBootstrapV5 } from "@vueuse/core";
 import { ref } from "vue";
 import { PassThrough } from "primevue/ts-helpers";
 
-const { locale, availableLocales } = useI18n();
+const { locale, availableLocales, t } = useI18n();
 const router = useRouter();
 const switchLocalePath = useSwitchLocalePath();
 
@@ -30,6 +30,13 @@ const dropdownStyle = computed<Partial<CSSStyleDeclaration>>(() => {
   return style;
 });
 
+const localeOptions = computed(() =>
+  availableLocales.map((locale) => ({
+    label: t(`common.locales.${locale}`),
+    value: locale,
+  })),
+);
+
 watch(locale, () => {
   router.replace(switchLocalePath(locale.value));
 });
@@ -41,7 +48,9 @@ watch(locale, () => {
     <Dropdown
       ref="dropdown"
       :style="dropdownStyle"
-      :options="availableLocales"
+      :options="localeOptions"
+      option-value="value"
+      option-label="label"
       v-model="locale"
       :pt="dropdownPassThrough"
     />
