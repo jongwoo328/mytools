@@ -4,31 +4,53 @@ import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 import SplitterPanel from "primevue/splitterpanel";
 import Textarea from "primevue/textarea";
 
-const input = ref(`# 제목1
+const { t } = useI18n();
+const localePath = useLocalePath();
 
-## 제목2
+useJsonld(() => ({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: t("title"),
+      item: `https://tools.jongwoo.me${localePath("/")}`,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: t("viewer.markdown.title"),
+      item: `https://tools.jongwoo.me${localePath("/viewer/markdown")}`,
+    },
+  ],
+}));
 
-### 제목3
+const input = ref(`# ${t("viewer.markdown.example_input.heading1")}
 
-#### 제목4
+## ${t("viewer.markdown.example_input.heading2")}
 
-##### 제목5
+### ${t("viewer.markdown.example_input.heading3")}
 
-###### 제목6
+#### ${t("viewer.markdown.example_input.heading4")}
 
-## 텍스트 스타일
+##### ${t("viewer.markdown.example_input.heading5")}
 
-**볼드체**
+###### ${t("viewer.markdown.example_input.heading6")}
 
-__볼드체__
+## ${t("viewer.markdown.example_input.text_style.title")}
 
-*이탤릭체*
+**${t("viewer.markdown.example_input.text_style.bold")}**
 
-*이탤릭체*
+__${t("viewer.markdown.example_input.text_style.bold")}__
 
-~~취소선~~
+*${t("viewer.markdown.example_input.text_style.italic")}*
 
-## 수평선
+_${t("viewer.markdown.example_input.text_style.italic")}_
+
+~~${t("viewer.markdown.example_input.text_style.strikethrough")}~~
+
+## ${t("viewer.markdown.example_input.horizontal_rule")}
 
 ___
 
@@ -36,73 +58,83 @@ ___
 
 ***
 
-## 목록
+## ${t("viewer.markdown.example_input.list.title")}
 
-순서없는 목록:
+### ${t("viewer.markdown.example_input.list.unordered.text")}
 
-- 항목 1
-- 항목 2
-  - 하위 항목 2-1
-  - 하위 항목 2-2
+- ${t("viewer.markdown.example_input.list.unordered.item1")}
+- ${t("viewer.markdown.example_input.list.unordered.item2")}
+  - ${t("viewer.markdown.example_input.list.unordered.sub_item2_1")}
+  - ${t("viewer.markdown.example_input.list.unordered.sub_item2_2")}
 
-순서있는 목록:
+### ${t("viewer.markdown.example_input.list.ordered.text")}
 
-1. 첫 번째 항목
-2. 두 번째 항목
-   1. 하위 항목 2-1
-   2. 하위 항목 2-2
+1. ${t("viewer.markdown.example_input.list.ordered.item1")}
+2. ${t("viewer.markdown.example_input.list.ordered.item2")}
+   1. ${t("viewer.markdown.example_input.list.ordered.sub_item2_1")}
+   2. ${t("viewer.markdown.example_input.list.ordered.sub_item2_2")}
 
-## 인용문
+## ${t("viewer.markdown.example_input.blockquote.title")}
 
-> 이것은 인용문입니다.
-> > 중첩 인용문입니다.
+> ${t("viewer.markdown.example_input.blockquote.text1")}
+>> ${t("viewer.markdown.example_input.blockquote.text2")}
 
-## 링크
+## ${t("viewer.markdown.example_input.link.title")}
 
-[이 프로젝트의 Github 페이지](https://github.com/jongwoo328/mytools)
+[${t("viewer.markdown.example_input.link.text")}](https://github.com/jongwoo328/mytools)
 
-## 이미지
+## ${t("viewer.markdown.example_input.image.title")}
 
-![이미지 대체 텍스트](https://via.placeholder.com/150)
+![${t("viewer.markdown.example_input.image.text")}](https://via.placeholder.com/150)
 
-## 코드
+## ${t("viewer.markdown.example_input.code.title")}
 
-\`인라인 코드\` 예시입니다.
+${t("viewer.markdown.example_input.code.text_inline_code")}
 
-코드 블록:
+${t("viewer.markdown.example_input.code.text_code_block")}:
 
 \`\`\`python
 def hello_world():
     print("Hello, World!")
 \`\`\`
 
-## 표
-> CommonMark에 명시되지 않은 기능입니다
+## ${t("viewer.markdown.example_input.table.title")}
+> ${t("viewer.markdown.example_input.table.blockquote")}
 
-| 헤더 1   |  헤더 2  |   헤더 3 |
+|  ${t("viewer.markdown.example_input.table.header1")}  |  ${t("viewer.markdown.example_input.table.header2")}  |  ${t(
+  "viewer.markdown.example_input.table.header3",
+)}  |
 | -------- | :------: | -------: |
-| 데이터 1 | 데이터 2 | 데이터 3 |
-| 데이터 4 | 데이터 5 | 데이터 6 |
+| ${t("viewer.markdown.example_input.table.data1")} | ${t("viewer.markdown.example_input.table.data2")} | ${t(
+  "viewer.markdown.example_input.table.data3",
+)} |
+| ${t("viewer.markdown.example_input.table.data4")} | ${t("viewer.markdown.example_input.table.data5")} | ${t(
+  "viewer.markdown.example_input.table.data6",
+)} |
 
-## 내부 링크
-[제목1](#제목1)
+## ${t("viewer.markdown.example_input.anchor.title")}
+[${t("viewer.markdown.example_input.anchor.text")}](#${t("viewer.markdown.example_input.anchor.anchor")})
 
-## 주석
-> CommonMark에 명시되지 않은 기능입니다
+## ${t("viewer.markdown.example_input.footnote.title")}
+> ${t("viewer.markdown.example_input.footnote.blockquote")}
 
-이 문장에 주석 1번이 추가됩니다. [^주석1]
+${t("viewer.markdown.example_input.footnote.text1")} [^${t("viewer.markdown.example_input.footnote.text1_ref")}]
 
-이 문장에 주석 2번이 추가됩니다. [^주석2]
+${t("viewer.markdown.example_input.footnote.text2")} [^${t("viewer.markdown.example_input.footnote.text2_ref")}]
 
-이 문장에 인라인 주석이 추가됩니다.^[인라인 주석입니다.]
+${t("viewer.markdown.example_input.footnote.text3")}^[${t("viewer.markdown.example_input.footnote.text3_ref")}]
 
-[^주석1]: 주석은 **마크업이 가능합니다**
-[^주석2]: 두번째 주석입니다
+[^${t("viewer.markdown.example_input.footnote.text1_ref")}]: ${t(
+  "viewer.markdown.example_input.footnote.text1_ref_text",
+)}
+[^${t("viewer.markdown.example_input.footnote.text2_ref")}]: ${t(
+  "viewer.markdown.example_input.footnote.text2_ref_text",
+)}
 
-## 수식
-> CommonMark에 명시되지 않은 기능입니다
+## ${t("viewer.markdown.example_input.formula.title")}
+> ${t("viewer.markdown.example_input.formula.blockquote")}
 
-TeX의 math mode를 지원합니다
+${t("viewer.markdown.example_input.formula.text")}
 
 $
 \\begin{align}
@@ -119,13 +151,13 @@ const layoutOptions = [
 ];
 
 const useStrictCommonMark = ref(false);
-const useStrictCommonMarkTooltip = computed(() => "Only use strict CommonMark specs");
+const useStrictCommonMarkTooltip = computed(() => t("viewer.markdown.options.use_strict_commonmark_tooltip"));
 const useHtml = ref(true);
-const useHtmlTooltip = computed(() => "Enable HTML tags in source");
+const useHtmlTooltip = computed(() => t("viewer.markdown.options.use_html_tooltip"));
 const useLinkify = ref(true);
-const useLinkifyTooltip = computed(() => "Autoconvert URL-like text to links");
+const useLinkifyTooltip = computed(() => t("viewer.markdown.options.use_linkify_tooltip"));
 const useBreaks = ref(false);
-const useBreaksTooltip = computed(() => "convert \\n in paragraphs into <br>");
+const useBreaksTooltip = computed(() => t("viewer.markdown.options.use_breaks_tooltip"));
 
 const renderedMarkdownPanel = ref();
 const markdownInput = ref();
@@ -161,47 +193,65 @@ function onMarkdownInputKeydown(e: KeyboardEvent) {
 </script>
 
 <template>
-  <ToolPageLayout title="Markdown Viewer">
+  <Head>
+    <Title>{{ t("viewer.markdown.head.title") }}</Title>
+    <Meta name="description" :content="t('viewer.markdown.head.description')" />
+  </Head>
+  <ToolPageLayout :title="t('viewer.markdown.title')">
     <Card>
       <template #content>
         <Panel toggleable>
-          <template #header>Configuration</template>
+          <template #header>
+            {{ t("viewer.markdown.options.label") }}
+          </template>
           <template #default>
             <div class="row">
               <div class="col col-12 col-lg-6 col-xxl-4 mt-2 row">
                 <div class="col col-6 align-self-center d-flex gap-2">
-                  <label for=""> Use Strict CommonMark </label>
+                  <label for="useStrictCommonMark">
+                    {{ t("viewer.markdown.options.use_strict_commonmark") }}
+                  </label>
                   <i v-tooltip.top="useStrictCommonMarkTooltip" class="pi pi-question-circle align-self-center"></i>
                 </div>
                 <div class="col col-6 d-flex justify-content-center">
-                  <InputSwitch class="align-self-center" v-model:model-value="useStrictCommonMark" />
+                  <InputSwitch
+                    input-id="useStrictCommonMark"
+                    class="align-self-center"
+                    v-model:model-value="useStrictCommonMark"
+                  />
                 </div>
               </div>
               <div class="col col-12 col-lg-6 col-xxl-4 mt-2 row">
                 <div class="col col-6 align-self-center d-flex gap-2">
-                  <label for=""> Use HTML </label>
-                  <i v-tooltip.top="useHtmlTooltip" class="pi pi-question-circle align-self-center"></i>
+                  <label for="useHtml">
+                    {{ t("viewer.markdown.options.use_html") }}
+                  </label>
+                  <i v-tooltip.top="useHtmlTooltip" class="pi pi-question-circle align-self-center" />
                 </div>
                 <div class="col col-6 d-flex justify-content-center">
-                  <InputSwitch class="align-self-center" v-model:model-value="useHtml" />
+                  <InputSwitch input-id="useHtml" class="align-self-center" v-model:model-value="useHtml" />
                 </div>
               </div>
               <div class="col col-12 col-lg-6 col-xxl-4 mt-2 row">
                 <div class="col col-6 align-self-center d-flex gap-2">
-                  <label for=""> Use Linkify </label>
-                  <i v-tooltip.top="useLinkifyTooltip" class="pi pi-question-circle align-self-center"></i>
+                  <label for="useLinkify">
+                    {{ t("viewer.markdown.options.use_linkify") }}
+                  </label>
+                  <i v-tooltip.top="useLinkifyTooltip" class="pi pi-question-circle align-self-center" />
                 </div>
                 <div class="col col-6 d-flex justify-content-center">
-                  <InputSwitch class="align-self-center" v-model:model-value="useLinkify" />
+                  <InputSwitch input-id="useLinkify" class="align-self-center" v-model:model-value="useLinkify" />
                 </div>
               </div>
               <div class="col col-12 col-lg-6 col-xxl-4 mt-2 row">
                 <div class="col col-6 align-self-center d-flex gap-2">
-                  <label for=""> Use Break </label>
-                  <i v-tooltip.top="useBreaksTooltip" class="pi pi-question-circle align-self-center"></i>
+                  <label for="useBreaks">
+                    {{ t("viewer.markdown.options.use_breaks") }}
+                  </label>
+                  <i v-tooltip.top="useBreaksTooltip" class="pi pi-question-circle align-self-center" />
                 </div>
                 <div class="col col-6 d-flex justify-content-center">
-                  <InputSwitch class="align-self-center" v-model:model-value="useBreaks" />
+                  <InputSwitch input-id="useBreaks" class="align-self-center" v-model:model-value="useBreaks" />
                 </div>
               </div>
             </div>
@@ -210,7 +260,7 @@ function onMarkdownInputKeydown(e: KeyboardEvent) {
         <div class="d-flex justify-content-end my-2">
           <SelectButton option-value="value" :options="layoutOptions" v-model="layout">
             <template #option="slotProps">
-              <i :class="slotProps.option.icon"></i>
+              <i :class="slotProps.option.icon" />
             </template>
           </SelectButton>
         </div>

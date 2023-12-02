@@ -157,6 +157,109 @@
       "comparison": "Comparison",
       "result": "Result",
       "cancel": "Cancel"
+    },
+    "markdown": {
+      "head": {
+        "description": "Markdown viewer with support for tables and Tex(Math formula)",
+        "title": "Markdown Viewer"
+      },
+      "title": "Markdown Viewer",
+      "options": {
+        "label": "Configuration",
+        "use_strict_commonmark": "Use Strict CommonMark",
+        "use_strict_commonmark_tooltip": "Only use strict CommonMark specs",
+        "use_html": "Use HTML",
+        "use_html_tooltip": "Enable HTML tags in markdown",
+        "use_linkify": "Use Linkify",
+        "use_linkify_tooltip": "Convert URL-like text to links",
+        "use_breaks": "Use Break",
+        "use_breaks_tooltip": "Convert line break in paragraphs into <br>"
+      },
+      "example_input": {
+        "heading1": "Heading1",
+        "heading2": "Heading2",
+        "heading3": "Heading3",
+        "heading4": "Heading4",
+        "heading5": "Heading5",
+        "heading6": "Heading6",
+        "text_style": {
+          "title": "Text Style",
+          "bold": "Bold",
+          "italic": "Italic",
+          "strikethrough": "Strikethrough"
+        },
+        "horizontal_rule": "Horizontal Rule",
+        "list": {
+          "title": "List",
+          "unordered": {
+            "text": "Unordered",
+            "item1": "Item 1",
+            "item2": "Item 2",
+            "sub_item2_1": "Sub Item 2-1",
+            "sub_item2_2": "Sub Item 2-2"
+          },
+          "ordered": {
+            "text": "Ordered",
+            "item1": "Item 1",
+            "item2": "Item 2",
+            "sub_item2_1": "Sub Item 2-1",
+            "sub_item2_2": "Sub Item 2-2"
+          }
+        },
+        "blockquote": {
+          "title": "Blockquote",
+          "text1": "This is a blockquote.",
+          "text2": "This is a nested blockquote."
+        },
+        "link": {
+          "title": "Link",
+          "text": "Github Link for this project"
+        },
+        "image": {
+          "title": "Image",
+          "text": "Image alternative text"
+        },
+        "code": {
+          "title": "Code",
+          "text_inline_code": "`inline-code` example.",
+          "text_code_block": "code block"
+        },
+        "table": {
+          "blockquote": "Features not specified in CommonMark",
+          "title": "Table",
+          "header1": "Header 1",
+          "header2": "Header 2",
+          "header3": "Header 3",
+          "data1": "Data 1",
+          "data2": "Data 2",
+          "data3": "Data 3",
+          "data4": "Data 4",
+          "data5": "Data 5",
+          "data6": "Data 6"
+        },
+        "anchor": {
+          "title": "Anchor",
+          "text": "Heading1",
+          "anchor": "Heading1"
+        },
+        "footnote": {
+          "blockquote": "Features not specified in CommonMark",
+          "title": "Footnote",
+          "text1": "Footnote1 is added here.",
+          "text1_ref": "Footnote1",
+          "text1_ref_text": "Footnote can be **marked up**.",
+          "text2": "Footnote2 is added here.",
+          "text2_ref": "Footnote2",
+          "text2_ref_text": "This is the second footnote.",
+          "text3": "Inline footnote is added here.",
+          "text3_ref": "This is inline footnote."
+        },
+        "formula": {
+          "blockquote": "Features not specified in CommonMark",
+          "title": "Formula",
+          "text": "Support for math expressions in TeX."
+        }
+      }
     }
   },
   "formatter": {

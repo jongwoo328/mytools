@@ -157,6 +157,109 @@
       "comparison": "비교 텍스트",
       "result": "결과",
       "cancel": "취소"
+    },
+    "markdown": {
+      "head": {
+        "description": "표와 TeX(수학 식)를 지원하는 마크다운 뷰어",
+        "title": "마크다운 뷰어"
+      },
+      "title": "마크다운 뷰어",
+      "options": {
+        "label": "설정",
+        "use_strict_commonmark": "CommonMark 사용",
+        "use_strict_commonmark_tooltip": "CommonMark 명세만 지원합니다",
+        "use_html": "HTML 허용",
+        "use_html_tooltip": "HTML 태그를 사용할 수 있습니다",
+        "use_linkify": "링크 변환",
+        "use_linkify_tooltip": "링크를 자동으로 변환합니다",
+        "use_breaks": "줄바꿈 변환",
+        "use_breaks_tooltip": "줄바꿈을 <br>로 변환합니다"
+      },
+      "example_input": {
+        "heading1": "제목1",
+        "heading2": "제목2",
+        "heading3": "제목3",
+        "heading4": "제목4",
+        "heading5": "제목5",
+        "heading6": "제목6",
+        "text_style": {
+          "title": "텍스트 스타일",
+          "bold": "볼드체",
+          "italic": "이탤릭체",
+          "strikethrough": "취소선"
+        },
+        "horizontal_rule": "수평선",
+        "list": {
+          "title": "목록",
+          "unordered": {
+            "text": "순서없는 목록",
+            "item1": "항목 1",
+            "item2": "항목 2",
+            "sub_item2_1": "하위 항목 2-1",
+            "sub_item2_2": "하위 항목 2-2"
+          },
+          "ordered": {
+            "text": "순서있는 목록",
+            "item1": "항목 1",
+            "item2": "항목 2",
+            "sub_item2_1": "하위 항목 2-1",
+            "sub_item2_2": "하위 항목 2-2"
+          }
+        },
+        "blockquote": {
+          "title": "인용문",
+          "text1": "이것은 인용문입니다.",
+          "text2": "이것은 중첩 인용문입니다."
+        },
+        "link": {
+          "title": "링크",
+          "text": "이 프로젝트의 Github 링크"
+        },
+        "image": {
+          "title": "이미지",
+          "text": "이미지 대체 텍스트"
+        },
+        "code": {
+          "title": "코드",
+          "text_inline_code": "`인라인 코드` 예시입니다.",
+          "text_code_block": "코드 블록"
+        },
+        "table": {
+          "blockquote": "CommonMark에 명시되지 않은 기능입니다",
+          "title": "표",
+          "header1": "헤더 1",
+          "header2": "헤더 2",
+          "header3": "헤더 3",
+          "data1": "데이터 1",
+          "data2": "데이터 2",
+          "data3": "데이터 3",
+          "data4": "데이터 4",
+          "data5": "데이터 5",
+          "data6": "데이터 6"
+        },
+        "anchor": {
+          "title": "내부 링크",
+          "text": "제목1",
+          "anchor": "제목1"
+        },
+        "footnote": {
+          "blockquote": "CommonMark에 명시되지 않은 기능입니다",
+          "title": "주석",
+          "text1": "이 문장에 주석 1번이 추가됩니다.",
+          "text1_ref": "주석1",
+          "text1_ref_text": "주석은 **마크업이 가능합니다**.",
+          "text2": "이 문장에 주석 2번이 추가됩니다.",
+          "text2_ref": "주석2",
+          "text2_ref_text": "두번째 주석 입니다.",
+          "text3": "이 문장에 인라인 주석이 추가됩니다.",
+          "text3_ref": "이것은 인라인 주석입니다."
+        },
+        "formula": {
+          "blockquote": "CommonMark에 명시되지 않은 기능입니다",
+          "title": "수식",
+          "text": "TeX의 수학 표현을 지원합니다."
+        }
+      }
     }
   },
   "formatter": {
