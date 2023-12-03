@@ -4,6 +4,7 @@ import MarkdownItHighlightJs from "markdown-it-highlightjs";
 import MarkdownItFootnote from "markdown-it-footnote";
 import MarkdownItAnchor from "markdown-it-anchor";
 import MarkDownItMathjax3 from "markdown-it-mathjax3";
+import MarkdownItTaskLists from "markdown-it-task-lists";
 import hljs from "highlight.js";
 import "highlight.js/styles/atom-one-light.min.css";
 
@@ -23,6 +24,7 @@ const md = computed(() => {
   })
     .use(MarkdownItAnchor)
     .use(MarkdownItFootnote)
+    .use(MarkdownItTaskLists, { enabled: true, label: true })
     .use(MarkdownItHighlightJs, {
       hljs,
       auto: false,
@@ -30,11 +32,36 @@ const md = computed(() => {
     .use(MarkDownItMathjax3);
 });
 
+const updateMarkdownCheckbox: ((idx: number, checked: boolean) => void) | undefined = inject("updateMarkdownCheckbox");
 const renderedHtml = computed(() => md.value.render(props.markdown));
+
+const renderResult = ref();
+const addCheckboxEventListener = () => {
+  renderResult.value.querySelectorAll('input[type="checkbox"]').forEach((checkbox, idx) => {
+    checkbox.addEventListener("change", function () {
+      if (!updateMarkdownCheckbox) {
+        return;
+      }
+      updateMarkdownCheckbox(idx, checkbox.checked);
+    });
+  });
+};
+
+watch(renderedHtml, async () => {
+  if (!renderResult.value) {
+    return;
+  }
+  await nextTick();
+  addCheckboxEventListener();
+});
+
+onMounted(() => {
+  addCheckboxEventListener();
+});
 </script>
 
 <template>
-  <div id="renderedMarkdown" class="p-1 font-monospace-only-code" v-html="renderedHtml" />
+  <div id="renderedMarkdown" class="p-1 font-monospace-only-code" v-html="renderedHtml" ref="renderResult" />
 </template>
 
 <style scoped lang="scss">
@@ -132,6 +159,18 @@ const renderedHtml = computed(() => md.value.render(props.markdown));
     h6 {
       font-size: 1em;
       color: #999;
+    }
+  }
+
+  &:deep(.task-list-item) {
+    list-style-type: none;
+
+    input[type="checkbox"] {
+      margin-left: -1.5rem;
+    }
+
+    label {
+      margin-left: 0.5rem;
     }
   }
 }

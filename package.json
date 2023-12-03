@@ -56,6 +56,8 @@
     "markdown-it-footnote": "^3.0.3",
     "markdown-it-highlightjs": "^4.0.1",
     "markdown-it-mathjax3": "^4.3.2",
+    "markdown-it-task-checkbox": "^1.0.6",
+    "markdown-it-task-lists": "^2.1.1",
     "nuxt-jsonld": "^2.0.8",
     "papaparse": "^5.4.1",
     "primeicons": "^6.0.1",
