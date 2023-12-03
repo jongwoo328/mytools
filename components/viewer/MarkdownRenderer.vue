@@ -36,11 +36,7 @@ const updateMarkdownCheckbox: ((idx: number, checked: boolean) => void) | undefi
 const renderedHtml = computed(() => md.value.render(props.markdown));
 
 const renderResult = ref();
-watch(renderedHtml, async () => {
-  if (!renderResult.value) {
-    return;
-  }
-  await nextTick();
+const addCheckboxEventListener = () => {
   renderResult.value.querySelectorAll('input[type="checkbox"]').forEach((checkbox, idx) => {
     checkbox.addEventListener("change", function () {
       if (!updateMarkdownCheckbox) {
@@ -49,6 +45,18 @@ watch(renderedHtml, async () => {
       updateMarkdownCheckbox(idx, checkbox.checked);
     });
   });
+};
+
+watch(renderedHtml, async () => {
+  if (!renderResult.value) {
+    return;
+  }
+  await nextTick();
+  addCheckboxEventListener();
+});
+
+onMounted(() => {
+  addCheckboxEventListener();
 });
 </script>
 

@@ -59,6 +59,11 @@ ___
 
 ***
 
+## ${t("viewer.markdown.example_input.blockquote.title")}
+
+> ${t("viewer.markdown.example_input.blockquote.text1")}
+>> ${t("viewer.markdown.example_input.blockquote.text2")}
+
 ## ${t("viewer.markdown.example_input.list.title")}
 
 ### ${t("viewer.markdown.example_input.list.unordered.text")}
@@ -75,10 +80,10 @@ ___
    1. ${t("viewer.markdown.example_input.list.ordered.sub_item2_1")}
    2. ${t("viewer.markdown.example_input.list.ordered.sub_item2_2")}
 
-## ${t("viewer.markdown.example_input.blockquote.title")}
-
-> ${t("viewer.markdown.example_input.blockquote.text1")}
->> ${t("viewer.markdown.example_input.blockquote.text2")}
+### ${t("viewer.markdown.example_input.list.checkbox.text")}
+> ${t("viewer.markdown.example_input.list.checkbox.blockquote")}
+- [ ] ${t("viewer.markdown.example_input.list.checkbox.item1")}
+- [x] ${t("viewer.markdown.example_input.list.checkbox.item2")}
 
 ## ${t("viewer.markdown.example_input.link.title")}
 

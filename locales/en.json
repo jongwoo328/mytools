@@ -216,6 +216,12 @@
             "item2": "Item 2",
             "sub_item2_1": "Sub Item 2-1",
             "sub_item2_2": "Sub Item 2-2"
+          },
+          "checkbox": {
+            "blockquote": "Features not specified in CommonMark",
+            "text": "Checkbox",
+            "item1": "Unchecked item",
+            "item2": "Checked item"
           }
         },
         "blockquote": {
