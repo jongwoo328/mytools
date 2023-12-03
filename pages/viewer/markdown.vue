@@ -195,6 +195,41 @@ function onMarkdownInputKeydown(e: KeyboardEvent) {
 const onClickCopy = async () => {
   await copyData(input.value);
 };
+
+const updateMarkdownCheckbox = (idx: number, checked: boolean) => {
+  const textarea = markdownInput.value?.$el as HTMLTextAreaElement;
+  if (!textarea) {
+    return;
+  }
+  const start = textarea.selectionStart;
+  const end = textarea.selectionEnd;
+  const lines = textarea.value.split("\n");
+  let count = 0;
+  // get line by regex (starts with space and exists - [ ] or - [x])
+  // and replace it with new line
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const match = line.match(/^(\s*)- \[(x| )\]/);
+
+    if (match) {
+      count += 1;
+
+      if (count !== idx + 1) {
+        continue;
+      }
+      const newLine = checked
+        ? `${match[1]}- [x]${line.slice(match[0].length)}`
+        : `${match[1]}- [ ]${line.slice(match[0].length)}`;
+      textarea.value = lines.slice(0, i).join("\n") + "\n" + newLine + "\n" + lines.slice(i + 1).join("\n");
+      textarea.selectionStart = start;
+      textarea.selectionEnd = end;
+      textarea.dispatchEvent(new Event("input", { bubbles: true, cancelable: true }));
+      break;
+    }
+  }
+};
+
+provide("updateMarkdownCheckbox", updateMarkdownCheckbox);
 </script>
 
 <template>
