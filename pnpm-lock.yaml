@@ -69,8 +69,8 @@ dependencies:
     specifier: ^6.0.1
     version: 6.0.1
   primevue:
-    specifier: ~3.34.1
-    version: 3.34.1
+    specifier: ^3.46.0
+    version: 3.46.0
   sql-formatter:
     specifier: ^12.2.4
     version: 12.2.4
@@ -5958,8 +5958,8 @@ packages:
     resolution: {integrity: sha512-KDeO94CbWI4pKsPnYpA1FPjo79EsY9I+M8ywoPBSf9XMXoe/0crjbUK7jcQEDHuc0ZMRIZsxH3TYLv4TUtHmAA==}
     dev: false
 
-  /primevue@3.34.1:
-    resolution: {integrity: sha512-5QPy8I+TMYSQgC0Bs/9vINsOVjgCOQFAr6uz49Wzcj8u04qJ2mG/z6OhAana+f4yKTTHVwHLVnuGkrIp/nI9DA==}
+  /primevue@3.46.0:
+    resolution: {integrity: sha512-WGprXj9HA+j6gLLDaSxcRRSChIF99ld5fg1D3hYFA7hNiEuON1aqe83gf52vUSw8yjVMtFQ3CMPQSTYhooNwIg==}
     peerDependencies:
       vue: ^3.0.0
     dev: false

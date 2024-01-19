@@ -96,14 +96,7 @@ const expandToggleLabel = computed(() =>
             @click="onClickDeleteResult"
             style="width: 32px"
           />
-          <Button
-            severity="info"
-            class="p-0 me-1 h-100"
-            icon="pi pi-copy"
-            size="small"
-            @click="onClickCopy"
-            style="width: 32px"
-          />
+          <Button class="p-0 me-1 h-100" icon="pi pi-copy" size="small" @click="onClickCopy" style="width: 32px" />
         </div>
       </div>
     </template>

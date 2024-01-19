@@ -163,7 +163,6 @@ watch(inputImage, () => {
               </div>
               <Button
                 @click="copyAsBase64"
-                severity="info"
                 class="w-100 d-block mt-2"
                 :disabled="!isImageLoaded && copyingBase64"
                 style="height: 44px"
