@@ -38,7 +38,7 @@ const { copyData } = useCopy();
 const { asyncBlobToBase64 } = useImageUtil();
 
 const canvas = ref<HTMLCanvasElement>();
-const inputImage = ref<File>(createEmptyFile());
+const inputImage = ref<File>(createEmptyFile() as File);
 const inputImageType = ref(t("converter.image.image_type.no_data"));
 const imageObj: Ref<HTMLImageElement> = ref(createEmptyImageElement());
 const isConvertLoading = ref(false);

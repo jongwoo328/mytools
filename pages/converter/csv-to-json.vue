@@ -59,7 +59,7 @@ const encodingOptions = [
 ];
 const selectedEncoding: Ref<CsvToJsonEncodingType> = ref(CsvToJsonEncodingType.UTF8);
 
-const uploadFile: Ref<File> = ref(createEmptyFile());
+const uploadFile: Ref<File> = ref(createEmptyFile() as File);
 
 const convertResultList: Ref<Array<JSONResult>> = ref([]);
 const parseFromText = () => {
@@ -98,7 +98,7 @@ const onFileChange = (event: FileUploadSelectEvent) => {
   uploadFile.value = event.files[0];
 };
 const onClear = () => {
-  uploadFile.value = createEmptyFile();
+  uploadFile.value = createEmptyFile() as File;
 };
 </script>
 <template>
