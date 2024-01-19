@@ -161,7 +161,6 @@ const clickActions: MenuItem[] = [
             v-show="isMobileOrTablet"
             outlined
             :label="t('formatter.json.result_list.actions.copy_all')"
-            severity="info"
             size="small"
             icon="pi pi-copy"
             :model="clickActions"

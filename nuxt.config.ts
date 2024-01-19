@@ -100,8 +100,7 @@ export default defineNuxtConfig({
   },
 
   css: [
-    "@/assets/styles/main.css",
-    "bootstrap/dist/css/bootstrap.min.css",
+    "@/assets/styles/main.scss",
     "primevue/resources/themes/lara-light-blue/theme.css",
     "primevue/resources/primevue.css",
     "primeicons/primeicons.css",
