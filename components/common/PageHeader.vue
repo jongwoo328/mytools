@@ -35,12 +35,12 @@ const menus = [
     key: "formatter",
     items: [
       {
-        to: () => localePath("/formatter/json"),
+        url: () => localePath("/formatter/json"),
         label: () => t("index.menu.formatter.items.json_formatter_label"),
         command: hideDrawer,
       },
       {
-        to: () => localePath("/formatter/sql"),
+        url: () => localePath("/formatter/sql"),
         label: () => t("index.menu.formatter.items.sql_formatter_label"),
         command: hideDrawer,
       },
@@ -51,32 +51,32 @@ const menus = [
     key: "converter",
     items: [
       {
-        to: () => localePath("/converter/image"),
+        url: () => localePath("/converter/image"),
         label: () => t("index.menu.converter.items.image_converter_label"),
         command: hideDrawer,
       },
       {
-        to: () => localePath("/converter/epoch"),
+        url: () => localePath("/converter/epoch"),
         label: () => t("index.menu.converter.items.epoch_converter_label"),
         command: hideDrawer,
       },
       {
-        to: () => localePath("/converter/csv-to-json"),
+        url: () => localePath("/converter/csv-to-json"),
         label: () => t("index.menu.converter.items.csv_to_json_converter_label"),
         command: hideDrawer,
       },
       {
-        to: () => localePath("/converter/image-crop"),
+        url: () => localePath("/converter/image-crop"),
         label: () => t("index.menu.converter.items.image_cropper_label"),
         command: hideDrawer,
       },
       {
-        to: () => localePath("/converter/url"),
+        url: () => localePath("/converter/url"),
         label: () => t("index.menu.converter.items.url_encoder/decoder_label"),
         command: hideDrawer,
       },
       {
-        to: () => localePath("/converter/color"),
+        url: () => localePath("/converter/color"),
         label: () => t("index.menu.converter.items.color_code_converter_label"),
         command: hideDrawer,
       },
@@ -87,17 +87,17 @@ const menus = [
     key: "viewer",
     items: [
       {
-        to: () => localePath("/viewer/html"),
+        url: () => localePath("/viewer/html"),
         label: () => t("index.menu.viewer.items.html_viewer_label"),
         command: hideDrawer,
       },
       {
-        to: () => localePath("/viewer/text-diff"),
+        url: () => localePath("/viewer/text-diff"),
         label: () => t("index.menu.viewer.items.text_difference_checker_label"),
         command: hideDrawer,
       },
       {
-        to: () => localePath("/viewer/markdown"),
+        url: () => localePath("/viewer/markdown"),
         label: () => t("index.menu.viewer.items.markdown_viewer_label"),
         command: hideDrawer,
       },
@@ -108,7 +108,7 @@ const menus = [
     key: "calculator",
     items: [
       {
-        to: () => localePath("/calculator/text-length"),
+        url: () => localePath("/calculator/text-length"),
         label: () => t("index.menu.calculator.items.text_length_calculator_label"),
         command: hideDrawer,
       },

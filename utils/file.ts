@@ -1,7 +1,9 @@
 const EMPTY_FILE_NAME = "emptyFile";
 
-export const createEmptyFile = (): File => {
-  return new File([""], EMPTY_FILE_NAME);
+export const createEmptyFile = (): File | void => {
+  if (typeof window !== "undefined") {
+    return new File([""], EMPTY_FILE_NAME);
+  }
 };
 
 export const isEmptyFile = (file: File): boolean => {

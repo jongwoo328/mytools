@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import SQLResultListItem from "@/components/formatter/SQLResultListItem.vue";
-import { SQLResult } from "@/types/SQLResult";
+import type { SQLResult } from "@/types/SQLResult";
 import ResultDivider from "@/components/common/ResultDivider.vue";
 
 const { t } = useI18n();

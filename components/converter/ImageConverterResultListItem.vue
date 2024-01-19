@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref } from "vue";
-import { ImageConverterResult } from "@/types/ImageConverterResult";
+import type { ImageConverterResult } from "@/types/ImageConverterResult";
 
 const { copyData } = useCopy();
 const { t } = useI18n();

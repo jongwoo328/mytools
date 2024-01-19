@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { PropType, computed } from "vue";
+import { type PropType, computed } from "vue";
 
 const props = defineProps({
   level: {

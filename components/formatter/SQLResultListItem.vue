@@ -2,13 +2,12 @@
 import { Codemirror } from "vue-codemirror";
 import { sql } from "@codemirror/lang-sql";
 import { computed, ref } from "vue";
-import { SQLResult } from "@/types/SQLResult";
-import { format, IndentStyle, KeywordCase, LogicalOperatorNewline } from "sql-formatter";
+import type { SQLResult } from "@/types/SQLResult";
+import { format, type IndentStyle, type KeywordCase, type LogicalOperatorNewline } from "sql-formatter";
 import ResultItem from "@/components/common/ResultItem.vue";
-import Button from "primevue/button";
 import SQLResultListItemSetting from "@/components/formatter/SQLResultListItemSetting.vue";
 import ResultDivider from "@/components/common/ResultDivider.vue";
-import { UnionFromAsConst } from "~/utils/type";
+import { type UnionFromAsConst } from "~/utils/type";
 
 const { t } = useI18n();
 const { copyData } = useCopy();

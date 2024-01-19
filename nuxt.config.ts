@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     "nuxt-gtag",
     "nuxt-lodash",
     "@vueuse/nuxt",
-    "nuxt-simple-sitemap",
+    "@nuxtjs/sitemap",
     "@nuxtjs/web-vitals",
     "@nuxtjs/robots",
     "nuxt-jsonld",
@@ -23,7 +23,7 @@ export default defineNuxtConfig({
   // nuxtjs/i18n
   i18n: {
     vueI18n: "./i18n.config.ts",
-    strategy: "prefix",
+    strategy: "prefix_and_default",
     defaultLocale: "en",
     locales: [
       {
@@ -70,14 +70,7 @@ export default defineNuxtConfig({
       ],
     },
   },
-  runtimeConfig: {
-    public: {
-      siteUrl,
-    },
-  },
-  sitemap: {
-    autoLastmod: true,
-  },
+  site: { url: siteUrl },
 
   vite: {
     plugins: [eslintPlugin()],

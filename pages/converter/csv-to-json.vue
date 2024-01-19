@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import { Ref, ref } from "vue";
+import { type Ref, ref } from "vue";
 import * as Papa from "papaparse";
-import { ParseError, ParseResult } from "papaparse";
-import { JSONResult } from "@/types/JSONResult";
+import type { ParseError, ParseResult } from "papaparse";
+import type { JSONResult } from "@/types/JSONResult";
 import { v4 } from "uuid";
 import JSONResultList from "@/components/formatter/JSONResultList.vue";
 import PageHeading from "@/components/common/PageHeading.vue";
-import { FileUploadSelectEvent } from "primevue/fileupload";
+import type { FileUploadSelectEvent } from "primevue/fileupload";
 import { createEmptyFile, isEmptyFile } from "~/utils/file";
 import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 
@@ -59,7 +59,7 @@ const encodingOptions = [
 ];
 const selectedEncoding: Ref<CsvToJsonEncodingType> = ref(CsvToJsonEncodingType.UTF8);
 
-const uploadFile: Ref<File> = ref(createEmptyFile());
+const uploadFile: Ref<File> = ref(createEmptyFile() as File);
 
 const convertResultList: Ref<Array<JSONResult>> = ref([]);
 const parseFromText = () => {
@@ -98,7 +98,7 @@ const onFileChange = (event: FileUploadSelectEvent) => {
   uploadFile.value = event.files[0];
 };
 const onClear = () => {
-  uploadFile.value = createEmptyFile();
+  uploadFile.value = createEmptyFile() as File;
 };
 </script>
 <template>

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { computed, Ref, ref } from "vue";
-import { FileUploadSelectEvent } from "primevue/fileupload";
+import { computed, type Ref, ref } from "vue";
+import type { FileUploadSelectEvent } from "primevue/fileupload";
 import { breakpointsBootstrapV5 } from "@vueuse/core";
 import { createEmptyImageElement } from "~/utils/HTMLImage";
 

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ImageConverterResult } from "@/types/ImageConverterResult";
+import type { ImageConverterResult } from "@/types/ImageConverterResult";
 import ImageConverterResultListItem from "@/components/converter/ImageConverterResultListItem.vue";
 import ResultDivider from "@/components/common/ResultDivider.vue";
 

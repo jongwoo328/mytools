@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import ToolPageLayout from "@/components/common/ToolPageLayout.vue";
-import { ref, Ref } from "vue";
+import { ref, type Ref } from "vue";
 import { createEmptyFile } from "@/utils/file";
-import { FileUploadSelectEvent } from "primevue/fileupload";
+import type { FileUploadSelectEvent } from "primevue/fileupload";
 import PageHeading from "@/components/common/PageHeading.vue";
 import { humanReadableBytes } from "~/utils/unit";
 
@@ -41,13 +41,13 @@ const tabOptions = [
 const activeTabKey = ref(0);
 
 const textInput = ref("");
-const uploadFile: Ref<File> = ref(createEmptyFile());
+const uploadFile: Ref<File> = ref(createEmptyFile() as File);
 
 const onFileChange = (e: FileUploadSelectEvent) => {
   uploadFile.value = e.files[0];
 };
 const onClear = () => {
-  uploadFile.value = createEmptyFile();
+  uploadFile.value = createEmptyFile() as File;
 };
 
 const readFileAsync = (file: File) => {

@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import Dropdown, { DropdownPassThroughOptions } from "primevue/dropdown";
+import Dropdown, { type DropdownPassThroughOptions } from "primevue/dropdown";
 import TranslationIcon from "~/components/svg/TranslationIcon.vue";
 import { breakpointsBootstrapV5 } from "@vueuse/core";
 import { ref } from "vue";
-import { PassThrough } from "primevue/ts-helpers";
+import type { PassThrough } from "primevue/ts-helpers";
 
 const { locale, availableLocales, t } = useI18n();
 const router = useRouter();
