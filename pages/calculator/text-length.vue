@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import ToolPageLayout from "@/components/common/ToolPageLayout.vue";
-import { ref, Ref } from "vue";
+import { ref, type Ref } from "vue";
 import { createEmptyFile } from "@/utils/file";
-import { FileUploadSelectEvent } from "primevue/fileupload";
+import type { FileUploadSelectEvent } from "primevue/fileupload";
 import PageHeading from "@/components/common/PageHeading.vue";
 import { humanReadableBytes } from "~/utils/unit";
 

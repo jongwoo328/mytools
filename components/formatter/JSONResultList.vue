@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import JSONResultListItem from "@/components/formatter/JSONResultListItem.vue";
-import { JSONResult } from "@/types/JSONResult";
+import type { JSONResult } from "@/types/JSONResult";
 import ResultDivider from "@/components/common/ResultDivider.vue";
 
 const { t } = useI18n();

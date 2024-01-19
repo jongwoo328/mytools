@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import ImageInput from "@/components/converter/ImageInput.vue";
-import { computed, Ref, ref, watch } from "vue";
+import { computed, type Ref, ref, watch } from "vue";
 import { Browser, useBrowser } from "@/composables/useBrowser";
 import ImageConverterResultList from "@/components/converter/ImageConverterResultList.vue";
 import { v4 } from "uuid";
-import { ImageConverterResult } from "@/types/ImageConverterResult";
+import type { ImageConverterResult } from "@/types/ImageConverterResult";
 import { useImageUtil } from "@/composables/useImageUtil";
 import { createEmptyFile, isEmptyFile } from "@/utils/file";
 import PageHeading from "@/components/common/PageHeading.vue";

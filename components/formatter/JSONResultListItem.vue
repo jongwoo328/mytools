@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { JSONResult } from "@/types/JSONResult";
-import { MenuItem } from "primevue/menuitem";
+import type { JSONResult } from "@/types/JSONResult";
+import type { MenuItem } from "primevue/menuitem";
 import { breakpointsBootstrapV5, useBreakpoints } from "@vueuse/core";
 import ResultDivider from "@/components/common/ResultDivider.vue";
 import ResultItem from "@/components/common/ResultItem.vue";

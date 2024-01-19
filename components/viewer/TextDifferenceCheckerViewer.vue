@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { Change } from "diff";
-import { DiffType } from "@/types/textDiff";
+import { type Change } from "diff";
+import { type DiffType } from "@/types/textDiff";
 
 defineProps<{
   changes: Change[];

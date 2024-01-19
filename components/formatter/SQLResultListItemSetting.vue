@@ -1,7 +1,6 @@
 <script lang="ts" setup>
-import { PropType, ref, watch } from "vue";
-import { IndentStyle, KeywordCase, LogicalOperatorNewline } from "sql-formatter";
-import Dropdown from "primevue/dropdown";
+import { type PropType, ref, watch } from "vue";
+import type { IndentStyle, KeywordCase, LogicalOperatorNewline } from "sql-formatter";
 
 const { t } = useI18n();
 

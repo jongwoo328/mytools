@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed, Ref, ref } from "vue";
+import { computed, type Ref, ref } from "vue";
 import { v4 } from "uuid";
 import JSONResultList from "@/components/formatter/JSONResultList.vue";
-import { JSONResult } from "@/types/JSONResult";
+import type { JSONResult } from "@/types/JSONResult";
 import PageHeading from "@/components/common/PageHeading.vue";
 import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 

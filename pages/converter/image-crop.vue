@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, Ref, ref, watch } from "vue";
+import { computed, type Ref, ref, watch } from "vue";
 import { useImageUtil } from "@/composables/useImageUtil";
 import { v4 } from "uuid";
 import { breakpointsBootstrapV5, useMagicKeys } from "@vueuse/core";
