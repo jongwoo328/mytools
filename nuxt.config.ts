@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     "nuxt-gtag",
     "nuxt-lodash",
     "@vueuse/nuxt",
-    "nuxt-simple-sitemap",
+    "@nuxtjs/sitemap",
     "@nuxtjs/web-vitals",
     "@nuxtjs/robots",
     "nuxt-jsonld",
@@ -70,14 +70,7 @@ export default defineNuxtConfig({
       ],
     },
   },
-  runtimeConfig: {
-    public: {
-      siteUrl,
-    },
-  },
-  sitemap: {
-    autoLastmod: true,
-  },
+  site: { url: siteUrl },
 
   vite: {
     plugins: [eslintPlugin()],
