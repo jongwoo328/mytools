@@ -4,7 +4,7 @@ import { ref } from "vue";
 import DateDurationCalculator from "~/components/calculator/DateDurationCalculator.vue";
 import DateDDayCalculator from "~/components/calculator/DateDDayCalculator.vue";
 import { breakpointsBootstrapV5 } from "@vueuse/core";
-import DateIncremetCalculator from "~/components/calculator/DateIncremetCalculator.vue";
+import DateIncrementCalculator from "~/components/calculator/DateIncrementCalculator.vue";
 
 const { t } = useI18n();
 const localePath = useLocalePath();
@@ -26,24 +26,24 @@ useJsonld(() => ({
       "@type": "ListItem",
       position: 2,
       name: "Text Length Calculator",
-      item: `https://tools.jongwoo.me${localePath("/calculator/date")}`,
+      item: `https://tools.jongwoo.me${localePath("/calculator/date-time")}`,
     },
   ],
 }));
 
 const tabOptions = [
   {
-    label: "날짜(시간) 간격 계산",
+    label: t("calculator.date_time.tab_options.date_difference"),
     icon: "pi pi-calendar",
     value: 0,
   },
   {
-    label: "D-Day 계산",
+    label: t("calculator.date_time.tab_options.d_day"),
     icon: "pi pi-calendar",
     value: 1,
   },
   {
-    label: "날짜(시간) 증분 계산",
+    label: t("calculator.date_time.tab_options.date_increment"),
     icon: "pi pi-calendar-plus",
     value: 2,
   },
@@ -53,10 +53,10 @@ const activeTabKey = ref(0);
 
 <template>
   <Head>
-    <Title>타이틀</Title>
-    <Meta name="description" content="설명" />
+    <Title>{{ t("calculator.date_time.head.title") }}</Title>
+    <Meta name="description" :content="t('calculator.date_time.head.description')" />
   </Head>
-  <ToolPageLayout title="날짜 계산기">
+  <ToolPageLayout :title="t('calculator.date_time.title')">
     <Card>
       <template #content>
         <Dropdown
@@ -75,7 +75,7 @@ const activeTabKey = ref(0);
           <DateDDayCalculator />
         </div>
         <div v-else-if="activeTabKey === 2">
-          <DateIncremetCalculator />
+          <DateIncrementCalculator />
         </div>
       </template>
     </Card>

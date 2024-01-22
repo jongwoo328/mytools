@@ -113,8 +113,8 @@ const menus = [
         command: hideDrawer,
       },
       {
-        url: () => localePath("/calculator/date"),
-        label: () => "날짜",
+        url: () => localePath("/calculator/date-time"),
+        label: () => t("index.menu.calculator.items.date_time_calculator_label"),
         command: hideDrawer,
       },
     ],

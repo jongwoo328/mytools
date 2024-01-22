@@ -5,6 +5,7 @@ import { breakpointsBootstrapV5 } from "@vueuse/core";
 import type { CalculationInfo } from "~/types/TimeIncrementCalculatorTypes";
 import { DateTime, Duration } from "luxon";
 
+const { t } = useI18n();
 const breakpoints = useBreakpoints(breakpointsBootstrapV5);
 const isMobileOrTablet = breakpoints.smaller("lg");
 
@@ -64,8 +65,10 @@ const onClickReset = () => {
 </script>
 
 <template>
-  <PageHeading class="mb-4" :size="6" :level="2" weight="600">계산식 입력</PageHeading>
-  <Text text="기준시간" bold :size="5" class="mb-2" />
+  <PageHeading class="mb-4" :size="6" :level="2" weight="600">
+    {{ t("calculator.date_time.date_increment.title") }}
+  </PageHeading>
+  <Text :text="t('calculator.date_time.date_increment.date_input.label')" bold :size="5" class="mb-2" />
   <Calendar
     class="w-100"
     input-class="text-center"
@@ -77,7 +80,7 @@ const onClickReset = () => {
     hour-format="12"
   />
   <div class="d-flex justify-content-between align-items-center mt-4 mb-3">
-    <Text tag="span" text="계산식" bold :size="5" />
+    <Text tag="span" :text="t('calculator.date_time.date_increment.calculation.label')" bold :size="5" />
     <Button @click="onClickReset" icon="pi pi-trash" severity="danger" size="small" />
   </div>
   <div>
@@ -105,7 +108,9 @@ const onClickReset = () => {
               :input-style="inputStyle"
               placeholder="0"
             />
-            <InputGroupAddon :style="inputAddonStyle">년</InputGroupAddon>
+            <InputGroupAddon :style="inputAddonStyle">
+              {{ t("common.units.years") }}
+            </InputGroupAddon>
           </InputGroup>
           <InputGroup class="d-flex align-items-stretch col col-12 col-md-6 col-lg-4 mb-1" unstyled>
             <InputNumber
@@ -116,7 +121,9 @@ const onClickReset = () => {
               :input-style="inputStyle"
               placeholder="0"
             />
-            <InputGroupAddon :style="inputAddonStyle">월</InputGroupAddon>
+            <InputGroupAddon :style="inputAddonStyle">
+              {{ t("common.units.months") }}
+            </InputGroupAddon>
           </InputGroup>
           <InputGroup class="d-flex align-items-stretch col col-12 col-md-6 col-lg-4 mb-1" unstyled>
             <InputNumber
@@ -127,7 +134,9 @@ const onClickReset = () => {
               :input-style="inputStyle"
               placeholder="0"
             />
-            <InputGroupAddon :style="inputAddonStyle">일</InputGroupAddon>
+            <InputGroupAddon :style="inputAddonStyle">
+              {{ t("common.units.days") }}
+            </InputGroupAddon>
           </InputGroup>
           <InputGroup class="d-flex align-items-stretch col col-12 col-md-6 col-lg-4 mb-1" unstyled>
             <InputNumber
@@ -138,7 +147,9 @@ const onClickReset = () => {
               :input-style="inputStyle"
               placeholder="0"
             />
-            <InputGroupAddon :style="inputAddonStyle">시</InputGroupAddon>
+            <InputGroupAddon :style="inputAddonStyle">
+              {{ t("common.units.hours") }}
+            </InputGroupAddon>
           </InputGroup>
           <InputGroup class="d-flex align-items-stretch col col-12 col-md-6 col-lg-4 mb-1" unstyled>
             <InputNumber
@@ -149,7 +160,9 @@ const onClickReset = () => {
               :input-style="inputStyle"
               placeholder="0"
             />
-            <InputGroupAddon :style="inputAddonStyle">분</InputGroupAddon>
+            <InputGroupAddon :style="inputAddonStyle">
+              {{ t("common.units.minutes") }}
+            </InputGroupAddon>
           </InputGroup>
           <InputGroup class="d-flex align-items-stretch col col-12 col-md-6 col-lg-4 mb-1" unstyled>
             <InputNumber
@@ -160,7 +173,9 @@ const onClickReset = () => {
               :input-style="inputStyle"
               placeholder="0"
             />
-            <InputGroupAddon :style="inputAddonStyle">초</InputGroupAddon>
+            <InputGroupAddon :style="inputAddonStyle">
+              {{ t("common.units.seconds") }}
+            </InputGroupAddon>
           </InputGroup>
         </div>
         <div class="d-flex align-items-center ms-2">
@@ -169,9 +184,13 @@ const onClickReset = () => {
       </div>
     </div>
   </div>
-  <Button class="w-100 d-block" @click="addCalculation">계산식 추가</Button>
+  <Button class="w-100 d-block" @click="addCalculation">
+    {{ t("calculator.date_time.date_increment.calculation.button.add_calculation") }}
+  </Button>
   <Divider />
-  <PageHeading class="mb-4" :size="6" :level="2" weight="600">결과</PageHeading>
+  <PageHeading class="mb-4" :size="6" :level="2" weight="600">
+    {{ t("calculator.date_time.date_increment.result") }}
+  </PageHeading>
   <div class="result common-border-radius p-4 d-flex justify-content-center">
     <Text tag="span" :text="result.toFormat('yyyy-MM-dd HH:mm:ss')" :size="5" bold />
   </div>

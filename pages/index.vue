@@ -106,9 +106,9 @@ const availableTools: AvailableTool[] = [
     tags: [Tags.Viewer],
   },
   {
-    title: "날짜 계산기",
-    router: localePath("/calculator/date"),
-    description: "날짜 간격, D-Day, 날짜 증분 계산기",
+    title: t("index.tools.date_time_calculator.title"),
+    router: localePath("/calculator/date-time"),
+    description: t("index.tools.date_time_calculator.description"),
     tags: [Tags.Calculator],
   },
 ];

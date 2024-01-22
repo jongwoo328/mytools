@@ -5,6 +5,7 @@ import { ref } from "vue";
 import { DateTime, Duration } from "luxon";
 import { breakpointsBootstrapV5 } from "@vueuse/core";
 
+const { t } = useI18n();
 const breakpoints = useBreakpoints(breakpointsBootstrapV5);
 const isMobileOrTablet = breakpoints.smaller("lg");
 
@@ -78,6 +79,8 @@ const updateDiff = () => {
 const displayTime = computed(() => {
   const seconds = (diff.value?.milliseconds ?? 0) > 0 ? (diff.value?.seconds ?? 0) + 1 : diff.value?.seconds;
   return {
+    years: diff.value?.years ?? 0,
+    months: diff.value?.months ?? 0,
     days: diff.value?.days ?? 0,
     hours: diff.value?.hours ?? 0,
     minutes: diff.value?.minutes ?? 0,
@@ -151,10 +154,12 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <PageHeading class="mb-4" :size="6" :level="2" weight="600">시간 입력</PageHeading>
+  <PageHeading class="mb-4" :size="6" :level="2" weight="600">
+    {{ t("calculator.date_time.date_difference.title") }}
+  </PageHeading>
   <div class="row">
     <div class="col col-12 mb-3 col-lg-6 mb-lg-0">
-      <Text class="mb-2" text="시작 시간" :size="5" />
+      <Text class="mb-2" :text="t('calculator.date_time.date_difference.date_from.label')" :size="5" />
       <Calendar
         :touch-u-i="isMobileOrTablet"
         date-format="yy-mm-dd"
@@ -165,12 +170,14 @@ onBeforeUnmount(() => {
       <div class="d-flex justify-content-end mt-2 flex-wrap">
         <div>
           <Checkbox v-model="useTimeFrom" binary id="useTimeFrom" :disabled="disableUseTimeFrom" />
-          <label for="useTimeFrom" class="ms-1">시간 사용</label>
+          <label for="useTimeFrom" class="ms-1">
+            {{ t("calculator.date_time.date_difference.date_from.options.use_time") }}
+          </label>
         </div>
         <div class="ms-2">
           <Checkbox :disabled="disableSetStartDateToNow" v-model="setStartDateToNow" binary id="setStartDateToNow" />
           <label :style="{ opacity: disableSetStartDateToNow ? 0.5 : 1 }" for="setStartDateToNow" class="ms-1">
-            현재 시각
+            {{ t("calculator.date_time.date_difference.date_from.options.use_now") }}
           </label>
         </div>
       </div>
@@ -185,7 +192,7 @@ onBeforeUnmount(() => {
       />
     </div>
     <div class="col col-12 col-lg-6">
-      <Text class="mb-2" text="종료 시간" :size="5" />
+      <Text class="mb-2" :text="t('calculator.date_time.date_difference.date_to.label')" :size="5" />
       <Calendar
         :touch-u-i="isMobileOrTablet"
         date-format="yy-mm-dd"
@@ -197,17 +204,19 @@ onBeforeUnmount(() => {
         <div>
           <Checkbox :disabled="disableIncludeEndDate" v-model="includeEndDate" binary id="includeEndDate" />
           <label :style="{ opacity: disableIncludeEndDate ? 0.5 : 1 }" for="includeEndDate" class="ms-1">
-            종료시간을 포함
+            {{ t("calculator.date_time.date_difference.date_to.options.include_end_date") }}
           </label>
         </div>
         <div class="ms-2">
           <Checkbox :disabled="disableUseTimeTo" v-model="useTimeTo" binary id="useTimeTo" />
-          <label :style="{ opacity: disableUseTimeTo ? 0.5 : 1 }" for="useTimeTo" class="ms-1"> 시간 사용 </label>
+          <label :style="{ opacity: disableUseTimeTo ? 0.5 : 1 }" for="useTimeTo" class="ms-1">
+            {{ t("calculator.date_time.date_difference.date_to.options.use_time") }}
+          </label>
         </div>
         <div class="ms-2">
           <Checkbox :disabled="disableSetEndDateToNow" v-model="setEndDateToNow" binary id="setEndDateToNow" />
           <label :style="{ opacity: disableSetEndDateToNow ? 0.5 : 1 }" for="setEndDateToNow" class="ms-1">
-            현재 시각
+            {{ t("calculator.date_time.date_difference.date_to.options.use_now") }}
           </label>
         </div>
       </div>
@@ -223,27 +232,49 @@ onBeforeUnmount(() => {
     </div>
   </div>
   <Divider />
-  <PageHeading class="mb-2" :size="6" :level="2" weight="600">결과</PageHeading>
+  <PageHeading class="mb-2" :size="6" :level="2" weight="600">
+    {{ t("calculator.date_time.date_difference.result") }}
+  </PageHeading>
   <div class="result p-4 d-flex justify-content-center gap-2">
-    <Text tag="span" :text="`${displayTime?.days} 일`" bold :size="6" />
+    <Text
+      tag="span"
+      :style="{ opacity: displayTime?.years === 0 ? 0.5 : 1 }"
+      :text="`${t('common.units.years_n', { n: displayTime?.years })}`"
+      bold
+      :size="6"
+    />
+    <Text
+      tag="span"
+      :style="{ opacity: displayTime?.months === 0 ? 0.5 : 1 }"
+      :text="`${t('common.units.months_n', { n: displayTime?.months })}`"
+      bold
+      :size="6"
+    />
+    <Text
+      tag="span"
+      :style="{ opacity: displayTime?.days === 0 ? 0.5 : 1 }"
+      :text="`${t('common.units.days_n', { n: displayTime?.days })}`"
+      bold
+      :size="6"
+    />
     <Text
       tag="span"
       :style="{ opacity: displayTime?.hours === 0 ? 0.5 : 1 }"
-      :text="`${displayTime?.hours} 시간`"
+      :text="`${t('common.units.hours_n', { n: displayTime?.hours })}`"
       bold
       :size="6"
     />
     <Text
       tag="span"
       :style="{ opacity: displayTime?.minutes === 0 ? 0.5 : 1 }"
-      :text="`${displayTime?.minutes} 분`"
+      :text="`${t('common.units.minutes_n', { n: displayTime?.minutes })}`"
       bold
       :size="6"
     />
     <Text
       tag="span"
       :style="{ opacity: displayTime?.seconds === 0 ? 0.5 : 1 }"
-      :text="`${displayTime?.seconds} 초`"
+      :text="`${t('common.units.seconds_n', { n: displayTime?.seconds })}`"
       bold
       :size="6"
     />
