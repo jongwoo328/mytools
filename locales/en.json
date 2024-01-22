@@ -8,6 +8,20 @@
     "locales": {
       "en": "English",
       "ko": "한국어"
+    },
+    "units": {
+      "years": "years",
+      "months": "months",
+      "days": "days",
+      "hours": "hours",
+      "minutes": "minutes",
+      "seconds": "seconds",
+      "years_n": "{n} year|{n} years",
+      "months_n": "{n} month|{n} months",
+      "days_n": "{n} day|{n} days",
+      "hours_n": "{n} hour|{n} hours",
+      "minutes_n": "{n} minute|{n} minutes",
+      "seconds_n": "{n} second|{n} seconds"
     }
   },
   "index": {
@@ -32,7 +46,8 @@
     "menu": {
       "calculator": {
         "items": {
-          "text_length_calculator_label": "Text Length"
+          "text_length_calculator_label": "Text Length",
+          "date_time_calculator_label": "Date(Time)"
         },
         "label": "Calculator"
       },
@@ -131,6 +146,10 @@
       "markdown_viewer": {
         "description": "Markdown viewer with support for tables and TeX(Math formula)",
         "title": "Markdown Viewer"
+      },
+      "date_time_calculator": {
+        "description": "Date(time) duration, D-Day, Date(time) increment calculator",
+        "title": "Date(Time) Calculator"
       }
     }
   },
@@ -388,6 +407,53 @@
         "length": "Length",
         "length_without_spaces": "Length (Without spaces)",
         "bytes": "Bytes"
+      }
+    },
+    "date_time": {
+      "head": {
+        "description": "Date(time) duration, D-Day, Date(time) calculation",
+        "title": "Date(Time) Calculator"
+      },
+      "title": "Date(Time) Calculator",
+      "tab_options": {
+        "date_difference": "Date(Time) Duration",
+        "date_increment": "Date(Time) Calculation",
+        "d_day": "D-Day Calculation"
+      },
+      "date_difference": {
+        "title": "Time Input",
+        "date_from": {
+          "label": "Start Time",
+          "options": {
+            "use_now": "Set To Current Time",
+            "use_time": "Use Time"
+          }
+        },
+        "date_to": {
+          "label": "End Time",
+          "options": {
+            "use_now": "Set To Current Time",
+            "use_time": "Use Time",
+            "include_end_date": "Include End Date"
+          }
+        },
+        "result": "Result"
+      },
+      "d_day": {
+        "title": "D-Day Input"
+      },
+      "date_increment": {
+        "title": "Calculation Input",
+        "date_input": {
+          "label": "Reference Time"
+        },
+        "calculation": {
+          "label": "Calculation Formula",
+          "button": {
+            "add_calculation": "Add Formula"
+          }
+        },
+        "result": "Result"
       }
     }
   },

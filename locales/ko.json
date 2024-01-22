@@ -8,6 +8,20 @@
     "locales": {
       "en": "English",
       "ko": "한국어"
+    },
+    "units": {
+      "years": "년",
+      "months": "개월",
+      "days": "일",
+      "hours": "시간",
+      "minutes": "분",
+      "seconds": "초",
+      "years_n": "{n} 년|{n} 년",
+      "months_n": "{n} 개월|{n} 개월",
+      "days_n": "{n} 일|{n} 일",
+      "hours_n": "{n} 시간|{n} 시간",
+      "minutes_n": "{n} 분|{n} 분",
+      "seconds_n": "{n} 초|{n} 초"
     }
   },
   "index": {
@@ -32,7 +46,8 @@
     "menu": {
       "calculator": {
         "items": {
-          "text_length_calculator_label": "텍스트 길이"
+          "text_length_calculator_label": "텍스트 길이",
+          "date_time_calculator_label": "날짜(시간)"
         },
         "label": "계산기"
       },
@@ -131,6 +146,10 @@
       "markdown_viewer": {
         "description": "표와 TeX(수학 식)를 지원하는 마크다운 뷰어",
         "title": "마크다운 뷰어"
+      },
+      "date_time_calculator": {
+        "description": "날짜(시간) 간격, D-Day, 날짜(시간) 증감 계산기",
+        "title": "날짜(시간) 계산기"
       }
     }
   },
@@ -388,6 +407,53 @@
         "length": "길이",
         "length_without_spaces": "길이 (공백 미포함)",
         "bytes": "바이트 (Bytes)"
+      }
+    },
+    "date_time": {
+      "head": {
+        "description": "날짜(시간) 간격, D-Day, 날짜(시간) 증감 계산",
+        "title": "날짜(시간) 계산기"
+      },
+      "title": "날짜(시간) 계산기",
+      "tab_options": {
+        "date_difference": "날짜(시간) 간격",
+        "date_increment": "날짜(시간) 증감",
+        "d_day": "D-Day 계산"
+      },
+      "date_difference": {
+        "title": "시간 입력",
+        "date_from": {
+          "label": "시작 시간",
+          "options": {
+            "use_now": "현재 시각",
+            "use_time": "시간 사용"
+          }
+        },
+        "date_to": {
+          "label": "종료 시간",
+          "options": {
+            "use_now": "현재 시각",
+            "use_time": "시간 사용",
+            "include_end_date": "종료날짜를 포함"
+          }
+        },
+        "result": "결과"
+      },
+      "d_day": {
+        "title": "D-Day 입력"
+      },
+      "date_increment": {
+        "title": "계산식 입력",
+        "date_input": {
+          "label": "기준 시각"
+        },
+        "calculation": {
+          "label": "계산식",
+          "button": {
+            "add_calculation": "계산식 추가"
+          }
+        },
+        "result": "결과"
       }
     }
   },

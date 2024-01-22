@@ -112,6 +112,11 @@ const menus = [
         label: () => t("index.menu.calculator.items.text_length_calculator_label"),
         command: hideDrawer,
       },
+      {
+        url: () => localePath("/calculator/date-time"),
+        label: () => t("index.menu.calculator.items.date_time_calculator_label"),
+        command: hideDrawer,
+      },
     ],
   },
 ];
