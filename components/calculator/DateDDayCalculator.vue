@@ -99,8 +99,11 @@ onBeforeUnmount(() => {
     hour-format="12"
     show-seconds
   />
-  <Divider />
-  <div class="result p-4 d-flex justify-content-center gap-2 position-relative">
+  <Divider class="mb-4" />
+  <div
+    class="result p-4 d-flex justify-content-center gap-2 position-relative"
+    :class="{ row: isMobileOrTablet, 'm-0': isMobileOrTablet }"
+  >
     <Text
       tag="span"
       :text="`${t('common.units.years_n', { n: displayTime?.years })}`"

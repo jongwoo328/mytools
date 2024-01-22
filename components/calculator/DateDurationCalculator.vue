@@ -231,11 +231,14 @@ onBeforeUnmount(() => {
       />
     </div>
   </div>
-  <Divider />
+  <Divider class="mb-4" />
   <PageHeading class="mb-2" :size="6" :level="2" weight="600">
     {{ t("calculator.date_time.date_difference.result") }}
   </PageHeading>
-  <div class="result p-4 d-flex justify-content-center gap-2">
+  <div
+    class="result p-4 d-flex justify-content-center gap-2"
+    :class="{ row: isMobileOrTablet, 'm-0': isMobileOrTablet }"
+  >
     <Text
       tag="span"
       :style="{ opacity: displayTime?.years === 0 ? 0.5 : 1 }"

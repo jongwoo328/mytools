@@ -187,7 +187,7 @@ const onClickReset = () => {
   <Button class="w-100 d-block" @click="addCalculation">
     {{ t("calculator.date_time.date_increment.calculation.button.add_calculation") }}
   </Button>
-  <Divider />
+  <Divider class="mb-4" />
   <PageHeading class="mb-4" :size="6" :level="2" weight="600">
     {{ t("calculator.date_time.date_increment.result") }}
   </PageHeading>
