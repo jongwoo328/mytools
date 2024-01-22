@@ -31,6 +31,8 @@ import ToggleButton from "primevue/togglebutton";
 import Splitter from "primevue/splitter";
 import SplitterPanel from "primevue/splitterpanel";
 import Tooltip from "primevue/tooltip";
+import InputGroup from "primevue/inputgroup";
+import InputGroupAddon from "primevue/inputgroupaddon";
 
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.use(PrimeVue, { ripple: true });
@@ -66,4 +68,6 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.component("Splitter", Splitter);
   nuxtApp.vueApp.component("SplitterPanel", SplitterPanel);
   nuxtApp.vueApp.directive("tooltip", Tooltip);
+  nuxtApp.vueApp.component("InputGroup", InputGroup);
+  nuxtApp.vueApp.component("InputGroupAddon", InputGroupAddon);
 });
