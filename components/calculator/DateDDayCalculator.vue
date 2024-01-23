@@ -50,6 +50,12 @@ onMounted(() => {
 });
 
 const lottieAnimation = ref<InstanceType<typeof Vue3Lottie>>();
+const animationScale = computed(() => {
+  if (isMobileOrTablet.value) {
+    return 1;
+  }
+  return 2;
+});
 
 const displayTime = computed(() => {
   const seconds =
@@ -99,73 +105,75 @@ onBeforeUnmount(() => {
     hour-format="12"
     show-seconds
   />
-  <Divider class="mb-4" />
-  <div
-    class="result p-4 d-flex justify-content-center gap-2 position-relative"
-    :class="{ row: isMobileOrTablet, 'm-0': isMobileOrTablet }"
-  >
-    <Text
-      tag="span"
-      :text="`${t('common.units.years_n', { n: displayTime?.years })}`"
-      bold
-      :size="6"
-      :style="{
-        opacity: displayTime?.years === 0 ? 0.5 : 1,
-      }"
-    />
-    <Text
-      tag="span"
-      :text="`${t('common.units.months_n', { n: displayTime?.months })}`"
-      bold
-      :size="6"
-      :style="{
-        opacity: displayTime?.months === 0 ? 0.5 : 1,
-      }"
-    />
-    <Text
-      tag="span"
-      :text="`${t('common.units.days_n', { n: displayTime?.days })}`"
-      bold
-      :size="6"
-      :style="{
-        opacity: displayTime?.days === 0 ? 0.5 : 1,
-      }"
-    />
-    <Text
-      tag="span"
-      :text="`${t('common.units.hours_n', { n: displayTime?.hours })}`"
-      bold
-      :size="6"
-      :style="{
-        opacity: displayTime?.hours === 0 ? 0.5 : 1,
-      }"
-    />
-    <Text
-      tag="span"
-      :text="`${t('common.units.minutes_n', { n: displayTime?.minutes })}`"
-      bold
-      :size="6"
-      :style="{
-        opacity: displayTime?.minutes === 0 ? 0.5 : 1,
-      }"
-    />
-    <Text
-      tag="span"
-      :text="`${t('common.units.seconds_n', { n: displayTime?.seconds })}`"
-      bold
-      :size="6"
-      :style="{
-        opacity: displayTime?.seconds === 0 ? 0.5 : 1,
-      }"
-    />
-    <Vue3Lottie
-      :auto-play="false"
-      ref="lottieAnimation"
-      class="position-absolute animation"
-      :loop="false"
-      :animation-data="LottieStar"
-    />
-  </div>
+  <Divider class="pb-4" />
+  <ClientOnly>
+    <div
+      class="result p-4 d-flex justify-content-center gap-2 position-relative"
+      :class="{ row: isMobileOrTablet, 'm-0': isMobileOrTablet }"
+    >
+      <Text
+        tag="span"
+        :text="`${t('common.units.years_n', { n: displayTime?.years })}`"
+        bold
+        :size="6"
+        :style="{
+          opacity: displayTime?.years === 0 ? 0.5 : 1,
+        }"
+      />
+      <Text
+        tag="span"
+        :text="`${t('common.units.months_n', { n: displayTime?.months })}`"
+        bold
+        :size="6"
+        :style="{
+          opacity: displayTime?.months === 0 ? 0.5 : 1,
+        }"
+      />
+      <Text
+        tag="span"
+        :text="`${t('common.units.days_n', { n: displayTime?.days })}`"
+        bold
+        :size="6"
+        :style="{
+          opacity: displayTime?.days === 0 ? 0.5 : 1,
+        }"
+      />
+      <Text
+        tag="span"
+        :text="`${t('common.units.hours_n', { n: displayTime?.hours })}`"
+        bold
+        :size="6"
+        :style="{
+          opacity: displayTime?.hours === 0 ? 0.5 : 1,
+        }"
+      />
+      <Text
+        tag="span"
+        :text="`${t('common.units.minutes_n', { n: displayTime?.minutes })}`"
+        bold
+        :size="6"
+        :style="{
+          opacity: displayTime?.minutes === 0 ? 0.5 : 1,
+        }"
+      />
+      <Text
+        tag="span"
+        :text="`${t('common.units.seconds_n', { n: displayTime?.seconds })}`"
+        bold
+        :size="6"
+        :style="{
+          opacity: displayTime?.seconds === 0 ? 0.5 : 1,
+        }"
+      />
+      <Vue3Lottie
+        :auto-play="false"
+        ref="lottieAnimation"
+        class="position-absolute animation"
+        :loop="false"
+        :animation-data="LottieStar"
+      />
+    </div>
+  </ClientOnly>
 </template>
 
 <style scoped lang="scss">
@@ -177,6 +185,6 @@ onBeforeUnmount(() => {
 .animation {
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) scale(2);
+  transform: translate(-50%, -50%) scale(v-bind(animationScale));
 }
 </style>
