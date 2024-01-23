@@ -93,7 +93,7 @@ const onClickReset = () => {
       class="d-flex justify-content-between mb-4 common-border-radius calculation-item"
     >
       <div class="d-flex flex-column" style="flex: 1; width: 100%">
-        <div class="d-flex justify-content-between align-items-center me-2">
+        <div class="d-flex justify-content-between align-items-center px-1">
           <Button
             :icon="{ pi: true, 'pi-plus': calculation.type === 'plus', 'pi-minus': calculation.type === 'minus' }"
             :severity="calculation.type === 'plus' ? 'success' : 'warning'"
@@ -101,9 +101,9 @@ const onClickReset = () => {
           />
           <Button icon="pi pi-times" size="small" outlined severity="danger" @click="onClickDeleteCalculation(index)" />
         </div>
-        <div class="d-flex flex-column m-0 mt-2 w-100">
+        <div class="row m-0 mt-2 w-100">
           <InputGroup
-            class="d-flex align-items-stretch datetime-number-input col col-12 col-md-6 col-lg-4 p-0 mb-1"
+            class="d-flex align-items-stretch datetime-number-input col col-12 col-md-6 col-lg-4 px-1 mb-1"
             unstyled
           >
             <InputNumber
@@ -122,7 +122,7 @@ const onClickReset = () => {
             </InputGroupAddon>
           </InputGroup>
           <InputGroup
-            class="d-flex align-items-stretch datetime-number-input col col-12 col-md-6 col-lg-4 p-0 mb-1"
+            class="d-flex align-items-stretch datetime-number-input col col-12 col-md-6 col-lg-4 px-1 mb-1"
             unstyled
           >
             <InputNumber
@@ -142,7 +142,7 @@ const onClickReset = () => {
             </InputGroupAddon>
           </InputGroup>
           <InputGroup
-            class="d-flex align-items-stretch datetime-number-input col col-12 col-md-6 col-lg-4 p-0 mb-1"
+            class="d-flex align-items-stretch datetime-number-input col col-12 col-md-6 col-lg-4 px-1 mb-1"
             unstyled
           >
             <InputNumber
@@ -162,7 +162,7 @@ const onClickReset = () => {
             </InputGroupAddon>
           </InputGroup>
           <InputGroup
-            class="d-flex align-items-stretch datetime-number-input col col-12 col-md-6 col-lg-4 p-0 mb-1"
+            class="d-flex align-items-stretch datetime-number-input col col-12 col-md-6 col-lg-4 px-1 mb-1"
             unstyled
           >
             <InputNumber
@@ -182,7 +182,7 @@ const onClickReset = () => {
             </InputGroupAddon>
           </InputGroup>
           <InputGroup
-            class="d-flex align-items-stretch datetime-number-input col col-12 col-md-6 col-lg-4 p-0 mb-1"
+            class="d-flex align-items-stretch datetime-number-input col col-12 col-md-6 col-lg-4 px-1 mb-1"
             unstyled
           >
             <InputNumber
@@ -202,7 +202,7 @@ const onClickReset = () => {
             </InputGroupAddon>
           </InputGroup>
           <InputGroup
-            class="d-flex align-items-stretch datetime-number-input col col-12 col-md-6 col-lg-4 p-0 mb-1"
+            class="d-flex align-items-stretch datetime-number-input col col-12 col-md-6 col-lg-4 px-1 mb-1"
             unstyled
           >
             <InputNumber

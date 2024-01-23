@@ -3,7 +3,7 @@ import PageHeading from "~/components/common/PageHeading.vue";
 import { DateTime, Duration } from "luxon";
 import { breakpointsBootstrapV5 } from "@vueuse/core";
 import Text from "~/components/common/Text.vue";
-import LottieStar from "@/assets/lottie/star.json";
+import LottieCongrat from "@/assets/lottie/congrat.json";
 import { Vue3Lottie } from "vue3-lottie";
 
 const { t } = useI18n();
@@ -50,6 +50,7 @@ onMounted(() => {
 });
 
 const lottieAnimation = ref<InstanceType<typeof Vue3Lottie>>();
+const showLottie = ref(false);
 const animationScale = computed(() => {
   if (isMobileOrTablet.value) {
     return 1;
@@ -79,101 +80,107 @@ const isTimeUp = computed(() => {
 });
 watch(isTimeUp, (value) => {
   if (value) {
+    showLottie.value = true;
     lottieAnimation.value?.play();
   }
-});
-watch(dDay, () => {
-  lottieAnimation.value?.stop();
 });
 
 onBeforeUnmount(() => {
   cancelAnimationRequest();
 });
+
+const onCompleteLottie = () => {
+  showLottie.value = false;
+};
 </script>
 
 <template>
-  <PageHeading class="mb-4" :size="6" :level="2" weight="600">
-    {{ t("calculator.date_time.d_day.title") }}
-  </PageHeading>
-  <Calendar
-    class="w-100"
-    input-class="text-center"
-    v-model="dDay"
-    :touch-u-i="isMobileOrTablet"
-    date-format="yy-mm-dd"
-    show-time
-    hour-format="12"
-    show-seconds
-  />
-  <Divider class="pb-4" />
-  <ClientOnly>
-    <div
-      class="result p-4 d-flex justify-content-center gap-2 position-relative"
-      :class="{ row: isMobileOrTablet, 'm-0': isMobileOrTablet }"
-    >
-      <Text
-        tag="span"
-        :text="`${t('common.units.years_n', { n: displayTime?.years })}`"
-        bold
-        :size="6"
-        :style="{
-          opacity: displayTime?.years === 0 ? 0.5 : 1,
-        }"
-      />
-      <Text
-        tag="span"
-        :text="`${t('common.units.months_n', { n: displayTime?.months })}`"
-        bold
-        :size="6"
-        :style="{
-          opacity: displayTime?.months === 0 ? 0.5 : 1,
-        }"
-      />
-      <Text
-        tag="span"
-        :text="`${t('common.units.days_n', { n: displayTime?.days })}`"
-        bold
-        :size="6"
-        :style="{
-          opacity: displayTime?.days === 0 ? 0.5 : 1,
-        }"
-      />
-      <Text
-        tag="span"
-        :text="`${t('common.units.hours_n', { n: displayTime?.hours })}`"
-        bold
-        :size="6"
-        :style="{
-          opacity: displayTime?.hours === 0 ? 0.5 : 1,
-        }"
-      />
-      <Text
-        tag="span"
-        :text="`${t('common.units.minutes_n', { n: displayTime?.minutes })}`"
-        bold
-        :size="6"
-        :style="{
-          opacity: displayTime?.minutes === 0 ? 0.5 : 1,
-        }"
-      />
-      <Text
-        tag="span"
-        :text="`${t('common.units.seconds_n', { n: displayTime?.seconds })}`"
-        bold
-        :size="6"
-        :style="{
-          opacity: displayTime?.seconds === 0 ? 0.5 : 1,
-        }"
-      />
-      <Vue3Lottie
-        :auto-play="false"
-        ref="lottieAnimation"
-        class="position-absolute animation"
-        :loop="false"
-        :animation-data="LottieStar"
-      />
-    </div>
-  </ClientOnly>
+  <div class="position-relative">
+    <PageHeading class="mb-4" :size="6" :level="2" weight="600">
+      {{ t("calculator.date_time.d_day.title") }}
+    </PageHeading>
+    <Calendar
+      class="w-100"
+      input-class="text-center"
+      v-model="dDay"
+      :touch-u-i="isMobileOrTablet"
+      date-format="yy-mm-dd"
+      show-time
+      hour-format="12"
+      show-seconds
+    />
+    <Divider class="pb-4" />
+    <ClientOnly>
+      <div
+        class="result p-4 d-flex justify-content-center gap-2 position-relative"
+        :class="{ row: isMobileOrTablet, 'm-0': isMobileOrTablet }"
+      >
+        <Text
+          tag="span"
+          :text="`${t('common.units.years_n', { n: displayTime?.years })}`"
+          bold
+          :size="6"
+          :style="{
+            opacity: displayTime?.years === 0 ? 0.5 : 1,
+          }"
+        />
+        <Text
+          tag="span"
+          :text="`${t('common.units.months_n', { n: displayTime?.months })}`"
+          bold
+          :size="6"
+          :style="{
+            opacity: displayTime?.months === 0 ? 0.5 : 1,
+          }"
+        />
+        <Text
+          tag="span"
+          :text="`${t('common.units.days_n', { n: displayTime?.days })}`"
+          bold
+          :size="6"
+          :style="{
+            opacity: displayTime?.days === 0 ? 0.5 : 1,
+          }"
+        />
+        <Text
+          tag="span"
+          :text="`${t('common.units.hours_n', { n: displayTime?.hours })}`"
+          bold
+          :size="6"
+          :style="{
+            opacity: displayTime?.hours === 0 ? 0.5 : 1,
+          }"
+        />
+        <Text
+          tag="span"
+          :text="`${t('common.units.minutes_n', { n: displayTime?.minutes })}`"
+          bold
+          :size="6"
+          :style="{
+            opacity: displayTime?.minutes === 0 ? 0.5 : 1,
+          }"
+        />
+        <Text
+          tag="span"
+          :text="`${t('common.units.seconds_n', { n: displayTime?.seconds })}`"
+          bold
+          :size="6"
+          :style="{
+            opacity: displayTime?.seconds === 0 ? 0.5 : 1,
+          }"
+        />
+      </div>
+    </ClientOnly>
+    <Vue3Lottie
+      v-if="showLottie"
+      :auto-play="true"
+      ref="lottieAnimation"
+      class="position-absolute animation"
+      :loop="false"
+      :animation-data="LottieCongrat"
+      @on-complete="onCompleteLottie"
+    />
+  </div>
 </template>
 
 <style scoped lang="scss">
