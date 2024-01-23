@@ -4,6 +4,7 @@ import Text from "~/components/common/Text.vue";
 import { breakpointsBootstrapV5 } from "@vueuse/core";
 import type { CalculationInfo } from "~/types/TimeIncrementCalculatorTypes";
 import { DateTime, Duration } from "luxon";
+import { v4 } from "uuid";
 
 const { t } = useI18n();
 const breakpoints = useBreakpoints(breakpointsBootstrapV5);
@@ -14,7 +15,7 @@ const calculations = ref<CalculationInfo[]>([]);
 
 const addCalculation = () => {
   calculations.value.push({
-    $key: crypto.randomUUID(),
+    $key: v4(),
     type: "plus",
     year: 0,
     month: 0,
@@ -91,95 +92,135 @@ const onClickReset = () => {
       :key="calculation.$key"
       class="d-flex justify-content-between mb-4 common-border-radius calculation-item"
     >
-      <div class="d-flex" style="flex: 1">
-        <div class="d-flex align-items-center me-2">
+      <div class="d-flex flex-column" style="flex: 1; width: 100%">
+        <div class="d-flex justify-content-between align-items-center me-2">
           <Button
             :icon="{ pi: true, 'pi-plus': calculation.type === 'plus', 'pi-minus': calculation.type === 'minus' }"
             :severity="calculation.type === 'plus' ? 'success' : 'warning'"
             @click="onClickCalculationType(calculation)"
           />
+          <Button icon="pi pi-times" size="small" outlined severity="danger" @click="onClickDeleteCalculation(index)" />
         </div>
-        <div class="row w-100">
-          <InputGroup class="d-flex align-items-stretch col col-12 col-md-6 col-lg-4 mb-1" unstyled>
+        <div class="d-flex flex-column m-0 mt-2 w-100">
+          <InputGroup
+            class="d-flex align-items-stretch datetime-number-input col col-12 col-md-6 col-lg-4 p-0 mb-1"
+            unstyled
+          >
             <InputNumber
+              show-buttons
+              increment-button-class="increment-button"
+              button-layout="horizontal"
               :min="0"
               v-model="calculation.year"
-              style="flex: 1"
+              style="flex: 1; width: 100%"
               :input-style="inputStyle"
               placeholder="0"
+              input-class="w-100 prevent-auto-zoom"
             />
             <InputGroupAddon :style="inputAddonStyle">
               {{ t("common.units.years") }}
             </InputGroupAddon>
           </InputGroup>
-          <InputGroup class="d-flex align-items-stretch col col-12 col-md-6 col-lg-4 mb-1" unstyled>
+          <InputGroup
+            class="d-flex align-items-stretch datetime-number-input col col-12 col-md-6 col-lg-4 p-0 mb-1"
+            unstyled
+          >
             <InputNumber
+              show-buttons
+              increment-button-class="increment-button"
+              button-layout="horizontal"
               v-model="calculation.month"
               :min="0"
               :max="9999"
-              style="flex: 1"
+              style="flex: 1; width: 100%"
               :input-style="inputStyle"
               placeholder="0"
+              input-class="w-100 prevent-auto-zoom"
             />
             <InputGroupAddon :style="inputAddonStyle">
               {{ t("common.units.months") }}
             </InputGroupAddon>
           </InputGroup>
-          <InputGroup class="d-flex align-items-stretch col col-12 col-md-6 col-lg-4 mb-1" unstyled>
+          <InputGroup
+            class="d-flex align-items-stretch datetime-number-input col col-12 col-md-6 col-lg-4 p-0 mb-1"
+            unstyled
+          >
             <InputNumber
+              show-buttons
+              increment-button-class="increment-button"
+              button-layout="horizontal"
               v-model="calculation.day"
               :min="0"
               :max="9999"
-              style="flex: 1"
+              style="flex: 1; width: 100%"
               :input-style="inputStyle"
               placeholder="0"
+              input-class="w-100 prevent-auto-zoom"
             />
             <InputGroupAddon :style="inputAddonStyle">
               {{ t("common.units.days") }}
             </InputGroupAddon>
           </InputGroup>
-          <InputGroup class="d-flex align-items-stretch col col-12 col-md-6 col-lg-4 mb-1" unstyled>
+          <InputGroup
+            class="d-flex align-items-stretch datetime-number-input col col-12 col-md-6 col-lg-4 p-0 mb-1"
+            unstyled
+          >
             <InputNumber
+              show-buttons
+              increment-button-class="increment-button"
+              button-layout="horizontal"
               v-model="calculation.hour"
               :min="0"
               :max="9999"
-              style="flex: 1"
+              style="flex: 1; width: 100%"
               :input-style="inputStyle"
               placeholder="0"
+              input-class="w-100 prevent-auto-zoom"
             />
             <InputGroupAddon :style="inputAddonStyle">
               {{ t("common.units.hours") }}
             </InputGroupAddon>
           </InputGroup>
-          <InputGroup class="d-flex align-items-stretch col col-12 col-md-6 col-lg-4 mb-1" unstyled>
+          <InputGroup
+            class="d-flex align-items-stretch datetime-number-input col col-12 col-md-6 col-lg-4 p-0 mb-1"
+            unstyled
+          >
             <InputNumber
+              show-buttons
+              increment-button-class="increment-button"
+              button-layout="horizontal"
               v-model="calculation.minute"
               :min="0"
               :max="9999"
-              style="flex: 1"
+              style="flex: 1; width: 100%"
               :input-style="inputStyle"
               placeholder="0"
+              input-class="w-100 prevent-auto-zoom"
             />
             <InputGroupAddon :style="inputAddonStyle">
               {{ t("common.units.minutes") }}
             </InputGroupAddon>
           </InputGroup>
-          <InputGroup class="d-flex align-items-stretch col col-12 col-md-6 col-lg-4 mb-1" unstyled>
+          <InputGroup
+            class="d-flex align-items-stretch datetime-number-input col col-12 col-md-6 col-lg-4 p-0 mb-1"
+            unstyled
+          >
             <InputNumber
+              show-buttons
+              increment-button-class="increment-button"
+              button-layout="horizontal"
               v-model="calculation.second"
               :min="0"
               :max="9999"
-              style="flex: 1"
+              style="flex: 1; width: 100%"
               :input-style="inputStyle"
               placeholder="0"
+              input-class="w-100 prevent-auto-zoom"
             />
             <InputGroupAddon :style="inputAddonStyle">
               {{ t("common.units.seconds") }}
             </InputGroupAddon>
           </InputGroup>
-        </div>
-        <div class="d-flex align-items-center ms-2">
-          <Button icon="pi pi-times" size="small" outlined severity="danger" @click="onClickDeleteCalculation(index)" />
         </div>
       </div>
     </div>
@@ -204,5 +245,12 @@ const onClickReset = () => {
 
 .result {
   background-color: #f1f3f5;
+}
+
+.datetime-number-input {
+  &::v-deep(.increment-button) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
 }
 </style>

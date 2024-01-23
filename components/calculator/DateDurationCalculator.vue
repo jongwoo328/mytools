@@ -231,57 +231,59 @@ onBeforeUnmount(() => {
       />
     </div>
   </div>
-  <Divider class="mb-4" />
+  <Divider class="pb-4" />
   <PageHeading class="mb-2" :size="6" :level="2" weight="600">
     {{ t("calculator.date_time.date_difference.result") }}
   </PageHeading>
-  <div
-    class="result p-4 d-flex justify-content-center gap-2"
-    :class="{ row: isMobileOrTablet, 'm-0': isMobileOrTablet }"
-  >
-    <Text
-      tag="span"
-      :style="{ opacity: displayTime?.years === 0 ? 0.5 : 1 }"
-      :text="`${t('common.units.years_n', { n: displayTime?.years })}`"
-      bold
-      :size="6"
-    />
-    <Text
-      tag="span"
-      :style="{ opacity: displayTime?.months === 0 ? 0.5 : 1 }"
-      :text="`${t('common.units.months_n', { n: displayTime?.months })}`"
-      bold
-      :size="6"
-    />
-    <Text
-      tag="span"
-      :style="{ opacity: displayTime?.days === 0 ? 0.5 : 1 }"
-      :text="`${t('common.units.days_n', { n: displayTime?.days })}`"
-      bold
-      :size="6"
-    />
-    <Text
-      tag="span"
-      :style="{ opacity: displayTime?.hours === 0 ? 0.5 : 1 }"
-      :text="`${t('common.units.hours_n', { n: displayTime?.hours })}`"
-      bold
-      :size="6"
-    />
-    <Text
-      tag="span"
-      :style="{ opacity: displayTime?.minutes === 0 ? 0.5 : 1 }"
-      :text="`${t('common.units.minutes_n', { n: displayTime?.minutes })}`"
-      bold
-      :size="6"
-    />
-    <Text
-      tag="span"
-      :style="{ opacity: displayTime?.seconds === 0 ? 0.5 : 1 }"
-      :text="`${t('common.units.seconds_n', { n: displayTime?.seconds })}`"
-      bold
-      :size="6"
-    />
-  </div>
+  <ClientOnly>
+    <div
+      class="result p-4 d-flex justify-content-center gap-2"
+      :class="{ row: isMobileOrTablet, 'm-0': isMobileOrTablet }"
+    >
+      <Text
+        tag="span"
+        :style="{ opacity: displayTime?.years === 0 ? 0.5 : 1 }"
+        :text="`${t('common.units.years_n', { n: displayTime?.years })}`"
+        bold
+        :size="6"
+      />
+      <Text
+        tag="span"
+        :style="{ opacity: displayTime?.months === 0 ? 0.5 : 1 }"
+        :text="`${t('common.units.months_n', { n: displayTime?.months })}`"
+        bold
+        :size="6"
+      />
+      <Text
+        tag="span"
+        :style="{ opacity: displayTime?.days === 0 ? 0.5 : 1 }"
+        :text="`${t('common.units.days_n', { n: displayTime?.days })}`"
+        bold
+        :size="6"
+      />
+      <Text
+        tag="span"
+        :style="{ opacity: displayTime?.hours === 0 ? 0.5 : 1 }"
+        :text="`${t('common.units.hours_n', { n: displayTime?.hours })}`"
+        bold
+        :size="6"
+      />
+      <Text
+        tag="span"
+        :style="{ opacity: displayTime?.minutes === 0 ? 0.5 : 1 }"
+        :text="`${t('common.units.minutes_n', { n: displayTime?.minutes })}`"
+        bold
+        :size="6"
+      />
+      <Text
+        tag="span"
+        :style="{ opacity: displayTime?.seconds === 0 ? 0.5 : 1 }"
+        :text="`${t('common.units.seconds_n', { n: displayTime?.seconds })}`"
+        bold
+        :size="6"
+      />
+    </div>
+  </ClientOnly>
 </template>
 
 <style scoped lang="scss">
