@@ -59,7 +59,15 @@ const updateDiff = () => {
     ? dateTo.value.plus({ days: 1 })
     : dateTo.value;
   const estimatedDateFrom = setStartDateToNow.value ? DateTime.now() : dateFrom.value;
-  const newDiff = estimatedDateTo.diff(estimatedDateFrom, ["days", "hours", "minutes", "seconds", "milliseconds"]);
+  const newDiff = estimatedDateTo.diff(estimatedDateFrom, [
+    "years",
+    "months",
+    "days",
+    "hours",
+    "minutes",
+    "seconds",
+    "milliseconds",
+  ]);
 
   if (setEndDateToNow.value) {
     if ((newDiff.seconds === 0 && newDiff.seconds === diff.value?.seconds) || newDiff.seconds !== diff.value?.seconds) {
