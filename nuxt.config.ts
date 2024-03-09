@@ -1,10 +1,21 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import eslintPlugin from "vite-plugin-eslint";
+import fs from "fs";
 
 const siteUrl = "https://tools.jongwoo.me";
 
 export default defineNuxtConfig({
   ssr: true,
+
+  devServer: {
+    https: {
+      key: fs.readFileSync("cert/local.key").toString(),
+      cert: fs.readFileSync("cert/local.crt").toString(),
+    },
+    host: "test-tools.jongwoo.me",
+    port: 3000,
+  },
+
   modules: [
     "nuxt-gtag",
     "nuxt-lodash",
