@@ -94,10 +94,12 @@ export default defineNuxtConfig({
 
   // nuxt-robots
   robots: {
-    rules: {
-      UserAgent: "*",
-      Disallow: "",
-    },
+    groups: [
+      {
+        userAgent: "*",
+        disallow: "",
+      },
+    ],
   },
   app: {
     head: {
