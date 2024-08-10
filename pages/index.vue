@@ -197,14 +197,14 @@ const filteredTools = computed(() => {
 .filter-select-button {
   padding-top: 0.2rem;
   padding-bottom: 0.2rem;
-  &::v-deep(span) {
+  &:deep(span) {
     color: black;
   }
 }
 .filter-selected-formatter {
   background-color: v-bind("Tags.Formatter.color") !important;
   border: none;
-  &::v-deep(span span) {
+  &:deep(span span) {
     color: white !important;
   }
 }
@@ -212,7 +212,7 @@ const filteredTools = computed(() => {
 .filter-selected-converter {
   background-color: v-bind("Tags.Converter.color") !important;
   border: none;
-  &::v-deep(span span) {
+  &:deep(span span) {
     color: white !important;
   }
 }
@@ -220,7 +220,7 @@ const filteredTools = computed(() => {
 .filter-selected-viewer {
   background-color: v-bind("Tags.Viewer.color") !important;
   border: none;
-  &::v-deep(span span) {
+  &:deep(span span) {
     color: white !important;
   }
 }
@@ -228,7 +228,7 @@ const filteredTools = computed(() => {
 .filter-selected-calculator {
   background-color: v-bind("Tags.Calculator.color") !important;
   border: none;
-  &::v-deep(span span) {
+  &:deep(span span) {
     color: white !important;
   }
 }

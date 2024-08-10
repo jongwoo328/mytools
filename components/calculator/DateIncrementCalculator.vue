@@ -248,7 +248,7 @@ const onClickReset = () => {
 }
 
 .datetime-number-input {
-  &::v-deep(.increment-button) {
+  &:deep(.increment-button) {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
   }
