@@ -2,6 +2,7 @@
 import { type AvailableTool } from "@/types/Tool";
 import PageHeading from "../common/PageHeading.vue";
 import { useRouter } from "vue-router";
+import type { CardPassThroughOptions } from "primevue/card";
 
 const props = defineProps<{
   tool: AvailableTool;
@@ -11,10 +12,17 @@ const router = useRouter();
 const onClickItem = () => {
   router.push(props.tool.router);
 };
+const cardPassThrough: CardPassThroughOptions = {
+  root: {
+    style: {
+      boxShadow: "none",
+    },
+  },
+};
 </script>
 
 <template>
-  <Card @click="onClickItem" class="tool-item">
+  <Card @click="onClickItem" class="tool-item" :pt="cardPassThrough">
     <template #title>
       <RouterLink class="text-decoration-none text-black" :to="tool.router">
         <PageHeading weight="600" class="m-0" :level="2" :size="7">
@@ -38,7 +46,6 @@ const onClickItem = () => {
 <style lang="scss">
 .tool-item {
   cursor: pointer;
-  box-shadow: none;
   border: 1px solid lightgray;
 
   &:hover {
