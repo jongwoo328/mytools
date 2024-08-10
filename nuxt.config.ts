@@ -1,10 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import eslintPlugin from "vite-plugin-eslint";
+import eslintPlugin from "@nabla/vite-plugin-eslint";
 import fs from "fs";
 
 const siteUrl = "https://tools.jongwoo.me";
 
 export default defineNuxtConfig({
+  compatibilityDate: "2024-08-10",
   ssr: true,
 
   devServer: {
@@ -61,7 +62,6 @@ export default defineNuxtConfig({
     rules: {
       UserAgent: "*",
       Disallow: "",
-      Sitemap: "https://tools.jongwoo.me/sitemap.xml",
     },
   },
   app: {
