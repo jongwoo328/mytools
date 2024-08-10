@@ -328,7 +328,7 @@ watch([pressUp, pressRight, pressLeft, pressDown], () => {
                       </label>
                     </div>
                     <div class="col col-12 mt-2">
-                      <Dropdown
+                      <Select
                         id="aspectRatio"
                         :options="aspectRatioOptions"
                         v-model:model-value="selectedAspectRatio"
@@ -569,7 +569,7 @@ watch([pressUp, pressRight, pressLeft, pressDown], () => {
                     </span>
                     <div class="col col-12 mt-2 px-4 d-flex">
                       <div>
-                        <InputSwitch class="d-inline-block" input-id="useKeyboardArrow" v-model="useKeyboardArrow" />
+                        <ToggleSwitch class="d-inline-block" input-id="useKeyboardArrow" v-model="useKeyboardArrow" />
                       </div>
                       <label class="ms-3" for="useKeyboardArrow" style="text-wrap: initial">
                         <span>

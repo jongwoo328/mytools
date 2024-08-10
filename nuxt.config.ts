@@ -1,6 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import eslintPlugin from "@nabla/vite-plugin-eslint";
 import fs from "fs";
+import Lara from "@primevue/themes/lara";
+import defaultOptions from "@primevue/core/config";
+import { definePreset } from "@primeuix/styled";
 
 const siteUrl = "https://tools.jongwoo.me";
 
@@ -26,7 +29,39 @@ export default defineNuxtConfig({
     "@nuxtjs/robots",
     "nuxt-jsonld",
     "@nuxtjs/i18n",
+    "@primevue/nuxt-module",
   ],
+
+  primevue: {
+    usePrimeVue: true,
+    autoImport: true,
+
+    options: {
+      locale: {
+        ...defaultOptions.locale,
+        noFileChosenMessage: "",
+      },
+      theme: {
+        preset: definePreset(Lara, {
+          semantic: {
+            primary: {
+              50: "{blue.50}",
+              100: "{blue.100}",
+              200: "{blue.200}",
+              300: "{blue.300}",
+              400: "{blue.400}",
+              500: "{blue.500}",
+              600: "{blue.600}",
+              700: "{blue.700}",
+              800: "{blue.800}",
+              900: "{blue.900}",
+              950: "{blue.950}",
+            },
+          },
+        }),
+      },
+    },
+  },
 
   routeRules: {
     "/**": { prerender: true },
@@ -59,10 +94,12 @@ export default defineNuxtConfig({
 
   // nuxt-robots
   robots: {
-    rules: {
-      UserAgent: "*",
-      Disallow: "",
-    },
+    groups: [
+      {
+        userAgent: "*",
+        disallow: "",
+      },
+    ],
   },
   app: {
     head: {
@@ -105,14 +142,9 @@ export default defineNuxtConfig({
 
   css: [
     "@/assets/styles/main.scss",
-    "primevue/resources/themes/lara-light-blue/theme.css",
-    "primevue/resources/primevue.css",
     "primeicons/primeicons.css",
     "vue-json-pretty/lib/styles.css",
     "cropperjs/dist/cropper.css",
     "aos/dist/aos.css",
   ],
-  build: {
-    transpile: ["primevue"],
-  },
 });

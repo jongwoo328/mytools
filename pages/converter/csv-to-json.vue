@@ -118,17 +118,17 @@ const onClear = () => {
           <template #header>{{ t("converter.csv_to_json.options.label") }}</template>
           <template #default>
             <div class="row">
-              <div class="col col-12 col-lg-6 d-flex justify-content-start row">
+              <div class="col col-12 col-lg-6 d-flex justify-content-between">
                 <label class="col col-6 align-self-center" for="">
                   {{ t("converter.csv_to_json.options.header_included.label") }}
                 </label>
-                <InputSwitch class="col col-6 align-self-center" v-model:model-value="headerIncluded" />
+                <ToggleSwitch class="col col-6 align-self-center" v-model:model-value="headerIncluded" />
               </div>
-              <div class="col col-12 col-lg-6 d-flex justify-content-start row mt-2">
+              <div class="col col-12 col-lg-6 d-flex justify-content-start mt-2">
                 <label class="col col-6 align-self-center" for="">
                   {{ t("converter.csv_to_json.options.encoding.label") }}
                 </label>
-                <Dropdown
+                <Select
                   :options="encodingOptions"
                   class="col col-6"
                   option-label="label"

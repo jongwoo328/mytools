@@ -103,11 +103,11 @@ watch(logicalOperatorNewLine, (newValue) => {
       <template #default>
         <div class="row">
           <div class="col col-12 col-md-6 col-xl-4 mb-1 align-items-center form-col">
-            <div class="p-inputgroup h-100 justify-content-between row">
-              <label for="useTabs" class="align-self-center col">
+            <div class="h-100 justify-content-between d-flex">
+              <label for="useTabs" class="align-self-center">
                 {{ t("formatter.sql.result_list.advanced_setting.use_tabs.label") }}
               </label>
-              <InputSwitch id="useTabs" v-model:model-value="useTabs" size="small" class="align-self-center" />
+              <ToggleSwitch id="useTabs" v-model:model-value="useTabs" class="align-self-center" />
             </div>
           </div>
           <div class="col col-12 col-md-6 col-xl-4 mb-1 align-items-center form-col">
@@ -132,7 +132,7 @@ watch(logicalOperatorNewLine, (newValue) => {
                 {{ t("formatter.sql.result_list.advanced_setting.keyword.label") }}
               </label>
               <div class="col-6 h-100">
-                <Dropdown
+                <Select
                   id="keywordCase"
                   v-model:model-value="keywordCase"
                   size="small"
@@ -150,7 +150,7 @@ watch(logicalOperatorNewLine, (newValue) => {
                 {{ t("formatter.sql.result_list.advanced_setting.indent.label") }}
               </label>
               <div class="col-6 h-100">
-                <Dropdown
+                <Select
                   id="indent"
                   v-model:model-value="indentation"
                   size="small"
@@ -168,7 +168,7 @@ watch(logicalOperatorNewLine, (newValue) => {
                 {{ t("formatter.sql.result_list.advanced_setting.and_or_or_newline.label") }}
               </label>
               <div class="col-6 h-100">
-                <Dropdown
+                <Select
                   id="newline"
                   v-model:model-value="logicalOperatorNewLine"
                   size="small"
@@ -195,7 +195,7 @@ watch(logicalOperatorNewLine, (newValue) => {
   width: 100%;
 }
 
-.forminput:deep(span.p-dropdown-label) {
+.forminput:deep(span.p-select-label) {
   line-height: normal;
 }
 </style>

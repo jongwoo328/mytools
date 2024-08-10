@@ -148,7 +148,7 @@ watchDebounced(
             <span class="me-2">
               {{ t("viewer.text-diff.diff_type_label") }}
             </span>
-            <Dropdown option-label="label" option-value="value" :options="diffTypeOptions" v-model="diffType" />
+            <Select option-label="label" option-value="value" :options="diffTypeOptions" v-model="diffType" />
           </div>
         </div>
         <div class="col py-2">

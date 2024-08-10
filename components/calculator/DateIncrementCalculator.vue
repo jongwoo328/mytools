@@ -70,7 +70,7 @@ const onClickReset = () => {
     {{ t("calculator.date_time.date_increment.title") }}
   </PageHeading>
   <Text :text="t('calculator.date_time.date_increment.date_input.label')" bold :size="5" class="mb-2" />
-  <Calendar
+  <DatePicker
     class="w-100"
     input-class="text-center"
     v-model="referenceTime"
@@ -248,7 +248,7 @@ const onClickReset = () => {
 }
 
 .datetime-number-input {
-  &::v-deep(.increment-button) {
+  &:deep(.increment-button) {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
   }

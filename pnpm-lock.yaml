@@ -17,6 +17,9 @@ importers:
       '@nuxtjs/web-vitals':
         specifier: ^0.2.6
         version: 0.2.7(magicast@0.3.4)(rollup@4.20.0)
+      '@primevue/themes':
+        specifier: ^4.0.4
+        version: 4.0.4
       '@vueuse/nuxt':
         specifier: ^10.11.1
         version: 10.11.1(magicast@0.3.4)(nuxt@3.12.4(@parcel/watcher@2.4.1)(@types/node@18.19.44)(eslint@9.9.0(jiti@1.21.6))(ioredis@5.4.1)(magicast@0.3.4)(optionator@0.9.4)(rollup@4.20.0)(sass@1.77.8)(terser@5.31.5)(typescript@5.5.4)(vite@5.4.0(@types/node@18.19.44)(sass@1.77.8)(terser@5.31.5)))(rollup@4.20.0)(vue@3.4.37(typescript@5.5.4))
@@ -66,11 +69,11 @@ importers:
         specifier: ^5.4.1
         version: 5.4.1
       primeicons:
-        specifier: ^6.0.1
-        version: 6.0.1
+        specifier: ^7.0.0
+        version: 7.0.0
       primevue:
-        specifier: ^3.53.0
-        version: 3.53.0(vue@3.4.37(typescript@5.5.4))
+        specifier: ^4.0.4
+        version: 4.0.4(vue@3.4.37(typescript@5.5.4))
       sql-formatter:
         specifier: ^15.4.0
         version: 15.4.0
@@ -111,6 +114,9 @@ importers:
       '@nuxtjs/sitemap':
         specifier: 6.0.0-beta.1
         version: 6.0.0-beta.1(h3@1.12.0)(magicast@0.3.4)(rollup@4.20.0)(vite@5.4.0(@types/node@18.19.44)(sass@1.77.8)(terser@5.31.5))(vue@3.4.37(typescript@5.5.4))
+      '@primevue/nuxt-module':
+        specifier: ^4.0.4
+        version: 4.0.4(@babel/parser@7.25.3)(magicast@0.3.4)(rollup@4.20.0)(vue@3.4.37(typescript@5.5.4))
       '@types/aos':
         specifier: ^3.0.4
         version: 3.0.7
@@ -149,7 +155,7 @@ importers:
         version: 4.0.0(eslint@9.9.0(jiti@1.21.6))
       eslint-plugin-prettier:
         specifier: ^5.2.1
-        version: 5.2.1(@types/eslint@8.56.11)(eslint-config-prettier@8.10.0(eslint@9.9.0(jiti@1.21.6)))(eslint@9.9.0(jiti@1.21.6))(prettier@3.3.3)
+        version: 5.2.1(@types/eslint@9.6.0)(eslint-config-prettier@8.10.0(eslint@9.9.0(jiti@1.21.6)))(eslint@9.9.0(jiti@1.21.6))(prettier@3.3.3)
       eslint-plugin-vue:
         specifier: ^9.27.0
         version: 9.27.0(eslint@9.9.0(jiti@1.21.6))
@@ -1158,6 +1164,40 @@ packages:
   '@polka/url@1.0.0-next.25':
     resolution: {integrity: sha512-j7P6Rgr3mmtdkeDGTe0E/aYyWEWVtc5yFXtHCRHs28/jptDEWfaVOc5T7cblqy1XKPPfCxJc/8DwQ5YgLOZOVQ==}
 
+  '@primeuix/styled@0.0.5':
+    resolution: {integrity: sha512-pVoGn/uPkVm/DyF3TR3EmH/pL/dP4nR42FcYbVduFq9VfO3KVeOEqvcCULHXos66RZO9MCbCFUoLy6ctf9GUGQ==}
+    engines: {node: '>=12.11.0'}
+
+  '@primeuix/utils@0.0.5':
+    resolution: {integrity: sha512-ntUiUgtRtkF8KuaxHffzhYxQxoXk6LAPHm7CVlFjdqS8Rx8xRkLkZVyo84E+pO2hcNFkOGVP/GxHhQ2s94O8zA==}
+    engines: {node: '>=12.11.0'}
+
+  '@primevue/auto-import-resolver@4.0.4':
+    resolution: {integrity: sha512-rI91rugr0/A58lmDcC4m3nxKdMh2K2O6ntQd+6UT8oFYiptJVNXQLY+U4zweAoG1toMnIoqGR20FXOTA7lS7ww==}
+    engines: {node: '>=12.11.0'}
+
+  '@primevue/core@4.0.4':
+    resolution: {integrity: sha512-xGD2hNYL4WLnkWuoxIjMIqEXiydYpFovDuCMHMWRl3yb/AFJcHpyZpUlgZ2HnJydA5ZsLS00sGsPHEoV5u2M8A==}
+    engines: {node: '>=12.11.0'}
+    peerDependencies:
+      vue: ^3.0.0
+
+  '@primevue/icons@4.0.4':
+    resolution: {integrity: sha512-eHOuO5jIv/qb3mpo3m1qpDKJxw/B8ZFpAcsKxV4uWhAXkxWo/afmykGO38PVabKc3SSai8bq1zFVXPA1w0cg9g==}
+    engines: {node: '>=12.11.0'}
+
+  '@primevue/metadata@4.0.4':
+    resolution: {integrity: sha512-j1Cb6qxuKDHyT0vjlFiLjiHILN7D6xC2zIaHRcYn0XcQS27r5ianzGFIiW98OVRFTUqWAf4k0TSCrgZPawPjRA==}
+    engines: {node: '>=12.11.0'}
+
+  '@primevue/nuxt-module@4.0.4':
+    resolution: {integrity: sha512-gcHWTlb4cSbpwK7vXW3nqpDE3Iijs/WlbdgW3KOiBhsSaV81xSzZ7GlSA5UmGSfQYU3tfEhDU6B0juA6rVAGNw==}
+    engines: {node: '>=12.11.0'}
+
+  '@primevue/themes@4.0.4':
+    resolution: {integrity: sha512-eknRgSo1KQY+r7LEtb/jERhVHq4/Vlu5BKBQ8/Sc/G3DBDHaeJTDqYHWWoTxdaTJkXbC2pJMKFaJ/Vs7LuoIOw==}
+    engines: {node: '>=12.11.0'}
+
   '@rollup/plugin-alias@5.1.0':
     resolution: {integrity: sha512-lpA3RZ9PdIG7qqhEfv79tBffNaoDuukFDrmhLqg9ifv99u/ehn+lOg30x2zmhf8AQqQUZaMk/B9fZraQ6/acDQ==}
     engines: {node: '>=14.0.0'}
@@ -1339,6 +1379,9 @@ packages:
 
   '@types/eslint@8.56.11':
     resolution: {integrity: sha512-sVBpJMf7UPo/wGecYOpk2aQya2VUGeHhe38WG7/mN5FufNSubf5VT9Uh9Uyp8/eLJpu1/tuhJ/qTo4mhSB4V4Q==}
+
+  '@types/eslint@9.6.0':
+    resolution: {integrity: sha512-gi6WQJ7cHRgZxtkQEoyHMppPjq9Kxo5Tjn2prSKDSmZrCz8TZ3jSRCeTJm+WoM+oB0WG37bRqLzaaU3q7JypGg==}
 
   '@types/estree@1.0.5':
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
@@ -3911,13 +3954,12 @@ packages:
     resolution: {integrity: sha512-mQUvGU6aUFQ+rNvTIAcZuWGRT9a6f6Yrg9bHs4ImKF+HZCEK+plBvnAZYSIQztknZF2qnzNtr6F8s0+IuptdlQ==}
     engines: {node: ^14.13.1 || >=16.0.0}
 
-  primeicons@6.0.1:
-    resolution: {integrity: sha512-KDeO94CbWI4pKsPnYpA1FPjo79EsY9I+M8ywoPBSf9XMXoe/0crjbUK7jcQEDHuc0ZMRIZsxH3TYLv4TUtHmAA==}
+  primeicons@7.0.0:
+    resolution: {integrity: sha512-jK3Et9UzwzTsd6tzl2RmwrVY/b8raJ3QZLzoDACj+oTJ0oX7L9Hy+XnVwgo4QVKlKpnP/Ur13SXV/pVh4LzaDw==}
 
-  primevue@3.53.0:
-    resolution: {integrity: sha512-mRqTPGGZX+3AQokaCCjxLVSNEjGEA7LaPdBT4qSpGEdMstK6vhUBCxgLH7IPjHudbaSi4Xo3CIO62pXQxbz8dQ==}
-    peerDependencies:
-      vue: ^3.0.0
+  primevue@4.0.4:
+    resolution: {integrity: sha512-1moEddbczJ1+yEyfeYQk3xOQB64iCjjM//f+HSXs6YrKVVC0QjPFx9XPNXrr2JjHlp+6D7EpPZtsmcrfA9jWkA==}
+    engines: {node: '>=12.11.0'}
 
   process-nextick-args@2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
@@ -4506,6 +4548,19 @@ packages:
   universalify@2.0.1:
     resolution: {integrity: sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==}
     engines: {node: '>= 10.0.0'}
+
+  unplugin-vue-components@0.27.0:
+    resolution: {integrity: sha512-77eTEy23sQ0UpzGWnZ9I2mY3cnmXwklz4ITcn3JfxjCoX643ghImkiZ4nFm58sxbdVcc4Fo/o4LIoFnlqEqsSg==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      '@babel/parser': ^7.15.8
+      '@nuxt/kit': ^3.2.2
+      vue: 2 || 3
+    peerDependenciesMeta:
+      '@babel/parser':
+        optional: true
+      '@nuxt/kit':
+        optional: true
 
   unplugin-vue-router@0.10.2:
     resolution: {integrity: sha512-aG1UzB96cu4Lu+EdQxl22NIKFrde5b+k568JdsaJ2gzPqnQufPk2j1gCA5DxFfGz9zg4tYTqy2A2JHForVbyXg==}
@@ -6059,6 +6114,52 @@ snapshots:
 
   '@polka/url@1.0.0-next.25': {}
 
+  '@primeuix/styled@0.0.5':
+    dependencies:
+      '@primeuix/utils': 0.0.5
+
+  '@primeuix/utils@0.0.5': {}
+
+  '@primevue/auto-import-resolver@4.0.4':
+    dependencies:
+      '@primevue/metadata': 4.0.4
+
+  '@primevue/core@4.0.4(vue@3.4.37(typescript@5.5.4))':
+    dependencies:
+      '@primeuix/styled': 0.0.5
+      '@primeuix/utils': 0.0.5
+      vue: 3.4.37(typescript@5.5.4)
+
+  '@primevue/icons@4.0.4(vue@3.4.37(typescript@5.5.4))':
+    dependencies:
+      '@primeuix/utils': 0.0.5
+      '@primevue/core': 4.0.4(vue@3.4.37(typescript@5.5.4))
+    transitivePeerDependencies:
+      - vue
+
+  '@primevue/metadata@4.0.4': {}
+
+  '@primevue/nuxt-module@4.0.4(@babel/parser@7.25.3)(magicast@0.3.4)(rollup@4.20.0)(vue@3.4.37(typescript@5.5.4))':
+    dependencies:
+      '@nuxt/kit': 3.12.4(magicast@0.3.4)(rollup@4.20.0)
+      '@primeuix/styled': 0.0.5
+      '@primeuix/utils': 0.0.5
+      '@primevue/auto-import-resolver': 4.0.4
+      '@primevue/metadata': 4.0.4
+      pathe: 1.1.2
+      primevue: 4.0.4(vue@3.4.37(typescript@5.5.4))
+      unplugin-vue-components: 0.27.0(@babel/parser@7.25.3)(@nuxt/kit@3.12.4(magicast@0.3.4)(rollup@4.20.0))(rollup@4.20.0)(vue@3.4.37(typescript@5.5.4))
+    transitivePeerDependencies:
+      - '@babel/parser'
+      - magicast
+      - rollup
+      - supports-color
+      - vue
+
+  '@primevue/themes@4.0.4':
+    dependencies:
+      '@primeuix/styled': 0.0.5
+
   '@rollup/plugin-alias@5.1.0(rollup@4.20.0)':
     dependencies:
       slash: 4.0.0
@@ -6197,6 +6298,12 @@ snapshots:
     dependencies:
       '@types/estree': 1.0.5
       '@types/json-schema': 7.0.15
+
+  '@types/eslint@9.6.0':
+    dependencies:
+      '@types/estree': 1.0.5
+      '@types/json-schema': 7.0.15
+    optional: true
 
   '@types/estree@1.0.5': {}
 
@@ -7612,14 +7719,14 @@ snapshots:
       - eslint
       - supports-color
 
-  eslint-plugin-prettier@5.2.1(@types/eslint@8.56.11)(eslint-config-prettier@8.10.0(eslint@9.9.0(jiti@1.21.6)))(eslint@9.9.0(jiti@1.21.6))(prettier@3.3.3):
+  eslint-plugin-prettier@5.2.1(@types/eslint@9.6.0)(eslint-config-prettier@8.10.0(eslint@9.9.0(jiti@1.21.6)))(eslint@9.9.0(jiti@1.21.6))(prettier@3.3.3):
     dependencies:
       eslint: 9.9.0(jiti@1.21.6)
       prettier: 3.3.3
       prettier-linter-helpers: 1.0.0
       synckit: 0.9.1
     optionalDependencies:
-      '@types/eslint': 8.56.11
+      '@types/eslint': 9.6.0
       eslint-config-prettier: 8.10.0(eslint@9.9.0(jiti@1.21.6))
 
   eslint-plugin-promise@6.6.0(eslint@9.9.0(jiti@1.21.6)):
@@ -9287,11 +9394,16 @@ snapshots:
 
   pretty-bytes@6.1.1: {}
 
-  primeicons@6.0.1: {}
+  primeicons@7.0.0: {}
 
-  primevue@3.53.0(vue@3.4.37(typescript@5.5.4)):
+  primevue@4.0.4(vue@3.4.37(typescript@5.5.4)):
     dependencies:
-      vue: 3.4.37(typescript@5.5.4)
+      '@primeuix/styled': 0.0.5
+      '@primeuix/utils': 0.0.5
+      '@primevue/core': 4.0.4(vue@3.4.37(typescript@5.5.4))
+      '@primevue/icons': 4.0.4(vue@3.4.37(typescript@5.5.4))
+    transitivePeerDependencies:
+      - vue
 
   process-nextick-args@2.0.1: {}
 
@@ -9947,6 +10059,26 @@ snapshots:
       - rollup
 
   universalify@2.0.1: {}
+
+  unplugin-vue-components@0.27.0(@babel/parser@7.25.3)(@nuxt/kit@3.12.4(magicast@0.3.4)(rollup@4.20.0))(rollup@4.20.0)(vue@3.4.37(typescript@5.5.4)):
+    dependencies:
+      '@antfu/utils': 0.7.10
+      '@rollup/pluginutils': 5.1.0(rollup@4.20.0)
+      chokidar: 3.6.0
+      debug: 4.3.6
+      fast-glob: 3.3.2
+      local-pkg: 0.5.0
+      magic-string: 0.30.11
+      minimatch: 9.0.5
+      resolve: 1.22.8
+      unplugin: 1.12.1
+      vue: 3.4.37(typescript@5.5.4)
+    optionalDependencies:
+      '@babel/parser': 7.25.3
+      '@nuxt/kit': 3.12.4(magicast@0.3.4)(rollup@4.20.0)
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
 
   unplugin-vue-router@0.10.2(rollup@4.20.0)(vue-router@4.4.3(vue@3.4.37(typescript@5.5.4)))(vue@3.4.37(typescript@5.5.4)):
     dependencies:

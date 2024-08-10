@@ -35,20 +35,20 @@ const tabOptions = [
   {
     label: t("calculator.date_time.tab_options.date_difference"),
     icon: "pi pi-calendar",
-    value: 0,
+    value: "0",
   },
   {
     label: t("calculator.date_time.tab_options.d_day"),
     icon: "pi pi-calendar",
-    value: 1,
+    value: "1",
   },
   {
     label: t("calculator.date_time.tab_options.date_increment"),
     icon: "pi pi-calendar-plus",
-    value: 2,
+    value: "2",
   },
 ];
-const activeTabKey = ref(0);
+const activeTabKey = ref("0");
 </script>
 
 <template>
@@ -59,7 +59,7 @@ const activeTabKey = ref(0);
   <ToolPageLayout :title="t('calculator.date_time.title')">
     <Card>
       <template #content>
-        <Dropdown
+        <Select
           v-show="isMobileOrTablet"
           class="w-100 mb-3"
           :options="tabOptions"
@@ -67,14 +67,20 @@ const activeTabKey = ref(0);
           option-label="label"
           v-model:model-value="activeTabKey"
         />
-        <TabMenu v-show="!isMobileOrTablet" class="mb-3" :model="tabOptions" v-model:active-index="activeTabKey" />
-        <div v-if="activeTabKey === 0">
+        <Tabs v-model:value="activeTabKey" v-show="!isMobileOrTablet" class="mb-3">
+          <TabList>
+            <Tab :value="tab.value" v-for="tab in tabOptions" :key="tab.value">
+              <i :class="tab.icon" /> {{ tab.label }}
+            </Tab>
+          </TabList>
+        </Tabs>
+        <div v-if="activeTabKey === '0'">
           <DateDurationCalculator />
         </div>
-        <div v-else-if="activeTabKey === 1">
+        <div v-else-if="activeTabKey === '1'">
           <DateDDayCalculator />
         </div>
-        <div v-else-if="activeTabKey === 2">
+        <div v-else-if="activeTabKey === '2'">
           <DateIncrementCalculator />
         </div>
       </template>

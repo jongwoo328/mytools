@@ -128,7 +128,7 @@ const clickActions: MenuItem[] = [
         <span class="d-block fw-bold">
           {{ `# ${index}` }}
         </span>
-        <Dropdown
+        <Select
           option-label="label"
           option-value="value"
           :options="formatTypeOptions"
@@ -255,12 +255,17 @@ const clickActions: MenuItem[] = [
 <style lang="scss" scoped>
 .sql-result {
   &:deep(.cm-line) {
-    font-family: Monaco, Menlo, Consolas, Bitstream Vera Sans Mono, monospace;
+    font-family:
+      Monaco,
+      Menlo,
+      Consolas,
+      Bitstream Vera Sans Mono,
+      monospace;
   }
 }
 
 .format-type-select {
-  &:deep(.p-dropdown-label.p-inputtext) {
+  &:deep(.p-select-label) {
     line-height: 1;
   }
 }

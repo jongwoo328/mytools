@@ -115,7 +115,7 @@ const setNow = () => {
         </span>
       </div>
       <div class="w-100 mb-0 mt-3">
-        <Dropdown
+        <Select
           :options="offsetList"
           option-value="value"
           option-label="label"

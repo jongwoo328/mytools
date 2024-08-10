@@ -259,7 +259,7 @@ provide("updateMarkdownCheckbox", updateMarkdownCheckbox);
                   <i v-tooltip.top="useStrictCommonMarkTooltip" class="pi pi-question-circle align-self-center"></i>
                 </div>
                 <div class="col col-6 d-flex justify-content-center">
-                  <InputSwitch
+                  <ToggleSwitch
                     input-id="useStrictCommonMark"
                     class="align-self-center"
                     v-model:model-value="useStrictCommonMark"
@@ -274,7 +274,7 @@ provide("updateMarkdownCheckbox", updateMarkdownCheckbox);
                   <i v-tooltip.top="useHtmlTooltip" class="pi pi-question-circle align-self-center" />
                 </div>
                 <div class="col col-6 d-flex justify-content-center">
-                  <InputSwitch input-id="useHtml" class="align-self-center" v-model:model-value="useHtml" />
+                  <ToggleSwitch input-id="useHtml" class="align-self-center" v-model:model-value="useHtml" />
                 </div>
               </div>
               <div class="col col-12 col-lg-6 col-xxl-4 mt-2 row">
@@ -285,7 +285,7 @@ provide("updateMarkdownCheckbox", updateMarkdownCheckbox);
                   <i v-tooltip.top="useLinkifyTooltip" class="pi pi-question-circle align-self-center" />
                 </div>
                 <div class="col col-6 d-flex justify-content-center">
-                  <InputSwitch input-id="useLinkify" class="align-self-center" v-model:model-value="useLinkify" />
+                  <ToggleSwitch input-id="useLinkify" class="align-self-center" v-model:model-value="useLinkify" />
                 </div>
               </div>
               <div class="col col-12 col-lg-6 col-xxl-4 mt-2 row">
@@ -296,7 +296,7 @@ provide("updateMarkdownCheckbox", updateMarkdownCheckbox);
                   <i v-tooltip.top="useBreaksTooltip" class="pi pi-question-circle align-self-center" />
                 </div>
                 <div class="col col-6 d-flex justify-content-center">
-                  <InputSwitch input-id="useBreaks" class="align-self-center" v-model:model-value="useBreaks" />
+                  <ToggleSwitch input-id="useBreaks" class="align-self-center" v-model:model-value="useBreaks" />
                 </div>
               </div>
             </div>

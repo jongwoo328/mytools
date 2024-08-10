@@ -155,12 +155,12 @@ watch(inputImage, () => {
           </div>
           <div class="col col-12 col-lg-4 d-flex flex-column justify-content mt-3 mt-lg-0">
             <div class="mb-4 mb-lg-5">
-              <div class="p-inputgroup">
-                <span class="p-inputgroup-addon px-5">
+              <InputGroup>
+                <InputGroupAddon>
                   {{ t("converter.image.image_type_label") }}
-                </span>
+                </InputGroupAddon>
                 <InputText :disabled="true" v-model:model-value="inputImageType" class="text-center" />
-              </div>
+              </InputGroup>
               <Button
                 @click="copyAsBase64"
                 class="w-100 d-block mt-2"
@@ -182,7 +182,7 @@ watch(inputImage, () => {
               <span class="mt-1 fs-5 d-block">
                 {{ t("converter.image.settings.convert_to.label") }}
               </span>
-              <Dropdown
+              <Select
                 :options="convertTypes"
                 option-label="label"
                 option-value="value"
