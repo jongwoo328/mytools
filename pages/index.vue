@@ -147,12 +147,13 @@ const filteredTools = computed(() => {
   <div class="mt-3">
     <div class="d-flex flex-wrap justify-content-start gap-1">
       <ToggleButton
+        size="small"
         v-model="isFormatter"
         onIcon="pi pi-check"
         offIcon="pi pi-times"
         :on-label="t('index.filter.formatter.on')"
         :off-label="t('index.filter.formatter.off')"
-        class="py-1"
+        class="filter-selected"
         :class="[{ 'filter-selected-formatter': isFormatter }]"
       />
       <ToggleButton
@@ -161,7 +162,7 @@ const filteredTools = computed(() => {
         offIcon="pi pi-times"
         :on-label="t('index.filter.converter.on')"
         :off-label="t('index.filter.converter.off')"
-        class="py-1"
+        class="filter-selected"
         :class="[{ 'filter-selected-converter': isConverter }]"
       />
       <ToggleButton
@@ -170,7 +171,7 @@ const filteredTools = computed(() => {
         offIcon="pi pi-times"
         :on-label="t('index.filter.viewer.on')"
         :off-label="t('index.filter.viewer.off')"
-        class="py-1"
+        class="filter-selected"
         :class="[{ 'filter-selected-viewer': isViewer }]"
       />
       <ToggleButton
@@ -179,7 +180,7 @@ const filteredTools = computed(() => {
         offIcon="pi pi-times"
         :on-label="t('index.filter.calculator.on')"
         :off-label="t('index.filter.calculator.off')"
-        class="py-1"
+        class="filter-selected"
         :class="[{ 'filter-selected-calculator': isCalculator }]"
       />
     </div>
@@ -193,23 +194,37 @@ const filteredTools = computed(() => {
 </template>
 
 <style lang="scss" scoped>
+.filter-selected {
+  &::v-deep(.p-button) {
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+  }
+}
 .filter-selected-formatter {
-  background-color: v-bind("Tags.Formatter.color") !important;
-  border-color: v-bind("Tags.Formatter.color") !important;
+  &::v-deep(.p-button) {
+    background-color: v-bind("Tags.Formatter.color") !important;
+    border-color: v-bind("Tags.Formatter.color") !important;
+  }
 }
 
 .filter-selected-converter {
-  background-color: v-bind("Tags.Converter.color") !important;
-  border-color: v-bind("Tags.Converter.color") !important;
+  &::v-deep(.p-button) {
+    background-color: v-bind("Tags.Converter.color") !important;
+    border-color: v-bind("Tags.Converter.color") !important;
+  }
 }
 
 .filter-selected-viewer {
-  background-color: v-bind("Tags.Viewer.color") !important;
-  border-color: v-bind("Tags.Viewer.color") !important;
+  &::v-deep(.p-button) {
+    background-color: v-bind("Tags.Viewer.color") !important;
+    border-color: v-bind("Tags.Viewer.color") !important;
+  }
 }
 
 .filter-selected-calculator {
-  background-color: v-bind("Tags.Calculator.color") !important;
-  border-color: v-bind("Tags.Calculator.color") !important;
+  &::v-deep(.p-button) {
+    background-color: v-bind("Tags.Calculator.color") !important;
+    border-color: v-bind("Tags.Calculator.color") !important;
+  }
 }
 </style>
