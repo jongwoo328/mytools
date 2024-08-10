@@ -81,7 +81,7 @@ const setNow = () => {
       </div>
       <div class="row">
         <div class="col col-12" :class="{ 'col-xl-5': useMilliseconds, 'col-xl-6': !useMilliseconds }">
-          <Calendar v-model:model-value="dateInput" class="w-100" date-format="yy-mm-dd" />
+          <DatePicker v-model:model-value="dateInput" class="w-100" date-format="yy-mm-dd" />
         </div>
         <div
           class="col mt-2 mt-xl-0"
@@ -92,7 +92,7 @@ const setNow = () => {
             'col-xl-6': !useMilliseconds,
           }"
         >
-          <Calendar class="w-100" time-only v-model:model-value="timeInput" hour-format="24" show-seconds />
+          <DatePicker class="w-100" time-only v-model:model-value="timeInput" hour-format="24" show-seconds />
         </div>
         <div
           v-if="useMilliseconds"
@@ -110,7 +110,7 @@ const setNow = () => {
           </div>
         </div>
         <div class="col col-12 mt-1">
-          <Dropdown
+          <Select
             :options="offsetList"
             option-value="value"
             option-label="label"

@@ -56,8 +56,8 @@ const updateDiff = () => {
   const estimatedDateTo = setEndDateToNow.value
     ? DateTime.now()
     : includeEndDate.value
-    ? dateTo.value.plus({ days: 1 })
-    : dateTo.value;
+      ? dateTo.value.plus({ days: 1 })
+      : dateTo.value;
   const estimatedDateFrom = setStartDateToNow.value ? DateTime.now() : dateFrom.value;
   const newDiff = estimatedDateTo.diff(estimatedDateFrom, [
     "years",
@@ -168,7 +168,7 @@ onBeforeUnmount(() => {
   <div class="row">
     <div class="col col-12 mb-3 col-lg-6 mb-lg-0">
       <Text class="mb-2" :text="t('calculator.date_time.date_difference.date_from.label')" :size="5" />
-      <Calendar
+      <DatePicker
         :touch-u-i="isMobileOrTablet"
         date-format="yy-mm-dd"
         class="w-100"
@@ -189,7 +189,7 @@ onBeforeUnmount(() => {
           </label>
         </div>
       </div>
-      <Calendar
+      <DatePicker
         class="w-100 mt-2"
         v-if="useTimeFrom"
         v-model="inputTimeFrom"
@@ -201,7 +201,7 @@ onBeforeUnmount(() => {
     </div>
     <div class="col col-12 col-lg-6">
       <Text class="mb-2" :text="t('calculator.date_time.date_difference.date_to.label')" :size="5" />
-      <Calendar
+      <DatePicker
         :touch-u-i="isMobileOrTablet"
         date-format="yy-mm-dd"
         class="w-100"
@@ -228,7 +228,7 @@ onBeforeUnmount(() => {
           </label>
         </div>
       </div>
-      <Calendar
+      <DatePicker
         class="w-100 mt-2"
         v-if="useTimeTo"
         v-model="inputTimeTo"

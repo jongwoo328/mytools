@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import Dropdown, { type DropdownPassThroughOptions } from "primevue/dropdown";
 import TranslationIcon from "~/components/svg/TranslationIcon.vue";
 import { breakpointsBootstrapV5 } from "@vueuse/core";
 import { ref } from "vue";
-import type { PassThrough } from "primevue/ts-helpers";
+import Select from "primevue/select";
 
 const { locale, availableLocales, t } = useI18n();
 const router = useRouter();
@@ -12,14 +11,14 @@ const switchLocalePath = useSwitchLocalePath();
 const breakpoints = useBreakpoints(breakpointsBootstrapV5);
 const isMobileOrTablet = breakpoints.smaller("lg");
 
-const dropdown = ref<Dropdown | null>(null);
-const openDropdown = () => {
-  dropdown.value?.show();
+const select = ref<typeof Select | null>(null);
+const openSelect = () => {
+  select.value?.show();
 };
-const dropdownPassThrough = computed<PassThrough<DropdownPassThroughOptions>>(() => ({
-  input: { class: isMobileOrTablet.value ? "py-1" : "" },
+const selectPassThrough = computed(() => ({
+  label: { class: isMobileOrTablet.value ? "py-1" : "" },
 }));
-const dropdownStyle = computed<Partial<CSSStyleDeclaration>>(() => {
+const selectStyle = computed<Partial<CSSStyleDeclaration>>(() => {
   const style = {
     backgroundColor: "#f8f9fa",
     border: "none",
@@ -44,15 +43,15 @@ watch(locale, () => {
 
 <template>
   <div class="d-flex">
-    <TranslationIcon size="20" @click="openDropdown" class="pe-2" cursor-pointer />
-    <Dropdown
-      ref="dropdown"
-      :style="dropdownStyle"
+    <TranslationIcon size="20" @click="openSelect" class="pe-2" cursor-pointer />
+    <Select
+      ref="select"
+      :style="selectStyle"
       :options="localeOptions"
       option-value="value"
       option-label="label"
       v-model="locale"
-      :pt="dropdownPassThrough"
+      :pt="selectPassThrough"
     />
   </div>
 </template>

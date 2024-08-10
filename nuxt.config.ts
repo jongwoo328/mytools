@@ -1,6 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import eslintPlugin from "@nabla/vite-plugin-eslint";
 import fs from "fs";
+import Lara from "@primevue/themes/lara";
+import defaultOptions from "@primevue/core/config";
 
 const siteUrl = "https://tools.jongwoo.me";
 
@@ -26,7 +28,23 @@ export default defineNuxtConfig({
     "@nuxtjs/robots",
     "nuxt-jsonld",
     "@nuxtjs/i18n",
+    "@primevue/nuxt-module",
   ],
+
+  primevue: {
+    usePrimeVue: true,
+    autoImport: true,
+
+    options: {
+      locale: {
+        ...defaultOptions.locale,
+        noFileChosenMessage: "",
+      },
+      theme: {
+        preset: Lara,
+      },
+    },
+  },
 
   routeRules: {
     "/**": { prerender: true },
@@ -105,14 +123,9 @@ export default defineNuxtConfig({
 
   css: [
     "@/assets/styles/main.scss",
-    "primevue/resources/themes/lara-light-blue/theme.css",
-    "primevue/resources/primevue.css",
     "primeicons/primeicons.css",
     "vue-json-pretty/lib/styles.css",
     "cropperjs/dist/cropper.css",
     "aos/dist/aos.css",
   ],
-  build: {
-    transpile: ["primevue"],
-  },
 });

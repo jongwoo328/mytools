@@ -76,6 +76,9 @@ const imageUploadBackground = computed(() => {
       @clear="onClear"
       :choose-label="t('converter.image.image_input_btn_label')"
     >
+      <template #empty>
+        <span> test</span>
+      </template>
     </FileUpload>
     <img alt="uploaded image" ref="image" src="#" class="w-100 h-100" v-show="isUploaded" style="object-fit: contain" />
   </div>

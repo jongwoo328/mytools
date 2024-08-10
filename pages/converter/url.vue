@@ -25,6 +25,12 @@ useJsonld(() => ({
   ],
 }));
 
+const tabIndex = ref("encoder");
+const tabOptions = [
+  { label: t("converter.url.convert_type.encoder"), value: "encoder" },
+  { label: t("converter.url.convert_type.decoder"), value: "decoder" },
+];
+
 const inputText = ref("");
 const activeTabKey = ref(0);
 const encodedText = computed(() => encodeURI(inputText.value));
@@ -51,22 +57,29 @@ const onClickCopy = () => {
           {{ t("converter.url.text_input_label") }}
         </PageHeading>
         <Textarea v-model="inputText" class="prevent-auto-zoom d-block w-100" auto-resize />
-        <TabView v-model:active-index="activeTabKey" class="mt-3 tab-view">
-          <TabPanel :header="t('converter.url.convert_type.encoder')">
-            <div v-if="activeTabKey === 0" class="d-block w-100 converted-text p-2 font-monospace-code">
-              <span>
-                {{ encodedText }}
-              </span>
-            </div>
-          </TabPanel>
-          <TabPanel :header="t('converter.url.convert_type.decoder')">
-            <div v-if="activeTabKey === 1" class="d-block w-100 converted-text p-2 font-monospace-code">
-              <span>
-                {{ decodedText }}
-              </span>
-            </div>
-          </TabPanel>
-        </TabView>
+        <Tabs :value="tabIndex" class="mt-4 tab-view">
+          <TabList>
+            <Tab :value="tab.value" v-for="tab in tabOptions" :key="tab.value">
+              {{ tab.label }}
+            </Tab>
+          </TabList>
+          <TabPanels>
+            <TabPanel value="encoder">
+              <div class="d-block w-100 converted-text p-2 font-monospace-code">
+                <span>
+                  {{ encodedText }}
+                </span>
+              </div>
+            </TabPanel>
+            <TabPanel value="decoder">
+              <div class="d-block w-100 converted-text p-2 font-monospace-code">
+                <span>
+                  {{ decodedText }}
+                </span>
+              </div>
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
         <div class="px-2">
           <Button @click="onClickCopy" class="w-100 d-block">
             {{ t("converter.url.copy_btn_label") }}
@@ -83,12 +96,5 @@ const onClickCopy = () => {
   min-height: 35px;
   border-radius: 3px;
   word-wrap: break-word;
-}
-
-.tab-view {
-  &:deep(.p-tabview-panels) {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-  }
 }
 </style>

@@ -95,7 +95,7 @@ const onFormatButtonClick = () => {
       <PageHeading class="d-inline-block m-0" :level="2" :size="6" weight="600">
         {{ t("formatter.sql.sql_input_label") }}
       </PageHeading>
-      <Dropdown
+      <Select
         size="small"
         :options="sqlLanguageOptions"
         option-label="label"

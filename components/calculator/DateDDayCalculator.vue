@@ -99,7 +99,7 @@ const onCompleteLottie = () => {
     <PageHeading class="mb-4" :size="6" :level="2" weight="600">
       {{ t("calculator.date_time.d_day.title") }}
     </PageHeading>
-    <Calendar
+    <DatePicker
       class="w-100"
       input-class="text-center"
       v-model="dDay"
