@@ -159,4 +159,8 @@ const setNow = () => {
   background-color: #f1f3f5;
   font-size: 1.1rem;
 }
+
+.dark-mode .epoch-time {
+  background-color: #212529;
+}
 </style>

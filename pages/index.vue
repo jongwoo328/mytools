@@ -232,4 +232,20 @@ const filteredTools = computed(() => {
     color: white !important;
   }
 }
+
+.dark-mode {
+  .filter-select-button {
+    &:deep(span) {
+      color: white;
+    }
+  }
+  .filter-selected-formatter,
+  .filter-selected-calculator,
+  .filter-selected-viewer,
+  .filter-selected-converter {
+    &:deep(span span) {
+      color: black !important;
+    }
+  }
+}
 </style>

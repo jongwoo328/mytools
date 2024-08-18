@@ -46,7 +46,7 @@ const cardPassThrough: CardPassThroughOptions = {
 <style lang="scss">
 .tool-item {
   cursor: pointer;
-  border: 1px solid lightgray;
+  border: 1px solid darkgray;
 
   &:hover {
     border-color: #3b82f6;
