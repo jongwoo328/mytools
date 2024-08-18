@@ -58,4 +58,11 @@ del {
 .by-line {
   display: block;
 }
+
+.dark-mode {
+  ins,
+  del {
+    color: black;
+  }
+}
 </style>

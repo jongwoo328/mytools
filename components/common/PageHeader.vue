@@ -3,6 +3,7 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { breakpointsBootstrapV5 } from "@vueuse/core";
 import LocaleDropdown from "~/components/common/LocaleDropdown.vue";
+import ThemeSelector from "~/components/common/ThemeSelector.vue";
 
 const router = useRouter();
 const { t } = useI18n();
@@ -140,7 +141,10 @@ const menus = [
         <Button text @click="onClickHome" class="w-100 me-2 py-2" label="🛠️" />
       </template>
       <template #end>
-        <LocaleDropdown />
+        <div class="d-flex gap-4">
+          <ThemeSelector />
+          <LocaleDropdown />
+        </div>
       </template>
     </Menubar>
   </ClientOnly>

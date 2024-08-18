@@ -9,6 +9,7 @@ import { parseJsonPathToKeyArray } from "@/utils/json";
 
 const { t } = useI18n();
 const { copyData } = useCopy();
+const colorMode = useColorMode();
 
 const emit = defineEmits<{ (e: "delete", id: string): void }>();
 const props = defineProps<{
@@ -220,6 +221,7 @@ const clickActions: MenuItem[] = [
     <template #conetent>
       <div v-if="formatType === 'formatted'">
         <VueJsonPretty
+          :theme="colorMode.value"
           :data="resultData.result"
           :virtual="virtualScroll"
           selectableType="single"
@@ -229,7 +231,7 @@ const clickActions: MenuItem[] = [
           rootPath="$"
           class="font-monospace-code"
         />
-        <ResultDivider class="mb-0">
+        <ResultDivider class="mb-0" color="var(--p-content-background)">
           <Button @click="onClickExpandToggle" size="small" outlined class="py-1">
             {{
               virtualScroll

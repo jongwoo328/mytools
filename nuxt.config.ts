@@ -30,7 +30,16 @@ export default defineNuxtConfig({
     "nuxt-jsonld",
     "@nuxtjs/i18n",
     "@primevue/nuxt-module",
+    "@nuxtjs/color-mode",
   ],
+
+  colorMode: {
+    preference: "system",
+    fallback: "light",
+    classPrefix: "",
+    classSuffix: "-mode",
+    storageKey: "color-mode",
+  },
 
   primevue: {
     usePrimeVue: true,
@@ -59,6 +68,9 @@ export default defineNuxtConfig({
             },
           },
         }),
+        options: {
+          darkModeSelector: ".dark-mode",
+        },
       },
     },
   },

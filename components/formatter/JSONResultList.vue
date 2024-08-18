@@ -2,8 +2,10 @@
 import JSONResultListItem from "@/components/formatter/JSONResultListItem.vue";
 import type { JSONResult } from "@/types/JSONResult";
 import ResultDivider from "@/components/common/ResultDivider.vue";
+import themeColors from "~/utils/themeColors";
 
 const { t } = useI18n();
+const colorMode = useColorMode();
 
 const props = defineProps<{ results: JSONResult[] }>();
 const emit = defineEmits<{
@@ -21,7 +23,7 @@ const onClickDelete = (id: string) => {
 </script>
 
 <template>
-  <ResultDivider v-if="results.length > 0" align="center" color="#f0f2f5">
+  <ResultDivider v-if="results.length > 0" align="center" :color="themeColors.mainBgColor[colorMode.value]">
     {{ t("formatter.json.result_list.divider_text") }}
   </ResultDivider>
   <section class="d-flex flex-column-reverse">

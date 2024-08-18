@@ -2,9 +2,12 @@
 import { html } from "@codemirror/lang-html";
 import { ref } from "vue";
 import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
+import { basicDark } from "cm6-theme-basic-dark";
+import { basicLight } from "cm6-theme-basic-light";
 
 const { t } = useI18n();
 const localePath = useLocalePath();
+const colorMode = useColorMode();
 
 useJsonld(() => ({
   "@context": "https://schema.org",
@@ -46,6 +49,13 @@ const htmlText = ref(
     "\n\t</ul>" +
     "\n</section>",
 );
+
+const codemirrorTheme = computed(() => {
+  if (colorMode.value === "dark") {
+    return basicDark;
+  }
+  return basicLight;
+});
 </script>
 
 <template>
@@ -65,7 +75,7 @@ const htmlText = ref(
           <div class="col col-12 viewer-code-section px-0 common-border-radius">
             <div class="h-100 html-input-wrap">
               <Codemirror
-                :extensions="[html()]"
+                :extensions="[html(), codemirrorTheme]"
                 v-model="htmlText"
                 class="h-100 font-monospace-code prevent-auto-zoom"
               />

@@ -116,7 +116,7 @@ const expandToggleLabel = computed(() =>
       <div class="sql-result-wrap common-border-radius">
         <Codemirror :disabled="true" :extensions="[sql()]" v-model="formattedSQL" class="font-monospace-code" />
       </div>
-      <ResultDivider class="mb-0">
+      <ResultDivider class="mb-0" color="var(--p-content-background)">
         <Button @click="onClickExpandToggle" size="small" outlined class="py-1">
           {{ expandToggleLabel }}
         </Button>

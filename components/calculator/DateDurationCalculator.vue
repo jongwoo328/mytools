@@ -299,4 +299,10 @@ onBeforeUnmount(() => {
   border-radius: 6px;
   background-color: #f1f3f5;
 }
+
+.dark-mode {
+  .result {
+    background-color: #2d2d2d;
+  }
+}
 </style>

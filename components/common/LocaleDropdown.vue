@@ -19,14 +19,10 @@ const selectPassThrough = computed(() => ({
   label: { class: isMobileOrTablet.value ? "py-1" : "" },
 }));
 const selectStyle = computed<Partial<CSSStyleDeclaration>>(() => {
-  const style = {
-    backgroundColor: "#f8f9fa",
-    border: "none",
-  };
   if (isMobileOrTablet.value) {
-    return { ...style, height: "30px" };
+    return { height: "30px" };
   }
-  return style;
+  return {};
 });
 
 const localeOptions = computed(() =>

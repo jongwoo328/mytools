@@ -11,7 +11,6 @@ withDefaults(
   }>(),
   {
     tag: "p",
-    color: "black",
     bold: false,
     italic: false,
     underline: false,
@@ -25,7 +24,6 @@ withDefaults(
   <component
     :is="tag"
     :style="{
-      color,
       fontWeight: bold ? 'bold' : undefined,
       fontStyle: italic ? 'italic' : undefined,
       textDecoration: underline ? 'underline' : undefined,
