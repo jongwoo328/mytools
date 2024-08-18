@@ -194,4 +194,10 @@ const onCompleteLottie = () => {
   left: 50%;
   transform: translate(-50%, -50%) scale(v-bind(animationScale));
 }
+
+.dark-mode {
+  .result {
+    background-color: #2d2d2d;
+  }
+}
 </style>

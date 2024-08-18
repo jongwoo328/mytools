@@ -253,4 +253,10 @@ const onClickReset = () => {
     border-bottom-right-radius: 0;
   }
 }
+
+.dark-mode {
+  .result {
+    background-color: #2d2d2d;
+  }
+}
 </style>

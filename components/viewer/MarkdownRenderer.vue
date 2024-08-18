@@ -174,4 +174,55 @@ onMounted(() => {
     }
   }
 }
+
+.dark-mode {
+  #renderedMarkdown {
+    &:deep(table) {
+      th,
+      td {
+        border-color: #333;
+      }
+
+      th {
+        background-color: #333;
+        color: #fff;
+      }
+
+      tr:nth-child(even) {
+        background-color: #333;
+      }
+
+      tr:hover {
+        background-color: #444;
+      }
+    }
+
+    &:deep(blockquote) {
+      border-left-color: #666;
+      color: #444;
+
+      span,
+      p {
+        color: #444;
+      }
+
+      & blockquote,
+      blockquote blockquote {
+        background-color: #ddd;
+        border-left-color: #777;
+      }
+    }
+
+    &:deep {
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        color: #ddd;
+      }
+    }
+  }
+}
 </style>

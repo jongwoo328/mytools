@@ -54,6 +54,8 @@
     "@vueuse/nuxt": "^10.11.1",
     "aos": "^2.3.4",
     "bootstrap": "^5.3.3",
+    "cm6-theme-basic-dark": "^0.2.0",
+    "cm6-theme-basic-light": "^0.2.0",
     "codemirror": "^6.0.1",
     "diff": "^5.2.0",
     "highlight.js": "^11.9.0",
