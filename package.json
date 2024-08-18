@@ -17,6 +17,7 @@
     "@eslint/eslintrc": "^3.1.0",
     "@eslint/js": "^9.9.0",
     "@nabla/vite-plugin-eslint": "^2.0.4",
+    "@nuxtjs/color-mode": "^3.4.4",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@nuxtjs/i18n": "8.0.0",
     "@nuxtjs/robots": "^4.0.2",

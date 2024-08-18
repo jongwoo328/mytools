@@ -3,6 +3,7 @@ import PageHeader from "@/components/common/PageHeader.vue";
 import GlobalBackTop from "@/components/common/GlobalBackTop.vue";
 import { breakpointsBootstrapV5 } from "@vueuse/core";
 import LocaleDropdown from "@/components/common/LocaleDropdown.vue";
+import ThemeSelector from "~/components/common/ThemeSelector.vue";
 
 const { locale, t } = useI18n();
 const { isWindows } = useOs();
@@ -31,7 +32,8 @@ useHead({
     <PageHeader />
     <div id="view" class="container" style="padding-bottom: 100px">
       <CommonToast />
-      <div v-if="isMobileOrTablet" class="w-100 d-flex justify-content-end pt-2">
+      <div v-if="isMobileOrTablet" class="w-100 d-flex justify-content-end pt-2 gap-3">
+        <ThemeSelector />
         <LocaleDropdown />
       </div>
       <slot />
@@ -59,5 +61,9 @@ a {
   #view {
     padding-top: 42px;
   }
+}
+
+.dark-mode #main {
+  background-color: #09090b;
 }
 </style>
