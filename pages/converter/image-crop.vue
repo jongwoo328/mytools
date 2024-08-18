@@ -314,7 +314,7 @@ watch([pressUp, pressRight, pressLeft, pressDown], () => {
               <Button class="d-block w-100" @click="save">
                 {{ t("converter.image_crop.save_btn_label") }}
               </Button>
-              <label for="crop-image" class="p-button p-component p-button-outlined d-block w-100 mt-2">
+              <label for="crop-image" class="p-button p-component p-button-outlined d-block w-100 mt-2 text-center">
                 {{ t("converter.image_crop.change_image_btn_label") }}
               </label>
             </div>

@@ -78,13 +78,11 @@ const onClickCopy = () => {
                 </span>
               </div>
             </TabPanel>
+            <Button @click="onClickCopy" class="w-100 d-block mt-3">
+              {{ t("converter.url.copy_btn_label") }}
+            </Button>
           </TabPanels>
         </Tabs>
-        <div class="px-2">
-          <Button @click="onClickCopy" class="w-100 d-block">
-            {{ t("converter.url.copy_btn_label") }}
-          </Button>
-        </div>
       </template>
     </Card>
   </ToolPageLayout>
@@ -96,5 +94,9 @@ const onClickCopy = () => {
   min-height: 35px;
   border-radius: 3px;
   word-wrap: break-word;
+}
+
+.dark-mode .converted-text {
+  background-color: #212529;
 }
 </style>
