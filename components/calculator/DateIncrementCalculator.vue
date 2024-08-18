@@ -43,11 +43,11 @@ const result = computed(() => {
 });
 
 const inputStyle = {
-  borderTopRightRadius: "0",
-  borderBottomRightRadius: "0",
+  // borderTopRightRadius: "0",
+  // borderBottomRightRadius: "0",
 };
 const inputAddonStyle = {
-  borderLeft: 0,
+  // borderLeft: 0,
 };
 const onClickCalculationType = (calculation: CalculationInfo) => {
   if (calculation.type === "plus") {
@@ -102,10 +102,7 @@ const onClickReset = () => {
           <Button icon="pi pi-times" size="small" outlined severity="danger" @click="onClickDeleteCalculation(index)" />
         </div>
         <div class="row m-0 mt-2 w-100">
-          <InputGroup
-            class="d-flex align-items-stretch datetime-number-input col col-12 col-md-6 col-lg-4 px-1 mb-1"
-            unstyled
-          >
+          <InputGroup class="d-flex align-items-stretch datetime-number-input col col-12 col-md-6 col-lg-4 px-1 mb-1">
             <InputNumber
               show-buttons
               increment-button-class="increment-button"
