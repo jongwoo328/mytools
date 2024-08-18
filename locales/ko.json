@@ -22,6 +22,14 @@
       "hours_n": "{n} 시간|{n} 시간",
       "minutes_n": "{n} 분|{n} 분",
       "seconds_n": "{n} 초|{n} 초"
+    },
+    "colorTheme": {
+      "light": {
+        "help": "다크 모드로 전환"
+      },
+      "dark": {
+        "help": "라이트 모드로 전환"
+      }
     }
   },
   "index": {

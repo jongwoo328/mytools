@@ -22,6 +22,14 @@
       "hours_n": "{n} hour|{n} hours",
       "minutes_n": "{n} minute|{n} minutes",
       "seconds_n": "{n} second|{n} seconds"
+    },
+    "colorTheme": {
+      "light": {
+        "help": "Switch to Dark Mode"
+      },
+      "dark": {
+        "help": "Switch to Light Mode"
+      }
     }
   },
   "index": {
