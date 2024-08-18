@@ -3,6 +3,7 @@ import { computed, type Ref, ref } from "vue";
 import type { FileUploadSelectEvent } from "primevue/fileupload";
 import { breakpointsBootstrapV5 } from "@vueuse/core";
 import { createEmptyImageElement } from "~/utils/HTMLImage";
+import themeColors from "~/utils/themeColors";
 
 const { t } = useI18n();
 const props = defineProps<{ file: File }>();
@@ -49,20 +50,14 @@ const fileInputMinHeight = computed(() => {
     return "500px";
   }
 });
-const imageUploadBackground = computed(() => {
-  if (isUploaded.value) {
-    return "transparent";
-  } else {
-    return "#f0f2f5";
-  }
-});
 </script>
 
 <template>
   <div
+    id="inputImageWrap"
     class="d-flex flex-column justify-content-center w-100 common-border-radius"
-    :class="{ 'align-items-center': !isUploaded }"
-    :style="`min-height: ${fileInputMinHeight}; background-color: ${imageUploadBackground}`"
+    :class="{ 'align-items-center': !isUploaded, 'image-uploaded': isUploaded }"
+    :style="`min-height: ${fileInputMinHeight};`"
   >
     <FileUpload
       :show-upload-button="false"
@@ -109,5 +104,16 @@ const imageUploadBackground = computed(() => {
     justify-content: center;
     align-items: center;
   }
+}
+
+#inputImageWrap {
+  background-color: #f0f2f5;
+}
+.dark-mode #inputImageWrap {
+  background-color: #343a40;
+}
+
+#inputImageWrap.image-uploaded {
+  background-color: transparent;
 }
 </style>

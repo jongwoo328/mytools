@@ -4,14 +4,14 @@ import GlobalBackTop from "@/components/common/GlobalBackTop.vue";
 import { breakpointsBootstrapV5 } from "@vueuse/core";
 import LocaleDropdown from "@/components/common/LocaleDropdown.vue";
 import ThemeSelector from "~/components/common/ThemeSelector.vue";
-import useCustomThemeColor from "~/composables/useCustomThemeColor";
+import themeColors from "~/utils/themeColors";
 
 const { locale, t } = useI18n();
 const { isWindows } = useOs();
-const { mainBackgroundColor } = useCustomThemeColor();
 
 const breakpoints = useBreakpoints(breakpointsBootstrapV5);
 const isMobileOrTablet = breakpoints.smaller("lg");
+const themeColorsRef = toRef(themeColors); // used in style
 
 useHead({
   link: [
@@ -52,7 +52,7 @@ a {
 #main {
   overflow-y: auto;
   min-height: 100vh;
-  background-color: v-bind("mainBackgroundColor.light");
+  background-color: v-bind("themeColorsRef.mainBgColor.light");
 }
 
 #view {
@@ -66,6 +66,6 @@ a {
 }
 
 .dark-mode #main {
-  background-color: v-bind("mainBackgroundColor.dark");
+  background-color: v-bind("themeColorsRef.mainBgColor.dark");
 }
 </style>

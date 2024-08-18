@@ -2,8 +2,10 @@
 import type { ImageConverterResult } from "@/types/ImageConverterResult";
 import ImageConverterResultListItem from "@/components/converter/ImageConverterResultListItem.vue";
 import ResultDivider from "@/components/common/ResultDivider.vue";
+import themeColors from "~/utils/themeColors";
 
 const { t } = useI18n();
+const colorMode = useColorMode();
 
 const props = defineProps<{ results: ImageConverterResult[] }>();
 const emit = defineEmits<{
@@ -21,7 +23,7 @@ const onDelete = (id: string) => {
 </script>
 
 <template>
-  <ResultDivider v-if="results.length > 0" align="center" color="#f0f2f5">
+  <ResultDivider v-if="results.length > 0" align="center" :color="themeColors.mainBgColor[colorMode.value]">
     {{ t("converter.image.result_list.divider_text") }}
   </ResultDivider>
   <section class="d-flex flex-column-reverse">
