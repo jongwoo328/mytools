@@ -26,8 +26,8 @@ const useMilliseconds = ref(false);
 const resultUnit: Ref<UnionFromAsConst<typeof EpochTimeConvertTimeUnit>> = ref(EpochTimeConvertTimeUnit.SECONDS);
 
 const resultEpoch = computed(() => {
-  const millisec = useMilliseconds.value ? milliseconds.value : 0;
-  const dateTime = `${date.value}T${time.value}.${millisec}`;
+  const millisecond = useMilliseconds.value ? milliseconds.value : 0;
+  const dateTime = `${date.value}T${time.value}.${millisecond}`;
 
   const epochMs = DateTime.fromISO(dateTime, {
     zone: FixedOffsetZone.instance(offset.value).name,
@@ -81,7 +81,7 @@ const setNow = () => {
       </div>
       <div class="row">
         <div class="col col-12" :class="{ 'col-xl-5': useMilliseconds, 'col-xl-6': !useMilliseconds }">
-          <DatePicker v-model:model-value="dateInput" class="w-100" date-format="yy-mm-dd" />
+          <DatePicker v-model:model-value="dateInput" class="w-100 h-100 prevent-auto-zoom" date-format="yy-mm-dd" />
         </div>
         <div
           class="col mt-2 mt-xl-0"
@@ -92,7 +92,13 @@ const setNow = () => {
             'col-xl-6': !useMilliseconds,
           }"
         >
-          <DatePicker class="w-100" time-only v-model:model-value="timeInput" hour-format="24" show-seconds />
+          <DatePicker
+            class="w-100 h-100 prevent-auto-zoom"
+            time-only
+            v-model:model-value="timeInput"
+            hour-format="24"
+            show-seconds
+          />
         </div>
         <div
           v-if="useMilliseconds"
@@ -104,18 +110,18 @@ const setNow = () => {
             'col-xl-6': !useMilliseconds,
           }"
         >
-          <div class="p-inputgroup pb-1">
+          <InputGroup class="">
             <InputNumber :min="0" :max="999" input-class="w-100 prevent-auto-zoom" v-model:model-value="milliseconds" />
-            <span class="p-inputgroup-addon">ms</span>
-          </div>
+            <InputGroupAddon>ms</InputGroupAddon>
+          </InputGroup>
         </div>
-        <div class="col col-12 mt-1">
+        <div class="col col-12 mt-2">
           <Select
             :options="offsetList"
             option-value="value"
             option-label="label"
             v-model:model-value="offset"
-            class="w-100"
+            class="w-100 prevent-auto-zoom"
           />
         </div>
       </div>
