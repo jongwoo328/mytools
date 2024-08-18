@@ -4,6 +4,7 @@ import type { SQLResult } from "@/types/SQLResult";
 import ResultDivider from "@/components/common/ResultDivider.vue";
 
 const { t } = useI18n();
+const { mainBackgroundColor } = useCustomThemeColor();
 
 const props = defineProps<{ results: SQLResult[] }>();
 const emit = defineEmits<{
@@ -21,7 +22,7 @@ const onClickDelete = (id: string) => {
 </script>
 
 <template>
-  <ResultDivider v-if="results.length > 0" align="center" color="#f0f2f5">
+  <ResultDivider v-if="results.length > 0" align="center" :color="mainBackgroundColor.current">
     {{ t("formatter.sql.result_list.divider_text") }}
   </ResultDivider>
   <section class="d-flex flex-column-reverse">
