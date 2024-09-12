@@ -81,27 +81,27 @@ export default defineNuxtConfig({
 
   // nuxtjs/i18n
   i18n: {
-    vueI18n: "./i18n.config.ts",
+    vueI18n: "./i18n/i18n.config.ts",
     strategy: "prefix_and_default",
     defaultLocale: "en",
     locales: [
       {
         code: "en",
-        iso: "en-US",
+        language: "en-US",
         file: "en.json",
         name: "English",
       },
       {
         code: "ko",
-        iso: "ko-KR",
+        language: "ko-KR",
         file: "ko.json",
         name: "한국어",
       },
     ],
-    langDir: "locales/",
     compilation: {
       strictMessage: false,
     },
+    restructureDir: "i18n",
   },
 
   // nuxt-robots
