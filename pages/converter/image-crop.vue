@@ -44,24 +44,20 @@ const isCropperLocked = ref(false);
 const breakpoints = useBreakpoints(breakpointsBootstrapV5);
 const isSmallScreen = breakpoints.smallerOrEqual("sm");
 
-type CropBoxData = {
-  width: number;
-  height: number;
-  top: number;
-  left: number;
+const syncCropBoxToInput = () => {
+  const { width, height, top, left } = cropper.value.getCropBoxData();
+  customCropWidth.value = width;
+  customCropHeight.value = height;
+  customCropTop.value = top;
+  customCropLeft.value = left;
 };
 
-const syncCropBoxAndInput = (cropBoxData: CropBoxData) => {
-  const { width, height, top, left } = cropBoxData;
-  customCropWidth.value = Math.round(width);
-  customCropHeight.value = Math.round(height);
-  customCropTop.value = Math.round(top);
-  customCropLeft.value = Math.round(left);
+const syncInputToCropBox = () => {
   cropper.value.setCropBoxData({
-    width: Math.round(width),
-    height: Math.round(height),
-    top: Math.round(top),
-    left: Math.round(left),
+    width: customCropWidth.value,
+    height: customCropHeight.value,
+    top: customCropTop.value,
+    left: customCropLeft.value,
   });
 };
 
@@ -96,9 +92,9 @@ watch([selectedAspectRatio, customRatioWidth, customRatioHeight], ([selectedRati
   } else {
     cropper.value.setAspectRatio(selectedRatio);
   }
-  const cropBoxData = cropper.value.getCropBoxData();
-  syncCropBoxAndInput(cropBoxData);
+  syncInputToCropBox();
 });
+
 watch(isCropperLocked, () => {
   if (isCropperLocked.value) {
     cropper.value.disable();
@@ -108,8 +104,7 @@ watch(isCropperLocked, () => {
 });
 
 const onCropperReady = () => {
-  const cropBoxData = cropper.value.getCropBoxData();
-  syncCropBoxAndInput(cropBoxData);
+  syncCropBoxToInput();
 };
 
 const onCropResize = (e: any) => {
@@ -117,74 +112,37 @@ const onCropResize = (e: any) => {
   if (!cropBoxData) {
     return;
   }
-  syncCropBoxAndInput(cropBoxData);
-};
-
-const calcHeightFromWidth = (width: number, cropBoxData: CropBoxData) => {
-  if (selectedAspectRatio.value === "Custom") {
-    return width / (customRatioWidth.value / customRatioHeight.value);
-  } else if (selectedAspectRatio.value === -1) {
-    return cropBoxData.height;
-  } else {
-    return width / selectedAspectRatio.value;
-  }
-};
-
-const calcWidthFromHeight = (height: number, cropBoxData: CropBoxData) => {
-  if (selectedAspectRatio.value === "Custom") {
-    return height * (customRatioWidth.value / customRatioHeight.value);
-  } else if (selectedAspectRatio.value === -1) {
-    return cropBoxData.width;
-  } else {
-    return height * selectedAspectRatio.value;
-  }
+  syncCropBoxToInput();
 };
 
 watch(customCropWidth, (value, oldValue) => {
   if (value === oldValue) {
     return;
   }
-  const cropBoxData = cropper.value.getCropBoxData();
-
-  syncCropBoxAndInput({
-    ...cropBoxData,
-    width: value,
-    height: calcHeightFromWidth(value, cropBoxData),
-  });
+  syncInputToCropBox();
+  syncCropBoxToInput();
 });
 
 watch(customCropHeight, (value, oldValue) => {
   if (value === oldValue) {
     return;
   }
-  const cropBoxData = cropper.value.getCropBoxData();
-  syncCropBoxAndInput({
-    ...cropBoxData,
-    height: value,
-    width: calcWidthFromHeight(value, cropBoxData),
-  });
+  syncInputToCropBox();
+  syncCropBoxToInput();
 });
 
 watch(customCropTop, (value, oldValue) => {
   if (value === oldValue) {
     return;
   }
-  const cropBoxData = cropper.value.getCropBoxData();
-  syncCropBoxAndInput({
-    ...cropBoxData,
-    top: value,
-  });
+  syncInputToCropBox();
 });
 
 watch(customCropLeft, (value, oldValue) => {
   if (value === oldValue) {
     return;
   }
-  const cropBoxData = cropper.value.getCropBoxData();
-  syncCropBoxAndInput({
-    ...cropBoxData,
-    left: value,
-  });
+  syncInputToCropBox();
 });
 
 const onChangeInput = async (e: Event) => {
@@ -207,11 +165,11 @@ const zoom = (ratio: number) => {
 
 const move = (offsetX: number, offsetY: number) => {
   const cropBoxData = cropper.value.getCropBoxData();
-  syncCropBoxAndInput({
-    ...cropBoxData,
+  cropper.value.setCropBoxData({
     left: cropBoxData.left + offsetX,
     top: cropBoxData.top + offsetY,
   });
+  syncCropBoxToInput();
 };
 
 const save = () => {
@@ -228,6 +186,7 @@ const save = () => {
 
 const reset = () => {
   cropper.value.reset();
+  syncCropBoxToInput();
 };
 
 const buttonSideWidth = computed(() => {
@@ -236,7 +195,6 @@ const buttonSideWidth = computed(() => {
   }
   return 44;
 });
-const buttonSideWidthPixel = computed(() => buttonSideWidth.value + "px");
 
 const moveUp = () => {
   move(0, -1);
