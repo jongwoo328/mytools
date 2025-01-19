@@ -170,16 +170,16 @@ const onCompleteLottie = () => {
           }"
         />
       </div>
+      <Vue3Lottie
+        v-if="showLottie"
+        :auto-play="true"
+        ref="lottieAnimation"
+        class="position-absolute animation"
+        :loop="false"
+        :animation-data="LottieCongrat"
+        @on-complete="onCompleteLottie"
+      />
     </ClientOnly>
-    <Vue3Lottie
-      v-if="showLottie"
-      :auto-play="true"
-      ref="lottieAnimation"
-      class="position-absolute animation"
-      :loop="false"
-      :animation-data="LottieCongrat"
-      @on-complete="onCompleteLottie"
-    />
   </div>
 </template>
 
