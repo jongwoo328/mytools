@@ -2,7 +2,7 @@
 import eslintPlugin from "@nabla/vite-plugin-eslint";
 import fs from "fs";
 import Lara from "@primevue/themes/lara";
-import defaultOptions from "@primevue/core/config";
+import { defaultOptions } from "@primevue/core/config";
 import { definePreset } from "@primeuix/styled";
 
 const siteUrl = "https://tools.jongwoo.me";
