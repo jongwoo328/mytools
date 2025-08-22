@@ -66,11 +66,11 @@ onMounted(() => {
 
 <style scoped lang="scss">
 #renderedMarkdown {
-  &:deep(img) {
+  :deep(img) {
     max-width: 100%;
   }
 
-  &:deep(table) {
+  :deep(table) {
     & {
       margin-bottom: 1rem;
       width: 100%;
@@ -96,7 +96,7 @@ onMounted(() => {
     }
   }
 
-  &:deep(blockquote) {
+  :deep(blockquote) {
     & {
       margin: 20px 0;
       padding: 20px;
@@ -120,49 +120,41 @@ onMounted(() => {
     }
   }
 
-  &:deep {
-    /* 헤딩 공통 스타일 */
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      color: #333;
-      margin-top: 20px;
-      margin-bottom: 10px;
-    }
-
-    h1 {
-      font-size: 2.5em;
-      font-weight: bold;
-    }
-
-    h2 {
-      font-size: 2em;
-    }
-
-    h3 {
-      font-size: 1.75em;
-    }
-
-    h4 {
-      font-size: 1.5em;
-      color: #555;
-    }
-
-    h5 {
-      font-size: 1.25em;
-      color: #777;
-    }
-
-    h6 {
-      font-size: 1em;
-      color: #999;
-    }
+  :deep(h1, h2, h3, h4, h5, h6) {
+    color: #333;
+    margin-top: 20px;
+    margin-bottom: 10px;
   }
 
-  &:deep(.task-list-item) {
+  :deep(h1) {
+    font-size: 2.5em;
+    font-weight: bold;
+  }
+
+  :deep(h2) {
+    font-size: 2em;
+  }
+
+  :deep(h3) {
+    font-size: 1.75em;
+  }
+
+  :deep(h4) {
+    font-size: 1.5em;
+    color: #555;
+  }
+
+  :deep(h5) {
+    font-size: 1.25em;
+    color: #777;
+  }
+
+  :deep(h6) {
+    font-size: 1em;
+    color: #999;
+  }
+
+  :deep(.task-list-item) {
     list-style-type: none;
 
     input[type="checkbox"] {
@@ -177,7 +169,7 @@ onMounted(() => {
 
 .dark-mode {
   #renderedMarkdown {
-    &:deep(table) {
+    :deep(table) {
       th,
       td {
         border-color: #333;
@@ -197,7 +189,7 @@ onMounted(() => {
       }
     }
 
-    &:deep(blockquote) {
+    :deep(blockquote) {
       border-left-color: #666;
       color: #444;
 
@@ -213,15 +205,8 @@ onMounted(() => {
       }
     }
 
-    &:deep {
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        color: #ddd;
-      }
+    :deep(h1, h2, h3, h4, h5, h6) {
+      color: #ddd;
     }
   }
 }

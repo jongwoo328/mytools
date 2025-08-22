@@ -1,5 +1,5 @@
-import ConvertableColor from "~/models/interfaces/ConvertableColor";
-import { RgbColorValue } from "~/types/color";
+import type ConvertableColor from "~/models/interfaces/ConvertableColor";
+import type { RgbColorValue } from "~/types/color";
 
 export default class RgbColor implements ConvertableColor {
   public readonly red: number;

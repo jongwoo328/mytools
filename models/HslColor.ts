@@ -1,5 +1,5 @@
-import ConvertableColor from "~/models/interfaces/ConvertableColor";
-import { HslColorValue } from "~/types/color";
+import type ConvertableColor from "~/models/interfaces/ConvertableColor";
+import type { HslColorValue } from "~/types/color";
 import RgbColor from "~/models/RgbColor";
 
 export default class HslColor implements ConvertableColor {
