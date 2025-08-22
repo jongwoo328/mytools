@@ -74,7 +74,6 @@
     "uuid": "^11.0.5",
     "vue-codemirror": "^6.1.1",
     "vue-cropperjs": "^5.0.0",
-    "vue-json-pretty": "^2.4.0",
-    "vue3-lottie": "^3.3.1"
+    "vue-json-pretty": "^2.4.0"
   }
 }
