@@ -4,6 +4,7 @@ import fs from "fs";
 import Lara from "@primevue/themes/lara";
 import { defaultOptions } from "@primevue/core/config";
 import { definePreset } from "@primeuix/styled";
+import tailwindcss from "@tailwindcss/vite";
 
 const siteUrl = "https://tools.jongwoo.me";
 
@@ -131,7 +132,7 @@ export default defineNuxtConfig({
   site: { url: siteUrl },
 
   vite: {
-    plugins: [eslintPlugin()],
+    plugins: [eslintPlugin(), tailwindcss()],
   },
 
   webVitals: {
@@ -151,7 +152,7 @@ export default defineNuxtConfig({
   },
 
   css: [
-    "@/assets/styles/main.scss",
+    "@/assets/styles/main.css",
     "primeicons/primeicons.css",
     "vue-json-pretty/lib/styles.css",
     "cropperjs/dist/cropper.css",
