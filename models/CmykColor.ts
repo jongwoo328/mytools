@@ -1,6 +1,6 @@
-import ConvertableColor from "~/models/interfaces/ConvertableColor";
+import type ConvertableColor from "~/models/interfaces/ConvertableColor";
 import RgbColor from "~/models/RgbColor";
-import { CmykColorValue } from "~/types/color";
+import type { CmykColorValue } from "~/types/color";
 
 export default class CmykColor implements ConvertableColor {
   public readonly cyan: number;
