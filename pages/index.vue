@@ -105,12 +105,6 @@ const availableTools: AvailableTool[] = [
     description: t("index.tools.markdown_viewer.description"),
     tags: [Tags.Viewer],
   },
-  {
-    title: t("index.tools.date_time_calculator.title"),
-    router: localePath("/calculator/date-time"),
-    description: t("index.tools.date_time_calculator.description"),
-    tags: [Tags.Calculator],
-  },
 ];
 
 const toolFilter = reactive({
