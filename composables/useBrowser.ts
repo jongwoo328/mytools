@@ -1,5 +1,6 @@
-import { computed, ComputedRef } from "vue";
-import { UnionFromAsConst } from "~/utils/type";
+import { computed } from "vue";
+import type { ComputedRef } from "vue";
+import type { UnionFromAsConst } from "~/utils/type";
 
 export const Browser = {
   IE: "IE",

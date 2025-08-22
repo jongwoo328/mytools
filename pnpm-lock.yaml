@@ -181,7 +181,7 @@ importers:
         specifier: ^1.77.8
         version: 1.90.0
       typescript:
-        specifier: ^5.7.3
+        specifier: ^5.9.2
         version: 5.9.2
       vue-eslint-parser:
         specifier: ^9.4.3
