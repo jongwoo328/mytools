@@ -101,21 +101,21 @@ watch(logicalOperatorNewLine, (newValue) => {
     <Panel toggleable>
       <template #header>{{ t("formatter.sql.result_list.advanced_setting.header_text") }}</template>
       <template #default>
-        <div class="row">
-          <div class="col col-12 col-md-6 col-xl-4 mb-1 items-center form-col">
+        <div class="grid grid-cols-12">
+          <div class="col-span-full md:col-span-6 xl:col-span-4 mb-1 items-center form-col">
             <div class="h-full justify-between flex">
-              <label for="useTabs" class="align-self-center">
+              <label for="useTabs" class="self-center">
                 {{ t("formatter.sql.result_list.advanced_setting.use_tabs.label") }}
               </label>
-              <ToggleSwitch id="useTabs" v-model:model-value="useTabs" class="align-self-center" />
+              <ToggleSwitch id="useTabs" v-model:model-value="useTabs" class="self-center" />
             </div>
           </div>
-          <div class="col col-12 col-md-6 col-xl-4 mb-1 items-center form-col">
-            <div class="flex h-full justify-between row form-col">
-              <label for="tabWidth" class="align-self-center col-6">
+          <div class="col-span-full md:col-span-6 xl:col-span-4 mb-1 items-center form-col">
+            <div class="flex h-full justify-between form-col">
+              <label for="tabWidth" class="self-center w-1/2">
                 {{ t("formatter.sql.result_list.advanced_setting.tab_width.label") }}
               </label>
-              <div class="col-6 h-full">
+              <div class="w-1/2 h-full">
                 <InputNumber
                   id="tabWidth"
                   v-model:model-value="tabWidth"
@@ -126,12 +126,12 @@ watch(logicalOperatorNewLine, (newValue) => {
               </div>
             </div>
           </div>
-          <div class="col col-12 col-md-6 col-xl-4 mb-1 items-center form-col">
-            <div class="flex h-full justify-between row form-col">
-              <label for="keywordCase" class="align-self-center col-6">
+          <div class="col-span-full md:col-span-6 xl:col-span-4 mb-1 items-center form-col">
+            <div class="flex h-full justify-between form-col">
+              <label for="keywordCase" class="self-center w-1/2">
                 {{ t("formatter.sql.result_list.advanced_setting.keyword.label") }}
               </label>
-              <div class="col-6 h-full">
+              <div class="w-1/2 h-full">
                 <Select
                   id="keywordCase"
                   v-model:model-value="keywordCase"
@@ -144,12 +144,12 @@ watch(logicalOperatorNewLine, (newValue) => {
               </div>
             </div>
           </div>
-          <div class="col col-12 col-md-6 col-xl-4 mb-1 items-center form-col">
-            <div class="flex h-full justify-between row form-col">
-              <label for="indent" class="align-self-center col-6">
+          <div class="col-span-full md:col-span-6 xl:col-span-4 mb-1 items-center form-col">
+            <div class="flex h-full justify-between form-col">
+              <label for="indent" class="self-center w-1/2">
                 {{ t("formatter.sql.result_list.advanced_setting.indent.label") }}
               </label>
-              <div class="col-6 h-full">
+              <div class="w-1/2 h-full">
                 <Select
                   id="indent"
                   v-model:model-value="indentation"
@@ -162,12 +162,12 @@ watch(logicalOperatorNewLine, (newValue) => {
               </div>
             </div>
           </div>
-          <div class="col col-12 col-md-6 col-xl-4 mb-1 items-center form-col">
-            <div class="flex h-full justify-between row form-col">
-              <label for="newline" class="align-self-center col-6">
+          <div class="col-span-full md:col-span-6 xl:col-span-4 mb-1 items-center form-col">
+            <div class="flex h-full justify-between form-col">
+              <label for="newline" class="self-center w-1/2">
                 {{ t("formatter.sql.result_list.advanced_setting.and_or_or_newline.label") }}
               </label>
-              <div class="col-6 h-full">
+              <div class="w-1/2 h-full">
                 <Select
                   id="newline"
                   v-model:model-value="logicalOperatorNewLine"
