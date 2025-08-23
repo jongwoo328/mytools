@@ -145,8 +145,8 @@ const filteredTools = computed(() => {
         v-model="isFormatter"
         onIcon="pi pi-check"
         offIcon="pi pi-times"
-        :on-label="t('index.filter.formatter.on')"
-        :off-label="t('index.filter.formatter.off')"
+        :on-label="t('index.filter.formatter.on').toString()"
+        :off-label="t('index.filter.formatter.off').toString()"
         class="filter-select-button"
         :class="[{ 'filter-selected-formatter': isFormatter }]"
       />
@@ -154,8 +154,8 @@ const filteredTools = computed(() => {
         v-model="isConverter"
         onIcon="pi pi-check"
         offIcon="pi pi-times"
-        :on-label="t('index.filter.converter.on')"
-        :off-label="t('index.filter.converter.off')"
+        :on-label="t('index.filter.converter.on').toString()"
+        :off-label="t('index.filter.converter.off').toString()"
         class="filter-select-button"
         :class="[{ 'filter-selected-converter': isConverter }]"
       />
@@ -163,8 +163,8 @@ const filteredTools = computed(() => {
         v-model="isViewer"
         onIcon="pi pi-check"
         offIcon="pi pi-times"
-        :on-label="t('index.filter.viewer.on')"
-        :off-label="t('index.filter.viewer.off')"
+        :on-label="t('index.filter.viewer.on').toString()"
+        :off-label="t('index.filter.viewer.off').toString()"
         class="filter-select-button"
         :class="[{ 'filter-selected-viewer': isViewer }]"
       />
@@ -172,8 +172,8 @@ const filteredTools = computed(() => {
         v-model="isCalculator"
         onIcon="pi pi-check"
         offIcon="pi pi-times"
-        :on-label="t('index.filter.calculator.on')"
-        :off-label="t('index.filter.calculator.off')"
+        :on-label="t('index.filter.calculator.on').toString()"
+        :off-label="t('index.filter.calculator.off').toString()"
         class="filter-select-button"
         :class="[{ 'filter-selected-calculator': isCalculator }]"
       />
