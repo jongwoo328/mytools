@@ -39,8 +39,8 @@ importers:
         specifier: ^6.0.1
         version: 6.0.2
       diff:
-        specifier: ^7.0.0
-        version: 7.0.0
+        specifier: ^8.0.2
+        version: 8.0.2
       highlight.js:
         specifier: ^11.9.0
         version: 11.11.1
@@ -81,7 +81,7 @@ importers:
         specifier: ^4.3.7
         version: 4.3.7(vue@3.5.19(typescript@5.9.2))
       sql-formatter:
-        specifier: ^15.4.9
+        specifier: ^15.6.6
         version: 15.6.6
       tailwindcss:
         specifier: ^4.1.12
@@ -129,9 +129,6 @@ importers:
       '@types/aos':
         specifier: ^3.0.4
         version: 3.0.7
-      '@types/diff':
-        specifier: ^7.0.0
-        version: 7.0.2
       '@types/luxon':
         specifier: ^3.4.1
         version: 3.7.1
@@ -1915,9 +1912,6 @@ packages:
   '@types/aos@3.0.7':
     resolution: {integrity: sha512-sEhyFqvKauUJZDbvAB3Pggynrq6g+2PS4XB3tmUr+mDL1gfDJnwslUC4QQ7/l8UD+LWpr3RxZVR/rHoZrLqZVg==}
 
-  '@types/diff@7.0.2':
-    resolution: {integrity: sha512-JSWRMozjFKsGlEjiiKajUjIJVKuKdE3oVy2DNtK+fUo8q82nhFZ2CPQwicAIkXrofahDXrWJ7mjelvZphMS98Q==}
-
   '@types/eslint@9.6.1':
     resolution: {integrity: sha512-FXx2pKgId/WyYo2jXw63kk7/+TY7u7AziEJxJAnSFzHlqTAS3Ync6SvgYAN/k4/PQpnnVuzoMuVnByKK2qp0ag==}
 
@@ -2996,10 +2990,6 @@ packages:
 
   devalue@5.1.1:
     resolution: {integrity: sha512-maua5KUiapvEwiEAe+XnlZ3Rh0GD+qI1J/nb9vrJc3muPXvcF/8gXYTWF76+5DAqHyDUtOIImEuo0YKE9mshVw==}
-
-  diff@7.0.0:
-    resolution: {integrity: sha512-PJWHUb1RFevKCwaFA9RlG5tCd+FO5iRh9A8HEtkmBH2Li03iJriB6m6JIN4rGz3K3JLawI7/veA1xzRKP6ISBw==}
-    engines: {node: '>=0.3.1'}
 
   diff@8.0.2:
     resolution: {integrity: sha512-sSuxWU5j5SR9QQji/o2qMvqRNYRDOcBTgsJ/DeCf4iSN4gW+gNMXM7wFIP+fdXZxoNiAnHUTGjCr+TSWXdRDKg==}
@@ -7938,8 +7928,6 @@ snapshots:
 
   '@types/aos@3.0.7': {}
 
-  '@types/diff@7.0.2': {}
-
   '@types/eslint@9.6.1':
     dependencies:
       '@types/estree': 1.0.8
@@ -9177,8 +9165,6 @@ snapshots:
       - supports-color
 
   devalue@5.1.1: {}
-
-  diff@7.0.0: {}
 
   diff@8.0.2: {}
 
