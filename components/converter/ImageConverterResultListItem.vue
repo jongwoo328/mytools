@@ -67,7 +67,7 @@ const onClickDeleteResult = () => {
             <img loading="lazy" style="object-fit: contain" :src="result.objectURL" alt="" />
           </div>
         </div>
-        <div class="col-span-full lg:col-span-4 py-3 lg:py-0 image-result-control">
+        <div class="col-span-full lg:col-span-4 py-3 lg:py-0 flex flex-col justify-between image-result-control">
           <div class="flex w-full flex-col justify-start" style="flex: 1">
             <span class="fs-5">{{ t("converter.image.result_list.file_name_label") }}</span>
             <div class="flex">
@@ -123,10 +123,6 @@ const onClickDeleteResult = () => {
 }
 
 .image-result-control {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
   & > button.download {
     min-height: 48px;
   }
@@ -144,9 +140,6 @@ const onClickDeleteResult = () => {
   }
 
   .image-result-control {
-    display: flex;
-    justify-content: space-between;
-
     & > div {
       width: 70%;
     }

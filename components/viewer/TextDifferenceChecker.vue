@@ -152,7 +152,7 @@ watchDebounced(
           </div>
         </div>
         <div class="col-span-full py-2">
-          <div class="diff-viewer-wrap">
+          <div class="overflow-x-auto min-h-[83px] p-[5px] border border-solid border-[#ced4da]">
             <TextDifferenceCheckerViewer :changes="diffResult" :diff-type="diffType" />
           </div>
         </div>
@@ -161,11 +161,4 @@ watchDebounced(
   </div>
 </template>
 
-<style scoped lang="scss">
-.diff-viewer-wrap {
-  border: 1px solid #ced4da;
-  min-height: 83px;
-  overflow-x: auto;
-  padding: 5px;
-}
-</style>
+<style scoped lang="scss"></style>
