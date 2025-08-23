@@ -43,13 +43,13 @@ const onClickDeleteResult = () => {
 <template>
   <Card data-aos="fade-up" data-aos-once="true" data-aos-anchor-placement="bottom" class="pt-5 mb-2">
     <template #header>
-      <div class="d-flex justify-content-between px-4" style="height: 32px">
-        <div class="d-flex align-items-center px-2">
-          <span class="fw-bold">{{ `# ${props.index}` }}</span>
+      <div class="flex justify-between px-4" style="height: 32px">
+        <div class="flex items-center px-2">
+          <span class="font-bold">{{ `# ${props.index}` }}</span>
         </div>
         <div>
           <Button
-            class="me-1 px-2 h-100"
+            class="mr-1 px-2 h-full"
             severity="danger"
             size="small"
             style="width: 32px"
@@ -61,41 +61,41 @@ const onClickDeleteResult = () => {
       </div>
     </template>
     <template #content>
-      <div class="row image-result-item">
-        <div class="h-100 px-3 col col-12 col-lg-8">
-          <div class="image-result-display w-100 h-100 d-flex justify-content-center align-items-center">
+      <div class="grid grid-cols-12 image-result-item">
+        <div class="h-full px-3 col-span-full lg:col-span-8">
+          <div class="image-result-display w-full h-full flex justify-center items-center">
             <img loading="lazy" style="object-fit: contain" :src="result.objectURL" alt="" />
           </div>
         </div>
-        <div class="col col-12 col-lg-4 py-3 py-lg-0 image-result-control">
-          <div class="d-flex w-100 flex-column justify-content-start" style="flex: 1">
+        <div class="col-span-full lg:col-span-4 py-3 lg:py-0 flex flex-col justify-between image-result-control">
+          <div class="flex w-full flex-col justify-start" style="flex: 1">
             <span class="fs-5">{{ t("converter.image.result_list.file_name_label") }}</span>
-            <div class="d-flex">
+            <div class="flex">
               <InputText
                 v-model:model-value="downloadFileName"
                 :placeholder="downloadFileNamePlaceholder"
                 style="flex: 1"
               />
-              <span class="align-self-center" style="font-size: 1.2rem; padding-left: 10px">
+              <span class="self-center" style="font-size: 1.2rem; padding-left: 10px">
                 {{ "." + props.result.type.split("/").at(-1) }}
               </span>
             </div>
           </div>
           <Button
-            class="mt-3 mt-lg-0 mb-2 d-block"
+            class="mt-3 lg:mt-0 mb-2 block"
             @click="copyAsBase64"
             :disabled="copyingBase64"
             severity="secondary"
             style="height: 44px"
           >
             <template v-if="copyingBase64">
-              <ProgressSpinner class="h-100" strokeWidth="10" />
+              <ProgressSpinner class="h-full" strokeWidth="10" />
             </template>
             <template v-else>
               {{ t("converter.image.result_list.actions.copy_as_base64_btn_label") }}
             </template>
           </Button>
-          <Button class="d-block" @click="onClickDownload" severity="primary" style="height: 44px">
+          <Button class="block" @click="onClickDownload" severity="primary" style="height: 44px">
             {{ t("converter.image.result_list.actions.download_btn_label") }}
           </Button>
         </div>
@@ -123,10 +123,6 @@ const onClickDeleteResult = () => {
 }
 
 .image-result-control {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
   & > button.download {
     min-height: 48px;
   }
@@ -144,9 +140,6 @@ const onClickDeleteResult = () => {
   }
 
   .image-result-control {
-    display: flex;
-    justify-content: space-between;
-
     & > div {
       width: 70%;
     }

@@ -136,17 +136,17 @@ watch([hslHue, hslSaturation, hslLightness], () => {
   <ToolPageLayout :title="t('converter.color.title')" :description="t('converter.color.description')">
     <Card>
       <template #content>
-        <div class="row m-0">
+        <div class="m-0">
           <Tabs :value="tabIndex">
             <TabList>
               <Tab v-for="tab in tabOptions" :key="tab.value" :value="tab.value">
                 {{ tab.label }}
               </Tab>
             </TabList>
-            <TabPanels>
+            <TabPanels class="px-0">
               <TabPanel value="hex">
-                <ColorPicker v-model="hexPickedColor" class="w-100" :pt="{ preview: { class: 'color-picker' } }" />
-                <div class="row mt-2">
+                <ColorPicker v-model="hexPickedColor" class="w-full" :pt="{ preview: { class: 'color-picker' } }" />
+                <div class="mt-2">
                   <InputGroup>
                     <InputGroupAddon> # </InputGroupAddon>
                     <InputText class="prevent-auto-zoom" v-model="hexCode" :class="{ 'p-invalid': !isHexCodeValid }" />
@@ -155,8 +155,8 @@ watch([hslHue, hslSaturation, hslLightness], () => {
                 <ColorConvertResult class="mt-4" :hex="hexPickedColor" />
               </TabPanel>
               <TabPanel value="rgb">
-                <ColorPicker v-model="rgbPickedColor" class="w-100" :pt="{ preview: { class: 'color-picker' } }" />
-                <div class="row mt-2">
+                <ColorPicker v-model="rgbPickedColor" class="w-full" :pt="{ preview: { class: 'color-picker' } }" />
+                <div class="mt-2">
                   <InputGroup>
                     <InputGroupAddon> R </InputGroupAddon>
                     <InputNumber class="prevent-auto-zoom" :min="0" :max="255" v-model="rgbRed" />
@@ -173,8 +173,8 @@ watch([hslHue, hslSaturation, hslLightness], () => {
                 <ColorConvertResult class="mt-4" :hex="rgbPickedColor" />
               </TabPanel>
               <TabPanel value="cmyk">
-                <ColorPicker v-model="cmykPickedColor" class="w-100" :pt="{ preview: { class: 'color-picker' } }" />
-                <div class="row mt-2">
+                <ColorPicker v-model="cmykPickedColor" class="w-full" :pt="{ preview: { class: 'color-picker' } }" />
+                <div class="mt-2">
                   <InputGroup>
                     <InputGroupAddon> C </InputGroupAddon>
                     <InputNumber :min="0" :max="100" class="prevent-auto-zoom" v-model="cmykCyan" />
@@ -199,8 +199,8 @@ watch([hslHue, hslSaturation, hslLightness], () => {
                 <ColorConvertResult class="mt-4" :hex="cmykPickedColor" />
               </TabPanel>
               <TabPanel value="hsl">
-                <ColorPicker v-model="hslPickedColor" class="w-100" :pt="{ preview: { class: 'color-picker' } }" />
-                <div class="row mt-2">
+                <ColorPicker v-model="hslPickedColor" class="w-full" :pt="{ preview: { class: 'color-picker' } }" />
+                <div class="mt-2">
                   <InputGroup>
                     <InputGroupAddon> H </InputGroupAddon>
                     <InputNumber :min="0" :max="360" class="prevent-auto-zoom" v-model="hslHue" />

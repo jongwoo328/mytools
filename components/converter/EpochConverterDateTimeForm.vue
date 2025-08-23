@@ -66,34 +66,34 @@ const setNow = () => {
 </script>
 
 <template>
-  <div class="row">
-    <div class="col col-12 col-lg-5">
-      <div class="w-100 mb-1 d-flex justify-content-between">
+  <div class="grid grid-cols-12">
+    <div class="col-span-full lg:col-span-5">
+      <div class="w-full mb-1 flex justify-between">
         <Button @click="setNow" severity="secondary" size="small">
           {{ t("converter.epoch.time_to_epoch.set_now_btn_label") }}
         </Button>
-        <div class="d-flex align-items-center">
+        <div class="flex items-center">
           <Checkbox v-model:model-value="useMilliseconds" binary id="useMilliseconds" />
-          <label class="ms-2" for="useMilliseconds">
+          <label class="ml-1" for="useMilliseconds">
             {{ t("converter.epoch.time_to_epoch.options.use_milliseconds") }}
           </label>
         </div>
       </div>
-      <div class="row">
-        <div class="col col-12" :class="{ 'col-xl-5': useMilliseconds, 'col-xl-6': !useMilliseconds }">
-          <DatePicker v-model:model-value="dateInput" class="w-100 h-100 prevent-auto-zoom" date-format="yy-mm-dd" />
+      <div class="grid grid-cols-12">
+        <div class="col-span-full" :class="{ 'xl:col-span-5': useMilliseconds, 'xl:col-span-6': !useMilliseconds }">
+          <DatePicker v-model:model-value="dateInput" class="w-full h-full prevent-auto-zoom" date-format="yy-mm-dd" />
         </div>
         <div
-          class="col mt-2 mt-xl-0"
+          class="col-span-full mt-2 mt-xl-0"
           :class="{
-            'col-12': !useMilliseconds,
-            'col-6': useMilliseconds,
-            'col-xl-4': useMilliseconds,
-            'col-xl-6': !useMilliseconds,
+            'col-span-12': !useMilliseconds,
+            'col-span-6': useMilliseconds,
+            'xl:col-span-4': useMilliseconds,
+            'xl:col-span-6': !useMilliseconds,
           }"
         >
           <DatePicker
-            class="w-100 h-100 prevent-auto-zoom"
+            class="w-full h-full prevent-auto-zoom"
             time-only
             v-model:model-value="timeInput"
             hour-format="24"
@@ -102,36 +102,41 @@ const setNow = () => {
         </div>
         <div
           v-if="useMilliseconds"
-          class="col mt-2 mt-xl-0"
+          class="col-span-full mt-2 mt-xl-0"
           :class="{
-            'col-6': useMilliseconds,
-            'col-12': !useMilliseconds,
-            'col-xl-3': useMilliseconds,
-            'col-xl-6': !useMilliseconds,
+            'col-span-6': useMilliseconds,
+            'col-span-full': !useMilliseconds,
+            'xl:col-span-3': useMilliseconds,
+            'xl:col-span-6': !useMilliseconds,
           }"
         >
           <InputGroup class="">
-            <InputNumber :min="0" :max="999" input-class="w-100 prevent-auto-zoom" v-model:model-value="milliseconds" />
+            <InputNumber
+              :min="0"
+              :max="999"
+              input-class="w-full prevent-auto-zoom"
+              v-model:model-value="milliseconds"
+            />
             <InputGroupAddon>ms</InputGroupAddon>
           </InputGroup>
         </div>
-        <div class="col col-12 mt-2">
+        <div class="col-span-full mt-2">
           <Select
             :options="offsetList"
             option-value="value"
             option-label="label"
             v-model:model-value="offset"
-            class="w-100 prevent-auto-zoom"
+            class="w-full prevent-auto-zoom"
           />
         </div>
       </div>
     </div>
-    <div class="col col-12 col-lg-2 d-flex justify-content-center align-items-center">
-      <Button class="d-none d-lg-block" icon="pi pi-angle-right" outlined disable />
-      <Button style="height: 35px" class="d-lg-none my-4" icon="pi pi-angle-down" outlined disabled />
+    <div class="col-span-full lg:col-span-2 flex justify-center items-center">
+      <Button class="hidden lg:block h-[40px]" icon="pi pi-angle-right" outlined disable />
+      <Button class="lg:hidden my-4" icon="pi pi-angle-down" outlined disabled />
     </div>
-    <div class="col col-12 col-lg-5">
-      <div class="d-flex w-100 epoch-time-config mb-1 justify-content-end">
+    <div class="col-span-full lg:col-span-5">
+      <div class="flex w-full epoch-time-config mb-1 justify-end">
         <div>
           <SelectButton
             :options="unitOptions"
@@ -142,12 +147,12 @@ const setNow = () => {
           />
         </div>
       </div>
-      <div class="row m-0 mt-2" style="height: 38px">
-        <span class="h-100 w-100 mb-0 d-flex align-items-center epoch-time ps-2 common-border-radius">
+      <div class="m-0 mt-2" style="height: 38px">
+        <span class="h-full w-full mb-0 flex items-center epoch-time pl-2 common-border-radius">
           {{ resultEpoch }}
         </span>
       </div>
-      <Button @click="onClickCopy" class="w-100 d-block mt-2">
+      <Button @click="onClickCopy" class="w-full block mt-2">
         {{ t("converter.epoch.time_to_epoch.copy_btn_label") }}
       </Button>
     </div>

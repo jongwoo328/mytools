@@ -117,20 +117,22 @@ const onClear = () => {
         <Panel toggleable>
           <template #header>{{ t("converter.csv_to_json.options.label") }}</template>
           <template #default>
-            <div class="row">
-              <div class="col col-12 col-lg-6 d-flex justify-content-between">
-                <label class="col col-6 align-self-center" for="">
+            <div class="grid grid-cols-2 gap-x-6">
+              <div class="col-span-full lg:col-span-1 flex justify-between">
+                <label class="w-1/2 self-center" for="">
                   {{ t("converter.csv_to_json.options.header_included.label") }}
                 </label>
-                <ToggleSwitch class="col col-6 align-self-center" v-model:model-value="headerIncluded" />
+                <div class="w-1/2">
+                  <ToggleSwitch class="self-center" v-model:model-value="headerIncluded" />
+                </div>
               </div>
-              <div class="col col-12 col-lg-6 d-flex justify-content-start mt-2">
-                <label class="col col-6 align-self-center" for="">
+              <div class="col-span-full lg:col-span-1 flex justify-start mt-2 lg:mt-0">
+                <label class="w-1/2 self-center" for="">
                   {{ t("converter.csv_to_json.options.encoding.label") }}
                 </label>
                 <Select
                   :options="encodingOptions"
-                  class="col col-6"
+                  class="w-1/2"
                   option-label="label"
                   option-value="value"
                   v-model:model-value="selectedEncoding"
@@ -139,22 +141,22 @@ const onClear = () => {
             </div>
           </template>
         </Panel>
-        <TabMenu class="mt-2 mb-3" :model="tabOptions" v-model:active-index="activeTabKey" />
+        <TabMenu class="mt-4 mb-3" :model="tabOptions" v-model:active-index="activeTabKey" />
         <div v-show="activeTabKey === 0">
           <Textarea
             auto-resize
             v-model:model-value="csvTextInput"
             style="min-height: 300px"
-            class="prevent-auto-zoom d-block w-100"
+            class="prevent-auto-zoom block w-full"
           />
-          <Button class="w-100 d-block mt-2" size="large" @click="parseFromText">
+          <Button class="w-full block mt-4" size="large" @click="parseFromText">
             {{ t("converter.csv_to_json.parse_btn_label") }}
           </Button>
         </div>
         <div v-show="activeTabKey === 1">
           <div
             style="min-height: 200px; border: 1px solid #ced4da"
-            class="d-flex flex-column justify-content-center align-items-center common-border-radius"
+            class="flex flex-col justify-center items-center common-border-radius"
           >
             <FileUpload
               :show-upload-button="false"
@@ -163,16 +165,16 @@ const onClear = () => {
               accept="text/csv"
               mode="basic"
               custom-upload
-              class="upload w-100 position-relative mb-2"
+              class="upload w-full relative mb-2"
               @select="onFileChange"
               @clear="onClear"
               :choose-label="t('converter.csv_to_json.input_file_btn_label')"
             />
           </div>
-          <span v-for="(error, idx) in parseFromFileErrors" :key="idx" class="d-block text-end text-danger">
+          <span v-for="(error, idx) in parseFromFileErrors" :key="idx" class="block text-end text-red-600">
             {{ error.message }}
           </span>
-          <Button class="w-100 d-block mt-2" size="large" @click="parseFromFile">
+          <Button class="w-full block mt-4" size="large" @click="parseFromFile">
             {{ t("converter.csv_to_json.parse_btn_label") }}
           </Button>
         </div>

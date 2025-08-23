@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 html,
 body {
   overscroll-behavior-y: none;
@@ -68,6 +70,4 @@ body {
   font-family: Monaco, Menlo, Consolas, Bitstream Vera Sans Mono, monospace !important;
 }
 
-@layer bootstrap, primevue;
-
-@import "bootstrap/dist/css/bootstrap.min.css" layer(bootstrap);
+@layer primevue;

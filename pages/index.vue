@@ -139,7 +139,7 @@ const filteredTools = computed(() => {
     {{ t("index.title") }}
   </PageHeading>
   <div class="mt-3">
-    <div class="d-flex flex-wrap justify-content-start gap-1">
+    <div class="flex flex-wrap justify-start gap-1">
       <ToggleButton
         size="small"
         v-model="isFormatter"
@@ -179,8 +179,8 @@ const filteredTools = computed(() => {
       />
     </div>
   </div>
-  <div class="row mt-3 gx-3 gy-3">
-    <div class="col col-12 col-md-6 col-xl-4" v-for="filteredTool in filteredTools" :key="filteredTool.title">
+  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 mt-6 gap-3">
+    <div class="w-full" v-for="filteredTool in filteredTools" :key="filteredTool.title">
       <FunctionListItem :tool="filteredTool"></FunctionListItem>
     </div>
   </div>

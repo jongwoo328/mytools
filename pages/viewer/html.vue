@@ -66,18 +66,18 @@ const codemirrorTheme = computed(() => {
   <ToolPageLayout :title="t('viewer.html.title')">
     <Card>
       <template #content>
-        <div class="row m-0 w-100">
-          <div class="col col-12 mb-3 px-0">
+        <div class="flex flex-wrap m-0 w-full">
+          <div class="w-full mb-3 px-0">
             <div class="html-view-wrap">
-              <iframe class="w-100 h-100" :srcdoc="htmlText" />
+              <iframe class="w-full h-full" :srcdoc="htmlText" />
             </div>
           </div>
-          <div class="col col-12 viewer-code-section px-0 common-border-radius">
-            <div class="h-100 html-input-wrap">
+          <div class="w-full viewer-code-section px-0 common-border-radius">
+            <div class="h-full html-input-wrap">
               <Codemirror
                 :extensions="[html(), codemirrorTheme]"
                 v-model="htmlText"
-                class="h-100 font-monospace-code prevent-auto-zoom"
+                class="h-full font-monospace-code prevent-auto-zoom"
               />
             </div>
           </div>

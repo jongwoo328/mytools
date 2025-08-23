@@ -82,20 +82,20 @@ const expandToggleLabel = computed(() =>
 <template>
   <ResultItem>
     <template #header>
-      <div class="d-flex justify-content-between px-4 mt-4" style="height: 32px">
-        <div class="d-flex align-items-center">
-          <span class="fw-bold">{{ `# ${props.index}` }}</span>
+      <div class="flex justify-between px-4 mt-4" style="height: 32px">
+        <div class="flex items-center">
+          <span class="font-bold">{{ `# ${props.index}` }}</span>
         </div>
         <div>
           <Button
             severity="danger"
-            class="p-0 me-1 h-100"
+            class="p-0 mr-1 h-full"
             icon="pi pi-trash"
             size="small"
             @click="onClickDeleteResult"
             style="width: 32px"
           />
-          <Button class="p-0 me-1 h-100" icon="pi pi-copy" size="small" @click="onClickCopy" style="width: 32px" />
+          <Button class="p-0 mr-1 h-full" icon="pi pi-copy" size="small" @click="onClickCopy" style="width: 32px" />
         </div>
       </div>
     </template>

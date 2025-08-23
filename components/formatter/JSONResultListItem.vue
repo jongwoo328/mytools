@@ -125,8 +125,8 @@ const clickActions: MenuItem[] = [
 <template>
   <ResultItem>
     <template #header>
-      <div style="height: 64px" class="px-4 pt-4 pb-2 d-flex justify-content-between align-items-center">
-        <span class="d-block fw-bold">
+      <div style="height: 64px" class="px-4 pt-4 pb-2 flex justify-between items-center">
+        <span class="block font-bold">
           {{ `# ${index}` }}
         </span>
         <Select
@@ -134,13 +134,13 @@ const clickActions: MenuItem[] = [
           option-value="value"
           :options="formatTypeOptions"
           size="small"
-          class="p-0 h-100 format-type-select"
+          class="p-0 format-type-select"
           v-model="formatType"
           :model="formatTypeOptions"
         />
       </div>
-      <div class="d-flex justify-content-end px-4" style="height: 32px">
-        <div class="d-flex gap-1">
+      <div class="flex justify-end px-4" style="height: 32px">
+        <div class="flex gap-1">
           <Button
             severity="danger"
             class="p-0"
@@ -170,14 +170,14 @@ const clickActions: MenuItem[] = [
             :menu-button-props="{ class: 'click-action-button' }"
             plain
           />
-          <div v-show="!isMobileOrTablet" class="h-100">
+          <div v-show="!isMobileOrTablet" class="h-full">
             <Button
               outlined
               :label="t('formatter.json.result_list.actions.copy_all')"
               size="small"
               icon="pi pi-copy"
               @click="onClickCopyAll"
-              class="py-1 px-2 me-1 h-100"
+              class="py-1 px-2 mr-1 h-full"
             />
             <Button
               outlined
@@ -185,7 +185,7 @@ const clickActions: MenuItem[] = [
               size="small"
               icon="pi pi-copy"
               @click="onClickCopyPath"
-              class="py-1 px-2 h-100 me-1"
+              class="py-1 px-2 h-full mr-1"
               :disabled="isSelectedEmpty || isFormatTypeMinified"
             />
             <Button
@@ -194,7 +194,7 @@ const clickActions: MenuItem[] = [
               size="small"
               icon="pi pi-copy"
               @click="onClickCopyKey"
-              class="py-1 px-2 h-100 me-1"
+              class="py-1 px-2 h-full mr-1"
               :disabled="isSelectedEmpty || isFormatTypeMinified"
             />
             <Button
@@ -203,7 +203,7 @@ const clickActions: MenuItem[] = [
               size="small"
               icon="pi pi-copy"
               @click="onClickSelectedNode"
-              class="py-1 px-2 h-100 me-1"
+              class="py-1 px-2 h-full mr-1"
               :disabled="isSelectedEmpty || isFormatTypeMinified"
             />
             <Button
@@ -212,7 +212,7 @@ const clickActions: MenuItem[] = [
               size="small"
               icon="pi pi-download"
               @click="download"
-              class="py-1 px-2 h-100"
+              class="py-1 px-2 h-full"
             />
           </div>
         </div>
@@ -247,7 +247,7 @@ const clickActions: MenuItem[] = [
           v-model="minifiedResult"
           disabled
           style="min-height: 400px; max-height: 650px"
-          class="text-black overflow-y-scroll prevent-auto-zoom font-monospace-code d-block w-100"
+          class="text-black overflow-y-scroll prevent-auto-zoom font-monospace-code block w-full"
         />
       </div>
     </template>

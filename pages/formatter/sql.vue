@@ -91,8 +91,8 @@ const onFormatButtonClick = () => {
     <Meta name="description" :content="t('formatter.sql.head.description')" />
   </Head>
   <ToolPageLayout :title="t('formatter.sql.title')">
-    <div class="mb-2 d-flex justify-content-between align-items-center">
-      <PageHeading class="d-inline-block m-0" :level="2" :size="6" weight="600">
+    <div class="mb-2 flex justify-between items-center">
+      <PageHeading class="inline-block m-0" :level="2" :size="6" weight="600">
         {{ t("formatter.sql.sql_input_label") }}
       </PageHeading>
       <Select
@@ -107,13 +107,13 @@ const onFormatButtonClick = () => {
       auto-resize
       v-model:model-value="sqlInput"
       style="min-height: 400px"
-      class="prevent-auto-zoom d-block w-100"
+      class="prevent-auto-zoom block w-full"
     />
     <div v-if="isSQLValid" style="height: 14px"></div>
-    <span v-else class="float-end text-danger">
+    <span v-else class="float-end text-red-600">
       {{ t("formatter.sql.sql_input_invalid_message") }}
     </span>
-    <Button class="mt-2 d-block w-100" :disabled="!isSQLValid" size="large" @click="onFormatButtonClick">
+    <Button class="mt-5 block w-full" :disabled="!isSQLValid" size="large" @click="onFormatButtonClick">
       {{ t("formatter.sql.sql_format_btn_label") }}
     </Button>
     <SQLResultList v-model:results="SQLFormatterResults" />

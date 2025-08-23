@@ -250,59 +250,59 @@ provide("updateMarkdownCheckbox", updateMarkdownCheckbox);
             {{ t("viewer.markdown.options.label") }}
           </template>
           <template #default>
-            <div class="row">
-              <div class="col col-12 col-lg-6 col-xxl-4 mt-2 row">
-                <div class="col col-6 align-self-center d-flex gap-2">
+            <div class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3">
+              <div class="col-span-1 mt-2 grid grid-cols-2 gap-2">
+                <div class="col-span-1 self-center flex gap-2">
                   <label for="useStrictCommonMark">
                     {{ t("viewer.markdown.options.use_strict_commonmark") }}
                   </label>
-                  <i v-tooltip.top="useStrictCommonMarkTooltip" class="pi pi-question-circle align-self-center"></i>
+                  <i v-tooltip.top="useStrictCommonMarkTooltip" class="pi pi-question-circle self-center"></i>
                 </div>
-                <div class="col col-6 d-flex justify-content-center">
+                <div class="col-span-1 flex justify-center">
                   <ToggleSwitch
                     input-id="useStrictCommonMark"
-                    class="align-self-center"
+                    class="self-center"
                     v-model:model-value="useStrictCommonMark"
                   />
                 </div>
               </div>
-              <div class="col col-12 col-lg-6 col-xxl-4 mt-2 row">
-                <div class="col col-6 align-self-center d-flex gap-2">
+              <div class="col-span-1 mt-2 grid grid-cols-2 gap-2">
+                <div class="col-span-1 self-center flex gap-2">
                   <label for="useHtml">
                     {{ t("viewer.markdown.options.use_html") }}
                   </label>
-                  <i v-tooltip.top="useHtmlTooltip" class="pi pi-question-circle align-self-center" />
+                  <i v-tooltip.top="useHtmlTooltip" class="pi pi-question-circle self-center" />
                 </div>
-                <div class="col col-6 d-flex justify-content-center">
-                  <ToggleSwitch input-id="useHtml" class="align-self-center" v-model:model-value="useHtml" />
+                <div class="col-span-1 flex justify-center">
+                  <ToggleSwitch input-id="useHtml" class="self-center" v-model:model-value="useHtml" />
                 </div>
               </div>
-              <div class="col col-12 col-lg-6 col-xxl-4 mt-2 row">
-                <div class="col col-6 align-self-center d-flex gap-2">
+              <div class="col-span-1 mt-2 grid grid-cols-2 gap-2">
+                <div class="col-span-1 self-center flex gap-2">
                   <label for="useLinkify">
                     {{ t("viewer.markdown.options.use_linkify") }}
                   </label>
-                  <i v-tooltip.top="useLinkifyTooltip" class="pi pi-question-circle align-self-center" />
+                  <i v-tooltip.top="useLinkifyTooltip" class="pi pi-question-circle self-center" />
                 </div>
-                <div class="col col-6 d-flex justify-content-center">
-                  <ToggleSwitch input-id="useLinkify" class="align-self-center" v-model:model-value="useLinkify" />
+                <div class="col-span-1 flex justify-center">
+                  <ToggleSwitch input-id="useLinkify" class="self-center" v-model:model-value="useLinkify" />
                 </div>
               </div>
-              <div class="col col-12 col-lg-6 col-xxl-4 mt-2 row">
-                <div class="col col-6 align-self-center d-flex gap-2">
+              <div class="col-span-1 mt-2 grid grid-cols-2 gap-2">
+                <div class="col-span-1 self-center flex gap-2">
                   <label for="useBreaks">
                     {{ t("viewer.markdown.options.use_breaks") }}
                   </label>
-                  <i v-tooltip.top="useBreaksTooltip" class="pi pi-question-circle align-self-center" />
+                  <i v-tooltip.top="useBreaksTooltip" class="pi pi-question-circle self-center" />
                 </div>
-                <div class="col col-6 d-flex justify-content-center">
-                  <ToggleSwitch input-id="useBreaks" class="align-self-center" v-model:model-value="useBreaks" />
+                <div class="col-span-1 flex justify-center">
+                  <ToggleSwitch input-id="useBreaks" class="self-center" v-model:model-value="useBreaks" />
                 </div>
               </div>
             </div>
           </template>
         </Panel>
-        <div class="d-flex justify-content-between my-2">
+        <div class="flex justify-between my-2">
           <Button icon="pi pi-copy" size="small" text @click="onClickCopy" :label="t('viewer.markdown.button.copy')" />
           <SelectButton option-value="value" :options="layoutOptions" v-model="layout">
             <template #option="slotProps">
@@ -311,12 +311,12 @@ provide("updateMarkdownCheckbox", updateMarkdownCheckbox);
           </SelectButton>
         </div>
         <Splitter id="markdown-viewer" :layout="layout">
-          <SplitterPanel class="d-flex flex-column">
+          <SplitterPanel class="flex flex-col">
             <Textarea
               ref="markdownInput"
               @scroll="onScrollTextArea"
               style="resize: none"
-              class="flex-grow-1 prevent-auto-zoom"
+              class="flex-grow prevent-auto-zoom"
               :auto-resize="false"
               :autofocus="false"
               v-model="input"
