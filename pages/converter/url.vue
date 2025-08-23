@@ -56,29 +56,29 @@ const onClickCopy = () => {
         <PageHeading :size="6" :level="2" weight="600">
           {{ t("converter.url.text_input_label") }}
         </PageHeading>
-        <Textarea v-model="inputText" class="prevent-auto-zoom d-block w-100" auto-resize />
+        <Textarea v-model="inputText" class="prevent-auto-zoom block w-full" auto-resize />
         <Tabs :value="tabIndex" class="mt-4 tab-view">
           <TabList>
             <Tab :value="tab.value" v-for="tab in tabOptions" :key="tab.value">
               {{ tab.label }}
             </Tab>
           </TabList>
-          <TabPanels>
+          <TabPanels class="px-0">
             <TabPanel value="encoder">
-              <div class="d-block w-100 converted-text p-2 font-monospace-code">
+              <div class="block w-full converted-text font-monospace-code">
                 <span>
                   {{ encodedText }}
                 </span>
               </div>
             </TabPanel>
             <TabPanel value="decoder">
-              <div class="d-block w-100 converted-text p-2 font-monospace-code">
+              <div class="block w-full converted-text font-monospace-code">
                 <span>
                   {{ decodedText }}
                 </span>
               </div>
             </TabPanel>
-            <Button @click="onClickCopy" class="w-100 d-block mt-3">
+            <Button @click="onClickCopy" class="w-full block mt-3">
               {{ t("converter.url.copy_btn_label") }}
             </Button>
           </TabPanels>

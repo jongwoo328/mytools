@@ -26,7 +26,7 @@ const onDelete = (id: string) => {
   <ResultDivider v-if="results.length > 0" align="center" :color="themeColors.mainBgColor[colorMode.value]">
     {{ t("converter.image.result_list.divider_text") }}
   </ResultDivider>
-  <section class="d-flex flex-column-reverse">
+  <section class="flex flex-col-reverse">
     <ImageConverterResultListItem
       v-for="(result, idx) in results"
       :key="result.id"

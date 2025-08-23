@@ -5,6 +5,7 @@ import { breakpointsBootstrapV5 } from "@vueuse/core";
 import LocaleDropdown from "@/components/common/LocaleDropdown.vue";
 import ThemeSelector from "~/components/common/ThemeSelector.vue";
 import themeColors from "~/utils/themeColors";
+import CommonToast from "../components/common/CommonToast.vue";
 
 const { locale, t } = useI18n();
 const { isWindows } = useOs();
@@ -30,11 +31,11 @@ useHead({
 </script>
 
 <template>
-  <div id="main" class="d-flex flex-column align-items-center">
+  <div id="main" class="flex flex-col items-center">
     <PageHeader />
-    <div id="view" class="container" style="padding-bottom: 100px">
+    <div id="view" class="container mx-auto px-4" style="padding-bottom: 100px">
       <CommonToast />
-      <div v-if="isMobileOrTablet" class="w-100 d-flex justify-content-end pt-2 gap-3">
+      <div v-if="isMobileOrTablet" class="w-full flex justify-end pt-2 mb-4 gap-3">
         <ThemeSelector />
         <LocaleDropdown />
       </div>

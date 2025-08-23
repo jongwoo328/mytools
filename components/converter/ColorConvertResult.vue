@@ -46,32 +46,32 @@ const hslText = computed(() => {
 
 <template>
   <div class="row">
-    <div class="col col-12 d-flex align-items-center" v-if="showHex">
-      <span class="fw-bold">
+    <div class="col col-12 flex items-center" v-if="showHex">
+      <span class="font-bold">
         {{ t("converter.color.options.hex.label") }}
       </span>
-      <span class="flex-grow-1 text-end pe-2">{{ hexText }}</span>
+      <span class="flex-grow-1 text-end pr-2">{{ hexText }}</span>
       <Button icon="pi pi-copy" class="py-1" size="small" text @click="copyData(hexText)" />
     </div>
-    <div class="col col-12 d-flex align-items-center" v-if="showHex">
-      <span class="fw-bold">
+    <div class="col col-12 flex items-center" v-if="showHex">
+      <span class="font-bold">
         {{ t("converter.color.options.rgb.label") }}
       </span>
-      <span class="flex-grow-1 text-end pe-2">{{ rgbText }}</span>
+      <span class="flex-grow-1 text-end pr-2">{{ rgbText }}</span>
       <Button icon="pi pi-copy" class="py-1" size="small" text @click="copyData(rgbText)" />
     </div>
-    <div class="col col-12 d-flex align-items-center" v-if="showCmyk">
-      <span class="fw-bold">
+    <div class="col col-12 flex items-center" v-if="showCmyk">
+      <span class="font-bold">
         {{ t("converter.color.options.cmyk.label") }}
       </span>
-      <span class="flex-grow-1 text-end pe-2">{{ cmykText }}</span>
+      <span class="flex-grow-1 text-end pr-2">{{ cmykText }}</span>
       <Button icon="pi pi-copy" class="py-1" size="small" text @click="copyData(cmykText)" />
     </div>
-    <div class="col col-12 d-flex align-items-center" v-if="showHsl">
-      <span class="fw-bold">
+    <div class="col col-12 flex items-center" v-if="showHsl">
+      <span class="font-bold">
         {{ t("converter.color.options.hsl.label") }}
       </span>
-      <span class="flex-grow-1 text-end pe-2">{{ hslText }}</span>
+      <span class="flex-grow-1 text-end pr-2">{{ hslText }}</span>
       <Button icon="pi pi-copy" class="py-1" size="small" text @click="copyData(hslText)" />
     </div>
   </div>

@@ -38,8 +38,8 @@ watch(locale, () => {
 </script>
 
 <template>
-  <div class="d-flex">
-    <TranslationIcon size="20" @click="openSelect" class="pe-2" cursor-pointer />
+  <div class="flex">
+    <TranslationIcon size="20" @click="openSelect" class="pr-2" cursor-pointer />
     <Select
       ref="select"
       :style="selectStyle"

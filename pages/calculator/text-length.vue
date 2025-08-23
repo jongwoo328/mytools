@@ -96,18 +96,18 @@ const result = asyncComputed(async () => {
         <PageHeading :size="6" :level="2" weight="600">
           {{ t("calculator.text_length.text_input.label") }}
         </PageHeading>
-        <TabMenu class="mb-3" :model="tabOptions" v-model:active-index="activeTabKey" />
+        <TabMenu class="mt-3 mb-3" :model="tabOptions" v-model:active-index="activeTabKey" />
         <div v-show="activeTabKey === 0">
           <Textarea
             v-model:model-value.lazy="textInput"
             style="min-height: 300px"
-            class="prevent-auto-zoom d-block w-100"
+            class="prevent-auto-zoom block w-full"
           />
         </div>
         <div v-show="activeTabKey === 1">
           <div
             style="min-height: 200px; border: 1px solid #ced4da"
-            class="d-flex flex-column justify-content-center align-items-center common-border-radius"
+            class="flex flex-col justify-center items-center common-border-radius"
           >
             <FileUpload
               :show-upload-button="false"
@@ -118,7 +118,7 @@ const result = asyncComputed(async () => {
               application/x-sh, application/xhtml+xml"
               mode="basic"
               custom-upload
-              class="w-100 position-relative mb-2"
+              class="w-full relative mb-2"
               @select="onFileChange"
               @clear="onClear"
               :choose-label="t('calculator.text_length.text_input.file_input_btn_label')"
@@ -128,13 +128,13 @@ const result = asyncComputed(async () => {
         <PageHeading class="mt-4" :size="6" :level="2" weight="600">
           {{ t("calculator.text_length.result.label") }}
         </PageHeading>
-        <div class="row mt-4">
-          <p class="col col-6">{{ t("calculator.text_length.result.length") }}</p>
-          <p class="col col-6">: {{ result?.textLength ?? "0" }}</p>
-          <p class="col col-6">{{ t("calculator.text_length.result.length_without_spaces") }}</p>
-          <p class="col col-6">: {{ result?.textLengthWithoutSpaces ?? "0" }}</p>
-          <p class="col col-6">{{ t("calculator.text_length.result.bytes") }}</p>
-          <p class="col col-6">: {{ result?.bytes ?? "0" }}</p>
+        <div class="grid grid-cols-2 mt-4 gap-y-2">
+          <p class="col-span-1">{{ t("calculator.text_length.result.length") }}</p>
+          <p class="col-span-1">: {{ result?.textLength ?? "0" }}</p>
+          <p class="col-span-1">{{ t("calculator.text_length.result.length_without_spaces") }}</p>
+          <p class="col-span-1">: {{ result?.textLengthWithoutSpaces ?? "0" }}</p>
+          <p class="col-span-1">{{ t("calculator.text_length.result.bytes") }}</p>
+          <p class="col-span-1">: {{ result?.bytes ?? "0" }}</p>
         </div>
       </template>
     </Card>

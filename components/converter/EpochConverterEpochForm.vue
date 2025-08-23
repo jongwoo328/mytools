@@ -68,9 +68,9 @@ const setNow = () => {
 </script>
 
 <template>
-  <div class="row justify-content-between">
-    <div class="col col-12 col-lg-5 d-flex flex-column justify-content-center align-items-center">
-      <div class="w-100 m-0 mb-1 d-flex flex-row justify-content-between">
+  <div class="grid grid-cols-12 justify-between">
+    <div class="col-span-full lg:col-span-5 flex flex-col justify-center items-center">
+      <div class="w-full m-0 mb-1 flex justify-between">
         <Button size="small" severity="secondary" @click="setNow">
           {{ t("converter.epoch.epoch_to_iso8601.set_now_btn_label") }}
         </Button>
@@ -82,48 +82,48 @@ const setNow = () => {
           :unselectable="true"
         />
       </div>
-      <InputNumber class="w-100 input-number" input-class="prevent-auto-zoom" v-model:model-value="epochInput" />
+      <InputNumber class="w-full input-number" input-class="prevent-auto-zoom" v-model:model-value="epochInput" />
     </div>
-    <div class="col col-12 col-lg-2 d-flex justify-content-center align-items-center">
-      <Button class="d-none d-lg-block" icon="pi pi-angle-right" outlined disable />
-      <Button style="height: 35px" class="d-lg-none my-4" icon="pi pi-angle-down" outlined disabled />
+    <div class="col-span-full lg:col-span-2 flex justify-center items-center">
+      <Button class="hidden lg:block h-[40px]" icon="pi pi-angle-right" outlined disabled />
+      <Button class="lg:hidden my-4" icon="pi pi-angle-down" outlined disabled />
     </div>
-    <div class="col col-12 col-lg-5">
-      <div class="row d-flex mb-1 justify-content-start">
-        <div class="col-6 col-lg-6 col-xl-4 mb-1">
+    <div class="col-span-full lg:col-span-5">
+      <div class="grid grid-cols-12 mb-1 justify-start">
+        <div class="col-span-6 xl:col-span-4 mb-1">
           <Checkbox binary v-model:model-value="useTimeDelimiter" id="useDelimiter" />
-          <label class="ms-1" for="useDelimiter">
+          <label class="ml-1" for="useDelimiter">
             {{ t("converter.epoch.epoch_to_iso8601.options.use_delimiter") }}
           </label>
         </div>
-        <div class="col-6 col-lg-6 col-xl-4 mb-1">
+        <div class="col-span-6 xl:col-span-4 mb-1">
           <Checkbox binary v-model:model-value="useOffset" id="useOffset" />
-          <label class="ms-2" for="useOffset">
+          <label class="ml-1" for="useOffset">
             {{ t("converter.epoch.epoch_to_iso8601.options.use_offset") }}
           </label>
         </div>
-        <div class="col-12 col-lg-6 col-xl-5 col-xxl-4 mb-1">
+        <div class="col-span-full lg:col-span-6 xl:col-span-5 2xl:col-span-4 mb-1">
           <Checkbox binary v-model:model-value="omitMilliseconds" id="omitMilliseconds" />
-          <label class="ms-2" for="omitMilliseconds">
+          <label class="ml-2" for="omitMilliseconds">
             {{ t("converter.epoch.epoch_to_iso8601.options.omit_milliseconds") }}
           </label>
         </div>
       </div>
-      <div class="row m-0" style="height: 38px">
-        <span class="h-100 w-100 mb-0 d-flex align-items-center formatted-time ps-2 common-border-radius">
+      <div class="m-0" style="height: 38px">
+        <span class="h-full w-full mb-0 flex items-center formatted-time pl-2 common-border-radius">
           {{ ISODateTime }}
         </span>
       </div>
-      <div class="w-100 mb-0 mt-2">
+      <div class="w-full mb-0 mt-2">
         <Select
           :options="offsetList"
           option-value="value"
           option-label="label"
           v-model:model-value="offset"
-          class="w-100"
+          class="w-full"
         />
       </div>
-      <Button class="mt-2 d-block w-100" @click="onClickCopy">
+      <Button class="mt-2 block w-full" @click="onClickCopy">
         {{ t("converter.epoch.epoch_to_iso8601.copy_btn_label") }}
       </Button>
     </div>

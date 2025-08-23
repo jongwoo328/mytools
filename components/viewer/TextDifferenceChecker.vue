@@ -83,39 +83,39 @@ watchDebounced(
 </script>
 
 <template>
-  <div class="row">
-    <div class="col col-12">
-      <div class="row">
-        <div class="d-flex justify-content-end mb-3">
+  <div class="grid grid-cols-1">
+    <div class="col-span-full">
+      <div class="grid grid-cols-2 gap-4">
+        <div class="col-span-full flex justify-end mb-3">
           <SelectButton option-value="value" :options="inputLayoutOptions" v-model="inputLayout">
             <template #option="slotProps">
               <i :class="slotProps.option.icon"></i>
             </template>
           </SelectButton>
         </div>
-        <div class="col" :class="{ 'col-12': inputLayout === 'vertical', 'col-6': inputLayout === 'horizontal' }">
-          <div class="d-flex justify-content-between align-items-center mb-1">
+        <div :class="{ 'col-span-full': inputLayout === 'vertical', 'col-span-1': inputLayout === 'horizontal' }">
+          <div class="flex justify-between items-center mb-1">
             <PageHeading :size="7" :level="2">
               {{ t("viewer.text-diff.reference") }}
             </PageHeading>
             <Button @click="resetText1" icon="pi pi-trash" text rounded severity="danger" size="small"></Button>
           </div>
           <Textarea
-            class="prevent-auto-zoom w-100 font-monospace-code overflow-auto"
+            class="prevent-auto-zoom w-full font-monospace-code overflow-auto"
             v-model="text1"
             style="min-height: 300px; max-height: 400px"
             auto-resize
           />
         </div>
-        <div class="col" :class="{ 'col-12': inputLayout === 'vertical', 'col-6': inputLayout === 'horizontal' }">
-          <div class="d-flex justify-content-between align-items-center mb-1">
+        <div :class="{ 'col-span-full': inputLayout === 'vertical', 'col-span-1': inputLayout === 'horizontal' }">
+          <div class="flex justify-between items-center mb-1">
             <PageHeading :size="7" :level="2">
               {{ t("viewer.text-diff.comparison") }}
             </PageHeading>
             <Button @click="resetText2" icon="pi pi-trash" text rounded severity="danger" size="small"></Button>
           </div>
           <Textarea
-            class="prevent-auto-zoom w-100 font-monospace-code overflow-auto"
+            class="prevent-auto-zoom w-full font-monospace-code overflow-auto"
             v-model="text2"
             style="min-height: 300px; max-height: 400px"
             auto-resize
@@ -123,15 +123,15 @@ watchDebounced(
         </div>
       </div>
     </div>
-    <div class="col col-12 mt-3">
-      <div class="row">
-        <div class="d-flex justify-content-between">
+    <div class="col-span-full mt-3">
+      <div class="grid grid-cols-1">
+        <div class="col-span-full flex justify-between">
           <PageHeading class="m-0" :size="7" :level="2">
             {{ t("viewer.text-diff.result") }}
           </PageHeading>
         </div>
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="d-flex align-items-center">
+        <div class="col-span-full flex justify-between items-center">
+          <div class="flex items-center">
             <ProgressSpinner stroke-width="8" style="height: 20px; width: 50px" class="m-0" v-if="isCalculating" />
             <Button
               @click="cancelWorker"
@@ -145,13 +145,13 @@ watchDebounced(
             </Button>
           </div>
           <div>
-            <span class="me-2">
+            <span class="mr-2">
               {{ t("viewer.text-diff.diff_type_label") }}
             </span>
             <Select option-label="label" option-value="value" :options="diffTypeOptions" v-model="diffType" />
           </div>
         </div>
-        <div class="col py-2">
+        <div class="col-span-full py-2">
           <div class="diff-viewer-wrap">
             <TextDifferenceCheckerViewer :changes="diffResult" :diff-type="diffType" />
           </div>

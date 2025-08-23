@@ -24,7 +24,7 @@ const cardPassThrough: CardPassThroughOptions = {
 <template>
   <Card @click="onClickItem" class="tool-item" :pt="cardPassThrough">
     <template #title>
-      <RouterLink class="text-decoration-none text-black" :to="tool.router">
+      <RouterLink class="no-underline text-black" :to="tool.router">
         <PageHeading weight="600" class="m-0" :level="2" :size="7">
           {{ tool.title }}
         </PageHeading>

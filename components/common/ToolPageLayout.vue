@@ -6,7 +6,7 @@ defineProps<{ title: string; description?: string }>();
 
 <template>
   <PageTitle :title="title" />
-  <p class="mb-3" v-if="description">{{ description }}</p>
+  <p class="mb-5" v-if="description">{{ description }}</p>
   <slot />
 </template>
 

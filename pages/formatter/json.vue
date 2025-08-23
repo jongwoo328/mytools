@@ -57,20 +57,20 @@ const onFormatButtonClick = () => {
     <Meta name="description" :content="t('formatter.json.head.description')" />
   </Head>
   <ToolPageLayout :title="t('formatter.json.title')">
-    <PageHeading class="d-block align-middle" :level="2" :size="6" weight="600" style="height: 44px; line-height: 2">
+    <PageHeading class="block align-middle" :level="2" :size="6" weight="600" style="height: 44px; line-height: 2">
       {{ t("formatter.json.json_text_input_label") }}
     </PageHeading>
     <Textarea
       auto-resize
       v-model:model-value="jsonInput"
       style="min-height: 400px"
-      class="prevent-auto-zoom d-block w-100"
+      class="prevent-auto-zoom block w-full"
     />
     <div v-if="isJsonValid" style="height: 14px"></div>
-    <span v-else class="float-end text-danger">
+    <span v-else class="float-end text-red-600">
       {{ t("formatter.json.json_text_input_invalid_message") }}
     </span>
-    <Button class="mt-2 w-100 d-block" :disabled="!isJsonValid" @click="onFormatButtonClick" size="large">
+    <Button class="mt-4 w-full block" :disabled="!isJsonValid" @click="onFormatButtonClick" size="large">
       {{ t("formatter.json.json_format_btn_label") }}
     </Button>
     <JSONResultList v-model:results="JSONFormatResults" />

@@ -17,14 +17,14 @@ const onClickDontShowAgain = () => {
       <p>
         {{ t("index.modal.description") }}
       </p>
-      <ul>
-        <li>
+      <ul class="list-disc pl-5 mt-4">
+        <li class="mt-3">
           <p v-html="t('index.modal.features.0')" />
         </li>
-        <li>
+        <li class="mt-3">
           <p>{{ t("index.modal.features.1") }}</p>
         </li>
-        <li>
+        <li class="mt-3">
           <p>{{ t("index.modal.features.2") }}</p>
         </li>
       </ul>

@@ -23,10 +23,7 @@ const color = computed(() => {
 </script>
 
 <template>
-  <div
-    class="d-flex justify-content-center align-items-center"
-    :style="{ cursor: cursorPointer ? 'pointer' : 'initial' }"
-  >
+  <div class="flex justify-center items-center" :style="{ cursor: cursorPointer ? 'pointer' : 'initial' }">
     <svg
       :width="`${size}px`"
       :height="`${size}px`"
