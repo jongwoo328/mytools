@@ -5,7 +5,7 @@ import { breakpointsBootstrapV5 } from "@vueuse/core";
 <template>
   <Toast
     :breakpoints="{
-      [`${breakpointsBootstrapV5.md}px`]: { width: '300px', height: '50px' },
+      [`${breakpointsBootstrapV5.md}px`]: { width: '300px' },
     }"
   />
 </template>
