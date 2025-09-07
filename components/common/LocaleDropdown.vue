@@ -38,7 +38,7 @@ watch(locale, () => {
 </script>
 
 <template>
-  <div class="flex">
+  <div class="flex items-center">
     <TranslationIcon size="20" @click="openSelect" class="pr-2" cursor-pointer />
     <Select
       ref="select"
