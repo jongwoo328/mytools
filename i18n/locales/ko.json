@@ -544,6 +544,15 @@
         "encoder": "인코더",
         "decoder": "디코더"
       },
+      "options": {
+        "use_preserve_structure": {
+          "label": "URL 구조 보존 인코딩",
+          "tooltip": "/, ?, = 등 URL 구조를 위한 텍스트는 보존합니다."
+        }
+      },
+      "error": {
+        "URIError": "입력이 올바르게 인코딩된 URL이 아닙니다."
+      },
       "copy_btn_label": "복사"
     },
     "color": {

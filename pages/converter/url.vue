@@ -31,10 +31,31 @@ const tabOptions = [
   { label: t("converter.url.convert_type.decoder"), value: "decoder" },
 ];
 
+const usePreserveStructureEncoding = ref(false);
+const usePreserveStructureEncodingTooltip = computed(() => t("converter.url.options.use_preserve_structure.tooltip"));
+
 const inputText = ref("");
 const activeTabKey = ref(0);
-const encodedText = computed(() => encodeURI(inputText.value));
-const decodedText = computed(() => decodeURI(inputText.value));
+const encodedText = computed(() => {
+  try {
+    if (usePreserveStructureEncoding.value) {
+      return encodeURI(inputText.value);
+    }
+    return encodeURIComponent(inputText.value);
+  } catch (e) {
+    return t("converter.url.error.URIError");
+  }
+});
+const decodedText = computed(() => {
+  try {
+    if (usePreserveStructureEncoding.value) {
+      return decodeURI(inputText.value);
+    }
+    return decodeURIComponent(inputText.value);
+  } catch (e) {
+    return t("converter.url.error.URIError");
+  }
+});
 
 const onClickCopy = () => {
   if (activeTabKey.value === 0) {
@@ -56,6 +77,11 @@ const onClickCopy = () => {
         <PageHeading :size="6" :level="2" weight="600">
           {{ t("converter.url.text_input_label") }}
         </PageHeading>
+        <div class="flex justify-end mb-2 gap-1 items-center">
+          <Checkbox input-id="useEncodeURI" binary v-model="usePreserveStructureEncoding" />
+          <label for="useEncodeURI">{{ t("converter.url.options.use_preserve_structure.label") }}</label>
+          <i v-tooltip.top="usePreserveStructureEncodingTooltip" class="pi pi-info-circle" />
+        </div>
         <Textarea v-model="inputText" class="prevent-auto-zoom block w-full" auto-resize />
         <Tabs :value="tabIndex" class="mt-4 tab-view">
           <TabList>
@@ -65,14 +91,14 @@ const onClickCopy = () => {
           </TabList>
           <TabPanels class="px-0">
             <TabPanel value="encoder">
-              <div class="block w-full converted-text font-monospace-code">
+              <div class="block w-full converted-text font-monospace-code p-2">
                 <span>
                   {{ encodedText }}
                 </span>
               </div>
             </TabPanel>
             <TabPanel value="decoder">
-              <div class="block w-full converted-text font-monospace-code">
+              <div class="block w-full converted-text font-monospace-code p-2">
                 <span>
                   {{ decodedText }}
                 </span>
