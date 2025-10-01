@@ -5,5 +5,5 @@ defineProps<{ title: string }>();
 </script>
 
 <template>
-  <PageHeading class="mb-4" :level="1" :size="8" weight="600">{{ title }}</PageHeading>
+  <PageHeading :level="1" :size="8" weight="600">{{ title }}</PageHeading>
 </template>
