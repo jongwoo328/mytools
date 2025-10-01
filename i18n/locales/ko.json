@@ -544,6 +544,12 @@
         "encoder": "인코더",
         "decoder": "디코더"
       },
+      "options": {
+        "use_uri_encode": {
+          "label": "URL 안전 인코딩/디코딩",
+          "tooltip": "/, ?, = 등 URL 구조를 위한 텍스트는 보존합니다."
+        }
+      },
       "copy_btn_label": "복사"
     },
     "color": {

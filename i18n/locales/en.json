@@ -544,6 +544,12 @@
         "encoder": "Encoder",
         "decoder": "Decoder"
       },
+      "options": {
+        "use_uri_encode": {
+          "label": "Safe URL Encoding/Decoding",
+          "tooltip": "Encodes text while keeping URL structural characters (/, ?, =) intact."
+        }
+      },
       "copy_btn_label": "Copy"
     },
     "color": {

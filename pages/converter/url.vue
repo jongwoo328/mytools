@@ -31,10 +31,23 @@ const tabOptions = [
   { label: t("converter.url.convert_type.decoder"), value: "decoder" },
 ];
 
+const useEncodeURI = ref(false);
+const useEncodeURITooltip = computed(() => t("converter.url.options.use_uri_encode.tooltip"));
+
 const inputText = ref("");
 const activeTabKey = ref(0);
-const encodedText = computed(() => encodeURI(inputText.value));
-const decodedText = computed(() => decodeURI(inputText.value));
+const encodedText = computed(() => {
+  if (useEncodeURI.value) {
+    return encodeURI(inputText.value);
+  }
+  return encodeURIComponent(inputText.value);
+});
+const decodedText = computed(() => {
+  if (useEncodeURI.value) {
+    return decodeURI(inputText.value);
+  }
+  return decodeURIComponent(inputText.value);
+});
 
 const onClickCopy = () => {
   if (activeTabKey.value === 0) {
@@ -56,6 +69,11 @@ const onClickCopy = () => {
         <PageHeading :size="6" :level="2" weight="600">
           {{ t("converter.url.text_input_label") }}
         </PageHeading>
+        <div class="flex justify-end mb-2 gap-1 items-center">
+          <Checkbox input-id="useEncodeURI" binary v-model="useEncodeURI" />
+          <label for="useEncodeURI">{{ t("converter.url.options.use_uri_encode.label") }}</label>
+          <i v-tooltip.top="useEncodeURITooltip" class="pi pi-info-circle" />
+        </div>
         <Textarea v-model="inputText" class="prevent-auto-zoom block w-full" auto-resize />
         <Tabs :value="tabIndex" class="mt-4 tab-view">
           <TabList>
