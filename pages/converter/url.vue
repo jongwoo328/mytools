@@ -37,16 +37,24 @@ const usePreserveStructureEncodingTooltip = computed(() => t("converter.url.opti
 const inputText = ref("");
 const activeTabKey = ref(0);
 const encodedText = computed(() => {
-  if (usePreserveStructureEncoding.value) {
-    return encodeURI(inputText.value);
+  try {
+    if (usePreserveStructureEncoding.value) {
+      return encodeURI(inputText.value);
+    }
+    return encodeURIComponent(inputText.value);
+  } catch (e) {
+    return t("converter.url.error.URIError");
   }
-  return encodeURIComponent(inputText.value);
 });
 const decodedText = computed(() => {
-  if (usePreserveStructureEncoding.value) {
-    return decodeURI(inputText.value);
+  try {
+    if (usePreserveStructureEncoding.value) {
+      return decodeURI(inputText.value);
+    }
+    return decodeURIComponent(inputText.value);
+  } catch (e) {
+    return t("converter.url.error.URIError");
   }
-  return decodeURIComponent(inputText.value);
 });
 
 const onClickCopy = () => {
@@ -83,14 +91,14 @@ const onClickCopy = () => {
           </TabList>
           <TabPanels class="px-0">
             <TabPanel value="encoder">
-              <div class="block w-full converted-text font-monospace-code">
+              <div class="block w-full converted-text font-monospace-code p-2">
                 <span>
                   {{ encodedText }}
                 </span>
               </div>
             </TabPanel>
             <TabPanel value="decoder">
-              <div class="block w-full converted-text font-monospace-code">
+              <div class="block w-full converted-text font-monospace-code p-2">
                 <span>
                   {{ decodedText }}
                 </span>

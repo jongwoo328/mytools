@@ -550,6 +550,9 @@
           "tooltip": "Encodes text while keeping URL structural characters (/, ?, =) intact."
         }
       },
+      "error": {
+        "URIError": "The input is not a properly encoded URL."
+      },
       "copy_btn_label": "Copy"
     },
     "color": {
