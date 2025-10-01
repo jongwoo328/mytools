@@ -18,19 +18,19 @@ const fontSize = computed(() => `${props.size * 0.25}rem`);
 </script>
 
 <template>
-  <h1 v-if="level === 1">
+  <h1 v-if="level === 1" class="mb-4">
     <slot></slot>
   </h1>
-  <h2 v-else-if="level === 2">
+  <h2 v-else-if="level === 2" class="mb-4">
     <slot></slot>
   </h2>
-  <h3 v-else-if="level === 3">
+  <h3 v-else-if="level === 3" class="mb-4">
     <slot></slot>
   </h3>
-  <h4 v-else-if="level === 4">
+  <h4 v-else-if="level === 4" class="mb-4">
     <slot></slot>
   </h4>
-  <h5 v-else-if="level === 5">
+  <h5 v-else-if="level === 5" class="mb-4">
     <slot></slot>
   </h5>
 </template>
