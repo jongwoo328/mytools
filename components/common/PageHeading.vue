@@ -43,5 +43,6 @@ h4,
 h5 {
   font-size: v-bind("fontSize");
   font-weight: v-bind("weight");
+  margin-bottom: 1rem;
 }
 </style>
