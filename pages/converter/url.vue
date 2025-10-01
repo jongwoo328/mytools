@@ -31,19 +31,19 @@ const tabOptions = [
   { label: t("converter.url.convert_type.decoder"), value: "decoder" },
 ];
 
-const useSafeEncoding = ref(false);
-const useSafeEncodingTooltip = computed(() => t("converter.url.options.use_safe_encoding.tooltip"));
+const usePreserveStructureEncoding = ref(false);
+const usePreserveStructureEncodingTooltip = computed(() => t("converter.url.options.use_preserve_structure.tooltip"));
 
 const inputText = ref("");
 const activeTabKey = ref(0);
 const encodedText = computed(() => {
-  if (useSafeEncoding.value) {
+  if (usePreserveStructureEncoding.value) {
     return encodeURI(inputText.value);
   }
   return encodeURIComponent(inputText.value);
 });
 const decodedText = computed(() => {
-  if (useSafeEncoding.value) {
+  if (usePreserveStructureEncoding.value) {
     return decodeURI(inputText.value);
   }
   return decodeURIComponent(inputText.value);
@@ -70,9 +70,9 @@ const onClickCopy = () => {
           {{ t("converter.url.text_input_label") }}
         </PageHeading>
         <div class="flex justify-end mb-2 gap-1 items-center">
-          <Checkbox input-id="useEncodeURI" binary v-model="useSafeEncoding" />
-          <label for="useEncodeURI">{{ t("converter.url.options.use_safe_encoding.label") }}</label>
-          <i v-tooltip.top="useSafeEncodingTooltip" class="pi pi-info-circle" />
+          <Checkbox input-id="useEncodeURI" binary v-model="usePreserveStructureEncoding" />
+          <label for="useEncodeURI">{{ t("converter.url.options.use_preserve_structure.label") }}</label>
+          <i v-tooltip.top="usePreserveStructureEncodingTooltip" class="pi pi-info-circle" />
         </div>
         <Textarea v-model="inputText" class="prevent-auto-zoom block w-full" auto-resize />
         <Tabs :value="tabIndex" class="mt-4 tab-view">
