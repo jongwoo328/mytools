@@ -545,7 +545,7 @@
         "decoder": "디코더"
       },
       "options": {
-        "use_uri_encode": {
+        "use_safe_encoding": {
           "label": "URL 안전 인코딩/디코딩",
           "tooltip": "/, ?, = 등 URL 구조를 위한 텍스트는 보존합니다."
         }

@@ -545,7 +545,7 @@
         "decoder": "Decoder"
       },
       "options": {
-        "use_uri_encode": {
+        "use_safe_encoding": {
           "label": "Safe URL Encoding/Decoding",
           "tooltip": "Encodes text while keeping URL structural characters (/, ?, =) intact."
         }
