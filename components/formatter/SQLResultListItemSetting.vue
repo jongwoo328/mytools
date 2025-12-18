@@ -101,7 +101,7 @@ watch(logicalOperatorNewLine, (newValue) => {
     <Panel toggleable>
       <template #header>{{ t("formatter.sql.result_list.advanced_setting.header_text") }}</template>
       <template #default>
-        <div class="grid grid-cols-12">
+        <div class="grid grid-cols-12 gap-x-6">
           <div class="col-span-full md:col-span-6 xl:col-span-4 mb-1 items-center form-col">
             <div class="h-full justify-between flex">
               <label for="useTabs" class="self-center">
