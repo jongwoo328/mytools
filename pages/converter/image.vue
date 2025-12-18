@@ -148,7 +148,7 @@ watch(inputImage, () => {
         <div class="grid grid-cols-12 m-0 gap-4">
           <div class="col-span-full lg:col-span-8 px-0">
             <div class="m-0 h-full">
-              <div class="w-full h-full flex justify-center items-center pb-1 pb-lg-0 lg:pr-1">
+              <div class="w-full h-full flex justify-center items-center pb-1 lg:pb-0 lg:pr-1">
                 <ImageInput :upload="true" v-model:file="inputImage" />
               </div>
             </div>
