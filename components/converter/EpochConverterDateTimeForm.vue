@@ -79,12 +79,15 @@ const setNow = () => {
           </label>
         </div>
       </div>
-      <div class="grid grid-cols-12">
-        <div class="col-span-full" :class="{ 'xl:col-span-5': useMilliseconds, 'xl:col-span-6': !useMilliseconds }">
+      <div class="grid grid-cols-12 gap-x-2">
+        <div
+          class="col-span-full mt-2 xl:mt-0"
+          :class="{ 'xl:col-span-5': useMilliseconds, 'xl:col-span-6': !useMilliseconds }"
+        >
           <DatePicker v-model:model-value="dateInput" class="w-full h-full prevent-auto-zoom" date-format="yy-mm-dd" />
         </div>
         <div
-          class="col-span-full mt-2 mt-xl-0"
+          class="col-span-full mt-2 xl:mt-0"
           :class="{
             'col-span-12': !useMilliseconds,
             'col-span-6': useMilliseconds,
@@ -102,7 +105,7 @@ const setNow = () => {
         </div>
         <div
           v-if="useMilliseconds"
-          class="col-span-full mt-2 mt-xl-0"
+          class="col-span-full mt-2 xl:mt-0"
           :class="{
             'col-span-6': useMilliseconds,
             'col-span-full': !useMilliseconds,
