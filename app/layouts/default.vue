@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import PageHeader from "~/app/components/common/PageHeader.vue";
-import GlobalBackTop from "~/app/components/common/GlobalBackTop.vue";
+import PageHeader from "~/components/common/PageHeader.vue";
+import GlobalBackTop from "~/components/common/GlobalBackTop.vue";
 import { breakpointsBootstrapV5 } from "@vueuse/core";
-import LocaleDropdown from "~/app/components/common/LocaleDropdown.vue";
-import ThemeSelector from "~/app/components/common/ThemeSelector.vue";
-import themeColors from "~/app/utils/themeColors";
+import LocaleDropdown from "~/components/common/LocaleDropdown.vue";
+import ThemeSelector from "~/components/common/ThemeSelector.vue";
+import themeColors from "~/utils/themeColors";
 import CommonToast from "../components/common/CommonToast.vue";
 
 const { locale, t } = useI18n();

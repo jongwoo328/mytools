@@ -153,7 +153,7 @@ export default defineNuxtConfig({
   },
 
   css: [
-    "@/assets/styles/main.css",
+    "~/assets/styles/main.css",
     "primeicons/primeicons.css",
     "vue-json-pretty/lib/styles.css",
     "cropperjs/dist/cropper.css",

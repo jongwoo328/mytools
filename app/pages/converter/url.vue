@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import PageHeading from "~/app/components/common/PageHeading.vue";
-import ToolPageLayout from "~/app/components/common/ToolPageLayout.vue";
+import PageHeading from "~/components/common/PageHeading.vue";
+import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 
 const { copyData } = useCopy();
 const { t } = useI18n();

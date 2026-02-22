@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import SQLResultListItem from "~/app/components/formatter/SQLResultListItem.vue";
-import type { SQLResult } from "~/types/SQLResult";
-import ResultDivider from "~/app/components/common/ResultDivider.vue";
-import themeColors from "~/app/utils/themeColors";
+import SQLResultListItem from "~/components/formatter/SQLResultListItem.vue";
+import type { SQLResult } from "~~/types/SQLResult";
+import ResultDivider from "~/components/common/ResultDivider.vue";
+import themeColors from "~/utils/themeColors";
 
 const { t } = useI18n();
 const colorMode = useColorMode();

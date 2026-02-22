@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed, type Ref, ref } from "vue";
 import { v4 } from "uuid";
-import JSONResultList from "~/app/components/formatter/JSONResultList.vue";
-import type { JSONResult } from "~/types/JSONResult";
-import PageHeading from "~/app/components/common/PageHeading.vue";
-import ToolPageLayout from "~/app/components/common/ToolPageLayout.vue";
+import JSONResultList from "~/components/formatter/JSONResultList.vue";
+import type { JSONResult } from "~~/types/JSONResult";
+import PageHeading from "~/components/common/PageHeading.vue";
+import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 
 const { t } = useI18n();
 const localePath = useLocalePath();

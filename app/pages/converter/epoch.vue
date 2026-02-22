@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import EpochConverterEpochForm from "~/app/components/converter/EpochConverterEpochForm.vue";
-import EpochConverterDateTimeForm from "~/app/components/converter/EpochConverterDateTimeForm.vue";
-import PageHeading from "~/app/components/common/PageHeading.vue";
-import ToolPageLayout from "~/app/components/common/ToolPageLayout.vue";
+import EpochConverterEpochForm from "~/components/converter/EpochConverterEpochForm.vue";
+import EpochConverterDateTimeForm from "~/components/converter/EpochConverterDateTimeForm.vue";
+import PageHeading from "~/components/common/PageHeading.vue";
+import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 
 const { t } = useI18n();
 const localePath = useLocalePath();

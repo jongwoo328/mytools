@@ -2,7 +2,7 @@
 import { computed, type Ref, ref } from "vue";
 import { DateTime, SystemZone } from "luxon";
 import { EpochTimeConvertTimeUnit, offsetList } from "~/constants/time";
-import { type UnionFromAsConst } from "~/app/utils/type";
+import { type UnionFromAsConst } from "~/utils/type";
 
 const { copyData } = useCopy();
 const { t } = useI18n();

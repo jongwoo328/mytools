@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import MarkdownRenderer from "~/app/components/viewer/MarkdownRenderer.vue";
-import ToolPageLayout from "~/app/components/common/ToolPageLayout.vue";
+import MarkdownRenderer from "~/components/viewer/MarkdownRenderer.vue";
+import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 import SplitterPanel from "primevue/splitterpanel";
 import Textarea from "primevue/textarea";
 

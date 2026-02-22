@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { ImageConverterResult } from "~/types/ImageConverterResult";
-import ImageConverterResultListItem from "~/app/components/converter/ImageConverterResultListItem.vue";
-import ResultDivider from "~/app/components/common/ResultDivider.vue";
-import themeColors from "~/app/utils/themeColors";
+import type { ImageConverterResult } from "~~/types/ImageConverterResult";
+import ImageConverterResultListItem from "~/components/converter/ImageConverterResultListItem.vue";
+import ResultDivider from "~/components/common/ResultDivider.vue";
+import themeColors from "~/utils/themeColors";
 
 const { t } = useI18n();
 const colorMode = useColorMode();

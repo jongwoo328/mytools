@@ -2,8 +2,8 @@
 import { computed, type Ref, ref } from "vue";
 import type { FileUploadSelectEvent } from "primevue/fileupload";
 import { breakpointsBootstrapV5 } from "@vueuse/core";
-import { createEmptyImageElement } from "~/app/utils/HTMLImage";
-import themeColors from "~/app/utils/themeColors";
+import { createEmptyImageElement } from "~/utils/HTMLImage";
+import themeColors from "~/utils/themeColors";
 
 const { t } = useI18n();
 const props = defineProps<{ file: File }>();

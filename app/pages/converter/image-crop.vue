@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { computed, type Ref, ref, watch } from "vue";
-import { useImageUtil } from "~/app/composables/useImageUtil";
+import { useImageUtil } from "~/composables/useImageUtil";
 import { v4 } from "uuid";
 import { breakpointsBootstrapV5, useMagicKeys } from "@vueuse/core";
-import ToolPageLayout from "~/app/components/common/ToolPageLayout.vue";
+import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 
 const { t } = useI18n();
 const localePath = useLocalePath();

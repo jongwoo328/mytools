@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import ToolPageLayout from "~/app/components/common/ToolPageLayout.vue";
+import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 import { ref, type Ref } from "vue";
-import { createEmptyFile } from "~/app/utils/file";
+import { createEmptyFile } from "~/utils/file";
 import type { FileUploadSelectEvent } from "primevue/fileupload";
-import PageHeading from "~/app/components/common/PageHeading.vue";
-import { humanReadableBytes } from "~/app/utils/unit";
+import PageHeading from "~/components/common/PageHeading.vue";
+import { humanReadableBytes } from "~/utils/unit";
 
 const { t } = useI18n();
 const localePath = useLocalePath();

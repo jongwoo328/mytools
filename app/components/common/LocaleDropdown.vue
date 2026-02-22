@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TranslationIcon from "~/app/components/svg/TranslationIcon.vue";
+import TranslationIcon from "~/components/svg/TranslationIcon.vue";
 import { breakpointsBootstrapV5 } from "@vueuse/core";
 import { ref } from "vue";
 import Select from "primevue/select";

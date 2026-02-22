@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import PageHeading from "~/app/components/common/PageHeading.vue";
-import TextDifferenceCheckerViewer from "~/app/components/viewer/TextDifferenceCheckerViewer.vue";
+import PageHeading from "~/components/common/PageHeading.vue";
+import TextDifferenceCheckerViewer from "~/components/viewer/TextDifferenceCheckerViewer.vue";
 import { type Change } from "diff";
-import { type DiffType } from "~/types/textDiff";
-import TextDiffWorker from "~/app/assets/scripts/textDiffWorker?worker";
+import { type DiffType } from "~~/types/textDiff";
+import TextDiffWorker from "~/assets/scripts/textDiffWorker?worker";
 
 const { t } = useI18n();
 

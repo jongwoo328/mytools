@@ -1,15 +1,15 @@
 <script lang="ts" setup>
-import ImageInput from "~/app/components/converter/ImageInput.vue";
+import ImageInput from "~/components/converter/ImageInput.vue";
 import { computed, type Ref, ref, watch } from "vue";
-import { Browser, useBrowser } from "~/app/composables/useBrowser";
-import ImageConverterResultList from "~/app/components/converter/ImageConverterResultList.vue";
+import { Browser, useBrowser } from "~/composables/useBrowser";
+import ImageConverterResultList from "~/components/converter/ImageConverterResultList.vue";
 import { v4 } from "uuid";
-import type { ImageConverterResult } from "~/types/ImageConverterResult";
-import { useImageUtil } from "~/app/composables/useImageUtil";
-import { createEmptyFile, isEmptyFile } from "~/app/utils/file";
-import PageHeading from "~/app/components/common/PageHeading.vue";
-import { createEmptyImageElement } from "~/app/utils/HTMLImage";
-import ToolPageLayout from "~/app/components/common/ToolPageLayout.vue";
+import type { ImageConverterResult } from "~~/types/ImageConverterResult";
+import { useImageUtil } from "~/composables/useImageUtil";
+import { createEmptyFile, isEmptyFile } from "~/utils/file";
+import PageHeading from "~/components/common/PageHeading.vue";
+import { createEmptyImageElement } from "~/utils/HTMLImage";
+import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 
 const { t } = useI18n();
 const localePath = useLocalePath();

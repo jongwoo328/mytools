@@ -2,13 +2,13 @@
 import { type Ref, ref } from "vue";
 import * as Papa from "papaparse";
 import type { ParseError, ParseResult } from "papaparse";
-import type { JSONResult } from "~/types/JSONResult";
+import type { JSONResult } from "~~/types/JSONResult";
 import { v4 } from "uuid";
-import JSONResultList from "~/app/components/formatter/JSONResultList.vue";
-import PageHeading from "~/app/components/common/PageHeading.vue";
+import JSONResultList from "~/components/formatter/JSONResultList.vue";
+import PageHeading from "~/components/common/PageHeading.vue";
 import type { FileUploadSelectEvent } from "primevue/fileupload";
-import { createEmptyFile, isEmptyFile } from "~/app/utils/file";
-import ToolPageLayout from "~/app/components/common/ToolPageLayout.vue";
+import { createEmptyFile, isEmptyFile } from "~/utils/file";
+import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 
 const { t } = useI18n();
 const localePath = useLocalePath();

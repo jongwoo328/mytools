@@ -2,8 +2,8 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { breakpointsBootstrapV5 } from "@vueuse/core";
-import LocaleDropdown from "~/app/components/common/LocaleDropdown.vue";
-import ThemeSelector from "~/app/components/common/ThemeSelector.vue";
+import LocaleDropdown from "~/components/common/LocaleDropdown.vue";
+import ThemeSelector from "~/components/common/ThemeSelector.vue";
 
 const router = useRouter();
 const { t } = useI18n();

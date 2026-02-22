@@ -2,8 +2,8 @@
 import RgbColor from "~/models/RgbColor";
 import CmykColor from "~/models/CmykColor";
 import HslColor from "~/models/HslColor";
-import ColorConvertResult from "~/app/components/converter/ColorConvertResult.vue";
-import ToolPageLayout from "~/app/components/common/ToolPageLayout.vue";
+import ColorConvertResult from "~/components/converter/ColorConvertResult.vue";
+import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 
 const { t } = useI18n();
 const localePath = useLocalePath();

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { AvailableTool } from "~/types/Tool";
-import FunctionListItem from "~/app/components/index/FunctionListItem.vue";
-import ServiceInformationModal from "~/app/components/common/ServiceInformationModal.vue";
-import PageHeading from "~/app/components/common/PageHeading.vue";
+import FunctionListItem from "~/components/index/FunctionListItem.vue";
+import ServiceInformationModal from "~/components/common/ServiceInformationModal.vue";
+import PageHeading from "~/components/common/PageHeading.vue";
+import type { AvailableTool } from "~~~/types/Tool";
 
 const { t } = useI18n();
 const localePath = useLocalePath();

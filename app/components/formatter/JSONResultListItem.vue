@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import type { JSONResult } from "~/types/JSONResult";
 import type { MenuItem } from "primevue/menuitem";
 import { breakpointsBootstrapV5, useBreakpoints } from "@vueuse/core";
-import ResultDivider from "~/app/components/common/ResultDivider.vue";
-import ResultItem from "~/app/components/common/ResultItem.vue";
-import { parseJsonPathToKeyArray } from "~/app/utils/json";
+import ResultDivider from "~/components/common/ResultDivider.vue";
+import ResultItem from "~/components/common/ResultItem.vue";
+import { parseJsonPathToKeyArray } from "~/utils/json";
 import jp from "jsonpath";
+import type { JSONResult } from "~~~/types/JSONResult";
 
 const { t } = useI18n();
 const { copyData } = useCopy();
@@ -41,17 +41,11 @@ const formatTypeOptions = [
 ];
 const minifiedResult = ref(JSON.stringify(props.resultData.result));
 
-const getObjectFromPath = (path: string) => {
-  if (path === "$") {
-    return props.resultData.result;
-  }
-  return jp.query(props.resultData.result, path);
-};
 const onClickCopyAll = async () => {
   await copyData(stringifyResult());
 };
 const onClickSelectedNode = async () => {
-  await copyData(JSON.stringify(getObjectFromPath(selected.value as string), null, 4));
+  await copyData(JSON.stringify(jp.query(props.resultData.result, selected.value)[0], null, 4));
 };
 const onClickCopyKey = async () => {
   const lastKey =

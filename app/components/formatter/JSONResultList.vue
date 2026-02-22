@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import JSONResultListItem from "~/app/components/formatter/JSONResultListItem.vue";
-import type { JSONResult } from "~/types/JSONResult";
-import ResultDivider from "~/app/components/common/ResultDivider.vue";
-import themeColors from "~/app/utils/themeColors";
+import JSONResultListItem from "~/components/formatter/JSONResultListItem.vue";
+import type { JSONResult } from "~~/types/JSONResult";
+import ResultDivider from "~/components/common/ResultDivider.vue";
+import themeColors from "~/utils/themeColors";
 
 const { t } = useI18n();
 const colorMode = useColorMode();

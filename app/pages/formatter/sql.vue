@@ -2,10 +2,10 @@
 import { computed, type Ref, ref } from "vue";
 import { format } from "sql-formatter";
 import { v4 } from "uuid";
-import type { SelectableSQLLanguage, SQLResult } from "~/types/SQLResult";
-import SQLResultList from "~/app/components/formatter/SQLResultList.vue";
-import PageHeading from "~/app/components/common/PageHeading.vue";
-import ToolPageLayout from "~/app/components/common/ToolPageLayout.vue";
+import type { SelectableSQLLanguage, SQLResult } from "~~/types/SQLResult";
+import SQLResultList from "~/components/formatter/SQLResultList.vue";
+import PageHeading from "~/components/common/PageHeading.vue";
+import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 
 const { t } = useI18n();
 const localePath = useLocalePath();

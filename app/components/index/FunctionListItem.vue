@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type AvailableTool } from "~/types/Tool";
+import { type AvailableTool } from "~~/types/Tool";
 import PageHeading from "../common/PageHeading.vue";
 import { useRouter } from "vue-router";
 import type { CardPassThroughOptions } from "primevue/card";

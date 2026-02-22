@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import TextDifferenceChecker from "~/app/components/viewer/TextDifferenceChecker.vue";
-import ToolPageLayout from "~/app/components/common/ToolPageLayout.vue";
+import TextDifferenceChecker from "~/components/viewer/TextDifferenceChecker.vue";
+import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 
 const { t } = useI18n();
 const localePath = useLocalePath();
