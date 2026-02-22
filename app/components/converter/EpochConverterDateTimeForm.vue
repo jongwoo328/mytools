@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { computed, type Ref, ref } from "vue";
 import { DateTime, FixedOffsetZone, SystemZone } from "luxon";
-import { offsetList, EpochTimeConvertTimeUnit } from "~/constants/time";
 import { type UnionFromAsConst } from "~/utils/type";
+import { EpochTimeConvertTimeUnit, offsetList } from "~~/constants/time";
 
 const { copyData } = useCopy();
 const { t } = useI18n();

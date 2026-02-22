@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import RgbColor from "~/models/RgbColor";
-import CmykColor from "~/models/CmykColor";
-import HslColor from "~/models/HslColor";
 import ColorConvertResult from "~/components/converter/ColorConvertResult.vue";
 import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
+import CmykColor from "~~/models/CmykColor";
+import HslColor from "~~/models/HslColor";
+import RgbColor from "~~/models/RgbColor";
 
 const { t } = useI18n();
 const localePath = useLocalePath();

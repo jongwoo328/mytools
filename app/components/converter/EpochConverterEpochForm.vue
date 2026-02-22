@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed, type Ref, ref } from "vue";
 import { DateTime, SystemZone } from "luxon";
-import { EpochTimeConvertTimeUnit, offsetList } from "~/constants/time";
+import { EpochTimeConvertTimeUnit, offsetList } from "~~/constants/time";
 import { type UnionFromAsConst } from "~/utils/type";
 
 const { copyData } = useCopy();

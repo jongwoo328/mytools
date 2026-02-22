@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import RgbColor from "~/models/RgbColor";
-import CmykColor from "~/models/CmykColor";
-import HslColor from "~/models/HslColor";
+import RgbColor from "~~/models/RgbColor";
+import CmykColor from "~~/models/CmykColor";
+import HslColor from "~~/models/HslColor";
 
 const { copyData } = useCopy();
 const { t } = useI18n();
