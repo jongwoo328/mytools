@@ -38,7 +38,7 @@ const validateJSONInput = () => {
   try {
     JSON.parse(jsonInput.value);
     return true;
-  } catch (err) {
+  } catch {
     return false;
   }
 };

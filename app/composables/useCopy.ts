@@ -25,7 +25,7 @@ export function useCopy() {
     try {
       await copy(data);
       showCopySuccessToast();
-    } catch (err) {
+    } catch {
       showCopyFailToast();
     }
   }

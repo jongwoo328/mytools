@@ -70,7 +70,7 @@ const sqlLanguage = ref<SelectableSQLLanguage>("sql");
 const isSQLValid = computed(() => {
   try {
     format(sqlInput.value, { language: sqlLanguage.value });
-  } catch (er) {
+  } catch {
     return false;
   }
   return true;
