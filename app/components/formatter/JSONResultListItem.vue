@@ -45,7 +45,13 @@ const onClickCopyAll = async () => {
   await copyData(stringifyResult());
 };
 const onClickSelectedNode = async () => {
-  await copyData(JSON.stringify(jp.query(props.resultData.result, selected.value)[0], null, 4));
+  if (isJSONObject(props.resultData.result) || isJSONArray(props.resultData.result)) {
+    console.log(props.resultData.result, selected.value);
+    console.log(jp.query(props.resultData.result, selected.value));
+    await copyData(JSON.stringify(jp.query(props.resultData.result, selected.value)[0], null, 4));
+  } else {
+    await copyData(JSON.stringify(props.resultData.result, null, 4));
+  }
 };
 const onClickCopyKey = async () => {
   const lastKey =
