@@ -6,6 +6,7 @@ import { breakpointsBootstrapV5, useBreakpoints } from "@vueuse/core";
 import ResultDivider from "~/app/components/common/ResultDivider.vue";
 import ResultItem from "~/app/components/common/ResultItem.vue";
 import { parseJsonPathToKeyArray } from "~/app/utils/json";
+import jp from "jsonpath";
 
 const { t } = useI18n();
 const { copyData } = useCopy();
@@ -44,7 +45,7 @@ const getObjectFromPath = (path: string) => {
   if (path === "$") {
     return props.resultData.result;
   }
-  return useLodashGet(props.resultData.result, useLodashTrimStart(path, "$."));
+  return jp.query(props.resultData.result, path);
 };
 const onClickCopyAll = async () => {
   await copyData(stringifyResult());
@@ -155,7 +156,7 @@ const clickActions: MenuItem[] = [
             class="p-0"
             size="small"
             @click="onClickResetSelect"
-            :disabled="useLodashIsNull(selected)"
+            :disabled="isNull(selected)"
             style="width: 32px"
           />
           <SplitButton

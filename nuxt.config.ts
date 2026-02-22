@@ -23,15 +23,14 @@ export default defineNuxtConfig({
 
   modules: [
     "nuxt-gtag",
-    "nuxt-lodash",
     "@vueuse/nuxt",
     "@nuxtjs/sitemap",
-    "@nuxtjs/web-vitals",
     "@nuxtjs/robots",
     "nuxt-jsonld",
     "@nuxtjs/i18n",
     "@primevue/nuxt-module",
     "@nuxtjs/color-mode",
+    "@bubblesortt/nuxt-es-toolkit",
   ],
 
   colorMode: {
@@ -40,6 +39,10 @@ export default defineNuxtConfig({
     classPrefix: "",
     classSuffix: "-mode",
     storageKey: "color-mode",
+  },
+
+  esToolkit: {
+    compat: false,
   },
 
   primevue: {
@@ -147,12 +150,6 @@ export default defineNuxtConfig({
   // nuxt-gtag
   gtag: {
     id: "G-5LVPSWJ2CB",
-  },
-
-  // nuxt-lodash
-  lodash: {
-    prefix: "useLodash",
-    prefixSkip: false,
   },
 
   css: [

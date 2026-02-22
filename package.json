@@ -14,6 +14,7 @@
     "lint-prettier": "prettier --write \"**/*.(ts|tsx|vue|js|json)\""
   },
   "devDependencies": {
+    "@bubblesortt/nuxt-es-toolkit": "^1.0.10",
     "@eslint/eslintrc": "^3.1.0",
     "@eslint/js": "^9.9.0",
     "@nabla/vite-plugin-eslint": "^2.0.4",
@@ -38,7 +39,6 @@
     "globals": "^15.9.0",
     "nuxt": "^4.3.1",
     "nuxt-gtag": "^3.0.2",
-    "nuxt-lodash": "^2.5.3",
     "prettier": "^3.3.3",
     "sass": "^1.77.8",
     "typescript": "^5.9.2",
@@ -56,6 +56,7 @@
     "codemirror": "^6.0.1",
     "diff": "^8.0.2",
     "highlight.js": "^11.9.0",
+    "jsonpath": "^1.2.1",
     "luxon": "^3.5.0",
     "markdown-it": "^13.0.2",
     "markdown-it-anchor": "^8.6.7",
