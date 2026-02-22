@@ -107,7 +107,7 @@
     "title": "🛠️ 개발자용 도구모음",
     "tools": {
       "color_code_converter": {
-        "description": "RGB, HEX, CMYK, HSL을 지원하는 색상 코드 변환기",
+        "description": "RGB, HEX, HSL, OKLCH 지원하는 색상 코드 변환기",
         "title": "색상 코드 변환"
       },
       "csv_to_json_converter": {
@@ -557,11 +557,11 @@
     },
     "color": {
       "head": {
-        "description": "RGB, HEX, CMYK, HSL 형식간 색상 코드 변환",
+        "description": "RGB, HEX, HSL, OKLCH 형식간 색상 코드 변환",
         "title": "색상 코드 변환"
       },
       "title": "색상 코드 변환",
-      "description": "RGB, HEX, CMYK, HSL 형식간 색상 코드 변환",
+      "description": "RGB, HEX, HSL, OKLCH 형식간 색상 코드 변환",
       "options": {
         "hex": {
           "label": "HEX"
@@ -569,13 +569,15 @@
         "rgb": {
           "label": "RGB"
         },
-        "cmyk": {
-          "label": "CMYK"
+        "oklch": {
+          "label": "OKLCH"
         },
         "hsl": {
           "label": "HSL"
         }
-      }
+      },
+      "color_input_description": "CSS 색상 코드를 입력하세요. (예: #112233, rgb(255, 0, 0), hsl(120, 100%, 50%))",
+      "color_input_invalid_message": "입력이 올바른 색상 코드 형식이 아닙니다."
     }
   }
 }

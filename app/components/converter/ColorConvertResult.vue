@@ -1,78 +1,62 @@
 <script setup lang="ts">
-import RgbColor from "~~/models/RgbColor";
-import CmykColor from "~~/models/CmykColor";
-import HslColor from "~~/models/HslColor";
+import { color } from "use-color";
 
 const { copyData } = useCopy();
 const { t } = useI18n();
 
 interface ColorConvertResultProps {
   readonly hex: string;
-  readonly showHex?: boolean;
-  readonly showRgb?: boolean;
-  readonly showCmyk?: boolean;
-  readonly showHsl?: boolean;
 }
 
-const props = withDefaults(defineProps<ColorConvertResultProps>(), {
-  showHex: true,
-  showRgb: true,
-  showCmyk: true,
-  showHsl: true,
+const props = defineProps<ColorConvertResultProps>();
+
+const propsColor = computed(() => {
+  return color(`#${props.hex}`);
 });
 
 const hexText = computed(() => {
-  return `#${props.hex}`;
+  return propsColor.value.toHex();
 });
 const rgbText = computed(() => {
-  if (!/[0-9a-fA-F]{6}/.test(props.hex)) {
-    return "";
-  }
-  return RgbColor.fromHex(hexText.value).toString();
+  return propsColor.value.toRgbString();
 });
-const cmykText = computed(() => {
-  if (!/[0-9a-fA-F]{6}/.test(props.hex)) {
-    return "";
-  }
-  return CmykColor.fromHex(hexText.value).toString();
+const oklchText = computed(() => {
+  return propsColor.value.toOklchString();
 });
 const hslText = computed(() => {
-  if (!/[0-9a-fA-F]{6}/.test(props.hex)) {
-    return "";
-  }
-  return HslColor.fromHex(hexText.value).toString();
+  return propsColor.value.toHslString();
 });
 </script>
 
 <template>
   <div class="grid">
-    <div class="col-span-full flex items-center" v-if="showHex">
+    <div class="col-span-full flex items-center">
       <span class="font-bold">
         {{ t("converter.color.options.hex.label") }}
       </span>
       <span class="flex-grow text-end pr-2">{{ hexText }}</span>
       <Button icon="pi pi-copy" class="py-1" size="small" text @click="copyData(hexText)" />
     </div>
-    <div class="col-span-full flex items-center" v-if="showHex">
+    <div class="col-span-full flex items-center">
       <span class="font-bold">
         {{ t("converter.color.options.rgb.label") }}
       </span>
       <span class="flex-grow-1 text-end pr-2">{{ rgbText }}</span>
       <Button icon="pi pi-copy" class="py-1" size="small" text @click="copyData(rgbText)" />
     </div>
-    <div class="col-span-full flex items-center" v-if="showCmyk">
-      <span class="font-bold">
-        {{ t("converter.color.options.cmyk.label") }}
-      </span>
-      <span class="flex-grow-1 text-end pr-2">{{ cmykText }}</span>
-      <Button icon="pi pi-copy" class="py-1" size="small" text @click="copyData(cmykText)" />
-    </div>
-    <div class="col-span-full flex items-center" v-if="showHsl">
+    <div class="col-span-full flex items-center">
       <span class="font-bold">
         {{ t("converter.color.options.hsl.label") }}
       </span>
       <span class="flex-grow-1 text-end pr-2">{{ hslText }}</span>
       <Button icon="pi pi-copy" class="py-1" size="small" text @click="copyData(hslText)" />
+    </div>
+    <div class="col-span-full flex items-center">
+      <span class="font-bold">
+        {{ t("converter.color.options.oklch.label") }}
+      </span>
+      <span class="flex-grow-1 text-end pr-2">{{ oklchText }}</span>
+      <Button icon="pi pi-copy" class="py-1" size="small" text @click="copyData(oklchText)" />
     </div>
   </div>
 </template>
