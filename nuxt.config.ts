@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import eslintPlugin from "@nabla/vite-plugin-eslint";
 import fs from "fs";
-import Lara from "@primevue/themes/lara";
+import Lara from "@primeuix/themes/lara";
 import { defaultOptions } from "@primevue/core/config";
 import { definePreset } from "@primeuix/styled";
 import tailwindcss from "@tailwindcss/vite";
