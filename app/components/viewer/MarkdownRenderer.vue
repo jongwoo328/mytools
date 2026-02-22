@@ -96,6 +96,13 @@ onMounted(() => {
     }
   }
 
+  :deep(sup) {
+    a {
+      color: revert;
+      text-decoration: revert;
+    }
+  }
+
   :deep(blockquote) {
     & {
       margin: 20px 0;
@@ -156,14 +163,6 @@ onMounted(() => {
 
   :deep(.task-list-item) {
     list-style-type: none;
-
-    input[type="checkbox"] {
-      margin-left: -1.5rem;
-    }
-
-    label {
-      margin-left: 0.5rem;
-    }
   }
 }
 
