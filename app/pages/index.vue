@@ -2,7 +2,7 @@
 import FunctionListItem from "~/components/index/FunctionListItem.vue";
 import ServiceInformationModal from "~/components/common/ServiceInformationModal.vue";
 import PageHeading from "~/components/common/PageHeading.vue";
-import type { AvailableTool } from "~~~/types/Tool";
+import type { AvailableTool } from "~~/types/Tool";
 
 const { t } = useI18n();
 const localePath = useLocalePath();

@@ -6,7 +6,7 @@ import ResultDivider from "~/components/common/ResultDivider.vue";
 import ResultItem from "~/components/common/ResultItem.vue";
 import { parseJsonPathToKeyArray } from "~/utils/json";
 import jp from "jsonpath";
-import type { JSONResult } from "~~~/types/JSONResult";
+import type { JSONResult } from "~~/types/JSONResult";
 
 const { t } = useI18n();
 const { copyData } = useCopy();
