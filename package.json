@@ -36,7 +36,7 @@
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-vue": "^9.27.0",
     "globals": "^15.9.0",
-    "nuxt": "^3.18.1",
+    "nuxt": "^4.3.1",
     "nuxt-gtag": "^3.0.2",
     "nuxt-lodash": "^2.5.3",
     "prettier": "^3.3.3",
@@ -47,7 +47,6 @@
   "dependencies": {
     "@codemirror/lang-html": "^6.4.9",
     "@codemirror/lang-sql": "^6.7.0",
-    "@nuxtjs/web-vitals": "^0.2.6",
     "@primevue/themes": "^4.3.7",
     "@tailwindcss/vite": "^4.1.12",
     "@vueuse/nuxt": "^10.11.1",
