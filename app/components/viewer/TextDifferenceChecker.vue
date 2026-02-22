@@ -3,7 +3,6 @@ import PageHeading from "~/components/common/PageHeading.vue";
 import TextDifferenceCheckerViewer from "~/components/viewer/TextDifferenceCheckerViewer.vue";
 import { type Change } from "diff";
 import { type DiffType } from "~~/types/textDiff";
-import TextDiffWorker from "~/assets/scripts/textDiffWorker?worker";
 
 const { t } = useI18n();
 
@@ -17,7 +16,7 @@ function refreshWorker() {
     worker.terminate();
     worker = null;
   }
-  worker = new TextDiffWorker();
+  worker = new Worker(new URL("~/assets/scripts/textDiffWorker.js", import.meta.url), { type: "module" });
   worker.onmessage = (e) => {
     diffResult.value = e.data;
     isCalculating.value = false;

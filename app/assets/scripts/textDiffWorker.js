@@ -1,12 +1,12 @@
-import * as Diff from "@/node_modules/diff/dist/diff.js";
+import { diffChars, diffLines, diffWords } from "diff";
 
 const checkDiff = (text1, text2, diffType) => {
   if (diffType === "chars") {
-    return Diff.diffChars(text1, text2);
+    return diffChars(text1, text2);
   } else if (diffType === "words") {
-    return Diff.diffWords(text1, text2);
+    return diffWords(text1, text2);
   } else if (diffType === "lines") {
-    return Diff.diffLines(text1, text2);
+    return diffLines(text1, text2);
   }
 };
 
