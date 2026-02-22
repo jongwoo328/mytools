@@ -17,6 +17,9 @@ const compat = new FlatCompat({
 });
 
 export default [
+  {
+    ignores: [".nuxt/**"],
+  },
   ...compat.extends("plugin:@typescript-eslint/recommended", "plugin:prettier/recommended", "plugin:nuxt/recommended"),
   {
     plugins: {

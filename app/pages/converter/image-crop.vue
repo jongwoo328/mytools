@@ -5,6 +5,10 @@ import { v4 } from "uuid";
 import { breakpointsBootstrapV5, useMagicKeys } from "@vueuse/core";
 import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 
+interface CropResizeEvent {
+  target?: { cropper?: { cropBoxData?: unknown } };
+}
+
 const { t } = useI18n();
 const localePath = useLocalePath();
 
@@ -107,7 +111,7 @@ const onCropperReady = () => {
   syncCropBoxToInput();
 };
 
-const onCropResize = (e: any) => {
+const onCropResize = (e: CropResizeEvent) => {
   const cropBoxData = e?.target?.cropper?.cropBoxData;
   if (!cropBoxData) {
     return;

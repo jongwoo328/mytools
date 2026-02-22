@@ -42,7 +42,7 @@ const encodedText = computed(() => {
       return encodeURI(inputText.value);
     }
     return encodeURIComponent(inputText.value);
-  } catch (e) {
+  } catch {
     return t("converter.url.error.URIError");
   }
 });
@@ -52,7 +52,7 @@ const decodedText = computed(() => {
       return decodeURI(inputText.value);
     }
     return decodeURIComponent(inputText.value);
-  } catch (e) {
+  } catch {
     return t("converter.url.error.URIError");
   }
 });
