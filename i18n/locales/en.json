@@ -107,7 +107,7 @@
     "title": "🛠️ Tools For Developer",
     "tools": {
       "color_code_converter": {
-        "description": "Color Code Converter supports RGB, HEX, CMYK, HSL",
+        "description": "Color Code Converter supports RGB, HEX, HSL, OKLCH",
         "title": "Color Code Converter"
       },
       "csv_to_json_converter": {
@@ -557,11 +557,11 @@
     },
     "color": {
       "head": {
-        "description": "Convert color code to other formats like RGB, HEX, CMYK, HSL.",
+        "description": "Convert color code to other formats like RGB, HEX, HSL, OKLCH.",
         "title": "Color Code Converter"
       },
       "title": "Color Code Converter",
-      "description": "Color Code Converter supports RGB, HEX, CMYK, HSL",
+      "description": "Color Code Converter supports RGB, HEX, HSL, OKLCH",
       "options": {
         "hex": {
           "label": "HEX"
@@ -569,13 +569,15 @@
         "rgb": {
           "label": "RGB"
         },
-        "cmyk": {
-          "label": "CMYK"
+        "oklch": {
+          "label": "OKLCH"
         },
         "hsl": {
           "label": "HSL"
         }
-      }
+      },
+      "color_input_description": "Enter a CSS color code. (e.g., #112233, rgb(255, 0, 0), hsl(120, 100%, 50%))",
+      "color_input_invalid_message": "Input is not a valid color code"
     }
   }
 }

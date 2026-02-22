@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import ColorConvertResult from "~/components/converter/ColorConvertResult.vue";
 import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
-import CmykColor from "~~/models/CmykColor";
-import HslColor from "~~/models/HslColor";
-import RgbColor from "~~/models/RgbColor";
+import { color, isColorString } from "use-color";
 
 const { t } = useI18n();
 const localePath = useLocalePath();
@@ -27,104 +25,19 @@ useJsonld(() => ({
   ],
 }));
 
-const tabIndex = ref("hex");
-const tabOptions = [
-  { label: t("converter.color.options.hex.label"), value: "hex" },
-  { label: t("converter.color.options.rgb.label"), value: "rgb" },
-  { label: t("converter.color.options.cmyk.label"), value: "cmyk" },
-  { label: t("converter.color.options.hsl.label"), value: "hsl" },
-];
-
-const rgbPickedColor = ref("000000");
-const cmykPickedColor = ref("000000");
-const hslPickedColor = ref("000000");
-const hexPickedColor = ref("000000");
-
-const hexCode = ref("000000");
-const isHexCodeValid = computed(() => {
-  return /^[0-9a-fA-F]{6}$/.test(hexCode.value);
-});
-watch(hexPickedColor, () => {
-  if (hexCode.value !== hexPickedColor.value) {
-    hexCode.value = hexPickedColor.value;
-  }
-});
-watch(hexCode, () => {
-  if (isHexCodeValid.value) {
-    hexPickedColor.value = hexCode.value;
+const pickedHexColor = ref("000000");
+const inputColorText = ref("#000000");
+const hexInput = computed(() => {
+  try {
+    return color(inputColorText.value).toHex().slice(1);
+  } catch {
+    return "";
   }
 });
 
-const rgbRed = ref(0);
-const rgbGreen = ref(0);
-const rgbBlue = ref(0);
-watch(rgbPickedColor, () => {
-  const rgbColor = RgbColor.fromHex(`#${rgbPickedColor.value}`);
-  if (rgbRed.value !== rgbColor.red) {
-    rgbRed.value = rgbColor.red;
-  }
-  if (rgbGreen.value !== rgbColor.green) {
-    rgbGreen.value = rgbColor.green;
-  }
-  if (rgbBlue.value !== rgbColor.blue) {
-    rgbBlue.value = rgbColor.blue;
-  }
-});
-
-watch([rgbRed, rgbGreen, rgbBlue], () => {
-  const r = rgbRed.value.toString(16).padStart(2, "0");
-  const g = rgbGreen.value.toString(16).padStart(2, "0");
-  const b = rgbBlue.value.toString(16).padStart(2, "0");
-  rgbPickedColor.value = RgbColor.fromHex(`#${r}${g}${b}`).toHex().slice(1);
-});
-
-const cmykCyan = ref(0);
-const cmykMagenta = ref(0);
-const cmykYellow = ref(0);
-const cmykKey = ref(100);
-watch(cmykPickedColor, () => {
-  const cmykColor = CmykColor.fromHex(`#${cmykPickedColor.value}`);
-  if (cmykCyan.value !== cmykColor.cyan) {
-    cmykCyan.value = cmykColor.cyan;
-  }
-  if (cmykMagenta.value !== cmykColor.magenta) {
-    cmykMagenta.value = cmykColor.magenta;
-  }
-  if (cmykYellow.value !== cmykColor.yellow) {
-    cmykYellow.value = cmykColor.yellow;
-  }
-  if (cmykKey.value !== cmykColor.key) {
-    cmykKey.value = cmykColor.key;
-  }
-});
-watch([cmykCyan, cmykMagenta, cmykYellow, cmykKey], () => {
-  const c = cmykCyan.value;
-  const m = cmykMagenta.value;
-  const y = cmykYellow.value;
-  const k = cmykKey.value;
-  cmykPickedColor.value = new CmykColor({ cyan: c, magenta: m, yellow: y, key: k }).toHex().slice(1);
-});
-
-const hslHue = ref(0);
-const hslSaturation = ref(0);
-const hslLightness = ref(0);
-watch(hslPickedColor, () => {
-  const hslColor = HslColor.fromHex(`#${hslPickedColor.value}`);
-  if (hslHue.value !== hslColor.hue) {
-    hslHue.value = hslColor.hue;
-  }
-  if (hslSaturation.value !== hslColor.saturation) {
-    hslSaturation.value = hslColor.saturation;
-  }
-  if (hslLightness.value !== hslColor.lightness) {
-    hslLightness.value = hslColor.lightness;
-  }
-});
-watch([hslHue, hslSaturation, hslLightness], () => {
-  const h = hslHue.value;
-  const s = hslSaturation.value;
-  const l = hslLightness.value;
-  hslPickedColor.value = new HslColor({ hue: h, saturation: s, lightness: l }).toHex().slice(1);
+const isValidColor = ref(true);
+watch(inputColorText, (newVal) => {
+  isValidColor.value = isColorString(newVal);
 });
 </script>
 
@@ -137,89 +50,18 @@ watch([hslHue, hslSaturation, hslLightness], () => {
     <Card>
       <template #content>
         <div class="m-0">
-          <Tabs :value="tabIndex">
-            <TabList>
-              <Tab v-for="tab in tabOptions" :key="tab.value" :value="tab.value">
-                {{ tab.label }}
-              </Tab>
-            </TabList>
-            <TabPanels class="px-0">
-              <TabPanel value="hex">
-                <ColorPicker v-model="hexPickedColor" class="w-full" :pt="{ preview: { class: 'color-picker' } }" />
-                <div class="mt-2">
-                  <InputGroup>
-                    <InputGroupAddon> # </InputGroupAddon>
-                    <InputText class="prevent-auto-zoom" v-model="hexCode" :class="{ 'p-invalid': !isHexCodeValid }" />
-                  </InputGroup>
-                </div>
-                <ColorConvertResult class="mt-4" :hex="hexPickedColor" />
-              </TabPanel>
-              <TabPanel value="rgb">
-                <ColorPicker v-model="rgbPickedColor" class="w-full" :pt="{ preview: { class: 'color-picker' } }" />
-                <div class="mt-2">
-                  <InputGroup>
-                    <InputGroupAddon> R </InputGroupAddon>
-                    <InputNumber class="prevent-auto-zoom" :min="0" :max="255" v-model="rgbRed" />
-                  </InputGroup>
-                  <InputGroup>
-                    <InputGroupAddon> G </InputGroupAddon>
-                    <InputNumber class="prevent-auto-zoom" :min="0" :max="255" v-model="rgbGreen" />
-                  </InputGroup>
-                  <InputGroup>
-                    <InputGroupAddon> B </InputGroupAddon>
-                    <InputNumber class="prevent-auto-zoom" :min="0" :max="255" v-model="rgbBlue" />
-                  </InputGroup>
-                </div>
-                <ColorConvertResult class="mt-4" :hex="rgbPickedColor" />
-              </TabPanel>
-              <TabPanel value="cmyk">
-                <ColorPicker v-model="cmykPickedColor" class="w-full" :pt="{ preview: { class: 'color-picker' } }" />
-                <div class="mt-2">
-                  <InputGroup>
-                    <InputGroupAddon> C </InputGroupAddon>
-                    <InputNumber :min="0" :max="100" class="prevent-auto-zoom" v-model="cmykCyan" />
-                    <InputGroupAddon> % </InputGroupAddon>
-                  </InputGroup>
-                  <InputGroup>
-                    <InputGroupAddon> M </InputGroupAddon>
-                    <InputNumber :min="0" :max="100" class="prevent-auto-zoom" v-model="cmykMagenta" />
-                    <InputGroupAddon> % </InputGroupAddon>
-                  </InputGroup>
-                  <InputGroup>
-                    <InputGroupAddon> Y </InputGroupAddon>
-                    <InputNumber :min="0" :max="100" class="prevent-auto-zoom" v-model="cmykYellow" />
-                    <InputGroupAddon> % </InputGroupAddon>
-                  </InputGroup>
-                  <InputGroup>
-                    <InputGroupAddon> K </InputGroupAddon>
-                    <InputNumber :min="0" :max="100" class="prevent-auto-zoom" v-model="cmykKey" />
-                    <InputGroupAddon> % </InputGroupAddon>
-                  </InputGroup>
-                </div>
-                <ColorConvertResult class="mt-4" :hex="cmykPickedColor" />
-              </TabPanel>
-              <TabPanel value="hsl">
-                <ColorPicker v-model="hslPickedColor" class="w-full" :pt="{ preview: { class: 'color-picker' } }" />
-                <div class="mt-2">
-                  <InputGroup>
-                    <InputGroupAddon> H </InputGroupAddon>
-                    <InputNumber :min="0" :max="360" class="prevent-auto-zoom" v-model="hslHue" />
-                  </InputGroup>
-                  <InputGroup>
-                    <InputGroupAddon> S </InputGroupAddon>
-                    <InputNumber :min="0" :max="100" class="prevent-auto-zoom" v-model="hslSaturation" />
-                    <InputGroupAddon> % </InputGroupAddon>
-                  </InputGroup>
-                  <InputGroup>
-                    <InputGroupAddon> L </InputGroupAddon>
-                    <InputNumber class="prevent-auto-zoom" v-model="hslLightness" />
-                    <InputGroupAddon> % </InputGroupAddon>
-                  </InputGroup>
-                </div>
-                <ColorConvertResult class="mt-4" :hex="hslPickedColor" />
-              </TabPanel>
-            </TabPanels>
-          </Tabs>
+          <ColorPicker v-model="pickedHexColor" class="w-full" :pt="{ preview: { class: 'color-picker' } }" />
+          <ColorConvertResult class="mt-4" :hex="pickedHexColor" />
+        </div>
+      </template>
+    </Card>
+    <Card class="mt-4">
+      <template #content>
+        <div class="m-0">
+          <p>{{ t("converter.color.color_input_description") }}</p>
+          <InputText v-model="inputColorText" class="w-full" :invalid="!isValidColor" />
+          <p v-if="!isValidColor" class="mt-1 text-red-500">{{ t("converter.color.color_input_invalid_message") }}</p>
+          <ColorConvertResult v-if="isValidColor" class="mt-4" :hex="hexInput" />
         </div>
       </template>
     </Card>
