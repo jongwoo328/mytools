@@ -156,7 +156,7 @@ const clickActions: MenuItem[] = [
             class="p-0"
             size="small"
             @click="onClickResetSelect"
-            :disabled="isNull(selected)"
+            :disabled="isSelectedEmpty"
             style="width: 32px"
           />
           <SplitButton
