@@ -1,6 +1,6 @@
-import type ConvertableColor from "~/models/interfaces/ConvertableColor";
-import type { HslColorValue } from "~/types/color";
-import RgbColor from "~/models/RgbColor";
+import { HslColorValue } from "../types/color";
+import ConvertableColor from "./interfaces/ConvertableColor";
+import RgbColor from "./RgbColor";
 
 export default class HslColor implements ConvertableColor {
   public readonly hue: number;

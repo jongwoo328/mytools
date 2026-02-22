@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import eslintPlugin from "@nabla/vite-plugin-eslint";
 import fs from "fs";
-import Lara from "@primevue/themes/lara";
+import Lara from "@primeuix/themes/lara";
 import { defaultOptions } from "@primevue/core/config";
 import { definePreset } from "@primeuix/styled";
 import tailwindcss from "@tailwindcss/vite";
@@ -23,15 +23,14 @@ export default defineNuxtConfig({
 
   modules: [
     "nuxt-gtag",
-    "nuxt-lodash",
     "@vueuse/nuxt",
     "@nuxtjs/sitemap",
-    "@nuxtjs/web-vitals",
     "@nuxtjs/robots",
     "nuxt-jsonld",
     "@nuxtjs/i18n",
     "@primevue/nuxt-module",
     "@nuxtjs/color-mode",
+    "@bubblesortt/nuxt-es-toolkit",
   ],
 
   colorMode: {
@@ -40,6 +39,10 @@ export default defineNuxtConfig({
     classPrefix: "",
     classSuffix: "-mode",
     storageKey: "color-mode",
+  },
+
+  esToolkit: {
+    compat: false,
   },
 
   primevue: {
@@ -149,14 +152,8 @@ export default defineNuxtConfig({
     id: "G-5LVPSWJ2CB",
   },
 
-  // nuxt-lodash
-  lodash: {
-    prefix: "useLodash",
-    prefixSkip: false,
-  },
-
   css: [
-    "@/assets/styles/main.css",
+    "~/assets/styles/main.css",
     "primeicons/primeicons.css",
     "vue-json-pretty/lib/styles.css",
     "cropperjs/dist/cropper.css",
