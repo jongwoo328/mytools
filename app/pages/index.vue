@@ -105,6 +105,12 @@ const availableTools: AvailableTool[] = [
     description: t("index.tools.markdown_viewer.description"),
     tags: [Tags.Viewer],
   },
+  {
+    title: t("index.tools.mcp_config_converter.title"),
+    router: localePath("/converter/mcp-config"),
+    description: t("index.tools.mcp_config_converter.description"),
+    tags: [Tags.Converter],
+  },
 ];
 
 const toolFilter = reactive({

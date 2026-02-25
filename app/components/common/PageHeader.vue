@@ -81,6 +81,11 @@ const menus = [
         label: () => t("index.menu.converter.items.color_code_converter_label"),
         command: hideDrawer,
       },
+      {
+        url: () => localePath("/converter/mcp-config"),
+        label: () => t("index.menu.converter.items.mcp_config_converter_label"),
+        command: hideDrawer,
+      },
     ],
   },
   {

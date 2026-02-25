@@ -65,7 +65,8 @@
           "epoch_converter_label": "Epoch (Unix Time)",
           "image_converter_label": "Image Format",
           "image_cropper_label": "Image Cropper",
-          "url_encoder/decoder_label": "URL Encoder/Decoder"
+          "url_encoder/decoder_label": "URL Encoder/Decoder",
+          "mcp_config_converter_label": "MCP Config Converter"
         },
         "label": "Converter"
       },
@@ -153,6 +154,10 @@
       "markdown_viewer": {
         "description": "Markdown viewer with support for tables and TeX(Math formula)",
         "title": "Markdown Viewer"
+      },
+      "mcp_config_converter": {
+        "description": "Translating between MCP configuration formats (e.g., Claude and Codex)",
+        "title": "MCP Config Converter"
       }
     }
   },
@@ -578,6 +583,28 @@
       },
       "color_input_description": "Enter a CSS color code. (e.g., #112233, rgb(255, 0, 0), hsl(120, 100%, 50%))",
       "color_input_invalid_message": "Input is not a valid color code"
+    },
+    "mcp-config": {
+      "head": {
+        "description": "Translating between MCP configuration formats",
+        "title": "MCP Config Converter"
+      },
+      "title": "MCP Config Converter",
+      "description": "Translating between MCP configuration formats (e.g., Claude and Codex)",
+      "source_format_label": "Source Format",
+      "source_format_placeholder": "Paste entire config file content here.",
+      "target_format_label": "Target Format",
+      "target_format_placeholder": "Converted config will appear here.",
+      "button": {
+        "convert": "Convert",
+        "copy": "Copy"
+      },
+      "message": {
+        "codex_cli_invalid_toml": "Invalid TOML format. Please check your Codex CLI config.toml file.",
+        "no_mcp_server_config_found": "No MCP server configuration found to convert. Please ensure the input format is correct.",
+        "unknown_error": "An unknown error occurred.",
+        "invalid_json_format": "Invalid JSON format. Please copy and paste the entire settings file."
+      }
     }
   }
 }
