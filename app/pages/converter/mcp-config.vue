@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 import PageHeading from "~/components/common/PageHeading.vue";
-import type { EditorType } from "~~/lib/converter/mcp-config/fotmats";
+import type { EditorType } from "~~/lib/converter/mcp-config/formats";
 import { createConverter } from "~~/lib/converter/mcp-config/converter";
 
 const i18n = useI18n();

@@ -10,7 +10,7 @@ import type {
   VSCodeConfig,
   GeminiCliConfig,
   CodexCliConfig,
-} from "./fotmats";
+} from "./formats";
 import * as TOML from "@iarna/toml";
 import { parseJsonFlexible } from "./util";
 import type { Composer } from "vue-i18n";
