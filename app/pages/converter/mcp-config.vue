@@ -82,7 +82,7 @@ function copyOutput() {
     <Meta name="description" :content="t('converter.mcp-config.head.description')" />
   </Head>
   <ToolPageLayout :title="t('converter.mcp-config.title')" :description="t('converter.mcp-config.description')">
-    <div class="flex gap-4 w-full mt-10">
+    <div class="flex flex-col lg:flex-row gap-4 w-full mt-10">
       <Card class="w-full" :pt="{ header: { class: 'pt-4 px-4' } }">
         <template #header>
           <PageHeading :size="6" :level="2" weight="600">
