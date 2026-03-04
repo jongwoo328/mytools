@@ -52,12 +52,20 @@ const renderMermaid = async () => {
 };
 
 onMounted(() => {
-  watch(
-    [() => props.value, mermaidTheme],
+  watchDebounced(
+    () => props.value,
     () => {
       void renderMermaid();
     },
-    { flush: "post", immediate: true },
+    { flush: "post", immediate: true, debounce: 250, maxWait: 1000 },
+  );
+
+  watch(
+    mermaidTheme,
+    () => {
+      void renderMermaid();
+    },
+    { flush: "post" },
   );
 });
 </script>
