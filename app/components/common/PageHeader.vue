@@ -107,6 +107,11 @@ const menus = [
         label: () => t("index.menu.viewer.items.markdown_viewer_label"),
         command: hideDrawer,
       },
+      {
+        url: () => localePath("/viewer/mermaid"),
+        label: () => t("index.menu.viewer.items.mermaid_viewer_label"),
+        command: hideDrawer,
+      },
     ],
   },
   {

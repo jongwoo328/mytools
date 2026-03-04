@@ -81,7 +81,8 @@
         "items": {
           "html_viewer_label": "HTML",
           "text_difference_checker_label": "텍스트 차이 비교",
-          "markdown_viewer_label": "마크다운"
+          "markdown_viewer_label": "마크다운",
+          "mermaid_viewer_label": "Mermaid"
         },
         "label": "뷰어"
       }
@@ -154,6 +155,10 @@
       "markdown_viewer": {
         "description": "표와 TeX(수학 식)를 지원하는 마크다운 뷰어",
         "title": "마크다운 뷰어"
+      },
+      "mermaid_viewer": {
+        "description": "Mermaid 다이어그램 문법을 실시간으로 렌더링",
+        "title": "Mermaid 뷰어"
       },
       "mcp_config_converter": {
         "description": "Claude, Codex 등 서로 다른 MCP 구성 형식간 변환",
@@ -304,6 +309,27 @@
           "title": "수식",
           "text": "TeX의 수학 표현을 지원합니다."
         }
+      }
+    },
+    "mermaid": {
+      "head": {
+        "description": "Mermaid 다이어그램 문법을 실시간으로 렌더링합니다.",
+        "title": "Mermaid 뷰어"
+      },
+      "title": "Mermaid 뷰어",
+      "description": "Mermaid 다이어그램을 바로 확인할 수 있는 뷰어입니다.",
+      "reference": {
+        "link_label": "Mermaid 공식 문서"
+      },
+      "example_input": {
+        "start": "시작",
+        "input": "Mermaid 문법 입력",
+        "render_condition": "렌더 성공?",
+        "success": "예",
+        "fail": "아니오",
+        "preview": "다이어그램 미리보기",
+        "error": "에러 메시지 표시",
+        "end": "완료"
       }
     }
   },

@@ -81,7 +81,8 @@
         "items": {
           "html_viewer_label": "HTML",
           "text_difference_checker_label": "Text Diff Checker",
-          "markdown_viewer_label": "Markdown"
+          "markdown_viewer_label": "Markdown",
+          "mermaid_viewer_label": "Mermaid"
         },
         "label": "Viewer"
       }
@@ -154,6 +155,10 @@
       "markdown_viewer": {
         "description": "Markdown viewer with support for tables and TeX(Math formula)",
         "title": "Markdown Viewer"
+      },
+      "mermaid_viewer": {
+        "description": "Render Mermaid diagram syntax in real time",
+        "title": "Mermaid Viewer"
       },
       "mcp_config_converter": {
         "description": "Translating between MCP configuration formats (e.g., Claude and Codex)",
@@ -304,6 +309,27 @@
           "title": "Formula",
           "text": "Support for math expressions in TeX."
         }
+      }
+    },
+    "mermaid": {
+      "head": {
+        "description": "Render Mermaid diagram syntax in real time.",
+        "title": "Mermaid Viewer"
+      },
+      "title": "Mermaid Viewer",
+      "description": "A viewer to preview Mermaid diagrams immediately.",
+      "reference": {
+        "link_label": "Open Mermaid docs"
+      },
+      "example_input": {
+        "start": "Start",
+        "input": "Input Mermaid syntax",
+        "render_condition": "Render succeeded?",
+        "success": "Yes",
+        "fail": "No",
+        "preview": "Preview diagram",
+        "error": "Show error message",
+        "end": "Done"
       }
     }
   },
