@@ -12,6 +12,14 @@ const renderError = ref("");
 
 const mermaidTheme = computed(() => (colorMode.value === "dark" ? "dark" : "default"));
 
+const initializeMermaid = () => {
+  mermaid.initialize({
+    startOnLoad: false,
+    securityLevel: "strict",
+    theme: mermaidTheme.value,
+  });
+};
+
 const renderMermaid = async () => {
   if (!renderer.value) {
     return;
@@ -27,12 +35,6 @@ const renderMermaid = async () => {
 
   try {
     renderError.value = "";
-
-    mermaid.initialize({
-      startOnLoad: false,
-      securityLevel: "strict",
-      theme: mermaidTheme.value,
-    });
 
     const { svg, bindFunctions } = await mermaid.render(`id-${nanoid(10)}`, mermaidText);
     if (!renderer.value) {
@@ -52,6 +54,8 @@ const renderMermaid = async () => {
 };
 
 onMounted(() => {
+  initializeMermaid();
+
   watchDebounced(
     () => props.value,
     () => {
@@ -63,6 +67,7 @@ onMounted(() => {
   watch(
     mermaidTheme,
     () => {
+      initializeMermaid();
       void renderMermaid();
     },
     { flush: "post" },
@@ -73,7 +78,12 @@ onMounted(() => {
 <template>
   <div>
     <div ref="renderer" class="mermaid-output" />
-    <pre v-if="renderError" class="mermaid-error">{{ renderError }}</pre>
+    <pre
+      v-if="renderError"
+      class="mt-2 whitespace-pre-wrap rounded-md border border-rose-200 bg-rose-50 p-3 text-sm leading-5 text-rose-700 dark:border-rose-800 dark:bg-rose-950 dark:text-rose-200"
+    >
+      {{ renderError }}
+    </pre>
   </div>
 </template>
 
@@ -84,26 +94,6 @@ onMounted(() => {
     max-width: 100%;
     height: auto;
     margin: 0 auto;
-  }
-}
-
-.mermaid-error {
-  margin-top: 0.5rem;
-  border: 1px solid #fecdd3;
-  border-radius: 0.375rem;
-  padding: 0.75rem;
-  background-color: #fff1f2;
-  color: #be123c;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  white-space: pre-wrap;
-}
-
-.dark-mode {
-  .mermaid-error {
-    border-color: #9f1239;
-    background-color: #3f1d2e;
-    color: #fecdd3;
   }
 }
 </style>

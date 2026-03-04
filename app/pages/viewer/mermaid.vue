@@ -29,12 +29,12 @@ useJsonld(() => ({
 }));
 
 const mermaidText = ref(`flowchart TD
-    Start([${t("viewer.mermaid.example_input.start")}]) --> Input[${t("viewer.mermaid.example_input.input")}]
-    Input --> Render{${t("viewer.mermaid.example_input.render_condition")}}
-    Render -->|${t("viewer.mermaid.example_input.success")}| Preview[${t("viewer.mermaid.example_input.preview")}]
-    Render -->|${t("viewer.mermaid.example_input.fail")}| Error[${t("viewer.mermaid.example_input.error")}]
-    Preview --> End([${t("viewer.mermaid.example_input.end")}])
-    Error --> Input`);
+Start([${t("viewer.mermaid.example_input.start")}]) --> Input[${t("viewer.mermaid.example_input.input")}]
+Input --> Render{${t("viewer.mermaid.example_input.render_condition")}}
+Render -->|${t("viewer.mermaid.example_input.success")}| Preview[${t("viewer.mermaid.example_input.preview")}]
+Render -->|${t("viewer.mermaid.example_input.fail")}| Error[${t("viewer.mermaid.example_input.error")}]
+Preview --> End([${t("viewer.mermaid.example_input.end")}])
+Error --> Input`);
 </script>
 
 <template>
@@ -65,12 +65,7 @@ const mermaidText = ref(`flowchart TD
             <MermaidRenderer :value="mermaidText" />
           </div>
           <div class="border-gray-300 dark:border-gray-800 border">
-            <Codemirror
-              :disabled="true"
-              :extensions="[mermaid(), codemirrorTheme]"
-              v-model="mermaidText"
-              class="font-monospace-code"
-            />
+            <Codemirror :extensions="[mermaid(), codemirrorTheme]" v-model="mermaidText" class="font-monospace-code" />
           </div>
         </div>
       </template>
