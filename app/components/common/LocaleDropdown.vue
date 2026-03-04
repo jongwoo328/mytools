@@ -39,7 +39,7 @@ watch(locale, () => {
 
 <template>
   <div class="flex items-center">
-    <TranslationIcon size="20" @click="openSelect" class="pr-2" cursor-pointer />
+    <TranslationIcon size="20" @click="openSelect" class="pr-3" cursor-pointer />
     <Select
       ref="select"
       :style="selectStyle"
