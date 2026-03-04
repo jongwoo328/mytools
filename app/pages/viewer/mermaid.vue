@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 import MermaidRenderer from "~/components/viewer/MermaidRenderer.vue";
-import Textarea from "primevue/textarea";
+import { Codemirror } from "vue-codemirror";
+import { mermaid } from "codemirror-lang-mermaid";
 
 const { t } = useI18n();
 const localePath = useLocalePath();
+const { codemirrorTheme } = useCodeMirror();
 const mermaidReferenceUrl = "https://mermaid.js.org/intro/";
 
 useJsonld(() => ({
@@ -59,10 +61,17 @@ const mermaidText = ref(`flowchart TD
               <i class="pi pi-external-link text-xs" />
             </NuxtLink>
           </div>
-          <div class="w-full border-gray-300 border rounded-lg p-4">
+          <div class="w-full border-gray-300 dark:border-gray-800 border rounded-lg p-4">
             <MermaidRenderer :value="mermaidText" />
           </div>
-          <Textarea v-model="mermaidText" auto-resize class="prevent-auto-zoom font-monospace-code block w-full" />
+          <div class="border-gray-300 dark:border-gray-800 border">
+            <Codemirror
+              :disabled="true"
+              :extensions="[mermaid(), codemirrorTheme]"
+              v-model="mermaidText"
+              class="font-monospace-code"
+            />
+          </div>
         </div>
       </template>
     </Card>

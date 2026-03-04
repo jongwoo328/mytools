@@ -38,6 +38,9 @@ importers:
       codemirror:
         specifier: ^6.0.1
         version: 6.0.2
+      codemirror-lang-mermaid:
+        specifier: ^0.5.0
+        version: 0.5.0
       diff:
         specifier: ^8.0.3
         version: 8.0.3
@@ -3117,6 +3120,9 @@ packages:
       '@codemirror/state': ^6.0.0
       '@codemirror/view': ^6.0.0
       '@lezer/highlight': ^1.0.0
+
+  codemirror-lang-mermaid@0.5.0:
+    resolution: {integrity: sha512-Taw/2gPCyNArQJCxIP/HSUif+3zrvD+6Ugt7KJZ2dUKou/8r3ZhcfG8krNTZfV2iu8AuGnymKuo7bLPFyqsh/A==}
 
   codemirror@6.0.2:
     resolution: {integrity: sha512-VhydHotNW5w1UGK0Qj96BwSk/Zqbp9WbnyK2W/eVMv4QyF41INRGpjUhFJY7/uDNuudSc33a/PKr4iDqRduvHw==}
@@ -9840,6 +9846,12 @@ snapshots:
       '@codemirror/state': 6.5.2
       '@codemirror/view': 6.38.1
       '@lezer/highlight': 1.2.1
+
+  codemirror-lang-mermaid@0.5.0:
+    dependencies:
+      '@codemirror/language': 6.11.3
+      '@lezer/highlight': 1.2.1
+      '@lezer/lr': 1.4.2
 
   codemirror@6.0.2:
     dependencies:
