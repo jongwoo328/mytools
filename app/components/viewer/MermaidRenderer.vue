@@ -34,7 +34,7 @@ const renderMermaid = async () => {
       theme: mermaidTheme.value,
     });
 
-    const { svg, bindFunctions } = await mermaid.render(nanoid(10), mermaidText);
+    const { svg, bindFunctions } = await mermaid.render(`id-${nanoid(10)}`, mermaidText);
     if (!renderer.value) {
       return;
     }
