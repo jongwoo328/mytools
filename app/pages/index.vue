@@ -111,6 +111,12 @@ const availableTools: AvailableTool[] = [
     description: t("index.tools.mcp_config_converter.description"),
     tags: [Tags.Converter],
   },
+  {
+    title: t("index.tools.mermaid_viewer.title"),
+    router: localePath("/viewer/mermaid"),
+    description: t("index.tools.mermaid_viewer.description"),
+    tags: [Tags.Viewer],
+  },
 ];
 
 const toolFilter = reactive({
