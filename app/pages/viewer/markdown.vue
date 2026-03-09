@@ -2,8 +2,9 @@
 import MarkdownRenderer from "~/components/viewer/MarkdownRenderer.vue";
 import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 import SplitterPanel from "primevue/splitterpanel";
-import Textarea from "primevue/textarea";
+import { markdown } from "@codemirror/lang-markdown";
 
+const { codemirrorTheme } = useCodeMirror();
 const { copyData } = useCopy();
 const { t } = useI18n();
 const localePath = useLocalePath();
@@ -168,35 +169,6 @@ const useBreaksTooltip = computed(() => t("viewer.markdown.options.use_breaks_to
 const renderedMarkdownPanel = ref();
 const markdownInput = ref();
 
-const onScrollTextArea = () => {
-  if (!renderedMarkdownPanel.value?.$el || !markdownInput.value?.$el) {
-    return;
-  }
-
-  renderedMarkdownPanel.value.$el.scrollTop = markdownInput.value.$el.scrollTop;
-};
-const onScrollPanel = () => {
-  if (renderedMarkdownPanel.value === null || markdownInput.value === null) {
-    return;
-  }
-  markdownInput.value.$el.scrollTop = renderedMarkdownPanel.value.$el.scrollTop;
-};
-
-function onMarkdownInputKeydown(e: KeyboardEvent) {
-  if (e.key == "Tab") {
-    const textarea = e.target as HTMLTextAreaElement;
-    e.preventDefault();
-    const start = textarea.selectionStart;
-    const end = textarea.selectionEnd;
-    if (!e.shiftKey) {
-      textarea.value = textarea.value.substring(0, start) + "\t" + textarea.value.substring(end);
-      textarea.selectionStart = textarea.selectionEnd = start + 1;
-    }
-
-    textarea.dispatchEvent(new Event("input", { bubbles: true, cancelable: true }));
-  }
-}
-
 const onClickCopy = async () => {
   await copyData(input.value);
 };
@@ -312,18 +284,11 @@ provide("updateMarkdownCheckbox", updateMarkdownCheckbox);
         </div>
         <Splitter id="markdown-viewer" :layout="layout">
           <SplitterPanel class="flex flex-col">
-            <Textarea
-              ref="markdownInput"
-              @scroll="onScrollTextArea"
-              style="resize: none"
-              class="prevent-auto-zoom flex-grow"
-              :auto-resize="false"
-              :autofocus="false"
-              v-model="input"
-              @keydown="onMarkdownInputKeydown"
-            />
+            <div class="overflow-y-auto">
+              <Codemirror v-model="input" :extensions="[markdown(), codemirrorTheme]" />
+            </div>
           </SplitterPanel>
-          <SplitterPanel class="overflow-auto" ref="renderedMarkdownPanel" @scroll="onScrollPanel">
+          <SplitterPanel class="overflow-auto" ref="renderedMarkdownPanel">
             <MarkdownRenderer
               :html="useHtml"
               :linkify="useLinkify"

@@ -9,6 +9,7 @@ import SQLResultListItemSetting from "~/components/formatter/SQLResultListItemSe
 import ResultDivider from "~/components/common/ResultDivider.vue";
 import { type UnionFromAsConst } from "~/utils/type";
 
+const { codemirrorTheme } = useCodeMirror();
 const { t } = useI18n();
 const { copyData } = useCopy();
 
@@ -114,7 +115,12 @@ const expandToggleLabel = computed(() =>
         @update:tab-width="onChangeTabWidth"
       />
       <div class="sql-result-wrap common-border-radius">
-        <Codemirror :disabled="true" :extensions="[sql()]" v-model="formattedSQL" class="font-monospace-code" />
+        <Codemirror
+          :disabled="true"
+          :extensions="[sql(), codemirrorTheme]"
+          v-model="formattedSQL"
+          class="font-monospace-code"
+        />
       </div>
       <ResultDivider class="mb-0" color="var(--p-content-background)">
         <Button @click="onClickExpandToggle" size="small" outlined class="py-1">

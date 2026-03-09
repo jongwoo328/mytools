@@ -6,7 +6,9 @@ import type { SelectableSQLLanguage, SQLResult } from "~~/types/SQLResult";
 import SQLResultList from "~/components/formatter/SQLResultList.vue";
 import PageHeading from "~/components/common/PageHeading.vue";
 import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
+import { sql } from "@codemirror/lang-sql";
 
+const { codemirrorTheme } = useCodeMirror();
 const { t } = useI18n();
 const localePath = useLocalePath();
 
@@ -103,12 +105,9 @@ const onFormatButtonClick = () => {
         v-model:model-value="sqlLanguage"
       />
     </div>
-    <Textarea
-      auto-resize
-      v-model:model-value="sqlInput"
-      style="min-height: 400px"
-      class="prevent-auto-zoom block w-full"
-    />
+    <div class="common-border-radius overflow-hidden border border-gray-300 dark:border-gray-800">
+      <Codemirror v-model="sqlInput" class="font-monospace-code sql-input" :extensions="[sql(), codemirrorTheme]" />
+    </div>
     <div v-if="isSQLValid" style="height: 14px"></div>
     <span v-else class="float-end text-red-600">
       {{ t("formatter.sql.sql_input_invalid_message") }}
@@ -119,3 +118,9 @@ const onFormatButtonClick = () => {
     <SQLResultList v-model:results="SQLFormatterResults" />
   </ToolPageLayout>
 </template>
+
+<style lang="scss" scoped>
+.sql-input:deep(.cm-editor, .cm-scroller) {
+  min-height: 300px;
+}
+</style>

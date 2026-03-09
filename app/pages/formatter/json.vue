@@ -5,6 +5,9 @@ import JSONResultList from "~/components/formatter/JSONResultList.vue";
 import type { JSONResult } from "~~/types/JSONResult";
 import PageHeading from "~/components/common/PageHeading.vue";
 import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
+import { json } from "@codemirror/lang-json";
+
+const { codemirrorTheme } = useCodeMirror();
 
 const { t } = useI18n();
 const localePath = useLocalePath();
@@ -60,12 +63,9 @@ const onFormatButtonClick = () => {
     <PageHeading class="block align-middle" :level="2" :size="6" weight="600" style="height: 44px; line-height: 2">
       {{ t("formatter.json.json_text_input_label") }}
     </PageHeading>
-    <Textarea
-      auto-resize
-      v-model:model-value="jsonInput"
-      style="min-height: 400px"
-      class="prevent-auto-zoom block w-full"
-    />
+    <div class="common-border-radius overflow-hidden border border-gray-300 dark:border-gray-800">
+      <Codemirror v-model="jsonInput" class="font-monospace-code json-input" :extensions="[json(), codemirrorTheme]" />
+    </div>
     <div v-if="isJsonValid" style="height: 14px"></div>
     <span v-else class="float-end text-red-600">
       {{ t("formatter.json.json_text_input_invalid_message") }}
@@ -76,3 +76,9 @@ const onFormatButtonClick = () => {
     <JSONResultList v-model:results="JSONFormatResults" />
   </ToolPageLayout>
 </template>
+
+<style lang="scss" scoped>
+.json-input:deep(.cm-editor, .cm-scroller) {
+  min-height: 300px;
+}
+</style>
