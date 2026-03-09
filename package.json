@@ -48,6 +48,7 @@
   },
   "dependencies": {
     "@codemirror/lang-html": "^6.4.9",
+    "@codemirror/lang-json": "^6.0.2",
     "@codemirror/lang-sql": "^6.7.0",
     "@iarna/toml": "^2.2.5",
     "@primeuix/themes": "^2.0.3",
