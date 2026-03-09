@@ -108,12 +108,6 @@ const onFormatButtonClick = () => {
     <div class="common-border-radius overflow-hidden border border-gray-300 dark:border-gray-800">
       <Codemirror v-model="sqlInput" class="font-monospace-code sql-input" :extensions="[sql(), codemirrorTheme]" />
     </div>
-    <Textarea
-      auto-resize
-      v-model:model-value="sqlInput"
-      style="min-height: 400px"
-      class="prevent-auto-zoom block w-full"
-    />
     <div v-if="isSQLValid" style="height: 14px"></div>
     <span v-else class="float-end text-red-600">
       {{ t("formatter.sql.sql_input_invalid_message") }}
