@@ -35,7 +35,7 @@ useHead({
     <PageHeader />
     <div id="view" class="container mx-auto px-4" style="padding-bottom: 100px">
       <CommonToast />
-      <div v-if="isMobileOrTablet" class="w-full flex justify-end pt-2 mb-4 gap-3">
+      <div v-if="isMobileOrTablet" class="mb-4 flex w-full justify-end gap-3 pt-2">
         <ThemeSelector />
         <LocaleDropdown />
       </div>

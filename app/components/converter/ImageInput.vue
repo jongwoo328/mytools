@@ -54,7 +54,7 @@ const fileInputMinHeight = computed(() => {
 <template>
   <div
     id="inputImageWrap"
-    class="flex flex-col justify-center w-full common-border-radius"
+    class="common-border-radius flex w-full flex-col justify-center"
     :class="{ 'items-center': !isUploaded, 'image-uploaded': isUploaded }"
     :style="`min-height: ${fileInputMinHeight};`"
   >
@@ -65,7 +65,7 @@ const fileInputMinHeight = computed(() => {
       accept="image/*"
       mode="basic"
       custom-upload
-      class="upload w-full relative mb-2"
+      class="upload relative mb-2 w-full"
       @select="onSelect"
       @clear="onClear"
       :choose-label="t('converter.image.image_input_btn_label')"
@@ -78,7 +78,7 @@ const fileInputMinHeight = computed(() => {
       alt="uploaded image"
       ref="image"
       src="#"
-      class="w-full h-full"
+      class="h-full w-full"
       v-show="isUploaded"
       style="object-fit: contain"
     />

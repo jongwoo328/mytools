@@ -68,7 +68,7 @@ const setNow = () => {
 <template>
   <div class="grid grid-cols-12">
     <div class="col-span-full lg:col-span-5">
-      <div class="w-full mb-1 flex justify-between">
+      <div class="mb-1 flex w-full justify-between">
         <Button @click="setNow" severity="secondary" size="small">
           {{ t("converter.epoch.time_to_epoch.set_now_btn_label") }}
         </Button>
@@ -84,7 +84,7 @@ const setNow = () => {
           class="col-span-full mt-2 xl:mt-0"
           :class="{ 'xl:col-span-5': useMilliseconds, 'xl:col-span-6': !useMilliseconds }"
         >
-          <DatePicker v-model:model-value="dateInput" class="w-full h-full prevent-auto-zoom" date-format="yy-mm-dd" />
+          <DatePicker v-model:model-value="dateInput" class="prevent-auto-zoom h-full w-full" date-format="yy-mm-dd" />
         </div>
         <div
           class="col-span-full mt-2 xl:mt-0"
@@ -96,7 +96,7 @@ const setNow = () => {
           }"
         >
           <DatePicker
-            class="w-full h-full prevent-auto-zoom"
+            class="prevent-auto-zoom h-full w-full"
             time-only
             v-model:model-value="timeInput"
             hour-format="24"
@@ -129,17 +129,17 @@ const setNow = () => {
             option-value="value"
             option-label="label"
             v-model:model-value="offset"
-            class="w-full prevent-auto-zoom"
+            class="prevent-auto-zoom w-full"
           />
         </div>
       </div>
     </div>
-    <div class="col-span-full lg:col-span-2 flex justify-center items-center">
-      <Button class="hidden lg:block h-[40px]" icon="pi pi-angle-right" outlined disable />
-      <Button class="lg:hidden my-4" icon="pi pi-angle-down" outlined disabled />
+    <div class="col-span-full flex items-center justify-center lg:col-span-2">
+      <Button class="hidden h-[40px] lg:block" icon="pi pi-angle-right" outlined disable />
+      <Button class="my-4 lg:hidden" icon="pi pi-angle-down" outlined disabled />
     </div>
     <div class="col-span-full lg:col-span-5">
-      <div class="flex w-full epoch-time-config mb-1 justify-end">
+      <div class="epoch-time-config mb-1 flex w-full justify-end">
         <div>
           <SelectButton
             :options="unitOptions"
@@ -151,11 +151,11 @@ const setNow = () => {
         </div>
       </div>
       <div class="m-0 mt-2" style="height: 38px">
-        <span class="h-full w-full mb-0 flex items-center epoch-time pl-2 common-border-radius">
+        <span class="epoch-time common-border-radius mb-0 flex h-full w-full items-center pl-2">
           {{ resultEpoch }}
         </span>
       </div>
-      <Button @click="onClickCopy" class="w-full block mt-2">
+      <Button @click="onClickCopy" class="mt-2 block w-full">
         {{ t("converter.epoch.time_to_epoch.copy_btn_label") }}
       </Button>
     </div>

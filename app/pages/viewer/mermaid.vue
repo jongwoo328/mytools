@@ -61,10 +61,10 @@ const mermaidText = ref(`flowchart TD
               <i class="pi pi-external-link text-xs" />
             </NuxtLink>
           </div>
-          <div class="w-full border-gray-300 dark:border-gray-800 border rounded-lg p-4">
+          <div class="w-full rounded-lg border border-gray-300 p-4 dark:border-gray-800">
             <MermaidRenderer :value="mermaidText" />
           </div>
-          <div class="border-gray-300 dark:border-gray-800 border">
+          <div class="border border-gray-300 dark:border-gray-800">
             <Codemirror :extensions="[mermaid(), codemirrorTheme]" v-model="mermaidText" class="font-monospace-code" />
           </div>
         </div>

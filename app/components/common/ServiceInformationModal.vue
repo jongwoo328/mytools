@@ -17,7 +17,7 @@ const onClickDontShowAgain = () => {
       <p>
         {{ t("index.modal.description") }}
       </p>
-      <ul class="list-disc pl-5 mt-4">
+      <ul class="mt-4 list-disc pl-5">
         <li class="mt-3">
           <p v-html="t('index.modal.features.0')" />
         </li>

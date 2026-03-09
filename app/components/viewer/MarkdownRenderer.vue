@@ -61,7 +61,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div id="renderedMarkdown" class="p-1 font-monospace-only-code" v-html="renderedHtml" ref="renderResult" />
+  <div id="renderedMarkdown" class="font-monospace-only-code p-1" v-html="renderedHtml" ref="renderResult" />
 </template>
 
 <style scoped lang="scss">

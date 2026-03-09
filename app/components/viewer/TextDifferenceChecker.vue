@@ -85,7 +85,7 @@ watchDebounced(
   <div class="grid grid-cols-1">
     <div class="col-span-full">
       <div class="grid grid-cols-2 gap-4">
-        <div class="col-span-full flex justify-end mb-3">
+        <div class="col-span-full mb-3 flex justify-end">
           <SelectButton option-value="value" :options="inputLayoutOptions" v-model="inputLayout">
             <template #option="slotProps">
               <i :class="slotProps.option.icon"></i>
@@ -93,28 +93,28 @@ watchDebounced(
           </SelectButton>
         </div>
         <div :class="{ 'col-span-full': inputLayout === 'vertical', 'col-span-1': inputLayout === 'horizontal' }">
-          <div class="flex justify-between items-center mb-1">
+          <div class="mb-1 flex items-center justify-between">
             <PageHeading :size="7" :level="2">
               {{ t("viewer.text-diff.reference") }}
             </PageHeading>
             <Button @click="resetText1" icon="pi pi-trash" text rounded severity="danger" size="small"></Button>
           </div>
           <Textarea
-            class="prevent-auto-zoom w-full font-monospace-code overflow-auto"
+            class="prevent-auto-zoom font-monospace-code w-full overflow-auto"
             v-model="text1"
             style="min-height: 300px; max-height: 400px"
             auto-resize
           />
         </div>
         <div :class="{ 'col-span-full': inputLayout === 'vertical', 'col-span-1': inputLayout === 'horizontal' }">
-          <div class="flex justify-between items-center mb-1">
+          <div class="mb-1 flex items-center justify-between">
             <PageHeading :size="7" :level="2">
               {{ t("viewer.text-diff.comparison") }}
             </PageHeading>
             <Button @click="resetText2" icon="pi pi-trash" text rounded severity="danger" size="small"></Button>
           </div>
           <Textarea
-            class="prevent-auto-zoom w-full font-monospace-code overflow-auto"
+            class="prevent-auto-zoom font-monospace-code w-full overflow-auto"
             v-model="text2"
             style="min-height: 300px; max-height: 400px"
             auto-resize
@@ -129,7 +129,7 @@ watchDebounced(
             {{ t("viewer.text-diff.result") }}
           </PageHeading>
         </div>
-        <div class="col-span-full flex justify-between items-center">
+        <div class="col-span-full flex items-center justify-between">
           <div class="flex items-center">
             <ProgressSpinner stroke-width="8" style="height: 20px; width: 50px" class="m-0" v-if="isCalculating" />
             <Button
@@ -138,7 +138,7 @@ watchDebounced(
               :loading="!isTimeOver"
               size="small"
               v-if="isCalculating && showCancelButton"
-              class="py-1 px-2"
+              class="px-2 py-1"
             >
               {{ t("viewer.text-diff.cancel") }}
             </Button>
@@ -151,7 +151,7 @@ watchDebounced(
           </div>
         </div>
         <div class="col-span-full py-2">
-          <div class="overflow-x-auto min-h-[83px] p-[5px] border border-solid border-[#ced4da]">
+          <div class="min-h-[83px] overflow-x-auto border border-solid border-[#ced4da] p-[5px]">
             <TextDifferenceCheckerViewer :changes="diffResult" :diff-type="diffType" />
           </div>
         </div>

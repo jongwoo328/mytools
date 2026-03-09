@@ -77,13 +77,13 @@ const onClickCopy = () => {
         <PageHeading :size="6" :level="2" weight="600">
           {{ t("converter.url.text_input_label") }}
         </PageHeading>
-        <div class="flex justify-end mb-2 gap-1 items-center">
+        <div class="mb-2 flex items-center justify-end gap-1">
           <Checkbox input-id="useEncodeURI" binary v-model="usePreserveStructureEncoding" />
           <label for="useEncodeURI">{{ t("converter.url.options.use_preserve_structure.label") }}</label>
           <i v-tooltip.top="usePreserveStructureEncodingTooltip" class="pi pi-info-circle" />
         </div>
         <Textarea v-model="inputText" class="prevent-auto-zoom block w-full" auto-resize />
-        <Tabs :value="tabIndex" class="mt-4 tab-view">
+        <Tabs :value="tabIndex" class="tab-view mt-4">
           <TabList>
             <Tab :value="tab.value" v-for="tab in tabOptions" :key="tab.value">
               {{ tab.label }}
@@ -91,20 +91,20 @@ const onClickCopy = () => {
           </TabList>
           <TabPanels class="px-0">
             <TabPanel value="encoder">
-              <div class="block w-full converted-text font-monospace-code p-2">
+              <div class="converted-text font-monospace-code block w-full p-2">
                 <span>
                   {{ encodedText }}
                 </span>
               </div>
             </TabPanel>
             <TabPanel value="decoder">
-              <div class="block w-full converted-text font-monospace-code p-2">
+              <div class="converted-text font-monospace-code block w-full p-2">
                 <span>
                   {{ decodedText }}
                 </span>
               </div>
             </TabPanel>
-            <Button @click="onClickCopy" class="w-full block mt-3">
+            <Button @click="onClickCopy" class="mt-3 block w-full">
               {{ t("converter.url.copy_btn_label") }}
             </Button>
           </TabPanels>

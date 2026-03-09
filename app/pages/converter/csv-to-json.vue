@@ -118,7 +118,7 @@ const onClear = () => {
           <template #header>{{ t("converter.csv_to_json.options.label") }}</template>
           <template #default>
             <div class="grid grid-cols-2 gap-x-6">
-              <div class="col-span-full lg:col-span-1 flex justify-between">
+              <div class="col-span-full flex justify-between lg:col-span-1">
                 <label class="w-1/2 self-center" for="">
                   {{ t("converter.csv_to_json.options.header_included.label") }}
                 </label>
@@ -126,7 +126,7 @@ const onClear = () => {
                   <ToggleSwitch class="self-center" v-model:model-value="headerIncluded" />
                 </div>
               </div>
-              <div class="col-span-full lg:col-span-1 flex justify-start mt-2 lg:mt-0">
+              <div class="col-span-full mt-2 flex justify-start lg:col-span-1 lg:mt-0">
                 <label class="w-1/2 self-center" for="">
                   {{ t("converter.csv_to_json.options.encoding.label") }}
                 </label>
@@ -149,14 +149,14 @@ const onClear = () => {
             style="min-height: 300px"
             class="prevent-auto-zoom block w-full"
           />
-          <Button class="w-full block mt-4" size="large" @click="parseFromText">
+          <Button class="mt-4 block w-full" size="large" @click="parseFromText">
             {{ t("converter.csv_to_json.parse_btn_label") }}
           </Button>
         </div>
         <div v-show="activeTabKey === 1">
           <div
             style="min-height: 200px; border: 1px solid #ced4da"
-            class="flex flex-col justify-center items-center common-border-radius"
+            class="common-border-radius flex flex-col items-center justify-center"
           >
             <FileUpload
               :show-upload-button="false"
@@ -165,7 +165,7 @@ const onClear = () => {
               accept="text/csv"
               mode="basic"
               custom-upload
-              class="upload w-full relative mb-2"
+              class="upload relative mb-2 w-full"
               @select="onFileChange"
               @clear="onClear"
               :choose-label="t('converter.csv_to_json.input_file_btn_label')"
@@ -174,7 +174,7 @@ const onClear = () => {
           <span v-for="(error, idx) in parseFromFileErrors" :key="idx" class="block text-end text-red-600">
             {{ error.message }}
           </span>
-          <Button class="w-full block mt-4" size="large" @click="parseFromFile">
+          <Button class="mt-4 block w-full" size="large" @click="parseFromFile">
             {{ t("converter.csv_to_json.parse_btn_label") }}
           </Button>
         </div>

@@ -91,8 +91,8 @@ const onFormatButtonClick = () => {
     <Meta name="description" :content="t('formatter.sql.head.description')" />
   </Head>
   <ToolPageLayout :title="t('formatter.sql.title')">
-    <div class="mb-2 flex justify-between items-center">
-      <PageHeading class="inline-block m-0" :level="2" :size="6" weight="600">
+    <div class="mb-2 flex items-center justify-between">
+      <PageHeading class="m-0 inline-block" :level="2" :size="6" weight="600">
         {{ t("formatter.sql.sql_input_label") }}
       </PageHeading>
       <Select

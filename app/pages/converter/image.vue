@@ -145,15 +145,15 @@ watch(inputImage, () => {
     <canvas ref="canvas" v-show="false" />
     <Card>
       <template #content>
-        <div class="grid grid-cols-12 m-0 gap-4">
-          <div class="col-span-full lg:col-span-8 px-0">
+        <div class="m-0 grid grid-cols-12 gap-4">
+          <div class="col-span-full px-0 lg:col-span-8">
             <div class="m-0 h-full">
-              <div class="w-full h-full flex justify-center items-center pb-1 lg:pb-0 lg:pr-1">
+              <div class="flex h-full w-full items-center justify-center pb-1 lg:pr-1 lg:pb-0">
                 <ImageInput :upload="true" v-model:file="inputImage" />
               </div>
             </div>
           </div>
-          <div class="col-span-12 lg:col-span-4 flex flex-col justify-content mt-3 lg:mt-0">
+          <div class="justify-content col-span-12 mt-3 flex flex-col lg:col-span-4 lg:mt-0">
             <div class="mb-4 lg:mb-5">
               <InputGroup>
                 <InputGroupAddon>
@@ -163,7 +163,7 @@ watch(inputImage, () => {
               </InputGroup>
               <Button
                 @click="copyAsBase64"
-                class="w-full block mt-2"
+                class="mt-2 block w-full"
                 :disabled="!isImageLoaded && copyingBase64"
                 style="height: 44px"
               >
@@ -179,7 +179,7 @@ watch(inputImage, () => {
               {{ t("converter.image.settings.label") }}
             </PageHeading>
             <div class="mt-2">
-              <span class="mt-1 text-lg block">
+              <span class="mt-1 block text-lg">
                 {{ t("converter.image.settings.convert_to.label") }}
               </span>
               <Select
@@ -192,7 +192,7 @@ watch(inputImage, () => {
             </div>
             <Button
               :disabled="!isImageLoaded || !convertTo || isConvertLoading"
-              class="w-full flex justify-center items-center mt-3"
+              class="mt-3 flex w-full items-center justify-center"
               style="height: 44px"
               @click="onClickConvert"
             >

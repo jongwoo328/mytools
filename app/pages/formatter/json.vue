@@ -70,7 +70,7 @@ const onFormatButtonClick = () => {
     <span v-else class="float-end text-red-600">
       {{ t("formatter.json.json_text_input_invalid_message") }}
     </span>
-    <Button class="mt-4 w-full block" :disabled="!isJsonValid" @click="onFormatButtonClick" size="large">
+    <Button class="mt-4 block w-full" :disabled="!isJsonValid" @click="onFormatButtonClick" size="large">
       {{ t("formatter.json.json_format_btn_label") }}
     </Button>
     <JSONResultList v-model:results="JSONFormatResults" />

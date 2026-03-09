@@ -191,7 +191,7 @@ const filteredTools = computed(() => {
       />
     </div>
   </div>
-  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 mt-6 gap-3">
+  <div class="mt-6 grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3">
     <div class="w-full" v-for="filteredTool in filteredTools" :key="filteredTool.title">
       <FunctionListItem :tool="filteredTool"></FunctionListItem>
     </div>
