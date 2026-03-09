@@ -57,18 +57,18 @@ const htmlText = ref(
   <ToolPageLayout :title="t('viewer.html.title')">
     <Card>
       <template #content>
-        <div class="flex flex-wrap m-0 w-full">
-          <div class="w-full mb-3 px-0">
+        <div class="m-0 flex w-full flex-wrap">
+          <div class="mb-3 w-full px-0">
             <div class="html-view-wrap">
-              <iframe class="w-full h-full" :srcdoc="htmlText" />
+              <iframe class="h-full w-full" :srcdoc="htmlText" />
             </div>
           </div>
-          <div class="w-full viewer-code-section px-0 common-border-radius">
-            <div class="h-full html-input-wrap">
+          <div class="viewer-code-section common-border-radius w-full px-0">
+            <div class="html-input-wrap h-full">
               <Codemirror
                 :extensions="[html(), codemirrorTheme]"
                 v-model="htmlText"
-                class="h-full font-monospace-code prevent-auto-zoom"
+                class="font-monospace-code prevent-auto-zoom h-full"
               />
             </div>
           </div>

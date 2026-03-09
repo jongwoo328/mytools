@@ -138,12 +138,12 @@ const menus = [
       style="position: fixed; bottom: 20px; right: 20px; z-index: 1001; border: 1px solid #f0f2f5"
     />
     <Drawer v-if="isMobileOrTablet" position="right" v-model:visible="drawerVisible">
-      <Button size="large" @click="onClickHome" class="w-full mt-1 mb-2 py-2" outlined icon="pi pi-home" />
+      <Button size="large" @click="onClickHome" class="mt-1 mb-2 w-full py-2" outlined icon="pi pi-home" />
       <PanelMenu v-model:expanded-keys="openKeys" :model="menus" />
     </Drawer>
     <Menubar v-else :model="menus" class="w-full">
       <template #start>
-        <Button text @click="onClickHome" class="w-full mr-2 py-2" label="🛠️" />
+        <Button text @click="onClickHome" class="mr-2 w-full py-2" label="🛠️" />
       </template>
       <template #end>
         <div class="flex gap-4">

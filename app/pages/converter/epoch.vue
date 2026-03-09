@@ -33,7 +33,7 @@ useJsonld(() => ({
     <Meta name="description" :content="t('converter.epoch.head.description')" />
   </Head>
   <ToolPageLayout :title="t('converter.epoch.title')">
-    <div class="grid mt-3">
+    <div class="mt-3 grid">
       <div class="col-span-full mb-2">
         <Card>
           <template #header>

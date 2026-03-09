@@ -34,28 +34,28 @@ const hslText = computed(() => {
       <span class="font-bold">
         {{ t("converter.color.options.hex.label") }}
       </span>
-      <span class="flex-grow text-end pr-2">{{ hexText }}</span>
+      <span class="flex-grow pr-2 text-end">{{ hexText }}</span>
       <Button icon="pi pi-copy" class="py-1" size="small" text @click="copyData(hexText)" />
     </div>
     <div class="col-span-full flex items-center">
       <span class="font-bold">
         {{ t("converter.color.options.rgb.label") }}
       </span>
-      <span class="flex-grow-1 text-end pr-2">{{ rgbText }}</span>
+      <span class="flex-grow-1 pr-2 text-end">{{ rgbText }}</span>
       <Button icon="pi pi-copy" class="py-1" size="small" text @click="copyData(rgbText)" />
     </div>
     <div class="col-span-full flex items-center">
       <span class="font-bold">
         {{ t("converter.color.options.hsl.label") }}
       </span>
-      <span class="flex-grow-1 text-end pr-2">{{ hslText }}</span>
+      <span class="flex-grow-1 pr-2 text-end">{{ hslText }}</span>
       <Button icon="pi pi-copy" class="py-1" size="small" text @click="copyData(hslText)" />
     </div>
     <div class="col-span-full flex items-center">
       <span class="font-bold">
         {{ t("converter.color.options.oklch.label") }}
       </span>
-      <span class="flex-grow-1 text-end pr-2">{{ oklchText }}</span>
+      <span class="flex-grow-1 pr-2 text-end">{{ oklchText }}</span>
       <Button icon="pi pi-copy" class="py-1" size="small" text @click="copyData(oklchText)" />
     </div>
   </div>

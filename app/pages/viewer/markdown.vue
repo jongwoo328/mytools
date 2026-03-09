@@ -252,7 +252,7 @@ provide("updateMarkdownCheckbox", updateMarkdownCheckbox);
           <template #default>
             <div class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3">
               <div class="col-span-1 mt-2 grid grid-cols-2 gap-2">
-                <div class="col-span-1 self-center flex gap-2">
+                <div class="col-span-1 flex gap-2 self-center">
                   <label for="useStrictCommonMark">
                     {{ t("viewer.markdown.options.use_strict_commonmark") }}
                   </label>
@@ -267,7 +267,7 @@ provide("updateMarkdownCheckbox", updateMarkdownCheckbox);
                 </div>
               </div>
               <div class="col-span-1 mt-2 grid grid-cols-2 gap-2">
-                <div class="col-span-1 self-center flex gap-2">
+                <div class="col-span-1 flex gap-2 self-center">
                   <label for="useHtml">
                     {{ t("viewer.markdown.options.use_html") }}
                   </label>
@@ -278,7 +278,7 @@ provide("updateMarkdownCheckbox", updateMarkdownCheckbox);
                 </div>
               </div>
               <div class="col-span-1 mt-2 grid grid-cols-2 gap-2">
-                <div class="col-span-1 self-center flex gap-2">
+                <div class="col-span-1 flex gap-2 self-center">
                   <label for="useLinkify">
                     {{ t("viewer.markdown.options.use_linkify") }}
                   </label>
@@ -289,7 +289,7 @@ provide("updateMarkdownCheckbox", updateMarkdownCheckbox);
                 </div>
               </div>
               <div class="col-span-1 mt-2 grid grid-cols-2 gap-2">
-                <div class="col-span-1 self-center flex gap-2">
+                <div class="col-span-1 flex gap-2 self-center">
                   <label for="useBreaks">
                     {{ t("viewer.markdown.options.use_breaks") }}
                   </label>
@@ -302,7 +302,7 @@ provide("updateMarkdownCheckbox", updateMarkdownCheckbox);
             </div>
           </template>
         </Panel>
-        <div class="flex justify-between my-2">
+        <div class="my-2 flex justify-between">
           <Button icon="pi pi-copy" size="small" text @click="onClickCopy" :label="t('viewer.markdown.button.copy')" />
           <SelectButton option-value="value" :options="layoutOptions" v-model="layout">
             <template #option="slotProps">
@@ -316,7 +316,7 @@ provide("updateMarkdownCheckbox", updateMarkdownCheckbox);
               ref="markdownInput"
               @scroll="onScrollTextArea"
               style="resize: none"
-              class="flex-grow prevent-auto-zoom"
+              class="prevent-auto-zoom flex-grow"
               :auto-resize="false"
               :autofocus="false"
               v-model="input"

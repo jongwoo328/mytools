@@ -41,7 +41,7 @@ const onClickDeleteResult = () => {
 </script>
 
 <template>
-  <Card data-aos="fade-up" data-aos-once="true" data-aos-anchor-placement="bottom" class="pt-5 mb-2">
+  <Card data-aos="fade-up" data-aos-once="true" data-aos-anchor-placement="bottom" class="mb-2 pt-5">
     <template #header>
       <div class="flex justify-between px-4" style="height: 32px">
         <div class="flex items-center px-2">
@@ -49,7 +49,7 @@ const onClickDeleteResult = () => {
         </div>
         <div>
           <Button
-            class="mr-1 px-2 h-full"
+            class="mr-1 h-full px-2"
             severity="danger"
             size="small"
             style="width: 32px"
@@ -61,13 +61,13 @@ const onClickDeleteResult = () => {
       </div>
     </template>
     <template #content>
-      <div class="grid grid-cols-12 image-result-item">
-        <div class="h-full px-3 col-span-full lg:col-span-8">
-          <div class="image-result-display w-full h-full flex justify-center items-center">
+      <div class="image-result-item grid grid-cols-12">
+        <div class="col-span-full h-full px-3 lg:col-span-8">
+          <div class="image-result-display flex h-full w-full items-center justify-center">
             <img loading="lazy" style="object-fit: contain" :src="result.objectURL" alt="" />
           </div>
         </div>
-        <div class="col-span-full lg:col-span-4 py-3 lg:py-0 flex flex-col justify-between image-result-control">
+        <div class="image-result-control col-span-full flex flex-col justify-between py-3 lg:col-span-4 lg:py-0">
           <div class="flex w-full flex-col justify-start" style="flex: 1">
             <span class="fs-5">{{ t("converter.image.result_list.file_name_label") }}</span>
             <div class="flex">
@@ -82,7 +82,7 @@ const onClickDeleteResult = () => {
             </div>
           </div>
           <Button
-            class="mt-3 lg:mt-0 mb-2 block"
+            class="mt-3 mb-2 block lg:mt-0"
             @click="copyAsBase64"
             :disabled="copyingBase64"
             severity="secondary"

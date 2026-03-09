@@ -11,7 +11,7 @@ defineProps<{
 <template>
   <span v-for="(change, index) in changes" :key="`${index}${Math.random()}`" class="font-monospace-code">
     <ins
-      :class="{ 'line-break': change.value === '\n', 'by-line': diffType === 'lines' }"
+      :class="{ 'line-break': change.value === ' ', 'by-line': diffType === 'lines' }"
       style="white-space: pre"
       v-if="change.added"
     >
@@ -20,7 +20,7 @@ defineProps<{
       </span>
     </ins>
     <del
-      :class="{ 'line-break': change.value === '\n', 'by-line': diffType === 'lines' }"
+      :class="{ 'line-break': change.value === ' ', 'by-line': diffType === 'lines' }"
       style="white-space: pre"
       v-if="change.removed"
     >

@@ -102,36 +102,36 @@ watch(logicalOperatorNewLine, (newValue) => {
       <template #header>{{ t("formatter.sql.result_list.advanced_setting.header_text") }}</template>
       <template #default>
         <div class="grid grid-cols-12 gap-x-6">
-          <div class="col-span-full md:col-span-6 xl:col-span-4 mb-1 items-center form-col">
-            <div class="h-full justify-between flex">
+          <div class="form-col col-span-full mb-1 items-center md:col-span-6 xl:col-span-4">
+            <div class="flex h-full justify-between">
               <label for="useTabs" class="self-center">
                 {{ t("formatter.sql.result_list.advanced_setting.use_tabs.label") }}
               </label>
               <ToggleSwitch id="useTabs" v-model:model-value="useTabs" class="self-center" />
             </div>
           </div>
-          <div class="col-span-full md:col-span-6 xl:col-span-4 mb-1 items-center form-col">
-            <div class="flex h-full justify-between form-col">
-              <label for="tabWidth" class="self-center w-1/2">
+          <div class="form-col col-span-full mb-1 items-center md:col-span-6 xl:col-span-4">
+            <div class="form-col flex h-full justify-between">
+              <label for="tabWidth" class="w-1/2 self-center">
                 {{ t("formatter.sql.result_list.advanced_setting.tab_width.label") }}
               </label>
-              <div class="w-1/2 h-full">
+              <div class="h-full w-1/2">
                 <InputNumber
                   id="tabWidth"
                   v-model:model-value="tabWidth"
                   size="small"
-                  class="w-full h-full forminput"
+                  class="forminput h-full w-full"
                   input-class="prevent-auto-zoom"
                 />
               </div>
             </div>
           </div>
-          <div class="col-span-full md:col-span-6 xl:col-span-4 mb-1 items-center form-col">
-            <div class="flex h-full justify-between form-col">
-              <label for="keywordCase" class="self-center w-1/2">
+          <div class="form-col col-span-full mb-1 items-center md:col-span-6 xl:col-span-4">
+            <div class="form-col flex h-full justify-between">
+              <label for="keywordCase" class="w-1/2 self-center">
                 {{ t("formatter.sql.result_list.advanced_setting.keyword.label") }}
               </label>
-              <div class="w-1/2 h-full">
+              <div class="h-full w-1/2">
                 <Select
                   id="keywordCase"
                   v-model:model-value="keywordCase"
@@ -139,17 +139,17 @@ watch(logicalOperatorNewLine, (newValue) => {
                   :options="keywordCaseOption"
                   option-value="value"
                   option-label="label"
-                  class="w-full h-full forminput"
+                  class="forminput h-full w-full"
                 />
               </div>
             </div>
           </div>
-          <div class="col-span-full md:col-span-6 xl:col-span-4 mb-1 items-center form-col">
-            <div class="flex h-full justify-between form-col">
-              <label for="indent" class="self-center w-1/2">
+          <div class="form-col col-span-full mb-1 items-center md:col-span-6 xl:col-span-4">
+            <div class="form-col flex h-full justify-between">
+              <label for="indent" class="w-1/2 self-center">
                 {{ t("formatter.sql.result_list.advanced_setting.indent.label") }}
               </label>
-              <div class="w-1/2 h-full">
+              <div class="h-full w-1/2">
                 <Select
                   id="indent"
                   v-model:model-value="indentation"
@@ -157,17 +157,17 @@ watch(logicalOperatorNewLine, (newValue) => {
                   :options="indentOption"
                   option-value="value"
                   option-label="label"
-                  class="w-full h-full forminput"
+                  class="forminput h-full w-full"
                 />
               </div>
             </div>
           </div>
-          <div class="col-span-full md:col-span-6 xl:col-span-4 mb-1 items-center form-col">
-            <div class="flex h-full justify-between form-col">
-              <label for="newline" class="self-center w-1/2">
+          <div class="form-col col-span-full mb-1 items-center md:col-span-6 xl:col-span-4">
+            <div class="form-col flex h-full justify-between">
+              <label for="newline" class="w-1/2 self-center">
                 {{ t("formatter.sql.result_list.advanced_setting.and_or_or_newline.label") }}
               </label>
-              <div class="w-1/2 h-full">
+              <div class="h-full w-1/2">
                 <Select
                   id="newline"
                   v-model:model-value="logicalOperatorNewLine"
@@ -175,7 +175,7 @@ watch(logicalOperatorNewLine, (newValue) => {
                   :options="logicalOperatorNewLineOption"
                   option-value="value"
                   option-label="label"
-                  class="w-full h-full forminput"
+                  class="forminput h-full w-full"
                 />
               </div>
             </div>

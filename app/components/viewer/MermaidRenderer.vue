@@ -80,7 +80,7 @@ onMounted(() => {
     <div ref="renderer" class="mermaid-output" />
     <pre
       v-if="renderError"
-      class="mt-2 whitespace-pre-wrap rounded-md border border-rose-200 bg-rose-50 p-3 text-sm leading-5 text-rose-700 dark:border-rose-800 dark:bg-rose-950 dark:text-rose-200"
+      class="mt-2 rounded-md border border-rose-200 bg-rose-50 p-3 text-sm leading-5 whitespace-pre-wrap text-rose-700 dark:border-rose-800 dark:bg-rose-950 dark:text-rose-200"
     >
       {{ renderError }}
     </pre>

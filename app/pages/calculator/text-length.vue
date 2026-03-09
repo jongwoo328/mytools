@@ -107,7 +107,7 @@ const result = asyncComputed(async () => {
         <div v-show="activeTabKey === 1">
           <div
             style="min-height: 200px; border: 1px solid #ced4da"
-            class="flex flex-col justify-center items-center common-border-radius"
+            class="common-border-radius flex flex-col items-center justify-center"
           >
             <FileUpload
               :show-upload-button="false"
@@ -118,7 +118,7 @@ const result = asyncComputed(async () => {
               application/x-sh, application/xhtml+xml"
               mode="basic"
               custom-upload
-              class="w-full relative mb-2"
+              class="relative mb-2 w-full"
               @select="onFileChange"
               @clear="onClear"
               :choose-label="t('calculator.text_length.text_input.file_input_btn_label')"
@@ -128,7 +128,7 @@ const result = asyncComputed(async () => {
         <PageHeading class="mt-4" :size="6" :level="2" weight="600">
           {{ t("calculator.text_length.result.label") }}
         </PageHeading>
-        <div class="grid grid-cols-2 mt-4 gap-y-2">
+        <div class="mt-4 grid grid-cols-2 gap-y-2">
           <p class="col-span-1">{{ t("calculator.text_length.result.length") }}</p>
           <p class="col-span-1">: {{ result?.textLength ?? "0" }}</p>
           <p class="col-span-1">{{ t("calculator.text_length.result.length_without_spaces") }}</p>

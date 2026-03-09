@@ -22,9 +22,9 @@ const cardPassThrough: CardPassThroughOptions = {
 </script>
 
 <template>
-  <Card @click="onClickItem" class="cursor-pointer tool-item h-full" :pt="cardPassThrough">
+  <Card @click="onClickItem" class="tool-item h-full cursor-pointer" :pt="cardPassThrough">
     <template #title>
-      <RouterLink class="no-underline text-black" :to="tool.router">
+      <RouterLink class="text-black no-underline" :to="tool.router">
         <PageHeading weight="600" class="m-0" :level="2" :size="7">
           {{ tool.title }}
         </PageHeading>
