@@ -50,6 +50,8 @@
     "@codemirror/lang-html": "^6.4.9",
     "@codemirror/lang-json": "^6.0.2",
     "@codemirror/lang-sql": "^6.7.0",
+    "@fsegurai/codemirror-theme-vscode-dark": "^6.2.4",
+    "@fsegurai/codemirror-theme-vscode-light": "^6.2.4",
     "@iarna/toml": "^2.2.5",
     "@primeuix/themes": "^2.0.3",
     "@tailwindcss/vite": "^4.2.0",

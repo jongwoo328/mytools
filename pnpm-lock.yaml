@@ -17,6 +17,12 @@ importers:
       '@codemirror/lang-sql':
         specifier: ^6.7.0
         version: 6.9.1
+      '@fsegurai/codemirror-theme-vscode-dark':
+        specifier: ^6.2.4
+        version: 6.2.4(@codemirror/language@6.11.3)(@codemirror/state@6.5.2)(@codemirror/view@6.38.1)(@lezer/highlight@1.2.1)
+      '@fsegurai/codemirror-theme-vscode-light':
+        specifier: ^6.2.4
+        version: 6.2.4(@codemirror/language@6.11.3)(@codemirror/state@6.5.2)(@codemirror/view@6.38.1)(@lezer/highlight@1.2.1)
       '@iarna/toml':
         specifier: ^2.2.5
         version: 2.2.5
@@ -834,6 +840,22 @@ packages:
 
   '@fingerprintjs/botd@1.9.1':
     resolution: {integrity: sha512-7kv3Yolsx9E56i+L1hCEcupH5yqcI5cmVktxy6B0K7rimaH5qDXwsiA5FL+fkxeUny7XQKn7p13HvK7ofDZB3g==}
+
+  '@fsegurai/codemirror-theme-vscode-dark@6.2.4':
+    resolution: {integrity: sha512-Vjr1658LIYgvC3ALVeqMhSMLA1ljoLmQpdAq8JuFdH8HkENfCXPmLX498Lnab3UYyn/b3qZAbHtAF+wQ64iMkg==}
+    peerDependencies:
+      '@codemirror/language': ^6.0.0
+      '@codemirror/state': ^6.0.0
+      '@codemirror/view': ^6.0.0
+      '@lezer/highlight': ^1.0.0
+
+  '@fsegurai/codemirror-theme-vscode-light@6.2.4':
+    resolution: {integrity: sha512-to840rPueVX6UV4YLEymGhUzzyuunY15LfGgm4Vq6hY2NmCfwYhQ/KfTcJ3XrZXiE80MrHjOq1FDcXl17UgvIQ==}
+    peerDependencies:
+      '@codemirror/language': ^6.0.0
+      '@codemirror/state': ^6.0.0
+      '@codemirror/view': ^6.0.0
+      '@lezer/highlight': ^1.0.0
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -7407,6 +7429,20 @@ snapshots:
   '@fingerprintjs/botd@1.9.1':
     dependencies:
       tslib: 2.8.1
+
+  '@fsegurai/codemirror-theme-vscode-dark@6.2.4(@codemirror/language@6.11.3)(@codemirror/state@6.5.2)(@codemirror/view@6.38.1)(@lezer/highlight@1.2.1)':
+    dependencies:
+      '@codemirror/language': 6.11.3
+      '@codemirror/state': 6.5.2
+      '@codemirror/view': 6.38.1
+      '@lezer/highlight': 1.2.1
+
+  '@fsegurai/codemirror-theme-vscode-light@6.2.4(@codemirror/language@6.11.3)(@codemirror/state@6.5.2)(@codemirror/view@6.38.1)(@lezer/highlight@1.2.1)':
+    dependencies:
+      '@codemirror/language': 6.11.3
+      '@codemirror/state': 6.5.2
+      '@codemirror/view': 6.38.1
+      '@lezer/highlight': 1.2.1
 
   '@humanfs/core@0.19.1': {}
 

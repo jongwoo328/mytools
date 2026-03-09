@@ -1,14 +1,14 @@
-import { basicDark } from "cm6-theme-basic-dark";
-import { basicLight } from "cm6-theme-basic-light";
+import { vsCodeLight } from "@fsegurai/codemirror-theme-vscode-light";
+import { vsCodeDark } from "@fsegurai/codemirror-theme-vscode-dark";
 
 export function useCodeMirror() {
   const colorMode = useColorMode();
 
   const codemirrorTheme = computed(() => {
     if (colorMode.value === "dark") {
-      return basicDark;
+      return vsCodeDark;
     }
-    return basicLight;
+    return vsCodeLight;
   });
 
   return { codemirrorTheme };
