@@ -15,7 +15,7 @@ The goals and principles guiding the project are the following:
 
 ## This project is using
 
-- Nuxt3
+- Nuxt4
 - Vercel
 
 ## Reports & Suggestions
