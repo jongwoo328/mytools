@@ -27,7 +27,7 @@ useJsonld(() => ({
     {
       "@type": "ListItem",
       position: 2,
-      name: "Image Converter",
+      name: t("converter.image.title"),
       item: `https://tools.jongwoo.me${localePath("/converter/image")}`,
     },
   ],

@@ -3,7 +3,7 @@ import QRCode from "qrcode";
 import PageHeading from "~/components/common/PageHeading.vue";
 import ToolPageLayout from "~/components/common/ToolPageLayout.vue";
 
-const { copyData } = useCopy();
+const { copyImage } = useCopy();
 const { t } = useI18n();
 const localePath = useLocalePath();
 
@@ -20,7 +20,7 @@ useJsonld(() => ({
     {
       "@type": "ListItem",
       position: 2,
-      name: "QR Code Generator",
+      name: t("generator.qrcode.title"),
       item: `https://tools.jongwoo.me${localePath("/generator/qrcode")}`,
     },
   ],
@@ -77,16 +77,9 @@ const onClickDownload = () => {
   link.click();
 };
 
-const onClickCopy = async () => {
+const onClickCopy = () => {
   if (!qrDataUrl.value) return;
-  try {
-    const res = await fetch(qrDataUrl.value);
-    const blob = await res.blob();
-    await navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]);
-    copyData(qrDataUrl.value);
-  } catch {
-    copyData(qrDataUrl.value);
-  }
+  copyImage(qrDataUrl.value);
 };
 </script>
 
@@ -113,12 +106,13 @@ const onClickCopy = async () => {
         </PageHeading>
         <div class="mt-2 grid grid-cols-1 gap-4 md:grid-cols-2">
           <div>
-            <label class="mb-1 block">{{ t("generator.qrcode.options.size.label") }}</label>
-            <Select :options="sizeOptions" option-label="label" option-value="value" v-model="qrSize" class="w-full" />
+            <label for="qr-size" class="mb-1 block">{{ t("generator.qrcode.options.size.label") }}</label>
+            <Select id="qr-size" :options="sizeOptions" option-label="label" option-value="value" v-model="qrSize" class="w-full" />
           </div>
           <div>
-            <label class="mb-1 block">{{ t("generator.qrcode.options.error_correction.label") }}</label>
+            <label for="qr-error-correction" class="mb-1 block">{{ t("generator.qrcode.options.error_correction.label") }}</label>
             <Select
+              id="qr-error-correction"
               :options="errorCorrectionOptions"
               option-label="label"
               option-value="value"
@@ -127,22 +121,22 @@ const onClickCopy = async () => {
             />
           </div>
           <div>
-            <label class="mb-1 block">{{ t("generator.qrcode.options.foreground_color.label") }}</label>
+            <label for="qr-fg-color" class="mb-1 block">{{ t("generator.qrcode.options.foreground_color.label") }}</label>
             <div class="flex items-center gap-2">
               <ColorPicker v-model="foregroundColor" />
               <InputGroup class="color-hex-input">
                 <InputGroupAddon>#</InputGroupAddon>
-                <InputText v-model="foregroundColor" class="font-monospace-code" maxlength="6" />
+                <InputText id="qr-fg-color" v-model="foregroundColor" class="font-monospace-code" maxlength="6" />
               </InputGroup>
             </div>
           </div>
           <div>
-            <label class="mb-1 block">{{ t("generator.qrcode.options.background_color.label") }}</label>
+            <label for="qr-bg-color" class="mb-1 block">{{ t("generator.qrcode.options.background_color.label") }}</label>
             <div class="flex items-center gap-2">
               <ColorPicker v-model="backgroundColor" />
               <InputGroup class="color-hex-input">
                 <InputGroupAddon>#</InputGroupAddon>
-                <InputText v-model="backgroundColor" class="font-monospace-code" maxlength="6" />
+                <InputText id="qr-bg-color" v-model="backgroundColor" class="font-monospace-code" maxlength="6" />
               </InputGroup>
             </div>
           </div>

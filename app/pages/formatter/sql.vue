@@ -25,7 +25,7 @@ useJsonld(() => ({
     {
       "@type": "ListItem",
       position: 2,
-      name: "SQL Formatter",
+      name: t("formatter.sql.title"),
       item: `https://tools.jongwoo.me${localePath("/formatter/sql")}`,
     },
   ],

@@ -20,7 +20,7 @@ useJsonld(() => ({
     {
       "@type": "ListItem",
       position: 2,
-      name: "Epoch Converter",
+      name: t("converter.epoch.title"),
       item: `https://tools.jongwoo.me${localePath("/converter/epoch")}`,
     },
   ],

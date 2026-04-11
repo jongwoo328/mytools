@@ -26,7 +26,7 @@ useJsonld(() => ({
     {
       "@type": "ListItem",
       position: 2,
-      name: "CSV to JSON Converter",
+      name: t("converter.csv_to_json.title"),
       item: `https://tools.jongwoo.me${localePath("/converter/csv-to-json")}`,
     },
   ],

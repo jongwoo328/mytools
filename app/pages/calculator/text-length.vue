@@ -22,7 +22,7 @@ useJsonld(() => ({
     {
       "@type": "ListItem",
       position: 2,
-      name: "Text Length Calculator",
+      name: t("calculator.text_length.title"),
       item: `https://tools.jongwoo.me${localePath("/calculator/text-length")}`,
     },
   ],
