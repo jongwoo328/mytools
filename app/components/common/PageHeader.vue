@@ -16,6 +16,7 @@ const openKeys = ref({
   converter: true,
   viewer: true,
   calculator: true,
+  generator: true,
 });
 
 const onClickHome = () => {
@@ -121,6 +122,17 @@ const menus = [
       {
         url: () => localePath("/calculator/text-length"),
         label: () => t("index.menu.calculator.items.text_length_calculator_label"),
+        command: hideDrawer,
+      },
+    ],
+  },
+  {
+    label: () => t("index.menu.generator.label"),
+    key: "generator",
+    items: [
+      {
+        url: () => localePath("/generator/qrcode"),
+        label: () => t("index.menu.generator.items.qr_code_generator_label"),
         command: hideDrawer,
       },
     ],

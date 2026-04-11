@@ -30,6 +30,11 @@ const Tags = {
     name: t("index.tags.calculator"),
     color: "#845ef7",
   },
+  Generator: {
+    id: "Generator",
+    name: t("index.tags.generator"),
+    color: "#ee5a24",
+  },
 };
 
 const availableTools: AvailableTool[] = [
@@ -117,6 +122,12 @@ const availableTools: AvailableTool[] = [
     description: t("index.tools.mermaid_viewer.description"),
     tags: [Tags.Viewer],
   },
+  {
+    title: t("index.tools.qr_code_generator.title"),
+    router: localePath("/generator/qrcode"),
+    description: t("index.tools.qr_code_generator.description"),
+    tags: [Tags.Generator],
+  },
 ];
 
 const toolFilter = reactive({
@@ -124,8 +135,9 @@ const toolFilter = reactive({
   isConverter: true,
   isViewer: true,
   isCalculator: true,
+  isGenerator: true,
 });
-const { isFormatter, isConverter, isViewer, isCalculator } = toRefs(toolFilter);
+const { isFormatter, isConverter, isViewer, isCalculator, isGenerator } = toRefs(toolFilter);
 
 const filteredTools = computed(() => {
   return availableTools.filter((tool) => {
@@ -139,6 +151,9 @@ const filteredTools = computed(() => {
       return true;
     }
     if (isCalculator.value && tool.tags.includes(Tags.Calculator)) {
+      return true;
+    }
+    if (isGenerator.value && tool.tags.includes(Tags.Generator)) {
       return true;
     }
     return false;
@@ -188,6 +203,15 @@ const filteredTools = computed(() => {
         :off-label="t('index.filter.calculator.off').toString()"
         class="filter-select-button"
         :class="[{ 'filter-selected-calculator': isCalculator }]"
+      />
+      <ToggleButton
+        v-model="isGenerator"
+        onIcon="pi pi-check"
+        offIcon="pi pi-times"
+        :on-label="t('index.filter.generator.on').toString()"
+        :off-label="t('index.filter.generator.off').toString()"
+        class="filter-select-button"
+        :class="[{ 'filter-selected-generator': isGenerator }]"
       />
     </div>
   </div>
@@ -239,6 +263,14 @@ const filteredTools = computed(() => {
   }
 }
 
+.filter-selected-generator {
+  background-color: v-bind("Tags.Generator.color") !important;
+  border: none;
+  &:deep(span span) {
+    color: white !important;
+  }
+}
+
 .dark-mode {
   .filter-select-button {
     &:deep(span) {
@@ -248,7 +280,8 @@ const filteredTools = computed(() => {
   .filter-selected-formatter,
   .filter-selected-calculator,
   .filter-selected-viewer,
-  .filter-selected-converter {
+  .filter-selected-converter,
+  .filter-selected-generator {
     &:deep(span span) {
       color: black !important;
     }

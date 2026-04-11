@@ -49,6 +49,10 @@
       "viewer": {
         "off": "뷰어",
         "on": "뷰어"
+      },
+      "generator": {
+        "off": "생성기",
+        "on": "생성기"
       }
     },
     "menu": {
@@ -85,6 +89,12 @@
           "mermaid_viewer_label": "Mermaid"
         },
         "label": "뷰어"
+      },
+      "generator": {
+        "items": {
+          "qr_code_generator_label": "QR 코드"
+        },
+        "label": "생성기"
       }
     },
     "modal": {
@@ -104,7 +114,8 @@
       "calculator": "계산기",
       "converter": "변환기",
       "formatter": "포매터",
-      "viewer": "뷰어"
+      "viewer": "뷰어",
+      "generator": "생성기"
     },
     "title": "🛠️ 개발자용 도구모음",
     "tools": {
@@ -163,6 +174,10 @@
       "mcp_config_converter": {
         "description": "Claude, Codex 등 서로 다른 MCP 구성 형식간 변환",
         "title": "MCP 구성 변환"
+      },
+      "qr_code_generator": {
+        "description": "텍스트나 URL로 QR 코드를 생성하고 다양한 옵션을 설정",
+        "title": "QR 코드 생성기"
       }
     }
   },
@@ -630,6 +645,47 @@
         "no_mcp_server_config_found": "변환할 MCP 서버를 찾을 수 없습니다. 올바른 형식인지 확인해 주세요.",
         "unknown_error": "알 수 없는 오류가 발생했습니다.",
         "invalid_json_format": "유효하지 않은 JSON 형식입니다. 전체 설정 파일을 복사해서 붙여넣어 주세요."
+      }
+    }
+  },
+  "generator": {
+    "qrcode": {
+      "head": {
+        "description": "텍스트나 URL로 QR 코드를 생성하고 크기, 색상, 오류 정정 수준을 설정할 수 있습니다.",
+        "title": "QR 코드 생성기"
+      },
+      "title": "QR 코드 생성기",
+      "description": "텍스트나 URL로 QR 코드 생성",
+      "text_input_label": "입력",
+      "text_input_placeholder": "QR 코드로 생성할 텍스트 또는 URL을 입력하세요",
+      "options": {
+        "label": "설정",
+        "size": {
+          "label": "크기"
+        },
+        "error_correction": {
+          "label": "오류 정정",
+          "levels": {
+            "low": "낮음 (L)",
+            "medium": "보통 (M)",
+            "quartile": "높음 (Q)",
+            "high": "최고 (H)"
+          }
+        },
+        "foreground_color": {
+          "label": "전경색"
+        },
+        "background_color": {
+          "label": "배경색"
+        }
+      },
+      "preview": {
+        "label": "미리보기",
+        "placeholder": "여기에 QR 코드가 표시됩니다"
+      },
+      "button": {
+        "download": "PNG 다운로드",
+        "copy": "복사"
       }
     }
   }
