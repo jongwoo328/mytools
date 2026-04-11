@@ -25,7 +25,7 @@ useJsonld(() => ({
     {
       "@type": "ListItem",
       position: 2,
-      name: "JSON Formatter",
+      name: t("formatter.json.title"),
       item: `https://tools.jongwoo.me${localePath("/formatter/json")}`,
     },
   ],

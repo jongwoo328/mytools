@@ -19,7 +19,7 @@ useJsonld(() => ({
     {
       "@type": "ListItem",
       position: 2,
-      name: "URL Encoder, Decoder",
+      name: t("converter.url.title"),
       item: `https://tools.jongwoo.me${localePath("/converter/url")}`,
     },
   ],

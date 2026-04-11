@@ -21,7 +21,7 @@ useJsonld(() => ({
     {
       "@type": "ListItem",
       position: 2,
-      name: "Image Cropper",
+      name: t("converter.image_crop.title"),
       item: `https://tools.jongwoo.me${localePath("/converter/image-crop")}`,
     },
   ],

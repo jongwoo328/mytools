@@ -30,5 +30,16 @@ export function useCopy() {
     }
   }
 
-  return { copyData };
+  async function copyImage(dataUrl: string) {
+    try {
+      const res = await fetch(dataUrl);
+      const blob = await res.blob();
+      await navigator.clipboard.write([new ClipboardItem({ [blob.type]: blob })]);
+      showCopySuccessToast();
+    } catch {
+      showCopyFailToast();
+    }
+  }
+
+  return { copyData, copyImage };
 }

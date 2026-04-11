@@ -19,7 +19,7 @@ useJsonld(() => ({
     {
       "@type": "ListItem",
       position: 2,
-      name: "Color Code Converter",
+      name: t("converter.color.title"),
       item: `https://tools.jongwoo.me${localePath("/converter/color")}`,
     },
   ],

@@ -49,6 +49,10 @@
       "viewer": {
         "off": "Viewer",
         "on": "Viewer"
+      },
+      "generator": {
+        "off": "Generator",
+        "on": "Generator"
       }
     },
     "menu": {
@@ -85,6 +89,12 @@
           "mermaid_viewer_label": "Mermaid"
         },
         "label": "Viewer"
+      },
+      "generator": {
+        "items": {
+          "qr_code_generator_label": "QR Code"
+        },
+        "label": "Generator"
       }
     },
     "modal": {
@@ -104,7 +114,8 @@
       "calculator": "Calculator",
       "converter": "Converter",
       "formatter": "Formatter",
-      "viewer": "Viewer"
+      "viewer": "Viewer",
+      "generator": "Generator"
     },
     "title": "🛠️ Tools For Developer",
     "tools": {
@@ -163,6 +174,10 @@
       "mcp_config_converter": {
         "description": "Translating between MCP configuration formats (e.g., Claude and Codex)",
         "title": "MCP Config Converter"
+      },
+      "qr_code_generator": {
+        "description": "Generate QR codes from text or URLs with customizable options",
+        "title": "QR Code Generator"
       }
     }
   },
@@ -630,6 +645,47 @@
         "no_mcp_server_config_found": "No MCP server configuration found to convert. Please ensure the input format is correct.",
         "unknown_error": "An unknown error occurred.",
         "invalid_json_format": "Invalid JSON format. Please copy and paste the entire settings file."
+      }
+    }
+  },
+  "generator": {
+    "qrcode": {
+      "head": {
+        "description": "Generate QR codes from text or URLs with customizable size, colors, and error correction.",
+        "title": "QR Code Generator"
+      },
+      "title": "QR Code Generator",
+      "description": "Generate QR codes from text or URLs",
+      "text_input_label": "Input",
+      "text_input_placeholder": "Enter text or URL to generate QR code",
+      "options": {
+        "label": "Options",
+        "size": {
+          "label": "Size"
+        },
+        "error_correction": {
+          "label": "Error Correction",
+          "levels": {
+            "low": "Low (L)",
+            "medium": "Medium (M)",
+            "quartile": "Quartile (Q)",
+            "high": "High (H)"
+          }
+        },
+        "foreground_color": {
+          "label": "Foreground Color"
+        },
+        "background_color": {
+          "label": "Background Color"
+        }
+      },
+      "preview": {
+        "label": "Preview",
+        "placeholder": "QR code will appear here"
+      },
+      "button": {
+        "download": "Download PNG",
+        "copy": "Copy"
       }
     }
   }
